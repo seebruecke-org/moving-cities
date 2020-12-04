@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import * as styles from './header.styles';
 
 const Logo = () => <div css={styles.logoContainer}>
@@ -8,8 +10,12 @@ const Logo = () => <div css={styles.logoContainer}>
 
 const Header = () => (
   <header css={styles.header}>
-    <Logo />
-    Moving Cities Map
+    <Link href="/">
+      <a css={styles.logoLink}>
+        <Logo />
+        Moving Cities Map
+      </a>
+    </Link>
   </header>
 );
 

@@ -83,8 +83,8 @@ const CITIES = [
 
 const NAVIGATION_ITEMS = [
   ['/', 'Cities'],
-  ['/', 'Networks'],
-  ['/', 'Activities']
+  ['/networks', 'Networks'],
+  ['/activities', 'Activities']
 ];
 
 const HomePage = () => (

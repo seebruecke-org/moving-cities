@@ -8,8 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@babel/core": "^7.12.9",
-    "@emotion/babel-preset-css-prop": "^11.0.0",
     "@emotion/react": "^11.1.1",
     "@emotion/styled": "^11.0.0",
     "mapbox-gl": "^1.13.0",
@@ -21,6 +19,8 @@
     "react-use": "^15.3.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@emotion/babel-preset-css-prop": "^11.0.0",
     "@emotion/babel-plugin": "^11.0.0"
   }
 }

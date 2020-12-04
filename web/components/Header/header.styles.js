@@ -19,6 +19,12 @@ export const logoContainer = css`
   padding-right: 0.6rem;
 `
 
+export const logoLink = css`
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+`;
+
 export const logo = css`
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
 `;
