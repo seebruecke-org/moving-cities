@@ -15,8 +15,10 @@ export const handle = css`
   border-top: 0.25rem solid var(--color-blue);
   height: 0.1rem;
   left: 50%;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
   position: absolute;
-  top: 1rem;
+  top: 0.5rem;
   transform: translateX(-50%);
   width: 50%;
 

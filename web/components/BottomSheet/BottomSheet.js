@@ -11,9 +11,13 @@ const BottomSheet = ({ children }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const checkForFullscreen = (event) => {
-    const { clientY } = event;
+    let y = event.y;
 
-    if (clientY < fullscreenZone) {
+    if (!y) {
+      y = event?.changedTouches[0]?.clientY;
+    }
+
+    if (y < fullscreenZone) {
       setPosition({ x: 0, y: -1 * windowHeight });
     } else {
       setPosition({ x: 0, y: 0 });
@@ -24,9 +28,10 @@ const BottomSheet = ({ children }) => {
       axis="y"
       position={position}
       onStop={(event) => checkForFullscreen(event)}
-      nodeRef={ref}>
+      nodeRef={ref}
+      handle=".handle">
     <div css={styles.container} ref={ref}>
-      <div css={styles.handle}></div>
+      <div css={styles.handle} className="handle"></div>
       {children}
     </div>
   </Draggable>
