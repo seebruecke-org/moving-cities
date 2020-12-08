@@ -1,11 +1,25 @@
 import { css } from '@emotion/react';
 
-export const sidebar = css`
-  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
-  grid-area: sidebar;
-  grid-column: 1 / span 12;
+import boxShadow from '../../lib/styles/box-shadow';
+import zIndex from '../../lib/styles/z-index';
 
-  @media (min-width: 768px) {
-    grid-column: auto;
+export const sidebar = css`
+  ${boxShadow()}
+  ${zIndex('sidebarBack')}
+  grid-area: sidebar;
+  position: relative;
+
+  @media (max-width: 768x) {
+    grid-column: 1 / span 12;
   }
 `;
+
+export const sidebarContent = css`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+`

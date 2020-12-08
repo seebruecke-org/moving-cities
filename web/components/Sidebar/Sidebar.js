@@ -1,8 +1,11 @@
+import { css } from '@emotion/react';
 import * as styles from './sidebar.styles';
 
 const Sidebar = ({ children }) => (
   <aside css={styles.sidebar}>
-    {children}
+    <div css={styles.sidebarContent}>
+      {children}
+    </div>
   </aside>
 );
 

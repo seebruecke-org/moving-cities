@@ -7,9 +7,11 @@ const ActivitiesList = ({ activities = [] }) => (
     {activities.map(({ city, title }) => <li css={styles.item}>
       <Link href="/activities/">
         <a css={styles.link}>
-          <small>{city}:</small>
-          {' '}
-          {title}
+          <span css={styles.linkContent}>
+            <small>{city}:</small>
+            {' '}
+            {title}
+          </span>
         </a>
       </Link>
     </li>)}

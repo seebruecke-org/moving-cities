@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 
+import boxShadow from '../../lib/styles/box-shadow';
+
 export const navigation = css`
   color: var(--color-blue);
   display: grid;
@@ -9,11 +11,11 @@ export const navigation = css`
 `;
 
 export const inner = css`
+  ${boxShadow()}
   display: flex;
   padding: 1rem;
 
   @media (min-width: 768px) {
-    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
     flex-direction: column;
     padding: 1.5rem;
   }
@@ -30,12 +32,18 @@ export const inner = css`
 
 export const item = css`
   align-items: center;
+  cursor: pointer;
   display: flex;
-  font-size: 1rem;
+  font-size: 1.7rem;
   position: relative;
 
   @media (min-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 3rem;
+  }
+
+  :hover::after,
+  :focus::after {
+    background-color: var(--color-theme);
   }
 
   ::before {
@@ -43,9 +51,14 @@ export const item = css`
     border-radius: 50%;
     content: '';
     display: inline-block;
-    height: 2rem;
+    height: 2.3rem;
     margin-right: 0.5rem;
-    width: 2rem;
+    width: 2.3rem;
+
+    @media (min-width: 768px) {
+      height: 3.3rem;
+      width: 3.3rem;
+    }
   }
 
   ::after {
@@ -54,16 +67,23 @@ export const item = css`
     border-radius: 50%;
     content: '';
     display: block;
-    height: 1.7rem;
+    height: 2rem;
     left: 0.15rem;
     position: absolute;
-    top: 0.15rem;
-    width: 1.7rem;
+    top: 0.25rem;
+    width: 2rem;
+
+    @media (min-width: 768px) {
+      height: 3rem;
+      left: 0.15rem;
+      top: 0.65rem;
+      width: 3rem;
+    }
   }
 `;
 
 export const itemActive = css`
   ::after {
-    background-color: var(--color-green);
+    background-color: var(--color-theme);
   }
 `

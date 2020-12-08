@@ -7,9 +7,15 @@ const styles = css`
     box-sizing: border-box;
   }
 
-  body {
+  html {
+    font-size: 62.5%;
     height: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
     margin: 0;
+    min-height: 100%;
     overflow: hidden;
   }
 

@@ -10,11 +10,23 @@ export const list = css`
 `;
 
 export const item = css`
-  border-bottom: 1px solid var(--color-purple);
+  border-bottom: 1px solid var(--color-yellow-dark);
   color: var(--color-blue);
+  font-size: 3.3rem;
 `;
 
 export const link = css`
+  cursor: pointer;
   display: block;
-  padding: 1rem 1.5rem;
+  padding: 1.25rem 1.5rem;
+
+  :hover,
+  :focus {
+    background-color: var(--color-yellow-dark);
+  }
+`;
+
+export const linkContent = css`
+  display: block;
+  max-width: 80rem;
 `;

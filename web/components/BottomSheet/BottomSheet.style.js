@@ -7,6 +7,8 @@ export const container =  css`
   width: 100%;
 
   @media (min-width: 768px) {
+    display: flex;
+    flex: 1;
     position: static;
   }
 `;
