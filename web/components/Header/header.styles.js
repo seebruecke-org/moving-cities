@@ -11,7 +11,8 @@ export const header = css`
   color: var(--color-blue);
   display: flex;
   grid-area: header;
-  grid-column: 1 / -1;
+  justify-content: space-between;
+  padding-right: 1.5rem;
   position: relative;
 `;
 

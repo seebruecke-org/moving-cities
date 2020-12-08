@@ -10,7 +10,7 @@ const Map = () => {
       'pk.eyJ1IjoiZ3VzdGF2cHVyc2NoZSIsImEiOiJhVVRUaFV3In0.IdUObuDS1u0tzNNDvNpfKg'
   });
 
-  return <MapboxMap style="mapbox://styles/mapbox/streets-v9" containerStyle={styles.container} />;
+  return <MapboxMap style="mapbox://styles/gustavpursche/ckig79xzb3nue1atbymcmf04v" containerStyle={styles.container} />;
 }
 
 export default Map;

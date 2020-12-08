@@ -8,12 +8,12 @@ const ActivitiesList = ({ activities = [] }) => (
       <Link href="/activities/">
         <a css={styles.link}>
           <span css={styles.linkContent}>
-            <small>{city}:</small>
-            {' '}
             {title}
           </span>
         </a>
       </Link>
+
+      <small css={styles.cityName}>{city}</small>
     </li>)}
   </ul>
 );

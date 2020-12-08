@@ -7,10 +7,9 @@ export const sidebar = css`
   ${boxShadow()}
   ${zIndex('sidebarBack')}
   grid-area: sidebar;
-  position: relative;
 
-  @media (max-width: 768x) {
-    grid-column: 1 / span 12;
+  @media (min-width: 768px) {
+    position: relative;
   }
 `;
 

@@ -18,7 +18,8 @@
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
     "react-mapbox-gl": "^5.1.1",
-    "react-use": "^15.3.4"
+    "react-use": "^15.3.4",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -30,14 +30,3 @@ export const list = css`
   top: 0;
   width: 100%;
 `;
-
-export const item = css`
-  cursor: pointer;
-  font-size: 2.4rem;
-  padding: 0.5rem 1.5rem;
-
-  :hover,
-  :focus {
-    background-color: var(--color-purple);
-  }
-`

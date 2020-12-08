@@ -6,14 +6,15 @@ const global = css`
     "header"
     "sidebar"
     "main";
+  grid-template-rows: min-content min-content 1fr;
   height: 100vh;
 
   @media (min-width: 768px) {
     grid-template-areas:
-    "header . . . . . . . . . . . ."
-    "main main main main main main main main main main main sidebar sidebar";
-    grid-template-rows: min-content
-      1fr;
+    "header header"
+    "main sidebar";
+    grid-template-columns: 1fr 30rem;
+    grid-template-rows: min-content 1fr;
   }
 `;
 

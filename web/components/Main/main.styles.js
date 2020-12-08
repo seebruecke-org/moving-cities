@@ -2,8 +2,14 @@ import { css } from '@emotion/react';
 
 export const container = css`
   grid-area: main;
-
-  @media (max-width: 768px) {
-    grid-column: 1 / span 12;
-  }
+  position: relative;
 `;
+
+export const inner = css`
+  display: flex;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%
+`

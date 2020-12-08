@@ -6,13 +6,18 @@ export const list = css`
   list-style: none;
   margin-bottom: 0;
   margin-top: 0;
+  overflow-y: auto;
   padding-left: 0;
+  position: relative;
+  width: 100%;
 `;
 
 export const item = css`
+  align-items: center;
   border-bottom: 1px solid var(--color-yellow-dark);
   color: var(--color-blue);
-  font-size: 3.3rem;
+  display: flex;
+  font-size: 2.4rem;
 `;
 
 export const link = css`
@@ -30,3 +35,10 @@ export const linkContent = css`
   display: block;
   max-width: 80rem;
 `;
+
+export const cityName = css`
+  font-size: 2.2rem;
+  justify-self: flex-end;
+  margin-left: auto;
+  margin-right: 1.25rem;
+`

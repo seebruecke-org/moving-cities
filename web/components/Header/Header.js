@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import NavigationSecondary from '../NavigationSecondary';
+
 import * as styles from './header.styles';
 
 const Logo = () => <div css={styles.logoContainer}>
@@ -16,6 +18,8 @@ const Header = () => (
         Moving Cities Map
       </a>
     </Link>
+
+    <NavigationSecondary />
   </header>
 );
 
