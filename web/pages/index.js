@@ -1,3 +1,5 @@
+import { useWindowSize } from 'react-use';
+
 import Layout from '../components/Layout';
 
 import BottomSheet from '../components/BottomSheet';
@@ -89,20 +91,24 @@ const NAVIGATION_ITEMS = [
   ['/activities', 'Activities']
 ];
 
-const HomePage = () => (
-  <Layout>
-    <Main>
-      <Map />
-    </Main>
-    <Sidebar>
-      <Navigation items={NAVIGATION_ITEMS} />
-      <BottomSheet>
-        <SidebarList label="City profiles">
-          {CITIES.map(city => <CityListItem {...city} />)}
-        </SidebarList>
-      </BottomSheet>
-    </Sidebar>
-  </Layout>
-);
+const HomePage = () => {
+  const { width: windowWidth } = useWindowSize();
+
+  return (
+    <Layout>
+      <Main>
+        <Map />
+      </Main>
+      <Sidebar>
+        <Navigation items={NAVIGATION_ITEMS} />
+        <BottomSheet>
+          <SidebarList label="City profiles">
+            {CITIES.map(city => <CityListItem {...city} />)}
+          </SidebarList>
+        </BottomSheet>
+      </Sidebar>
+    </Layout>
+  );
+}
 
 export default HomePage;

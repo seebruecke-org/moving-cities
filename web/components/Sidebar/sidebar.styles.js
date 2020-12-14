@@ -7,6 +7,7 @@ export const sidebar = css`
   ${boxShadow()}
   ${zIndex('sidebarBack')}
   grid-area: sidebar;
+  z-index: 100;
 
   @media (min-width: 768px) {
     position: relative;
@@ -16,9 +17,12 @@ export const sidebar = css`
 export const sidebarContent = css`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
   width: 100%;
+
+  @media (min-width: 768px) {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
 `

@@ -4,6 +4,7 @@ export const container = css`
   color: var(--color-blue);
   display: flex;
   flex-direction: column;
+  height: 100%;
   width: 100%;
 `
 

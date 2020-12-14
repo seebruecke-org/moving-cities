@@ -6,17 +6,22 @@ export const navigation = css`
   color: var(--color-blue);
   display: grid;
   flex-direction: column;
-  overflow-x: hidden;
-  padding-bottom: 0.8rem;
+
+  @media (min-width: 768px) {
+    padding-bottom: 0.8rem;
+  }
 `;
 
 export const inner = css`
-  ${boxShadow()}
   display: flex;
+  justify-content: center;
   padding: 1rem;
 
   @media (min-width: 768px) {
+    ${boxShadow()}
+
     flex-direction: column;
+    justify-content: auto;
     padding: 1.5rem;
   }
 

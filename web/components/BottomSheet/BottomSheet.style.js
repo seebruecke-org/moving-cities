@@ -1,10 +1,18 @@
 import { css } from '@emotion/react';
 
+import boxShadow from '../../lib/styles/box-shadow';
+import zIndex from '../../lib/styles/z-index';
+
 export const container =  css`
+  ${boxShadow()}
+
   background-color: white;
-  position: absolute;
-  top: calc(100% - 2rem);
+  height: 100vh;
+  position: fixed;
+  top: 100%;
+  touch-action: none;
   width: 100%;
+  z-index: ${zIndex.overlay};
 
   @media (min-width: 768px) {
     display: flex;
