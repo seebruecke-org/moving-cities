@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "networks",
+  "info": {
+    "name": "Networks"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "cities": {
+      "collection": "cities",
+      "via": "networks",
+      "dominant": true
+    }
+  }
+}
