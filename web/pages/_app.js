@@ -1,5 +1,12 @@
-const App = ({ Component, pageProps }) => (
-  <Component {...pageProps} />
-);
+import { Provider } from 'react-redux'
+import { useStore } from '../lib/store'
 
-export default App
+export default function App({ Component, pageProps }) {
+  const store = useStore(pageProps.initialReduxState)
+
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  )
+}

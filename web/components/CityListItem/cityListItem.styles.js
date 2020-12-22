@@ -12,3 +12,7 @@ export const name = css`
     background-color: var(--color-purple);
   }
 `;
+
+export const active = css`
+  background-color: var(--color-purple);
+`;
