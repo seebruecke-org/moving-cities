@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 import * as styles from './networkListItem.styles';
 
-const NetworkListItem = ({ title }) => <Link href="">
+const NetworkListItem = ({ name }) => <Link href="">
   <a css={styles.name}>
-    {title}
+    {name}
   </a>
 </Link>
 

@@ -1,27 +1,12 @@
 import { useMemo } from 'react'
 import { createStore } from 'redux'
 
+import { INITIAL_STATE } from './initial-state';
+import reducer from './reducer';
+
 let store;
 
-const initialState = {}
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SET_ACTIVE_CITY':
-      return {
-        ...state,
-        cities: state.cities.map(city => ({
-          ...city,
-          isActive: action.slug === city.slug
-        }))
-      }
-
-    default:
-      return state
-  }
-}
-
-function initStore(preloadedState = initialState) {
+function initStore(preloadedState) {
   return createStore(
     reducer,
     preloadedState
@@ -38,6 +23,7 @@ export const initializeStore = (preloadedState) => {
       ...store.getState(),
       ...preloadedState,
     })
+
     // Reset the current store
     store = undefined
   }
@@ -52,5 +38,5 @@ export const initializeStore = (preloadedState) => {
 }
 
 export function useStore(initialState) {
-  return useMemo(() => initializeStore(initialState), [initialState])
+  return useMemo(() => initializeStore({ ...initialState, ...INITIAL_STATE }), [initialState])
 }
