@@ -9,6 +9,7 @@ export const colors = css`
     --color-blue-bright: #B8D6F9;
     --color-red: #FF7C74;
     --color-purple: #98A2FF;
+    --color-grey-medium: #C4C4C4;
 
     --font-sans: 'Whyte';
   }

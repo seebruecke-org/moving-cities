@@ -9,7 +9,7 @@ export const container = css`
 `
 
 export const label = css`
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
   padding-left: 1.5rem;

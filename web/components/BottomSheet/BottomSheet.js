@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 
 import * as styles from './BottomSheet.style';
 
+const INITIAL_POSITION = -55;
+
 const BottomSheet = ({ children }) => {
   const { height: windowHeight, width: windowWidth } = useWindowSize();
   const [{ y }, set] = useSpring(() => ({ y: 0 }));
@@ -14,12 +16,12 @@ const BottomSheet = ({ children }) => {
     if (shouldAnimate) {
       setTimeout(() => {
         reveal();
-      }, 200)
+      }, 400)
     }
   });
 
   const close = (velocity = 0) => {
-    set({ y: -40, immediate: false, config: { ...config.stiff, velocity } })
+    set({ y: INITIAL_POSITION, immediate: false, config: { ...config.stiff, velocity } })
   }
 
   const open = (velocity = 0) => {
@@ -27,7 +29,7 @@ const BottomSheet = ({ children }) => {
   }
 
   const reveal = () => {
-    set({ y: -40, immediate: false, config: config.stiff })
+    set({ y: INITIAL_POSITION, immediate: false, config: config.stiff })
   }
 
   const bind = useDrag(

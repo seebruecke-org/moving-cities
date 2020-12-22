@@ -6,10 +6,6 @@ export const navigation = css`
   color: var(--color-blue);
   display: grid;
   flex-direction: column;
-
-  @media (min-width: 768px) {
-    padding-bottom: 0.8rem;
-  }
 `;
 
 export const inner = css`
