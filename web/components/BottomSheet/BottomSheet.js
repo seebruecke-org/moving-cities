@@ -8,17 +8,14 @@ import * as styles from './BottomSheet.style';
 const BottomSheet = ({ children }) => {
   const { height: windowHeight, width: windowWidth } = useWindowSize();
   const [{ y }, set] = useSpring(() => ({ y: 0 }));
-
-  if (windowWidth > 768) {
-    return <div css={styles.container}>
-      {children}
-    </div>
-  }
+  const shouldAnimate = windowWidth && windowWidth < 768;
 
   useEffect(() => {
-    setTimeout(() => {
-      reveal();
-    }, 200)
+    if (shouldAnimate) {
+      setTimeout(() => {
+        reveal();
+      }, 200)
+    }
   });
 
   const close = (velocity = 0) => {
@@ -48,9 +45,15 @@ const BottomSheet = ({ children }) => {
     { initial: () => [0, y.get()], filterTaps: true, rubberband: true }
   )
 
-  return <animated.div {...bind()} css={styles.container} style={{ y, touchAction: 'none' }}>
+  if (shouldAnimate) {
+    return <animated.div {...bind()} css={styles.container} style={{ y, touchAction: 'none' }}>
+      {children}
+    </animated.div>
+  }
+
+  return <div css={styles.container}>
     {children}
-  </animated.div>
+  </div>
 }
 
 export default BottomSheet;
