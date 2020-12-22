@@ -37,4 +37,23 @@ export const logoLink = css`
 
 export const logo = css`
   ${boxShadow()}
+
+  height: 4.4rem;
+  width: 4.4rem;
+
+  @media (min-width: 768px) {
+    height: 7rem;
+    width: 7.1rem;
+  }
 `;
+
+export const burger = css`
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+`

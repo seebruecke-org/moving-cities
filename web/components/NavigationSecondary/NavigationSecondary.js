@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import * as styles from './navigationSecondary.styles';
 
-const NavigationSecondary = () => <nav css={styles.container}>
+const NavigationSecondary = ({ isOpen }) => <nav css={[styles.container, isOpen && styles.containerIsOpen]}>
   <Link href="/about">
     <a css={styles.about}>
       About

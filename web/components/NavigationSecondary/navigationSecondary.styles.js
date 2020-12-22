@@ -2,12 +2,20 @@ import { css } from '@emotion/react';
 
 export const container = css`
   align-items: center;
-  display: flex;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 
   > * + * {
     margin-left: 1.5rem;
   }
 `;
+
+export const containerIsOpen = css`
+  display: flex;
+`
 
 export const about = css`
   background: white;
