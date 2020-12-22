@@ -11,8 +11,8 @@ import MapIntro from '../components/MapIntro';
 import Navigation from '../components/Navigation';
 import Sidebar from '../components/Sidebar';
 
-import { useCookie } from '../lib/hooks/useCookie';
 import { fetcher } from '../lib/hooks/useAPI';
+import useCookie from '../lib/hooks/useCookie';
 
 const COOKIE_NAME = 'intro_shown';
 

@@ -4,7 +4,7 @@ import * as styles from './activitiesList.styles';
 
 const ActivitiesList = ({ activities = [] }) => (
   <ul css={styles.list}>
-    {activities.map(({ title, cities: { name: cityName } }) => <li css={styles.item}>
+    {activities.map(({ title, city: { name: cityName } }) => <li css={styles.item}>
       <Link href="/activities/">
         <a css={styles.link}>
           <span css={styles.linkContent}>

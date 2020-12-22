@@ -26,6 +26,10 @@
     "networks": {
       "via": "cities",
       "collection": "networks"
+    },
+    "activity": {
+      "via": "city",
+      "model": "activities"
     }
   }
 }

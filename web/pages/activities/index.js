@@ -39,7 +39,7 @@ export async function getServerSideProps() {
       activities {
         title
 
-        cities {
+        city {
             name
         }
       }
