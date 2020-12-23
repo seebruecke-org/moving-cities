@@ -41,6 +41,14 @@
     },
     "accepts_more_refugees": {
       "type": "boolean"
+    },
+    "intro_long": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.image",
+        "blocks.richtext",
+        "blocks.quote"
+      ]
     }
   }
 }

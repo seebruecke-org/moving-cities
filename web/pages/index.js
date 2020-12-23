@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
+import dynamic from 'next/dynamic'
 
 import Layout from '../components/Layout';
 
 import BottomSheet from '../components/BottomSheet';
 import CityListItem from '../components/CityListItem';
 import Main from '../components/Main';
-import Map from '../components/Map';
 import MapCityMarker from '../components/MapCityMarker';
 import MapCityPopup from '../components/MapCityPopup';
 import MapIntro from '../components/MapIntro';
@@ -16,6 +16,8 @@ import SidebarList from '../components/SidebarList';
 import { fetcher } from '../lib/hooks/useAPI';
 import { convertStrapiToMapbox } from '../lib/coordiantes';
 import useCookie from '../lib/hooks/useCookie';
+
+const Map = dynamic(() => import('../components/Map'));
 
 const COOKIE_NAME = 'intro_shown';
 

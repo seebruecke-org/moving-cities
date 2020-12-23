@@ -7,12 +7,15 @@ import Main from '../../components/Main';
 import Map from '../../components/Map';
 import MapOverlay from '../../components/MapOverlay';
 import Navigation from '../../components/Navigation';
+import Profile from '../../components/Profile';
 import Sidebar from '../../components/Sidebar';
 import SidebarList from '../../components/SidebarList';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 
-export default function CityPage({ name, slug }) {
+import { BLOCK_FRAGMENTS } from '../../components/Blocks';
+
+export default function CityPage({ slug, contentType, ...props }) {
     const cities = useSelector((state) => state.cities);
     const navigation = useSelector((state) => state.navigation);
 
@@ -21,7 +24,7 @@ export default function CityPage({ name, slug }) {
             <Main>
                 <Map />
                 <MapOverlay>
-                    <h1>{name}</h1>
+                    <Profile isCity={contentType === 'city'} {...props} />
                 </MapOverlay>
             </Main>
 
@@ -44,38 +47,72 @@ export default function CityPage({ name, slug }) {
 }
 
 export async function getStaticProps({ params: { slug }}) {
-    const [country, citySlug] = slug;
+    const [countrySlug, citySlug] = slug;
+    
+    let query = `
+        country: countries(where: { slug: "${countrySlug}" }) {
+            name
+        }
+    `;
 
-    const { cities, city } = await fetcher(`
-        query {
-            cities {
+    if (citySlug) {
+        query = `
+            city: cities(where: { slug: "${citySlug}" }) {
                 name
                 slug
+                intro_long {
+                    __typename
+
+                    ${BLOCK_FRAGMENTS}
+                }
 
                 country {
                     slug
                 }
             }
+        `;
+    }
 
-            city: cities(where: { slug: "${citySlug}" }) {
-                name
-                slug
+    try {
+        const { cities, city, country } = await fetcher(`
+            query {
+                cities {
+                    name
+                    slug
+
+                    country {
+                        slug
+                    }
+                }
+
+                ${query}
+            }
+        `);
+
+        const isCity = city && city[0];
+        const content = isCity ? city[0] : country[0];
+
+        return {
+            props: {
+                initialReduxState: {
+                    cities
+                },
+
+                contentType: isCity ? 'city' : 'country',
+                ...content,
             }
         }
-    `);
+    } catch (err) {
+        console.log(err);
 
-    return {
-        props: {
-            initialReduxState: {
-                cities
-            },
-            ...city[0]
+        return {
+            props: {}
         }
     }
 }
 
 export async function getStaticPaths() {
-    const { cities } = await fetcher(`
+    const { cities, countries } = await fetcher(`
         query {
             cities {
                 name
@@ -84,12 +121,19 @@ export async function getStaticPaths() {
                 country {
                     slug
                 }
+            }
+
+            countries {
+                slug
             }
         }
     `);
 
     return {
         fallback: false,
-        paths: cities.map(({ slug, country: { slug: countrySlug }}) => `/cities/${countrySlug}/${slug}`)
+        paths: [
+            ...cities.map(({ slug, country: { slug: countrySlug }}) => `/cities/${countrySlug}/${slug}`),
+            ...countries.map(({ slug }) => `/cities/${slug}`)
+        ]
     }
 }
