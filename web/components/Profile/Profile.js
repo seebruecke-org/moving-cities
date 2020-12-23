@@ -17,9 +17,9 @@ export default function Profile({ name, isCity, intro_long, country }) {
                 </Link>
             )}
 
-            {console.log(intro_long)}
-
-            <Blocks blocks={intro_long} />
+            <div css={styles.blocksContainer}>
+                <Blocks blocks={intro_long} />
+            </div>
         </div>
     )
 };

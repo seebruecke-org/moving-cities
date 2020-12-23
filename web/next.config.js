@@ -8,7 +8,6 @@ module.exports = withPlugins([withFonts], {
   },
 
   webpack(config) {
-
     // See: https://github.com/pmndrs/react-spring/issues/1078#issuecomment-743698325
     config.module.rules.push({
       test: /react-spring/,

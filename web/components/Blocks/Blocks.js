@@ -5,8 +5,6 @@ export default function Blocks({ blocks = [] }) {
         'ComponentBlocksRichtext': Richtext
     };
 
-    console.log(blocks);
-
     return (
         <div>
             {blocks.map(({ __typename, ...block }) => {
