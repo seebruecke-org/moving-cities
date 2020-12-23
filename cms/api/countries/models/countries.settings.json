@@ -1,8 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "networks",
+  "collectionName": "countries",
   "info": {
-    "name": "Networks"
+    "name": "Countries",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -13,14 +14,13 @@
     "name": {
       "type": "string"
     },
+    "cities": {
+      "via": "country",
+      "collection": "cities"
+    },
     "slug": {
       "type": "uid",
       "targetField": "name"
-    },
-    "cities": {
-      "via": "networks",
-      "collection": "cities",
-      "dominant": true
     }
   }
 }

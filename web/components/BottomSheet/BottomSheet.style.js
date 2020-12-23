@@ -4,25 +4,24 @@ import boxShadow from '../../lib/styles/box-shadow';
 import zIndex from '../../lib/styles/z-index';
 
 export const container =  css`
-  ${boxShadow()}
-
-  background-color: white;
-  height: 100vh;
-  padding-top: 1rem;
-  position: fixed;
-  top: 100%;
-  touch-action: none;
   width: 100%;
-  z-index: ${zIndex.overlay};
 
   @media (max-width: 768px) {
+    ${boxShadow()}
+    ${zIndex('overlay')}
+
+    background-color: white;
     border-radius: 1rem;
+    height: 100vh;
+    padding-top: 1rem;
+    position: fixed;
+    top: 100%;
+    touch-action: none;
   }
 
   @media (min-width: 768px) {
     display: flex;
     flex: 1;
-    position: static;
   }
 
   ::before {

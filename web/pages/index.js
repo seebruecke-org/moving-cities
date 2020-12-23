@@ -4,33 +4,49 @@ import Layout from '../components/Layout';
 
 import BottomSheet from '../components/BottomSheet';
 import CityListItem from '../components/CityListItem';
-import SidebarList from '../components/SidebarList';
 import Main from '../components/Main';
-import Map, { Marker } from '../components/Map';
+import Map from '../components/Map';
+import MapCityMarker from '../components/MapCityMarker';
+import MapCityPopup from '../components/MapCityPopup';
 import MapIntro from '../components/MapIntro';
 import Navigation from '../components/Navigation';
 import Sidebar from '../components/Sidebar';
+import SidebarList from '../components/SidebarList';
 
 import { fetcher } from '../lib/hooks/useAPI';
+import { convertStrapiToMapbox } from '../lib/coordiantes';
 import useCookie from '../lib/hooks/useCookie';
 
 const COOKIE_NAME = 'intro_shown';
 
 const HomePage = () => {
   const cities = useSelector((state) => state.cities)
+  const activeCity = useSelector(state => state.cities.find(({ isActive }) => isActive === true));
   const navigation = useSelector((state) => state.navigation);
   const dispatch = useDispatch();
   const { cookie, setCookie } = useCookie(COOKIE_NAME);
+  let center = [13.3999443502352, 52.52117780229074];
+  let zoom = [5];
+
+  if (activeCity) {
+    center = convertStrapiToMapbox(activeCity.coordinates);
+    zoom = [8];
+  }
 
   return (
     <Layout>
       <Main>
-        <Map>
-          {cities && cities.map(({ coordinates }, index) => {
+        <Map center={center} zoom={zoom} flyToOptions={{ speed: 1.2 }}>
+          {cities && cities.map((city) => {
             return (
-              <Marker key={index} coordinates={coordinates.split(',')} />
+              <MapCityMarker {...city} onClick={() => dispatch({
+                type: 'SET_ACTIVE_CITY',
+                slug: city.slug
+              })} />
             )
           })}
+
+          {activeCity && <MapCityPopup {...activeCity} />}
         </Map>
       </Main>
 
@@ -63,8 +79,13 @@ export async function getServerSideProps() {
     query {
       cities {
         name
+        intro
         slug
         coordinates
+
+        country {
+          slug
+        }
       }
     }
   `);

@@ -14,8 +14,8 @@
       "type": "string"
     },
     "city": {
-      "model": "cities",
-      "via": "activity"
+      "via": "activity",
+      "model": "cities"
     }
   }
 }
