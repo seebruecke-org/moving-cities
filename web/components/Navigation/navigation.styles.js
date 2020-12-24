@@ -95,4 +95,4 @@ export const itemActive = css`
   ::after {
     background-color: var(--color-theme);
   }
-`
+`;

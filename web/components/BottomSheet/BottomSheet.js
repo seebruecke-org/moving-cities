@@ -1,5 +1,5 @@
-import { useSpring, animated, config } from 'react-spring'
-import { useDrag } from 'react-use-gesture'
+import { useSpring, animated, config } from 'react-spring';
+import { useDrag } from 'react-use-gesture';
 import { useWindowSize } from 'react-use';
 import { useEffect } from 'react';
 
@@ -16,46 +16,44 @@ const BottomSheet = ({ children }) => {
     if (shouldAnimate) {
       setTimeout(() => {
         reveal();
-      }, 400)
+      }, 400);
     }
   });
 
   const close = (velocity = 0) => {
-    set({ y: INITIAL_POSITION, immediate: false, config: { ...config.stiff, velocity } })
-  }
+    set({ y: INITIAL_POSITION, immediate: false, config: { ...config.stiff, velocity } });
+  };
 
   const open = (velocity = 0) => {
-    set({ y: -windowHeight, immediate: false, config: { ...config.stiff, velocity } })
-  }
+    set({ y: -windowHeight, immediate: false, config: { ...config.stiff, velocity } });
+  };
 
   const reveal = () => {
-    set({ y: INITIAL_POSITION, immediate: false, config: config.stiff })
-  }
+    set({ y: INITIAL_POSITION, immediate: false, config: config.stiff });
+  };
 
   const bind = useDrag(
     ({ last, vxvy: [, vy], movement: [, my], direction: [, dy] }) => {
       if (!last) {
         set({ y: my, immediate: true });
+      } else if (dy > 0) {
+        close(vy);
       } else {
-        if (dy > 0) {
-          close(vy);
-        } else {
-          open(vy);
-        }
+        open(vy);
       }
     },
     { initial: () => [0, y.get()], filterTaps: true, rubberband: true }
-  )
+  );
 
   if (shouldAnimate) {
-    return <animated.div {...bind()} css={styles.container} style={{ y, touchAction: 'none' }}>
-      {children}
-    </animated.div>
+    return (
+      <animated.div {...bind()} css={styles.container} style={{ y, touchAction: 'none' }}>
+        {children}
+      </animated.div>
+    );
   }
 
-  return <div css={styles.container}>
-    {children}
-  </div>
-}
+  return <div css={styles.container}>{children}</div>;
+};
 
 export default BottomSheet;

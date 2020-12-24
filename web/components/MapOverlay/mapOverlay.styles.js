@@ -4,32 +4,32 @@ import boxShadow from '../../lib/styles/box-shadow';
 import zIndex from '../../lib/styles/z-index';
 
 export const container = css`
-    ${zIndex('mapOverlay')}
+  ${zIndex('mapOverlay')}
 
-    display: flex;
-    height: 100%;
-    left: 0;
-    overflow-x: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
+  display: flex;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
 
-    @media (min-width: 768px) {
-        left: 2.75rem;
-        padding-left: 0.8rem;
-    }
+  @media (min-width: 768px) {
+    left: 2.75rem;
+    padding-left: 0.8rem;
+  }
 `;
 
 export const inner = css`
-    ${boxShadow()}
+  ${boxShadow()}
 
-    background: var(--color-yellow-bright);
-    min-height: 100%;
-    overflow-y: auto;
-    padding: 1.5rem;
-    width: 100%;
+  background: var(--color-yellow-bright);
+  min-height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem;
+  width: 100%;
 
-    @media (min-width: 768px) {
-        padding: 4rem;
-    }
+  @media (min-width: 768px) {
+    padding: 4rem;
+  }
 `;

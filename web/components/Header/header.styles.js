@@ -22,7 +22,7 @@ export const logoContainer = css`
   margin-right: 1rem;
   overflow-y: hidden;
   padding-right: 0.6rem;
-`
+`;
 
 export const logoLink = css`
   align-items: center;
@@ -56,4 +56,4 @@ export const burger = css`
   @media (min-width: 768px) {
     display: none;
   }
-`
+`;

@@ -1,7 +1,7 @@
 export const INITIAL_STATE = {
-    navigation: [
-        ['/', 'Cities'],
-        ['/networks', 'Networks'],
-        ['/activities', 'Activities']
-    ]
-}
+  navigation: [
+    ['/', 'Cities'],
+    ['/networks', 'Networks'],
+    ['/activities', 'Activities']
+  ]
+};

@@ -8,14 +8,12 @@ const SidebarList = ({ label, children, ...props }) => (
 
     <div css={styles.listContainer}>
       <ul css={styles.list} {...props}>
-        {Children.map(children, child => (
-          <li>
-            {child}
-          </li>
+        {Children.map(children, (child) => (
+          <li>{child}</li>
         ))}
       </ul>
     </div>
   </div>
-)
+);
 
 export default SidebarList;

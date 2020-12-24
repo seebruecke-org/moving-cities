@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import boxShadow from '../../lib/styles/box-shadow';
 import zIndex from '../../lib/styles/z-index';
 
-export const container =  css`
+export const container = css`
   width: 100%;
 
   @media (max-width: 768px) {

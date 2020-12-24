@@ -15,7 +15,7 @@ export const container = css`
 
 export const containerIsOpen = css`
   display: flex;
-`
+`;
 
 export const about = css`
   background: white;
@@ -41,4 +41,4 @@ export const item = css`
   :focus {
     text-decoration: underline;
   }
-`
+`;

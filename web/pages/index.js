@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux'
-import dynamic from 'next/dynamic'
+import { useSelector, useDispatch } from 'react-redux';
+import dynamic from 'next/dynamic';
 
 import Layout from '../components/Layout';
 
@@ -22,8 +22,8 @@ const Map = dynamic(() => import('../components/Map'));
 const COOKIE_NAME = 'intro_shown';
 
 const HomePage = () => {
-  const cities = useSelector((state) => state.cities)
-  const activeCity = useSelector(state => state.cities.find(({ isActive }) => isActive === true));
+  const cities = useSelector((state) => state.cities);
+  const activeCity = useSelector((state) => state.cities.find(({ isActive }) => isActive === true));
   const navigation = useSelector((state) => state.navigation);
   const dispatch = useDispatch();
   const { cookie, setCookie } = useCookie(COOKIE_NAME);
@@ -39,14 +39,18 @@ const HomePage = () => {
     <Layout>
       <Main>
         <Map center={center} zoom={zoom} flyToOptions={{ speed: 1.2 }}>
-          {cities && cities.map((city) => {
-            return (
-              <MapCityMarker {...city} onClick={() => dispatch({
-                type: 'SET_ACTIVE_CITY',
-                slug: city.slug
-              })} />
-            )
-          })}
+          {cities &&
+            cities.map((city) => (
+              <MapCityMarker
+                {...city}
+                onClick={() =>
+                  dispatch({
+                    type: 'SET_ACTIVE_CITY',
+                    slug: city.slug
+                  })
+                }
+              />
+            ))}
 
           {activeCity && <MapCityPopup {...activeCity} />}
         </Map>
@@ -56,25 +60,28 @@ const HomePage = () => {
         <Navigation items={navigation} />
         <BottomSheet>
           <SidebarList label="City profiles">
-            {cities && cities.map(city => <CityListItem {...city} onClick={(event) => {
-              event.preventDefault();
-              
-              dispatch({
-                type: 'SET_ACTIVE_CITY',
-                slug: city.slug
-              });
+            {cities &&
+              cities.map((city) => (
+                <CityListItem
+                  {...city}
+                  onClick={(event) => {
+                    event.preventDefault();
 
-            }} />)}
+                    dispatch({
+                      type: 'SET_ACTIVE_CITY',
+                      slug: city.slug
+                    });
+                  }}
+                />
+              ))}
           </SidebarList>
         </BottomSheet>
       </Sidebar>
 
-      {!cookie && (
-        <MapIntro onClose={() => setCookie(false)} />
-      )}
+      {!cookie && <MapIntro onClose={() => setCookie(false)} />}
     </Layout>
   );
-}
+};
 
 export async function getServerSideProps() {
   const { cities } = await fetcher(`
@@ -98,7 +105,7 @@ export async function getServerSideProps() {
         cities
       }
     }
-  }
+  };
 }
 
 export default HomePage;

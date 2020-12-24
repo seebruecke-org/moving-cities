@@ -24,4 +24,4 @@ export const sidebarContent = css`
     position: absolute;
     top: 0;
   }
-`
+`;

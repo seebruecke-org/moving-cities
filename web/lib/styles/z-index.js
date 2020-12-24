@@ -6,7 +6,7 @@ const indexes = {
   sidebarBack: 20,
   header: 40,
   mapOverlay: 15,
-  overlay: 50,
+  overlay: 50
 };
 
 export default (size) => css`

@@ -1,19 +1,18 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 import Layout from '../../components/Layout';
 
-import ActivitiesList from '../../components/ActivitiesList';
+import ActivitiesList, { FRAGMENT as ACTIVITIES_FRAGMENT } from '../../components/ActivitiesList';
 import BottomSheet from '../../components/BottomSheet';
 import SidebarList from '../../components/SidebarList';
 import Main from '../../components/Main';
 import Navigation from '../../components/Navigation';
 import Sidebar from '../../components/Sidebar';
 
-import { FRAGMENT as ACTIVITIES_FRAGMENT } from '../../components/ActivitiesList';
 import { fetcher } from '../../lib/hooks/useAPI';
 
 const ActivitiesPage = () => {
-  const activities = useSelector((state) => state.activities)
+  const activities = useSelector((state) => state.activities);
   const navigation = useSelector((state) => state.navigation);
 
   return (
@@ -25,14 +24,12 @@ const ActivitiesPage = () => {
       <Sidebar>
         <Navigation items={navigation} />
         <BottomSheet>
-          <SidebarList label="Filter By">
-            
-          </SidebarList>
+          <SidebarList label="Filter By" />
         </BottomSheet>
       </Sidebar>
     </Layout>
   );
-}
+};
 
 export async function getServerSideProps() {
   const { activities } = await fetcher(`
@@ -47,7 +44,7 @@ export async function getServerSideProps() {
         activities
       }
     }
-  }
+  };
 }
 
 export default ActivitiesPage;

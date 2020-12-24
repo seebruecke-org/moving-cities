@@ -10,17 +10,15 @@ const Item = ({ href, type, children }) => {
 
   return (
     <Link href={href}>
-      <a css={[styles.item, asPath === href && styles.itemActive, theme(type)]}>
-        {children}
-      </a>
+      <a css={[styles.item, asPath === href && styles.itemActive, theme(type)]}>{children}</a>
     </Link>
   );
-}
+};
 
 const Navigation = ({ items = [] }) => (
   <nav css={styles.navigation}>
     <div css={styles.inner}>
-      {items.map(([ href, label ]) => (
+      {items.map(([href, label]) => (
         <Item href={href} type={label.toLowerCase()}>
           {label}
         </Item>

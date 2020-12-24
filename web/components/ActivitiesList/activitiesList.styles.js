@@ -42,4 +42,4 @@ export const cityName = css`
   justify-self: flex-end;
   margin-left: auto;
   margin-right: 1.25rem;
-`
+`;

@@ -7,14 +7,14 @@ import fonts from './fonts.styles';
 import grid from './grid.styles';
 import reset from './reset.styles';
 
-const Layout = ({ children }) => {
-  return <div css={grid}>
+const Layout = ({ children }) => (
+  <div css={grid}>
     <Global styles={[reset, variables.colors, fonts]} />
 
     <Header />
 
     {children}
   </div>
-};
+);
 
 export default Layout;

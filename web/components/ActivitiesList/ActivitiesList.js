@@ -4,17 +4,26 @@ import * as styles from './activitiesList.styles';
 
 const ActivitiesList = ({ activities = [] }) => (
   <ul css={styles.list}>
-    {activities.map(({ title, city: { name: cityName, slug: citySlug, country: { slug: countrySlug } } }) => <li css={styles.item}>
-      <Link href={`/cities/${countrySlug}/${citySlug}`}>
-        <a css={styles.link}>
-          <span css={styles.linkContent}>
-            {title}
-          </span>
+    {activities.map(
+      ({
+        title,
+        city: {
+          name: cityName,
+          slug: citySlug,
+          country: { slug: countrySlug }
+        }
+      }) => (
+        <li css={styles.item}>
+          <Link href={`/cities/${countrySlug}/${citySlug}`}>
+            <a css={styles.link}>
+              <span css={styles.linkContent}>{title}</span>
 
-          <small css={styles.cityName}>{cityName}</small>
-        </a>
-      </Link>
-    </li>)}
+              <small css={styles.cityName}>{cityName}</small>
+            </a>
+          </Link>
+        </li>
+      )
+    )}
   </ul>
 );
 

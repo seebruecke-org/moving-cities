@@ -4,13 +4,11 @@ const withPlugins = require('next-compose-plugins');
 module.exports = withPlugins([withFonts], {
   i18n: {
     locales: ['en', 'fr', 'de'],
-    defaultLocale: 'en',
+    defaultLocale: 'en'
   },
 
   images: {
-    domains: [
-      process.env.NEXT_IMAGE_HOSTNAME
-    ],
+    domains: [process.env.NEXT_IMAGE_HOSTNAME]
   },
 
   env: {

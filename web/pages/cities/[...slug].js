@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 import Layout from '../../components/Layout';
 
@@ -16,47 +16,48 @@ import { fetcher } from '../../lib/hooks/useAPI';
 import { BLOCK_FRAGMENTS } from '../../components/Blocks';
 
 export default function CityPage({ slug, contentType, ...props }) {
-    const cities = useSelector((state) => state.cities);
-    const navigation = useSelector((state) => state.navigation);
+  const cities = useSelector((state) => state.cities);
+  const navigation = useSelector((state) => state.navigation);
 
-    return (
-        <Layout>
-            <Main>
-                <Map />
-                <MapOverlay>
-                    <Profile isCity={contentType === 'city'} {...props} />
-                </MapOverlay>
-            </Main>
+  return (
+    <Layout>
+      <Main>
+        <Map />
+        <MapOverlay>
+          <Profile isCity={contentType === 'city'} {...props} />
+        </MapOverlay>
+      </Main>
 
-            <Sidebar>
-                <Navigation items={navigation} />
+      <Sidebar>
+        <Navigation items={navigation} />
 
-                <SidebarList label="City profiles">
-                    {cities && cities.map(city => {
-                        const cityProps = {
-                            ...city,
-                            isActive: slug === city.slug
-                        }
+        <SidebarList label="City profiles">
+          {cities &&
+            cities.map((city) => {
+              const cityProps = {
+                ...city,
+                isActive: slug === city.slug
+              };
 
-                        return <CityListItem {...cityProps} />;
-                    })}
-                </SidebarList>
-            </Sidebar>
-        </Layout>
-    )
+              return <CityListItem {...cityProps} />;
+            })}
+        </SidebarList>
+      </Sidebar>
+    </Layout>
+  );
 }
 
-export async function getStaticProps({ params: { slug }}) {
-    const [countrySlug, citySlug] = slug;
-    
-    let query = `
+export async function getStaticProps({ params: { slug } }) {
+  const [countrySlug, citySlug] = slug;
+
+  let query = `
         country: countries(where: { slug: "${countrySlug}" }) {
             name
         }
     `;
 
-    if (citySlug) {
-        query = `
+  if (citySlug) {
+    query = `
             city: cities(where: { slug: "${citySlug}" }) {
                 name
                 slug
@@ -81,10 +82,10 @@ export async function getStaticProps({ params: { slug }}) {
                 }
             }
         `;
-    }
+  }
 
-    try {
-        const { cities, city, country } = await fetcher(`
+  try {
+    const { cities, city, country } = await fetcher(`
             query {
                 cities {
                     name
@@ -99,30 +100,30 @@ export async function getStaticProps({ params: { slug }}) {
             }
         `);
 
-        const isCity = city && city[0];
-        const content = isCity ? city[0] : country[0];
+    const isCity = city && city[0];
+    const content = isCity ? city[0] : country[0];
 
-        return {
-            props: {
-                initialReduxState: {
-                    cities
-                },
+    return {
+      props: {
+        initialReduxState: {
+          cities
+        },
 
-                contentType: isCity ? 'city' : 'country',
-                ...content,
-            }
-        }
-    } catch (err) {
-        console.log(err);
+        contentType: isCity ? 'city' : 'country',
+        ...content
+      }
+    };
+  } catch (err) {
+    console.log(err);
 
-        return {
-            props: {}
-        }
-    }
+    return {
+      props: {}
+    };
+  }
 }
 
 export async function getStaticPaths() {
-    const { cities, countries } = await fetcher(`
+  const { cities, countries } = await fetcher(`
         query {
             cities {
                 name
@@ -139,11 +140,11 @@ export async function getStaticPaths() {
         }
     `);
 
-    return {
-        fallback: false,
-        paths: [
-            ...cities.map(({ slug, country: { slug: countrySlug }}) => `/cities/${countrySlug}/${slug}`),
-            ...countries.map(({ slug }) => `/cities/${slug}`)
-        ]
-    }
+  return {
+    fallback: false,
+    paths: [
+      ...cities.map(({ slug, country: { slug: countrySlug } }) => `/cities/${countrySlug}/${slug}`),
+      ...countries.map(({ slug }) => `/cities/${slug}`)
+    ]
+  };
 }

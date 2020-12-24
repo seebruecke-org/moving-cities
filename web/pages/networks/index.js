@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
 import Layout from '../../components/Layout';
 
@@ -13,17 +13,14 @@ import Sidebar from '../../components/Sidebar';
 import { fetcher } from '../../lib/hooks/useAPI';
 
 const NetworksPage = () => {
-  const networks = useSelector((state) => state.networks)
+  const networks = useSelector((state) => state.networks);
   const navigation = useSelector((state) => state.navigation);
 
   return (
     <Layout>
       <Main>
         <Map>
-          <Layer
-            type="symbol"
-            id="marker">
-          </Layer>
+          <Layer type="symbol" id="marker" />
         </Map>
       </Main>
 
@@ -31,13 +28,13 @@ const NetworksPage = () => {
         <Navigation items={navigation} />
         <BottomSheet>
           <SidebarList label="City Networks">
-            {networks && networks.map(network => <NetworkListItem {...network} />)}
+            {networks && networks.map((network) => <NetworkListItem {...network} />)}
           </SidebarList>
         </BottomSheet>
       </Sidebar>
     </Layout>
   );
-}
+};
 
 export async function getServerSideProps() {
   const { networks } = await fetcher(`
@@ -55,7 +52,7 @@ export async function getServerSideProps() {
         networks
       }
     }
-  }
+  };
 }
 
 export default NetworksPage;

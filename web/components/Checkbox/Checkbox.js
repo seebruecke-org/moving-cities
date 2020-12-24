@@ -7,15 +7,15 @@ import * as styles from './checkbox.styles';
 const Checkbox = ({ children, ...props }) => {
   const id = uuidv4();
 
-  return <div css={styles.container}>
-    <input type="checkbox" css={styles.input} id={id} {...props} />
+  return (
+    <div css={styles.container}>
+      <input type="checkbox" css={styles.input} id={id} {...props} />
 
-    <span css={styles.checkbox} />
+      <span css={styles.checkbox} />
 
-    <Label for={id}>
-      {children}
-    </Label>
-</div>
-}
+      <Label for={id}>{children}</Label>
+    </div>
+  );
+};
 
 export default Checkbox;

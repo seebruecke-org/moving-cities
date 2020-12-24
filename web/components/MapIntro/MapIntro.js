@@ -1,16 +1,18 @@
 import Modal from 'react-modal';
 
 const MapIntro = ({ content, cta, onClose = () => {} }) => (
-    <Modal>
-        {content}
+  <Modal>
+    {content}
 
-        <button type="text" onClick={event => {
-            event.preventDefault();
-            onClose();
-        }}>
-            {cta}
-        </button>
-    </Modal>
+    <button
+      type="text"
+      onClick={(event) => {
+        event.preventDefault();
+        onClose();
+      }}>
+      {cta}
+    </button>
+  </Modal>
 );
 
 export default MapIntro;

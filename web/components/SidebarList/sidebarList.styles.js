@@ -7,19 +7,19 @@ export const container = css`
   flex-direction: column;
   height: 100%;
   width: 100%;
-`
+`;
 
 export const label = css`
   font-size: 1.4rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
   padding-left: 1.5rem;
-`
+`;
 
 export const listContainer = css`
   flex: 1;
   position: relative;
-`
+`;
 
 export const list = css`
   height: 100%;

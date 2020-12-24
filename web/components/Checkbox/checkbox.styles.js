@@ -6,7 +6,7 @@ export const container = css`
   min-height: 2.6rem;
   padding-left: 4.5rem;
   position: relative;
-`
+`;
 
 export const input = css`
   height: 2.6rem;
@@ -51,4 +51,4 @@ export const checkbox = css`
     top: 0.45rem;
     width: 1.6rem;
   }
-`
+`;
