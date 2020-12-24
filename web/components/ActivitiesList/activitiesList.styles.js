@@ -22,8 +22,9 @@ export const item = css`
 
 export const link = css`
   cursor: pointer;
-  display: block;
+  display: flex;
   padding: 1.25rem 1.5rem;
+  width: 100%;
 
   :hover,
   :focus {

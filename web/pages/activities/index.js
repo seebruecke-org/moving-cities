@@ -9,6 +9,7 @@ import Main from '../../components/Main';
 import Navigation from '../../components/Navigation';
 import Sidebar from '../../components/Sidebar';
 
+import { FRAGMENT as ACTIVITIES_FRAGMENT } from '../../components/ActivitiesList';
 import { fetcher } from '../../lib/hooks/useAPI';
 
 const ActivitiesPage = () => {
@@ -36,13 +37,7 @@ const ActivitiesPage = () => {
 export async function getServerSideProps() {
   const { activities } = await fetcher(`
     query {
-      activities {
-        title
-
-        city {
-            name
-        }
-      }
+      ${ACTIVITIES_FRAGMENT}
     }
   `);
 
