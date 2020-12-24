@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_chapter_chapters",
+  "info": {
+    "name": "chapter",
+    "icon": "book-reader"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

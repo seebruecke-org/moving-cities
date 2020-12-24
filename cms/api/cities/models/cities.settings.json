@@ -49,6 +49,37 @@
         "blocks.richtext",
         "blocks.quote"
       ]
+    },
+    "chapter_1": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.image",
+        "blocks.quote",
+        "blocks.richtext"
+      ]
+    },
+    "chapter_2": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.image",
+        "blocks.quote",
+        "blocks.richtext"
+      ]
+    },
+    "chapter_3": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.image",
+        "blocks.quote",
+        "blocks.richtext"
+      ]
+    },
+    "chapter_4": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.activity"
+      ],
+      "max": 1
     }
   }
 }

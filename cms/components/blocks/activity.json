@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_activities",
+  "info": {
+    "name": "activity",
+    "icon": "hammer"
+  },
+  "options": {},
+  "attributes": {
+    "activity": {
+      "model": "activities"
+    }
+  }
+}

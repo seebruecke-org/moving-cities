@@ -61,8 +61,18 @@ export async function getStaticProps({ params: { slug }}) {
                 name
                 slug
                 intro_long {
-                    __typename
+                    ${BLOCK_FRAGMENTS}
+                }
 
+                chapter_1 {
+                    ${BLOCK_FRAGMENTS}
+                }
+
+                chapter_2 {
+                    ${BLOCK_FRAGMENTS}
+                }
+
+                chapter_3 {
                     ${BLOCK_FRAGMENTS}
                 }
 
