@@ -21,6 +21,7 @@ export const item = css`
 `;
 
 export const link = css`
+  align-items: center;
   cursor: pointer;
   display: flex;
   padding: 1.25rem 1.5rem;
@@ -38,8 +39,8 @@ export const linkContent = css`
 `;
 
 export const cityName = css`
-  font-size: 2.2rem;
+  font-size: 1.3rem;
   justify-self: flex-end;
   margin-left: auto;
-  margin-right: 1.25rem;
+  margin-right: 4rem;
 `;

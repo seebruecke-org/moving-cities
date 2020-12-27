@@ -28,10 +28,6 @@
       "collection": "networks",
       "via": "cities"
     },
-    "activity": {
-      "via": "city",
-      "model": "activities"
-    },
     "intro": {
       "type": "text"
     },

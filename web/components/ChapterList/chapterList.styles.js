@@ -20,11 +20,10 @@ export const accordionButton = css`
   cursor: pointer;
   display: flex;
   font-size: 2.1rem;
-  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  padding: 1rem 1.5rem 2rem 1.5rem;
 
   @media (min-width: 768px) {
     font-size: 3rem;
-    padding-bottom: 2rem;
   }
 
   :hover,
@@ -35,13 +34,17 @@ export const accordionButton = css`
 
 export const accordionButtonIcon = css`
   @media (max-width: 768px) {
+    height: 2.5rem;
     justify-self: flex-end;
     margin-left: auto;
     order: 2;
+    width: 2.5rem;
   }
 
   @media (min-width: 768px) {
+    height: 3.2rem;
     margin-right: 1rem;
+    width: 3.2rem;
   }
 `;
 

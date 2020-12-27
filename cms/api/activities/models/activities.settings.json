@@ -15,8 +15,7 @@
       "type": "string"
     },
     "city": {
-      "model": "cities",
-      "via": "activity"
+      "model": "cities"
     },
     "content": {
       "type": "dynamiczone",
@@ -25,6 +24,24 @@
         "blocks.quote",
         "blocks.richtext"
       ]
+    },
+    "access_social_rights": {
+      "type": "boolean"
+    },
+    "improvement_resident_security": {
+      "type": "boolean"
+    },
+    "reception_refugees": {
+      "type": "boolean"
+    },
+    "political_participation": {
+      "type": "boolean"
+    },
+    "intercultural_inclusion": {
+      "type": "boolean"
+    },
+    "structural_capacities": {
+      "type": "boolean"
     }
   }
 }

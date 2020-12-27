@@ -19,8 +19,9 @@ export default function ChapterList({ chapter = [] }) {
           className={css`
             ${styles.accordion}
           `}>
-          {chapter.map(({ title, blocks = [] }) => (
+          {chapter.map(({ title, blocks = [] }, index) => (
             <AccordionItem
+              id={`chapter-${index + 1}`}
               className={css`
                 ${styles.accordionItem}
               `}>
