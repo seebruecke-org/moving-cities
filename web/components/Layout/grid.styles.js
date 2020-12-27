@@ -6,7 +6,7 @@ const global = (withSidebar) => css`
     'header'
     ${withSidebar && "'sidebar'"}
     'main';
-  grid-template-rows: min-content min-content ${withSidebar && '1fr'};
+  grid-template-rows: min-content ${withSidebar && 'min-content'} 1fr;
   height: 100vh;
 
   @media (min-width: 768px) {
