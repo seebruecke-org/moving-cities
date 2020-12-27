@@ -18,15 +18,17 @@ export const container = css`
     display: flex;
   }
 
-  ::before {
-    ${boxShadow()}
+  @media (max-width: 768px) {
+    ::before {
+      ${boxShadow()}
 
-    content: '';
-    height: 0.8rem;
-    left: 0;
-    position: absolute;
-    top: -0.8rem;
-    width: 100%;
+      content: '';
+      height: 0.8rem;
+      left: 0;
+      position: absolute;
+      top: -0.8rem;
+      width: 100%;
+    }
   }
 
   > * + * {
