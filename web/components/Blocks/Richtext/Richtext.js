@@ -1,12 +1,19 @@
-import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 
+import Heading from './Heading';
+import Link from './Link';
 import Paragraph from './Paragraph';
 
 const renderers = {
+  heading: ({ children, node, ...props }) => (
+    <Heading {...props}>
+      {children}
+    </Heading>
+  ),
+
   link: ({ children, node, ...props }) => (
     <Link {...props}>
-      <a>{children}</a>
+      {children}
     </Link>
   ),
 
