@@ -12,9 +12,10 @@ export default function Profile({
   country,
   chapter_1,
   chapter_2,
-  chapter_3
+  chapter_3,
+  chapter_4
 }) {
-  const chapterList = [chapter_1, chapter_2, chapter_3];
+  const chapterList = [chapter_1, chapter_2, chapter_3, chapter_4];
   const chapter = chapterList
     .map((blocks, index) => {
       if (!blocks || blocks.length === 0) {

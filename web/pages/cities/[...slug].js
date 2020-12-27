@@ -14,6 +14,7 @@ import SidebarList from '../../components/SidebarList';
 import { fetcher } from '../../lib/hooks/useAPI';
 
 import { BLOCK_FRAGMENTS } from '../../components/Blocks';
+import { FRAGMENT as BLOCK_ACTIVITY } from '../../components/Blocks/Activity';
 
 export default function CityPage({ slug, contentType, ...props }) {
   const cities = useSelector((state) => state.cities);
@@ -75,6 +76,11 @@ export async function getStaticProps({ params: { slug } }) {
 
                 chapter_3 {
                     ${BLOCK_FRAGMENTS}
+                }
+
+                chapter_4 {
+                  __typename
+                  ${BLOCK_ACTIVITY}
                 }
 
                 country {

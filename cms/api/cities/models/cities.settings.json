@@ -29,8 +29,8 @@
       "via": "cities"
     },
     "activity": {
-      "model": "activities",
-      "via": "city"
+      "via": "city",
+      "model": "activities"
     },
     "intro": {
       "type": "text"
