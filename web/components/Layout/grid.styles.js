@@ -1,19 +1,19 @@
 import { css } from '@emotion/react';
 
-const global = css`
+const global = (withSidebar) => css`
   display: grid;
   grid-template-areas:
     'header'
-    'sidebar'
+    ${withSidebar && "'sidebar'"}
     'main';
-  grid-template-rows: min-content min-content 1fr;
+  grid-template-rows: min-content ${withSidebar && 'min-content'} 1fr;
   height: 100vh;
 
   @media (min-width: 768px) {
     grid-template-areas:
       'header header'
-      'main sidebar';
-    grid-template-columns: 1fr 30rem;
+      'main ${withSidebar ? 'sidebar' : 'main'}';
+    grid-template-columns: 1fr ${withSidebar ? '30rem' : '1fr'};
     grid-template-rows: min-content 1fr;
   }
 `;

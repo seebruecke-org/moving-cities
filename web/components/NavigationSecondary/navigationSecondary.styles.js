@@ -16,6 +16,7 @@ export const container = css`
 
   @media (min-width: 768px) {
     display: flex;
+    margin-right: 1.5rem;
   }
 
   @media (max-width: 768px) {

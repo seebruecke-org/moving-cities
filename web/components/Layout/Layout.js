@@ -1,4 +1,4 @@
-import { css, Global } from '@emotion/react';
+import { Global } from '@emotion/react';
 
 import Header from '../Header';
 
@@ -7,8 +7,8 @@ import fonts from './fonts.styles';
 import grid from './grid.styles';
 import reset from './reset.styles';
 
-const Layout = ({ children }) => (
-  <div css={grid}>
+const Layout = ({ sidebar = true, children }) => (
+  <div css={grid(sidebar)}>
     <Global styles={[reset, variables.colors, fonts]} />
 
     <Header />
