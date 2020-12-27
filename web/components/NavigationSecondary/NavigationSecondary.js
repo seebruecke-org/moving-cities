@@ -8,13 +8,15 @@ const NavigationSecondary = ({ isOpen }) => (
       <a css={styles.about}>About</a>
     </Link>
 
-    <Link href="/contact">
-      <a css={styles.item}>Contact</a>
-    </Link>
+    <div css={styles.pagesContainer}>
+      <Link href="/contact">
+        <a css={styles.item}>Contact</a>
+      </Link>
 
-    <Link href="/imprint">
-      <a css={styles.item}>Imprint</a>
-    </Link>
+      <Link href="/imprint">
+        <a css={styles.item}>Imprint</a>
+      </Link>
+    </div>
   </nav>
 );
 

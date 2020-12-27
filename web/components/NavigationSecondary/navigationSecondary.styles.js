@@ -1,11 +1,32 @@
 import { css } from '@emotion/react';
 
+import boxShadow from '../../lib/styles/box-shadow';
+
 export const container = css`
   align-items: center;
   display: none;
+  overflow-y: hidden;
+  position: relative;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    width: 100%;
+  }
 
   @media (min-width: 768px) {
     display: flex;
+  }
+
+  ::before {
+    ${boxShadow()}
+
+    content: '';
+    height: 0.8rem;
+    left: 0;
+    position: absolute;
+    top: -0.8rem;
+    width: 100%;
   }
 
   > * + * {
@@ -24,12 +45,21 @@ export const about = css`
   cursor: pointer;
   display: block;
   font-size: 2.4rem;
-  padding: 0.15rem 1.25rem;
+  line-height: 1;
+  padding: 0.35rem 1.25rem;
 
   :hover,
   :focus {
     background-color: var(--color-blue);
     color: white;
+  }
+`;
+
+export const pagesContainer = css`
+  display: flex;
+
+  > * + * {
+    margin-left: 1.5rem;
   }
 `;
 

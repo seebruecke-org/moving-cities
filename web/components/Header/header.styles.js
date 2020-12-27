@@ -10,9 +10,9 @@ export const header = css`
   background-color: var(--color-yellow);
   color: var(--color-blue);
   display: flex;
+  flex-wrap: wrap;
   grid-area: header;
   justify-content: space-between;
-  padding-right: 1.5rem;
   position: relative;
 `;
 
@@ -51,6 +51,8 @@ export const burger = css`
   background: transparent;
   border: 0;
   cursor: pointer;
+  margin-right: 1.5rem;
+  outline: none;
   padding: 0;
 
   @media (min-width: 768px) {

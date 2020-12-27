@@ -4,7 +4,7 @@ export const container = css`
   align-items: center;
   display: flex;
   min-height: 2.6rem;
-  padding-left: 4.5rem;
+  padding-left: 3.75rem;
   position: relative;
 `;
 
@@ -22,7 +22,9 @@ export const input = css`
 `;
 
 export const checkbox = css`
+  color: var(--color-blue);
   cursor: pointer;
+  pointer-events: none;
 
   :hover:before,
   :focus:before {

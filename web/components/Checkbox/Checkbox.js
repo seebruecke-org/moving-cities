@@ -1,19 +1,28 @@
+import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import Label from '../Label';
 
 import * as styles from './checkbox.styles';
 
-const Checkbox = ({ children, ...props }) => {
+const Checkbox = ({ children, checked: defaultChecked = false, ...props }) => {
   const id = uuidv4();
+  const [checked, setChecked] = useState(defaultChecked);
 
   return (
     <div css={styles.container}>
-      <input type="checkbox" css={styles.input} id={id} {...props} />
+      <input
+        type="checkbox"
+        css={styles.input}
+        id={id}
+        checked={checked}
+        onChange={() => setChecked(!checked)}
+        {...props}
+      />
 
       <span css={styles.checkbox} />
 
-      <Label for={id}>{children}</Label>
+      <Label htmlFor={id}>{children}</Label>
     </div>
   );
 };
