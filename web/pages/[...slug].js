@@ -2,17 +2,14 @@ import { fetcher } from '../lib/hooks/useAPI';
 
 import Layout from '../components/Layout';
 
-import Blocks from '../components/Blocks';
 import Main from '../components/Main';
+import Page, { FRAGMENT as PAGE_FRAGMENT } from '../components/Page';
 
-import { BLOCK_FRAGMENTS } from '../components/Blocks';
-
-export default function Page({ title, content = [] }) {
+export default function GenericPage(props) {
   return (
-    <Layout>
+    <Layout sidebar={false}>
       <Main>
-        <h1>{title}</h1>
-        <Blocks blocks={content} />
+        <Page {...props} />
       </Main>
     </Layout>
   );
@@ -23,10 +20,7 @@ export async function getStaticProps({ params: { slug } }) {
   const { pages } = await fetcher(`
         query {
             pages(where: { slug: "${pageSlug}" }) {
-                title
-                content {
-                    ${BLOCK_FRAGMENTS}
-                }
+                ${PAGE_FRAGMENT}
             }
         }
     `);
