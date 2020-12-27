@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useWindowSize } from 'react-use';
 
 import Layout from '../../components/Layout';
 
@@ -19,6 +20,8 @@ import { FRAGMENT as BLOCK_ACTIVITY } from '../../components/Blocks/Activity';
 export default function CityPage({ slug, contentType, ...props }) {
   const cities = useSelector((state) => state.cities);
   const navigation = useSelector((state) => state.navigation);
+  const { width: windowWidth } = useWindowSize();
+  const shouldShowCitiesList = windowWidth && windowWidth > 768;
 
   return (
     <Layout>
@@ -32,17 +35,19 @@ export default function CityPage({ slug, contentType, ...props }) {
       <Sidebar>
         <Navigation items={navigation} />
 
-        <SidebarList label="City profiles">
-          {cities &&
-            cities.map((city) => {
-              const cityProps = {
-                ...city,
-                isActive: slug === city.slug
-              };
+        {shouldShowCitiesList && (
+          <SidebarList label="City profiles">
+            {cities &&
+              cities.map((city) => {
+                const cityProps = {
+                  ...city,
+                  isActive: slug === city.slug
+                };
 
-              return <CityListItem {...cityProps} />;
-            })}
-        </SidebarList>
+                return <CityListItem {...cityProps} />;
+              })}
+          </SidebarList>
+        )}
       </Sidebar>
     </Layout>
   );
