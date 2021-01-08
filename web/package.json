@@ -29,7 +29,7 @@
     "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
     "react-spring": "^9.0.0-rc.3",
-    "react-use": "^15.3.4",
+    "react-use": "^15.3.6",
     "react-use-gesture": "^9.0.0-beta.11",
     "redux": "^4.0.5",
     "swr": "^0.3.11",
