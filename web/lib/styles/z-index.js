@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const indexes = {
+export const indexes = {
   background: 1,
   sidebarFront: 30,
   sidebarBack: 20,

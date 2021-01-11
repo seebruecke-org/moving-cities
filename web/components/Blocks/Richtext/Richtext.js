@@ -5,17 +5,9 @@ import Link from './Link';
 import Paragraph from './Paragraph';
 
 const renderers = {
-  heading: ({ children, node, ...props }) => (
-    <Heading {...props}>
-      {children}
-    </Heading>
-  ),
+  heading: ({ children, node, ...props }) => <Heading {...props}>{children}</Heading>,
 
-  link: ({ children, node, ...props }) => (
-    <Link {...props}>
-      {children}
-    </Link>
-  ),
+  link: ({ children, node, ...props }) => <Link {...props}>{children}</Link>,
 
   paragraph: ({ node, ...props }) => <Paragraph {...props} />
 };

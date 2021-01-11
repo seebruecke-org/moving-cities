@@ -1,4 +1,9 @@
-import { css } from '@emotion/react';
+import { css, cx } from '@emotion/react';
+
+const ICON_BASE = css`
+  cursor: pointer;
+  filter: drop-shadow(0 0 0.2rem var(--color-yellow));
+`;
 
 export const container = css`
   align-items: center;
@@ -7,7 +12,13 @@ export const container = css`
 `;
 
 export const icon = css`
-  filter: drop-shadow(0 0 0.2rem var(--color-yellow));
+  ${ICON_BASE}
+  height: 1.5rem;
+  width: 1.5rem;
+`;
+
+export const profileIcon = css`
+  ${ICON_BASE}
   height: 2rem;
   width: 2rem;
 `;

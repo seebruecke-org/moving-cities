@@ -4,10 +4,13 @@ import Layout from '../components/Layout';
 
 import Main from '../components/Main';
 import Page, { FRAGMENT as PAGE_FRAGMENT } from '../components/Page';
+import SEO from '../components/SEO';
 
 export default function GenericPage(props) {
   return (
     <Layout sidebar={false}>
+      <SEO title={props.title} />
+
       <Main>
         <Page {...props} />
       </Main>

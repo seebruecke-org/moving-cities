@@ -1,12 +1,48 @@
+import React, { useState } from 'react';
+
 import { Marker } from '../Map';
 
 import { convertStrapiToMapbox } from '../../lib/coordiantes';
 
 import * as styles from './mapCityMarker.styles';
 
-export default function MapCityMarker({ name, coordinates, isActive = false, onClick = () => {} }) {
+export default function MapCityMarker({
+  name,
+  coordinates,
+  chapter_1,
+  chapter_2,
+  chapter_3,
+  chapter_4,
+  isActive = false,
+  onClick = () => {}
+}) {
+  const [isFocused, setIsFocused] = useState(false);
+  const hasProfile = [chapter_1, chapter_2, chapter_3, chapter_4].reduce((acc, chapter) => {
+    if (chapter.length > 0) {
+      return true;
+    }
+
+    return acc;
+  }, false);
+
+  const onMouseEnter = () => {
+    setIsFocused(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsFocused(false);
+  };
+
+  const markerProps = {
+    coordinates: convertStrapiToMapbox(coordinates),
+    anchor: 'top',
+    onClick: hasProfile ? onClick : undefined,
+    onMouseEnter: hasProfile ? onMouseEnter : undefined,
+    onMouseLeave: hasProfile ? onMouseLeave : undefined
+  };
+
   return (
-    <Marker coordinates={convertStrapiToMapbox(coordinates)} anchor="top" onClick={onClick}>
+    <Marker {...markerProps}>
       <div css={styles.container}>
         {isActive ? (
           <svg
@@ -15,7 +51,7 @@ export default function MapCityMarker({ name, coordinates, isActive = false, onC
             viewBox="0 0 41 41"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            css={styles.icon}>
+            css={styles.profileIcon}>
             <circle
               cx="20.5"
               cy="20.5"
@@ -42,19 +78,45 @@ export default function MapCityMarker({ name, coordinates, isActive = false, onC
             />
           </svg>
         ) : (
-          <svg
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            css={styles.icon}>
-            <circle cx="10.02" cy="10.02" r="9.52" fill="#FFF95E" stroke="#B8B27C" />
-            <circle cx="10.02" cy="10.02" r="6.18" fill="#FFF95E" stroke="#B8B27C" />
-          </svg>
+          <>
+            {hasProfile ? (
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 21 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                css={styles.profileIcon}>
+                <circle
+                  cx="10.02"
+                  cy="10.02"
+                  r="9.52"
+                  fill="#FFF95E"
+                  stroke={isFocused ? '#002286' : '#B8B27C'}
+                />
+                <circle
+                  cx="10.02"
+                  cy="10.02"
+                  r="6.18"
+                  fill="#FFF95E"
+                  stroke={isFocused ? '#002286' : '#B8B27C'}
+                />
+              </svg>
+            ) : (
+              <svg
+                width="7"
+                height="7"
+                viewBox="0 0 7 7"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                css={styles.icon}>
+                <circle cx="3.7" cy="3.2" r="3" fill="#FFFAD4" stroke="#C4C4C4" strokeWidth=".3" />
+              </svg>
+            )}
+          </>
         )}
 
-        <span css={styles.name}>{name}</span>
+        {hasProfile && <span css={styles.name}>{name}</span>}
       </div>
     </Marker>
   );

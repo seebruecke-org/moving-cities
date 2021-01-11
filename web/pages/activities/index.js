@@ -7,6 +7,7 @@ import ActivitiesList, { FRAGMENT as ACTIVITIES_FRAGMENT } from '../../component
 import BottomSheet from '../../components/BottomSheet';
 import Main from '../../components/Main';
 import Navigation from '../../components/Navigation';
+import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
@@ -17,6 +18,8 @@ const ActivitiesPage = () => {
 
   return (
     <Layout>
+      <SEO title="Activities" />
+
       <Main>
         <ActivitiesList activities={activities} />
       </Main>

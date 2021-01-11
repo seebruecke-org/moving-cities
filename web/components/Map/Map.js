@@ -1,22 +1,30 @@
-import ReactMapboxGl from 'react-mapbox-gl';
+import ReactMapboxGl, { ZoomControl } from 'react-mapbox-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
+
+import Controls from './Controls';
+import Info from './Info';
 
 import * as styles from './map.styles';
 
 const MapboxMap = ReactMapboxGl({
-  accessToken: 'pk.eyJ1IjoiZ3VzdGF2cHVyc2NoZSIsImEiOiJhVVRUaFV3In0.IdUObuDS1u0tzNNDvNpfKg'
+  accessToken: process.env.MAPBOX_ACCESS_TOKEN
 });
 
-const Map = ({ children, ...props }) => (
-  <MapboxMap
-    style="mapbox://styles/gustavpursche/ckig79xzb3nue1atbymcmf04v"
-    containerStyle={styles.container}
-    center={[13.3999443502352, 52.52117780229074]}
-    zoom={[5]}
-    {...props}>
-    {children}
-  </MapboxMap>
-);
+export default function Map({ children, onInfoOpen = () => {}, ...props }) {
+  return (
+    <div css={styles.container}>
+      <MapboxMap
+        style="mapbox://styles/gustavpursche/ckig79xzb3nue1atbymcmf04v"
+        containerStyle={styles.container}
+        {...props}>
+        <Controls>
+          <Info onClick={() => onInfoOpen()} />
+          <ZoomControl style={styles.zoomControl} />
+        </Controls>
 
-export default Map;
+        {children}
+      </MapboxMap>
+    </div>
+  );
+}

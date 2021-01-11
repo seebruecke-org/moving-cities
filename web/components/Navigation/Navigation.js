@@ -19,7 +19,7 @@ const Navigation = ({ items = [] }) => (
   <nav css={styles.navigation}>
     <div css={styles.inner}>
       {items.map(([href, label]) => (
-        <Item href={href} type={label.toLowerCase()}>
+        <Item href={href} key={`navigation-${label}`} type={label.toLowerCase()}>
           {label}
         </Item>
       ))}

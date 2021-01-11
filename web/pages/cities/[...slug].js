@@ -9,6 +9,7 @@ import Map from '../../components/Map';
 import MapOverlay from '../../components/MapOverlay';
 import Navigation from '../../components/Navigation';
 import Profile from '../../components/Profile';
+import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 import SidebarList from '../../components/SidebarList';
 
@@ -25,6 +26,8 @@ export default function CityPage({ slug, contentType, ...props }) {
 
   return (
     <Layout>
+      <SEO title={props.name} />
+
       <Main>
         <Map />
         <MapOverlay>

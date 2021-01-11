@@ -12,7 +12,8 @@ module.exports = withPlugins([withFonts], {
   },
 
   env: {
-    IMAGE_BASE: `http://${process.env.NEXT_IMAGE_DOMAIN}`
+    IMAGE_BASE: `http://${process.env.NEXT_IMAGE_DOMAIN}`,
+    MAPBOX_ACCESS_TOKEN: process.env.NEXT_MAPBOX_ACCESS_TOKEN
   },
 
   webpack(config) {

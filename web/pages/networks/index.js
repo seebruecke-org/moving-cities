@@ -8,6 +8,7 @@ import SidebarList from '../../components/SidebarList';
 import Main from '../../components/Main';
 import Map, { Layer } from '../../components/Map';
 import Navigation from '../../components/Navigation';
+import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
@@ -18,6 +19,8 @@ const NetworksPage = () => {
 
   return (
     <Layout>
+      <SEO title="City Networks" />
+
       <Main>
         <Map>
           <Layer type="symbol" id="marker" />
@@ -39,7 +42,7 @@ const NetworksPage = () => {
 export async function getServerSideProps() {
   const { networks } = await fetcher(`
     query {
-      networks {
+      networks(sort: "name") {
         name
         slug
       }

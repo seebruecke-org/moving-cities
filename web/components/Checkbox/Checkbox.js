@@ -5,8 +5,8 @@ import Label from '../Label';
 
 import * as styles from './checkbox.styles';
 
-const Checkbox = ({ children, checked: defaultChecked = false, ...props }) => {
-  const id = uuidv4();
+const Checkbox = ({ children, checked: defaultChecked = false, id, ...props }) => {
+  const cbId = id || uuidv4();
   const [checked, setChecked] = useState(defaultChecked);
 
   return (
@@ -14,7 +14,7 @@ const Checkbox = ({ children, checked: defaultChecked = false, ...props }) => {
       <input
         type="checkbox"
         css={styles.input}
-        id={id}
+        id={cbId}
         checked={checked}
         onChange={() => setChecked(!checked)}
         {...props}

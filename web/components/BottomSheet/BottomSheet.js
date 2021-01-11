@@ -9,7 +9,7 @@ const INITIAL_POSITION = -55;
 
 const BottomSheet = ({ children }) => {
   const { height: windowHeight, width: windowWidth } = useWindowSize();
-  const [{ y }, set] = useSpring(() => ({ y: 0 }));
+  const [{ y }, update] = useSpring(() => ({ y: 0 }));
   const shouldAnimate = windowWidth && windowWidth < 768;
 
   useEffect(() => {
@@ -21,33 +21,33 @@ const BottomSheet = ({ children }) => {
   });
 
   const close = (velocity = 0) => {
-    set({ y: INITIAL_POSITION, immediate: false, config: { ...config.stiff, velocity } });
+    update({ y: INITIAL_POSITION, config: { ...config.stiff, velocity } });
   };
 
   const open = (velocity = 0) => {
-    set({ y: -windowHeight, immediate: false, config: { ...config.stiff, velocity } });
+    update({ y: -windowHeight, config: { ...config.stiff, velocity } });
   };
 
   const reveal = () => {
-    set({ y: INITIAL_POSITION, immediate: false, config: config.stiff });
+    update({ y: INITIAL_POSITION });
   };
 
   const bind = useDrag(
     ({ last, vxvy: [, vy], movement: [, my], direction: [, dy] }) => {
       if (!last) {
-        set({ y: my, immediate: true });
+        update({ y: my, immediate: true });
       } else if (dy > 0) {
         close(vy);
       } else {
         open(vy);
       }
     },
-    { initial: () => [0, y.get()], filterTaps: true, rubberband: true }
+    { initial: () => [0, y.get()], rubberband: true }
   );
 
   if (shouldAnimate) {
     return (
-      <animated.div {...bind()} css={styles.container} style={{ y, touchAction: 'none' }}>
+      <animated.div {...bind()} css={styles.container} style={{ y }}>
         {children}
       </animated.div>
     );
