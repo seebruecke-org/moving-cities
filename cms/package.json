@@ -16,7 +16,7 @@
     "pg-connection-string": "^2.4.0",
     "sqlite3": "^5.0.1",
     "strapi": "3.4.1",
-    "strapi-admin": "3.4.1",
+    "strapi-admin": "3.4.2",
     "strapi-connector-bookshelf": "3.4.1",
     "strapi-plugin-content-manager": "3.4.1",
     "strapi-plugin-content-type-builder": "3.4.1",
