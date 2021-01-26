@@ -12,6 +12,10 @@ const renderers = {
   paragraph: ({ node, ...props }) => <Paragraph {...props} />
 };
 
-export default function Richtext({ richtext }) {
-  return <ReactMarkdown renderers={renderers}>{richtext}</ReactMarkdown>;
+export default function Richtext({ richtext, ...props }) {
+  return (
+    <ReactMarkdown renderers={renderers} {...props}>
+      {richtext}
+    </ReactMarkdown>
+  );
 }

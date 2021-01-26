@@ -14,7 +14,7 @@ import * as styles from './chapterList.styles';
 export default function ChapterList({ chapter = [] }) {
   return (
     <ClassNames>
-      {({ css, cx }) => (
+      {({ css }) => (
         <Accordion
           className={css`
             ${styles.accordion}

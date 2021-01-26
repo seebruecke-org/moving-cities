@@ -44,7 +44,8 @@ export default function CityPage({ slug, contentType, ...props }) {
               cities.map((city) => {
                 const cityProps = {
                   ...city,
-                  isActive: slug === city.slug
+                  isActive: slug === city.slug,
+                  key: `city-list-${city.slug}`
                 };
 
                 return <CityListItem {...cityProps} />;

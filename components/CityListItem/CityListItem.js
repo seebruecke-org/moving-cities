@@ -7,13 +7,14 @@ const CityListItem = ({
   isActive,
   slug,
   country: { slug: countrySlug },
-  onClick = () => {}
+  onClick = () => {},
+  ...props
 }) => {
   const href = `/cities/${countrySlug}/${slug}`;
 
   return (
     <Link href={href}>
-      <a css={[styles.name, isActive && styles.active]} onClick={onClick}>
+      <a href={href} css={[styles.name, isActive && styles.active]} onClick={onClick} {...props}>
         {name}
       </a>
     </Link>
