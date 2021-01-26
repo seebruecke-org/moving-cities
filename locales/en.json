@@ -1,0 +1,59 @@
+{
+  "intro": {
+    "title": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr.",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr,sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing"
+  },
+
+  "map": {
+    "toCity": "Visit City Profile"
+  },
+
+  "city": {
+    "profiles": "City Profiles",
+    "networks": "City Networks",
+    "slug": "cities",
+    "title": "Cities",
+    "toCountryProfile": "Country Profile"
+  },
+
+  "network": {
+    "slug": "networks",
+    "title": "Networks"
+  },
+
+  "activity": {
+    "slug": "activities",
+    "title": "Activities"
+  },
+
+  "about": {
+    "slug": "about",
+    "title": "About"
+  },
+
+  "contact": {
+    "slug": "contact",
+    "title": "Contact"
+  },
+
+  "imprint": {
+    "slug": "imprint",
+    "title": "Imprint"
+  },
+
+  "filter": {
+    "accepts_more_refugees": "cities willing to welcome more refugees",
+    "solidarity_based": "cities actively supporting a solidarity-based migration policy",
+    "access_social_rights": "access_social_rights",
+    "improvement_resident_security": "improvement_resident_security",
+    "reception_refugees": "reception_refugees",
+    "political_participation": "political_participation",
+    "intercultural_inclusion": "intercultural_inclusion",
+    "structural_capacities": "structural_capacities",
+
+    "activities": {
+      "by": "Filter By",
+      "title": "Filter Activities"
+    }
+  }
+}

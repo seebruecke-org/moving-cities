@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useI18n } from 'next-localization';
 
 import Layout from '../../components/Layout';
 
@@ -12,14 +13,16 @@ import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
+import { getTranslations } from '../../lib/default';
 
 const NetworksPage = () => {
   const networks = useSelector((state) => state.networks);
   const navigation = useSelector((state) => state.navigation);
+  const i18n = useI18n();
 
   return (
     <Layout>
-      <SEO title="City Networks" />
+      <SEO title={i18n.t('city.networks')} />
 
       <Main>
         <Map>
@@ -30,7 +33,7 @@ const NetworksPage = () => {
       <Sidebar>
         <Navigation items={navigation} />
         <BottomSheet>
-          <SidebarList label="City Networks">
+          <SidebarList label={i18n.t('city.networks')}>
             {networks && networks.map((network) => <NetworkListItem {...network} />)}
           </SidebarList>
         </BottomSheet>
@@ -39,7 +42,8 @@ const NetworksPage = () => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
+  const lngDict = await getTranslations(locale);
   const { networks } = await fetcher(`
     query {
       networks(sort: "name") {
@@ -51,6 +55,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
+      lngDict,
       initialReduxState: {
         networks
       }

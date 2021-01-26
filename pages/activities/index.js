@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useI18n } from 'next-localization';
 
 import Layout from '../../components/Layout';
 
@@ -11,10 +12,12 @@ import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
+import { getTranslations } from '../../lib/default';
 
 const ActivitiesPage = () => {
   const activities = useSelector((state) => state.activities);
   const navigation = useSelector((state) => state.navigation);
+  const i18n = useI18n();
 
   return (
     <Layout>
@@ -29,12 +32,12 @@ const ActivitiesPage = () => {
         <BottomSheet>
           <ActivitiesFilter
             filters={[
-              'access_social_rights',
-              'improvement_resident_security',
-              'reception_refugees',
-              'political_participation',
-              'intercultural_inclusion',
-              'structural_capacities'
+              i18n.t('filter.access_social_rights'),
+              i18n.t('filter.improvement_resident_security'),
+              i18n.t('filter.reception_refugees'),
+              i18n.t('filter.political_participation'),
+              i18n.t('filter.intercultural_inclusion'),
+              i18n.t('filter.structural_capacities')
             ]}
           />
         </BottomSheet>
@@ -43,7 +46,8 @@ const ActivitiesPage = () => {
   );
 };
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, locale }) {
+  const lngDict = await getTranslations(locale);
   const { activities } = await fetcher(`
     query {
       ${ACTIVITIES_FRAGMENT}
@@ -60,6 +64,7 @@ export async function getServerSideProps({ query }) {
 
   return {
     props: {
+      lngDict,
       initialReduxState: {
         activities: filteredActivities || []
       }
