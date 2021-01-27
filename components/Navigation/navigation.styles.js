@@ -1,8 +1,12 @@
 import { css } from '@emotion/react';
 
 import boxShadow from '../../lib/styles/box-shadow';
+import zIndex from '../../lib/styles/z-index';
 
 export const navigation = css`
+  ${zIndex('header')}
+
+  background-color: white;
   display: grid;
   flex-direction: column;
 

@@ -8,7 +8,7 @@ export const container = css`
 
   @media (max-width: 768px) {
     ${boxShadow()}
-    ${zIndex('overlay')}
+    ${zIndex('sidebarBack')}
 
     background-color: white;
     border-radius: 1rem;
