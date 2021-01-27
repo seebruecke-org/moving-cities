@@ -30,7 +30,7 @@ export default function MapIntro({ children, isOpen = false, onClose = () => {} 
           viewBox="0 0 29 27"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
-          <path stroke="#FFF95E" strokeWidth="2" d="M27.7.7l-25 25M26.3 25.7L1.3.7" />
+          <path stroke="currentColor" strokeWidth="2" d="M27.7.7l-25 25M26.3 25.7L1.3.7" />
         </svg>
       </button>
 
