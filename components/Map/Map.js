@@ -1,4 +1,5 @@
 import ReactMapboxGl, { ZoomControl } from 'react-mapbox-gl';
+import { useWindowSize } from 'react-use';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -12,6 +13,8 @@ const MapboxMap = ReactMapboxGl({
 });
 
 export default function Map({ children, onInfoOpen = () => {}, ...props }) {
+  const { width: windowWidth } = useWindowSize();
+
   return (
     <div css={styles.container}>
       <MapboxMap
@@ -20,7 +23,7 @@ export default function Map({ children, onInfoOpen = () => {}, ...props }) {
         {...props}>
         <Controls>
           <Info onClick={() => onInfoOpen()} />
-          <ZoomControl style={styles.zoomControl} />
+          {windowWidth > 768 && <ZoomControl style={styles.zoomControl} />}
         </Controls>
 
         {children}
