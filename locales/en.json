@@ -42,14 +42,14 @@
   },
 
   "filter": {
-    "accepts_more_refugees": "cities willing to welcome more refugees",
-    "solidarity_based": "cities actively supporting a solidarity-based migration policy",
-    "access_social_rights": "access_social_rights",
-    "improvement_resident_security": "improvement_resident_security",
-    "reception_refugees": "reception_refugees",
-    "political_participation": "political_participation",
-    "intercultural_inclusion": "intercultural_inclusion",
-    "structural_capacities": "structural_capacities",
+    "accepts_more_refugees": "Cities willing to welcome more refugees",
+    "solidarity_based": "Cities actively supporting a solidarity-based migration policy",
+    "access_social_rights": "Access to social rights",
+    "improvement_resident_security": "Improvement of residence security",
+    "reception_refugees": "Communal reception of refugees",
+    "political_participation": "Political participation of refugees/migrants",
+    "intercultural_inclusion": "Intercultural inclusion",
+    "structural_capacities": "Building structural capacities and resources",
 
     "activities": {
       "by": "Filter By",
