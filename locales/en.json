@@ -16,6 +16,12 @@
     "toCountryProfile": "Country Profile"
   },
 
+  "chapter": {
+    "title-1": "Fact Sheet",
+    "title-2": "Cross-political activities",
+    "title-3": "Migration and integration"
+  },
+
   "network": {
     "slug": "networks",
     "title": "Networks"

@@ -25,7 +25,7 @@ export default function Profile({
       }
 
       return {
-        title: `Chapter ${index + 1}`,
+        title: i18n.t(`chapter.title-${index + 1}`),
         blocks
       };
     })

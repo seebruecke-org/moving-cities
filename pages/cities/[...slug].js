@@ -14,6 +14,7 @@ import Sidebar from '../../components/Sidebar';
 import SidebarList from '../../components/SidebarList';
 
 import { fetcher } from '../../lib/hooks/useAPI';
+import { getTranslations } from '../../lib/default';
 
 import { BLOCK_FRAGMENTS } from '../../components/Blocks';
 import { FRAGMENT as BLOCK_ACTIVITY } from '../../components/Blocks/Activity';
@@ -57,7 +58,8 @@ export default function CityPage({ slug, contentType, ...props }) {
   );
 }
 
-export async function getStaticProps({ params: { slug } }) {
+export async function getStaticProps({ locale, params: { slug } }) {
+  const lngDict = await getTranslations(locale);
   const [countrySlug, citySlug] = slug;
 
   let query = `
@@ -125,6 +127,7 @@ export async function getStaticProps({ params: { slug } }) {
         },
 
         contentType: isCity ? 'city' : 'country',
+        lngDict,
         ...content
       }
     };
