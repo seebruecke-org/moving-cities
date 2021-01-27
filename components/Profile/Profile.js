@@ -1,3 +1,4 @@
+import { useI18n } from 'next-localization';
 import Link from 'next/link';
 
 import Blocks from '../Blocks';
@@ -15,6 +16,7 @@ export default function Profile({
   chapter_3,
   chapter_4
 }) {
+  const i18n = useI18n();
   const chapterList = [chapter_1, chapter_2, chapter_3, chapter_4];
   const chapter = chapterList
     .map((blocks, index) => {
@@ -34,8 +36,8 @@ export default function Profile({
       <h1 css={styles.title}>{name}</h1>
 
       {isCity && (
-        <Link href={`/cities/${country.slug}`}>
-          <a>Country Profile</a>
+        <Link href={`/${i18n.t('city.slug')}/${country.slug}`}>
+          <a>{i18n.t('city.Country Profile')}</a>
         </Link>
       )}
 

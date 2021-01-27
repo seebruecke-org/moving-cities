@@ -1,4 +1,5 @@
 import { Global } from '@emotion/react';
+import { useI18n } from 'next-localization';
 import Link from 'next/link';
 
 import { Popup } from '../Map';
@@ -14,6 +15,8 @@ export default function MapCityPopup({
   slug,
   country: { slug: countrySlug }
 }) {
+  const i18n = useI18n();
+
   return (
     <Popup coordinates={convertStrapiToMapbox(coordinates)}>
       <Global styles={styles.resetPopup} />
@@ -22,8 +25,8 @@ export default function MapCityPopup({
 
         {intro && <p css={styles.intro}>{intro}</p>}
 
-        <Link href={`/cities/${countrySlug}/${slug}`}>
-          <a css={styles.cta}>Visit City Profile</a>
+        <Link href={`/${i18n.t('city.slug')}/${countrySlug}/${slug}`}>
+          <a css={styles.cta}>{i18n.t('map.toCity')}</a>
         </Link>
       </div>
     </Popup>

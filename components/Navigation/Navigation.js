@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useI18n } from 'next-localization';
 import Link from 'next/link';
 
 import theme from '../../lib/styles/theme';
@@ -15,16 +16,20 @@ const Item = ({ href, type, children }) => {
   );
 };
 
-const Navigation = ({ items = [] }) => (
-  <nav css={styles.navigation}>
-    <div css={styles.inner}>
-      {items.map(([href, label]) => (
-        <Item href={href} key={`navigation-${label}`} type={label.toLowerCase()}>
-          {label}
-        </Item>
-      ))}
-    </div>
-  </nav>
-);
+const Navigation = ({ items = [] }) => {
+  const i18n = useI18n();
+
+  return (
+    <nav css={styles.navigation}>
+      <div css={styles.inner}>
+        {items.map(([href, label]) => (
+          <Item href={`/${i18n.t(href)}`} key={`navigation-${label}`} type={label.toLowerCase()}>
+            {i18n.t(label)}
+          </Item>
+        ))}
+      </div>
+    </nav>
+  );
+}
 
 export default Navigation;

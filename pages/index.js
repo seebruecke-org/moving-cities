@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useI18n } from 'next-localization';
 import dynamic from 'next/dynamic';
 
 import Layout from '../components/Layout';
@@ -20,6 +21,7 @@ import SidebarList from '../components/SidebarList';
 import { fetcher } from '../lib/hooks/useAPI';
 import { convertStrapiToMapbox, getMapBounds } from '../lib/coordiantes';
 import useCookie from '../lib/hooks/useCookie';
+import { getTranslations } from '../lib/default';
 
 const Map = dynamic(() => import('../components/Map'));
 
@@ -37,6 +39,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const { cookie, setCookie } = useCookie(COOKIE_NAME);
   const fitBounds = useCallback(getMapBounds(cities), [cities]);
+  const i18n = useI18n();
 
   const mapProps = {
     fitBounds,
@@ -66,11 +69,11 @@ const HomePage = () => {
       <Main>
         <MapFilterOverlay>
           <Checkbox checked={true}>
-            {cities.length} cities actively supporting a solidarity-based migration policy
+            {cities.length} {i18n.t('filter.solidarity_based')}
           </Checkbox>
 
           <Checkbox>
-            {citiesAcceptMoreRefugees.length} cities willing to welcome more refugees
+            {citiesAcceptMoreRefugees.length} {i18n.t('filter.accepts_more_refugees')}
           </Checkbox>
         </MapFilterOverlay>
 
@@ -96,7 +99,7 @@ const HomePage = () => {
       <Sidebar>
         <Navigation items={navigation} />
         <BottomSheet>
-          <SidebarList label="City profiles">
+          <SidebarList label={i18n.t('city.profiles')}>
             {cities &&
               cities
                 .filter(({ chapter_1, chapter_2, chapter_3, chapter_4 }) => {
@@ -132,21 +135,15 @@ const HomePage = () => {
       </Sidebar>
 
       <MapIntro isOpen={!cookie} onClose={() => setCookie(true)}>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p>
-
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-          sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-          elitr.
-        </p>
+        <p>{i18n.t('intro.title')}</p>
+        <p>{i18n.t('intro.description')}</p>
       </MapIntro>
     </Layout>
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
+  const lngDict = await getTranslations(locale);
   const { cities } = await fetcher(`
     query {
       cities(sort: "name") {
@@ -181,6 +178,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
+      lngDict,
       initialReduxState: {
         cities
       }
