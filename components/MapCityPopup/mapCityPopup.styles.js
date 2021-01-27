@@ -19,7 +19,6 @@ export const container = css`
 
   background: white;
   border-radius: 2rem;
-  color: var(--color-blue);
   font-family: var(--font-sans);
   max-width: 30rem;
   padding: 3rem 2rem;
@@ -35,7 +34,7 @@ export const intro = css`
 `;
 
 export const cta = css`
-  border: 1px solid var(--color-blue);
+  border: 1px solid currentColor;
   border-radius: 2rem;
   cursor: pointer;
   display: inline-block;
@@ -44,6 +43,6 @@ export const cta = css`
 
   :hover,
   :focus {
-    background-color: var(--color-purple);
+    background-color: var(--color-red);
   }
 `;

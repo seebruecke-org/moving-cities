@@ -1,8 +1,8 @@
-import { css, cx } from '@emotion/react';
+import { css } from '@emotion/react';
 
 const ICON_BASE = css`
   cursor: pointer;
-  filter: drop-shadow(0 0 0.2rem var(--color-yellow));
+  filter: drop-shadow(0 0 0.2rem var(--color-yellow-bright));
 `;
 
 export const container = css`
@@ -24,7 +24,6 @@ export const profileIcon = css`
 `;
 
 export const name = css`
-  color: var(--color-blue);
   font-family: var(--font-sans);
   font-size: 1.1rem;
 `;

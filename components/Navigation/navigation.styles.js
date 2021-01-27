@@ -3,7 +3,6 @@ import { css } from '@emotion/react';
 import boxShadow from '../../lib/styles/box-shadow';
 
 export const navigation = css`
-  color: var(--color-blue);
   display: grid;
   flex-direction: column;
 
@@ -52,7 +51,7 @@ export const item = css`
 
   :hover::after,
   :focus::after {
-    background-color: var(--color-theme);
+    background-color: var(--color-red);
   }
 
   ::before {
@@ -93,6 +92,6 @@ export const item = css`
 
 export const itemActive = css`
   ::after {
-    background-color: var(--color-theme);
+    background-color: var(--color-red);
   }
 `;

@@ -7,8 +7,7 @@ export const header = css`
   ${boxShadow()}
   ${zIndex('header')}
   align-items: center;
-  background-color: var(--color-yellow);
-  color: var(--color-blue);
+  background-color: var(--color-yellow-bright);
   display: flex;
   flex-wrap: wrap;
   grid-area: header;
