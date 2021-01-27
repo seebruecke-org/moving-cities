@@ -45,7 +45,7 @@ export const content = {
 
 export const overlay = {
   alignItems: 'center',
-  backgroundColor: 'rgba(0, 28, 109, 0.82)',
+  backgroundColor: 'rgba(27, 27, 27, 0.82)',
   display: 'flex',
   justifyContent: 'center',
   zIndex: indexes.overlay
