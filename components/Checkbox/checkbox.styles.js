@@ -22,7 +22,6 @@ export const input = css`
 `;
 
 export const checkbox = css`
-  color: var(--color-blue);
   cursor: pointer;
   pointer-events: none;
 

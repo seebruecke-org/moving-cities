@@ -15,7 +15,7 @@ export default function Map({ children, onInfoOpen = () => {}, ...props }) {
   return (
     <div css={styles.container}>
       <MapboxMap
-        style="mapbox://styles/gustavpursche/ckig79xzb3nue1atbymcmf04v"
+        style="mapbox://styles/gustavpursche/ckkfj2uzk01sx17qix54j2pez"
         containerStyle={styles.container}
         {...props}>
         <Controls>

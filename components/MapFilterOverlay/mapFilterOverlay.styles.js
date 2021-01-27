@@ -5,7 +5,6 @@ import zIndex from '../../lib/styles/z-index';
 export const container = css`
   ${zIndex('sidebarFront')}
 
-  color: var(--color-blue);
   left: 0;
   max-width: 40rem;
   padding: 3rem;

@@ -28,7 +28,7 @@ export const accordionButton = css`
 
   :hover,
   :focus {
-    background-color: var(--color-purple);
+    background-color: var(--color-red);
   }
 `;
 

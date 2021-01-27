@@ -9,10 +9,10 @@ export const name = css`
 
   :hover,
   :focus {
-    background-color: var(--color-purple);
+    background-color: var(--color-red);
   }
 `;
 
 export const active = css`
-  background-color: var(--color-purple);
+  background-color: var(--color-red);
 `;

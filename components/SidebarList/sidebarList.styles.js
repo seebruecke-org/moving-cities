@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
 export const container = css`
-  color: var(--color-blue);
   display: flex;
   flex: 1;
   flex-direction: column;

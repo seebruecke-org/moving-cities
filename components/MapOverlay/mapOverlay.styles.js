@@ -23,7 +23,7 @@ export const container = css`
 export const inner = css`
   ${boxShadow()}
 
-  background: var(--color-yellow-bright);
+  background: white;
   min-height: 100%;
   overflow-y: auto;
   padding: 1.5rem;

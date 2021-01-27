@@ -53,7 +53,7 @@ export const about = css`
 
   :hover,
   :focus {
-    background-color: var(--color-blue);
+    background-color: var(--color-red);
     color: white;
   }
 `;

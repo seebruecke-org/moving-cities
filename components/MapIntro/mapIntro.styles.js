@@ -19,7 +19,7 @@ export const cta = css`
   align-items: center;
   background: transparent;
   border: 0;
-  color: var(--color-yellow);
+  color: white;
   display: flex;
   font-family: inherit;
   font-size: inherit;
@@ -32,7 +32,7 @@ export const cta = css`
 `;
 
 export const content = {
-  backgroundColor: 'var(--color-purple)',
+  backgroundColor: 'var(--color-red)',
   border: 0,
   borderRadius: '2rem',
   color: 'white',
@@ -45,7 +45,7 @@ export const content = {
 
 export const overlay = {
   alignItems: 'center',
-  backgroundColor: 'rgba(0, 28, 109, 0.82)',
+  backgroundColor: 'rgba(27, 27, 27, 0.82)',
   display: 'flex',
   justifyContent: 'center',
   zIndex: indexes.overlay

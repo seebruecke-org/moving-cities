@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 
 export const list = css`
-  background-color: var(--color-yellow-bright);
   height: 100%;
   list-style: none;
   margin-bottom: 0;
@@ -14,8 +13,7 @@ export const list = css`
 
 export const item = css`
   align-items: center;
-  border-bottom: 1px solid var(--color-yellow-dark);
-  color: var(--color-blue);
+  border-bottom: 1px solid var(--color-grey-medium);
   display: flex;
   font-size: 2.4rem;
 `;
@@ -29,7 +27,7 @@ export const link = css`
 
   :hover,
   :focus {
-    background-color: var(--color-yellow-dark);
+    background-color: var(--color-red);
   }
 `;
 

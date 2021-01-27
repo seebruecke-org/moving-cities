@@ -25,7 +25,7 @@ export const container = css`
   }
 
   ::before {
-    background-color: var(--color-grey-medium);
+    background-color: var(--color-grey-light);
     border-radius: 0.4rem;
     content: '';
     height: 0.4rem;

@@ -1,8 +1,7 @@
 import { css } from '@emotion/react';
 
 export const container = css`
-  background-color: var(--color-blue);
-  color: white;
+  background-color: var(--color-grey-light);
   overflow-y: auto;
   padding: 2.5rem 1.5rem;
   width: 100%;
