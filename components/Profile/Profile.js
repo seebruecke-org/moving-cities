@@ -24,8 +24,10 @@ export default function Profile({
         return null;
       }
 
+      const activityTitle = blocks && blocks[0]?.activity?.title;
+
       return {
-        title: i18n.t(`chapter.title-${index + 1}`),
+        title: activityTitle || i18n.t(`chapter.title-${index + 1}`),
         blocks
       };
     })

@@ -13,16 +13,17 @@ export default function Blocks({ blocks = [] }) {
 
   return (
     <div>
-      {blocks.map(({ __typename, ...block }, index) => {
-        const BlockComponent = map[__typename] || null;
-        const key = `block-${__typename}-${index}`;
+      {blocks &&
+        blocks.map(({ __typename, ...block }, index) => {
+          const BlockComponent = map[__typename] || null;
+          const key = `block-${__typename}-${index}`;
 
-        if (!BlockComponent) {
-          return null;
-        }
+          if (!BlockComponent) {
+            return null;
+          }
 
-        return <BlockComponent key={key} {...block} />;
-      })}
+          return <BlockComponent key={key} {...block} />;
+        })}
     </div>
   );
 }

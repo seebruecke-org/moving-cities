@@ -6,10 +6,11 @@ import * as styles from './navigation.styles';
 
 const Item = ({ href, children }) => {
   const { asPath } = useRouter();
+  const isActive = asPath === href || (href !== '/' && asPath.startsWith(href));
 
   return (
     <Link href={href}>
-      <a css={[styles.item, asPath === href && styles.itemActive]}>{children}</a>
+      <a css={[styles.item, isActive && styles.itemActive]}>{children}</a>
     </Link>
   );
 };
