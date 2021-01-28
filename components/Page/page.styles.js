@@ -13,6 +13,7 @@ export const container = css`
 
 export const title = css`
   font-size: 3rem;
+  font-weight: 400;
   margin-top: 0;
 `;
 
