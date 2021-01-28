@@ -6,7 +6,10 @@ import * as styles from './navigation.styles';
 
 const Item = ({ href, children }) => {
   const { asPath } = useRouter();
-  const isActive = asPath === href || (href !== '/' && asPath.startsWith(href));
+  const isActive =
+    asPath === href ||
+    (href !== '/' && asPath.startsWith(href)) ||
+    (href === '/' && asPath.startsWith('/cities'));
 
   return (
     <Link href={href}>
@@ -29,6 +32,6 @@ const Navigation = ({ items = [] }) => {
       </div>
     </nav>
   );
-}
+};
 
 export default Navigation;
