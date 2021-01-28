@@ -3,27 +3,14 @@ import React, { useState } from 'react';
 import { Marker } from '../Map';
 
 import { convertStrapiToMapbox } from '../../lib/coordiantes';
+import { hasProfile } from '../../lib/city';
 
 import * as styles from './mapCityMarker.styles';
 
-export default function MapCityMarker({
-  name,
-  coordinates,
-  chapter_1,
-  chapter_2,
-  chapter_3,
-  chapter_4,
-  isActive = false,
-  onClick = () => {}
-}) {
+export default function MapCityMarker(city) {
+  const { name, coordinates, isActive = false, onClick = () => {} } = city;
   const [isFocused, setIsFocused] = useState(false);
-  const hasProfile = [chapter_1, chapter_2, chapter_3, chapter_4].reduce((acc, chapter) => {
-    if (chapter.length > 0) {
-      return true;
-    }
-
-    return acc;
-  }, false);
+  const hasCityProfile = hasProfile(city);
 
   const onMouseEnter = () => {
     setIsFocused(true);
@@ -36,9 +23,9 @@ export default function MapCityMarker({
   const markerProps = {
     coordinates: convertStrapiToMapbox(coordinates),
     anchor: 'top',
-    onClick: hasProfile ? onClick : undefined,
-    onMouseEnter: hasProfile ? onMouseEnter : undefined,
-    onMouseLeave: hasProfile ? onMouseLeave : undefined
+    onClick: hasCityProfile ? onClick : undefined,
+    onMouseEnter: hasCityProfile ? onMouseEnter : undefined,
+    onMouseLeave: hasCityProfile ? onMouseLeave : undefined
   };
 
   return (
@@ -72,7 +59,7 @@ export default function MapCityMarker({
           </svg>
         ) : (
           <>
-            {hasProfile ? (
+            {hasCityProfile ? (
               <svg
                 width="21"
                 height="21"
@@ -109,7 +96,7 @@ export default function MapCityMarker({
           </>
         )}
 
-        {hasProfile && <span css={styles.name}>{name}</span>}
+        {hasCityProfile && <span css={styles.name}>{name}</span>}
       </div>
     </Marker>
   );

@@ -22,6 +22,7 @@ import { fetcher } from '../lib/hooks/useAPI';
 import { convertStrapiToMapbox, getMapBounds } from '../lib/coordiantes';
 import useCookie from '../lib/hooks/useCookie';
 import { getTranslations } from '../lib/default';
+import { hasProfile } from '../lib/city';
 
 const Map = dynamic(() => import('../components/Map'));
 
@@ -101,35 +102,20 @@ const HomePage = () => {
         <BottomSheet>
           <SidebarList label={i18n.t('city.profiles')}>
             {cities &&
-              cities
-                .filter(({ chapter_1, chapter_2, chapter_3, chapter_4 }) => {
-                  const hasProfile = [chapter_1, chapter_2, chapter_3, chapter_4].reduce(
-                    (acc, chapter) => {
-                      if (chapter.length > 0) {
-                        return true;
-                      }
+              cities.filter(hasProfile).map((city) => (
+                <CityListItem
+                  {...city}
+                  key={`sidebar-${city.name}`}
+                  onClick={(event) => {
+                    event.preventDefault();
 
-                      return acc;
-                    },
-                    false
-                  );
-
-                  return hasProfile;
-                })
-                .map((city) => (
-                  <CityListItem
-                    {...city}
-                    key={`sidebar-${city.name}`}
-                    onClick={(event) => {
-                      event.preventDefault();
-
-                      dispatch({
-                        type: 'SET_ACTIVE_CITY',
-                        slug: city.slug
-                      });
-                    }}
-                  />
-                ))}
+                    dispatch({
+                      type: 'SET_ACTIVE_CITY',
+                      slug: city.slug
+                    });
+                  }}
+                />
+              ))}
           </SidebarList>
         </BottomSheet>
       </Sidebar>
@@ -152,6 +138,10 @@ export async function getServerSideProps({ locale }) {
         slug
         coordinates
         accepts_more_refugees
+
+        intro_long {
+          __typename
+        }
 
         chapter_1 {
           __typename
