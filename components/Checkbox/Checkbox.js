@@ -22,7 +22,7 @@ const Checkbox = ({ children, checked: defaultChecked = false, id, ...props }) =
 
       <span css={styles.checkbox} />
 
-      <Label htmlFor={id}>{children}</Label>
+      <Label htmlFor={cbId}>{children}</Label>
     </div>
   );
 };
