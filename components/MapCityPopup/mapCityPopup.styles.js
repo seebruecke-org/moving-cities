@@ -21,11 +21,12 @@ export const container = css`
   border-radius: 2rem;
   font-family: var(--font-sans);
   max-width: 30rem;
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 2rem 2rem;
 `;
 
 export const title = css`
   font-size: 2.4rem;
+  font-weight: 700;
   margin-top: 0;
 `;
 

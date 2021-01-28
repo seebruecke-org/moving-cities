@@ -19,8 +19,8 @@ export const icon = css`
 
 export const profileIcon = css`
   ${ICON_BASE}
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.75rem;
+  width: 2.75rem;
 `;
 
 export const name = css`

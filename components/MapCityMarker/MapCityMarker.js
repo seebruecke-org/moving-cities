@@ -84,15 +84,15 @@ export default function MapCityMarker({
                   cx="10.02"
                   cy="10.02"
                   r="9.52"
-                  fill="#fffad4"
-                  stroke={isFocused ? '#002286' : '#B8B27C'}
+                  fill={isFocused ? '#FF7C74' : '#fffad4'}
+                  stroke={isFocused ? '#FFFAD4' : '#B8B27C'}
                 />
                 <circle
                   cx="10.02"
                   cy="10.02"
                   r="6.18"
-                  fill="#fffad4"
-                  stroke={isFocused ? '#002286' : '#B8B27C'}
+                  fill={isFocused ? '#FF7C74' : '#fffad4'}
+                  stroke={isFocused ? '#FFFAD4' : '#B8B27C'}
                 />
               </svg>
             ) : (
