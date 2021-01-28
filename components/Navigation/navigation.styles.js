@@ -63,9 +63,9 @@ export const item = css`
     border-radius: 50%;
     content: '';
     display: inline-block;
-    height: 2.5rem;
-    margin-right: 0.25rem;
-    width: 2.5rem;
+    height: 2.25rem;
+    margin-right: 0.5rem;
+    width: 2.25rem;
 
     @media (min-width: 500px) {
       margin-right: 1.5rem;
@@ -80,17 +80,18 @@ export const item = css`
 
   ::after {
     background-color: white;
-    border: 0.25rem solid white;
+    border: 0.2rem solid white;
     border-radius: 50%;
     content: '';
     display: block;
-    height: 2rem;
-    left: 0.25rem;
+    height: 1.85rem;
+    left: 0.17rem;
     position: absolute;
-    top: 0.25rem;
-    width: 2rem;
+    top: 0.32rem;
+    width: 1.85rem;
 
     @media (min-width: 768px) {
+      border-width 0.25rem;
       height: 3rem;
       left: 0.2rem;
       top: 0.7rem;

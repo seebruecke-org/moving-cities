@@ -10,6 +10,7 @@ export const container = css`
 
 export const label = css`
   font-size: 1.4rem;
+  font-weight: 400;
   margin-bottom: 1rem;
   margin-top: 1rem;
   padding-left: 1.5rem;
