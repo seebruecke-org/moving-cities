@@ -18,7 +18,11 @@ export default function ActivitiesFilter({ filters = [] }) {
         ))}
       </SidebarList>
 
-      <button type="submit">{i18n.t('filter.activities.title')}</button>
+      <footer css={styles.footer}>
+        <button type="submit" css={styles.button}>
+          {i18n.t('filter.activities.title')}
+        </button>
+      </footer>
     </form>
   );
 }
