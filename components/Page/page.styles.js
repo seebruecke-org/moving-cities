@@ -7,7 +7,7 @@ export const container = css`
   width: 100%;
 
   @media (min-width: 768px) {
-    padding: 4rem 9rem;
+    padding: 7rem 12rem;
   }
 `;
 
