@@ -1,7 +1,5 @@
 import { css } from '@emotion/react';
 
-import boxShadow from '../../lib/styles/box-shadow';
-
 export const accordion = css`
   margin: 8rem -1.5rem 0 -1.5rem;
 
@@ -12,11 +10,10 @@ export const accordion = css`
 `;
 
 export const accordionButton = css`
-  ${boxShadow()}
-
   align-items: center;
   background: white;
   border-radius: 1rem 0 0 0;
+  box-shadow: 0 -0.4rem 0.4rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   display: flex;
   font-size: 2.1rem;
