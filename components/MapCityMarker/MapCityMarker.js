@@ -56,7 +56,7 @@ export default function MapCityMarker({
               cx="20.5"
               cy="20.5"
               r="19.9"
-              stroke="#FFFAD4"
+              stroke="black"
               strokeWidth="1.2"
               strokeDasharray="12 5"
             />
@@ -65,17 +65,10 @@ export default function MapCityMarker({
               cy="20.74"
               r="13.95"
               fill="#FF7C74"
-              stroke="#FFFAD4"
+              stroke="black"
               strokeWidth="1.2"
             />
-            <circle
-              cx="20.78"
-              cy="20.73"
-              r="9.1"
-              fill="#FF7C74"
-              stroke="#FFFAD4"
-              strokeWidth="1.2"
-            />
+            <circle cx="20.78" cy="20.73" r="9.1" fill="#FF7C74" stroke="black" strokeWidth="1.2" />
           </svg>
         ) : (
           <>
