@@ -26,7 +26,7 @@ const Logo = () => (
 const Burger = (props) => (
   <button type="button" css={styles.burger} {...props}>
     <svg width="32" height="17" viewBox="0 0 32 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path stroke="#002286" strokeWidth="1.8" d="M32 .9H0M32 7.9H0M32 15.9H0" />
+      <path stroke="currentColor" strokeWidth="2" d="M32 .9H0M32 7.9H0M32 15.9H0" />
     </svg>
   </button>
 );

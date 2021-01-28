@@ -55,6 +55,7 @@ export const burger = css`
   border: 0;
   cursor: pointer;
   margin-right: 1.5rem;
+  margin-top: 0.25rem;
   outline: none;
   padding: 0;
 
