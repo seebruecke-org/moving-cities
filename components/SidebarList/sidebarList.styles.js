@@ -19,6 +19,10 @@ export const label = css`
 export const listContainer = css`
   flex: 1;
   position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 3.5rem;
+  }
 `;
 
 export const list = css`

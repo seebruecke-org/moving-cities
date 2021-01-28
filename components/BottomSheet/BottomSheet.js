@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 import * as styles from './BottomSheet.style';
 
-const INITIAL_POSITION = -55;
+const INITIAL_POSITION = -65;
 
 const BottomSheet = ({ children }) => {
   const { height: windowHeight, width: windowWidth } = useWindowSize();

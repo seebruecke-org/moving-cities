@@ -13,7 +13,7 @@ export const container = css`
     background-color: white;
     border-radius: 1rem;
     height: 100vh;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     position: fixed;
     top: 100%;
     touch-action: none;
