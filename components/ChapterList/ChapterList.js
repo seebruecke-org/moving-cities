@@ -18,6 +18,8 @@ export default function ChapterList({ chapter = [] }) {
     <ClassNames>
       {({ css }) => (
         <Accordion
+          allowMultipleExpanded={true}
+          allowZeroExpanded={true}
           className={css`
             ${styles.accordion}
           `}>
