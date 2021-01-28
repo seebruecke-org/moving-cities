@@ -64,11 +64,16 @@ export const item = css`
     content: '';
     display: inline-block;
     height: 2.5rem;
-    margin-right: 1rem;
+    margin-right: 0.25rem;
     width: 2.5rem;
+
+    @media (min-width: 500px) {
+      margin-right: 1.5rem;
+    }
 
     @media (min-width: 768px) {
       height: 3.4rem;
+      margin-right: 1rem;
       width: 3.4rem;
     }
   }
