@@ -16,8 +16,10 @@ export default function MapIntro({ children, isOpen = false, onClose = () => {} 
           ...styles.content,
 
           borderRadius: isDesktop ? '50%' : '2rem',
+          fontSize: isDesktop ? '2.1rem' : '1.75rem',
           height: isDesktop ? '66rem' : 'auto',
-          padding: isDesktop ? '10rem' : '4rem',
+          inset: isDesktop ? '4rem' : '1.5rem',
+          padding: isDesktop ? '10rem' : '2rem',
           position: isDesktop ? 'static' : 'absolute',
           textAlign: isDesktop ? 'center' : 'left',
           width: isDesktop ? '66rem' : 'auto'

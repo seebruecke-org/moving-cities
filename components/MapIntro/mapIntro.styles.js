@@ -5,12 +5,15 @@ export const close = css`
   align-self: flex-end;
   background: transparent;
   border: 0;
+  display: block;
+  height: auto;
   padding: 1rem;
 
   @media (min-width: 768px) {
     position: fixed;
     right: 2rem;
     top: 2rem;
+    width: 2.5rem;
   }
 `;
 
