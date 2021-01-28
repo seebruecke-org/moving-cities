@@ -30,6 +30,6 @@ export const inner = css`
   width: 100%;
 
   @media (min-width: 768px) {
-    padding: 4rem;
+    padding: 5rem 9rem;
   }
 `;

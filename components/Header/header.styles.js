@@ -21,6 +21,10 @@ export const logoContainer = css`
   margin-right: 1rem;
   overflow-y: hidden;
   padding-right: 0.6rem;
+
+  @media (min-width: 768px) {
+    margin-right: 1.5rem;
+  }
 `;
 
 export const logoLink = css`

@@ -6,8 +6,8 @@ export const accordion = css`
   margin: 8rem -1.5rem 0 -1.5rem;
 
   @media (min-width: 768px) {
-    margin-left: -4rem;
-    margin-right: -4rem;
+    margin-left: -9rem;
+    margin-right: -9rem;
   }
 `;
 
@@ -28,7 +28,7 @@ export const accordionButton = css`
 
   :hover,
   :focus {
-    background-color: var(--color-red);
+    background-color: var(--color-yellow-bright);
   }
 `;
 
@@ -43,7 +43,8 @@ export const accordionButtonIcon = css`
 
   @media (min-width: 768px) {
     height: 3.2rem;
-    margin-right: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 2.5rem;
     width: 3.2rem;
   }
 `;
@@ -57,6 +58,6 @@ export const accordionPanel = css`
   padding: 1rem 1.5rem 1.5rem 1.5rem;
 
   @media (min-width: 768px) {
-    padding: 2rem 0 2rem 4rem;
+    padding: 2rem 0 2rem 9rem;
   }
 `;
