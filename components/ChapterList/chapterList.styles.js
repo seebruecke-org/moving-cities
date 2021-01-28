@@ -30,10 +30,14 @@ export const accordionButton = css`
 `;
 
 export const accordionButtonIcon = css`
+  flex-shrink: 0;
+
   @media (max-width: 768px) {
+    align-self: flex-start;
     height: 2.5rem;
     justify-self: flex-end;
     margin-left: auto;
+    margin-top: 0.5rem;
     order: 2;
     width: 2.5rem;
   }

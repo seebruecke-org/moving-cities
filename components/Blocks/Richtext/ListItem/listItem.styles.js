@@ -11,6 +11,7 @@ export const icon = css`
 
 export const content = css`
   margin-left: 1.5rem;
+  margin-bottom: 0;
   margin-top: 0;
 
   strong {
