@@ -8,7 +8,8 @@ import Main from '../../components/Main';
 import Map from '../../components/Map';
 import MapOverlay from '../../components/MapOverlay';
 import Navigation from '../../components/Navigation';
-import Profile from '../../components/Profile';
+import CityProfile from '../../components/CityProfile';
+import CountryProfile from '../../components/CountryProfile';
 import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 import SidebarList from '../../components/SidebarList';
@@ -32,7 +33,8 @@ export default function CityPage({ slug, contentType, ...props }) {
       <Main>
         <Map />
         <MapOverlay>
-          <Profile isCity={contentType === 'city'} {...props} />
+          {contentType === 'city' && <CityProfile {...props} />}
+          {contentType === 'country' && <CountryProfile {...props} />}
         </MapOverlay>
       </Main>
 
@@ -65,6 +67,10 @@ export async function getStaticProps({ locale, params: { slug } }) {
   let query = `
         country: countries(where: { slug: "${countrySlug}" }) {
             name
+            content {
+              __typename
+              ${BLOCK_ACTIVITY}
+            }
         }
     `;
 

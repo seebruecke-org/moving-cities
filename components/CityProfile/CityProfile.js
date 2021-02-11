@@ -4,11 +4,10 @@ import Link from 'next/link';
 import Blocks from '../Blocks';
 import ChapterList from '../ChapterList';
 
-import * as styles from './profile.styles';
+import * as styles from './cityProfile.styles';
 
-export default function Profile({
+export default function CityProfile({
   name,
-  isCity,
   intro_long,
   country,
   chapter_1,
@@ -37,11 +36,9 @@ export default function Profile({
     <div css={styles.container}>
       <h1 css={styles.title}>{name}</h1>
 
-      {isCity && (
-        <Link href={`/${i18n.t('city.slug')}/${country.slug}`}>
-          <a>{i18n.t('city.Country Profile')}</a>
-        </Link>
-      )}
+      <Link href={`/${i18n.t('city.slug')}/${country.slug}`}>
+        <a>{i18n.t('city.Country Profile')}</a>
+      </Link>
 
       <div css={styles.blocksContainer}>
         <Blocks blocks={intro_long} />
