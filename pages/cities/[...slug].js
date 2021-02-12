@@ -8,13 +8,15 @@ import Main from '../../components/Main';
 import Map from '../../components/Map';
 import MapOverlay from '../../components/MapOverlay';
 import Navigation from '../../components/Navigation';
-import Profile from '../../components/Profile';
+import CityProfile from '../../components/CityProfile';
+import CountryProfile from '../../components/CountryProfile';
 import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 import SidebarList from '../../components/SidebarList';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 import { getTranslations } from '../../lib/default';
+import { hasProfile } from '../../lib/city';
 
 import { BLOCK_FRAGMENTS } from '../../components/Blocks';
 import { FRAGMENT as BLOCK_ACTIVITY } from '../../components/Blocks/Activity';
@@ -32,7 +34,8 @@ export default function CityPage({ slug, contentType, ...props }) {
       <Main>
         <Map />
         <MapOverlay>
-          <Profile isCity={contentType === 'city'} {...props} />
+          {contentType === 'city' && <CityProfile {...props} />}
+          {contentType === 'country' && <CountryProfile {...props} />}
         </MapOverlay>
       </Main>
 
@@ -42,7 +45,7 @@ export default function CityPage({ slug, contentType, ...props }) {
         {shouldShowCitiesList && (
           <SidebarList label="City profiles">
             {cities &&
-              cities.map((city) => {
+              cities.filter(hasProfile).map((city) => {
                 const cityProps = {
                   ...city,
                   isActive: slug === city.slug,
@@ -65,6 +68,10 @@ export async function getStaticProps({ locale, params: { slug } }) {
   let query = `
         country: countries(where: { slug: "${countrySlug}" }) {
             name
+            content {
+              __typename
+              ${BLOCK_FRAGMENTS}
+            }
         }
     `;
 
@@ -96,6 +103,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
 
                 country {
                     slug
+                    name
                 }
             }
         `;
@@ -110,6 +118,26 @@ export async function getStaticProps({ locale, params: { slug } }) {
 
                     country {
                         slug
+                    }
+
+                    intro_long {
+                      __typename
+                    }
+
+                    chapter_1 {
+                      __typename
+                    }
+
+                    chapter_2 {
+                      __typename
+                    }
+
+                    chapter_3 {
+                      __typename
+                    }
+
+                    chapter_4 {
+                      __typename
                     }
                 }
 
