@@ -16,6 +16,7 @@ import SidebarList from '../../components/SidebarList';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 import { getTranslations } from '../../lib/default';
+import { hasProfile } from '../../lib/city';
 
 import { BLOCK_FRAGMENTS } from '../../components/Blocks';
 import { FRAGMENT as BLOCK_ACTIVITY } from '../../components/Blocks/Activity';
@@ -44,7 +45,7 @@ export default function CityPage({ slug, contentType, ...props }) {
         {shouldShowCitiesList && (
           <SidebarList label="City profiles">
             {cities &&
-              cities.map((city) => {
+              cities.filter(hasProfile).map((city) => {
                 const cityProps = {
                   ...city,
                   isActive: slug === city.slug,
@@ -117,6 +118,26 @@ export async function getStaticProps({ locale, params: { slug } }) {
 
                     country {
                         slug
+                    }
+
+                    intro_long {
+                      __typename
+                    }
+
+                    chapter_1 {
+                      __typename
+                    }
+
+                    chapter_2 {
+                      __typename
+                    }
+
+                    chapter_3 {
+                      __typename
+                    }
+
+                    chapter_4 {
+                      __typename
                     }
                 }
 
