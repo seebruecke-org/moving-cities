@@ -13,7 +13,7 @@
     "networks": "City Networks",
     "slug": "cities",
     "title": "Cities",
-    "toCountryProfile": "Country Profile"
+    "toCountryProfile": "Country Profile of {{name}}"
   },
 
   "chapter": {

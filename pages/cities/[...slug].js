@@ -69,7 +69,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
             name
             content {
               __typename
-              ${BLOCK_ACTIVITY}
+              ${BLOCK_FRAGMENTS}
             }
         }
     `;
@@ -102,6 +102,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
 
                 country {
                     slug
+                    name
                 }
             }
         `;
