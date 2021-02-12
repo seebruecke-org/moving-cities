@@ -84,6 +84,7 @@ const HomePage = () => {
               <MapCityMarker
                 {...city}
                 key={`map-${city.name}`}
+                hasProfile={hasProfile(city)}
                 onClick={() =>
                   dispatch({
                     type: 'SET_ACTIVE_CITY',
