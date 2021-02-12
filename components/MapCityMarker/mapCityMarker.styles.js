@@ -13,8 +13,8 @@ export const container = css`
 
 export const icon = css`
   ${ICON_BASE}
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 0.75rem;
+  width: 0.75rem;
 `;
 
 export const profileIcon = css`
