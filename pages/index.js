@@ -109,6 +109,18 @@ const HomePage = () => {
                     slug: city.slug
                   })
                 }
+                onMouseEnter={() => {
+                  dispatch({
+                    type: 'SET_HIGHLIGHTED_CITY',
+                    slug: city.slug
+                  });
+                }}
+                onMouseLeave={() => {
+                  dispatch({
+                    type: 'SET_HIGHLIGHTED_CITY',
+                    slug: null
+                  });
+                }}
               />
             ))}
 
@@ -131,6 +143,18 @@ const HomePage = () => {
                     dispatch({
                       type: 'SET_ACTIVE_CITY',
                       slug: city.slug
+                    });
+                  }}
+                  onMouseEnter={() => {
+                    dispatch({
+                      type: 'SET_HIGHLIGHTED_CITY',
+                      slug: city.slug
+                    });
+                  }}
+                  onMouseLeave={() => {
+                    dispatch({
+                      type: 'SET_HIGHLIGHTED_CITY',
+                      slug: null
                     });
                   }}
                 />

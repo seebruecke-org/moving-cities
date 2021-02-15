@@ -5,6 +5,7 @@ import * as styles from './cityListItem.styles';
 const CityListItem = ({
   name,
   isActive,
+  isHighlighted,
   slug,
   country: { slug: countrySlug },
   onClick = () => {},
@@ -14,7 +15,11 @@ const CityListItem = ({
 
   return (
     <Link href={href}>
-      <a href={href} css={[styles.name, isActive && styles.active]} onClick={onClick} {...props}>
+      <a
+        href={href}
+        css={[styles.name, (isActive || isHighlighted) && styles.active]}
+        onClick={onClick}
+        {...props}>
         {name}
       </a>
     </Link>

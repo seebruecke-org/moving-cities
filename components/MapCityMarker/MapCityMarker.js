@@ -6,24 +6,34 @@ import { convertStrapiToMapbox } from '../../lib/coordiantes';
 
 import * as styles from './mapCityMarker.styles';
 
-export default function MapCityMarker(city) {
-  const { name, coordinates, isActive = false, onClick = () => {}, hasProfile } = city;
+export default function MapCityMarker({
+  name,
+  coordinates,
+  isActive = false,
+  isHighlighted = false,
+  onClick = () => {},
+  onMouseEnter = () => {},
+  onMouseLeave = () => {},
+  hasProfile
+}) {
   const [isFocused, setIsFocused] = useState(false);
 
-  const onMouseEnter = () => {
+  const mouseEnter = () => {
     setIsFocused(true);
+    onMouseEnter();
   };
 
-  const onMouseLeave = () => {
+  const mouseLeave = () => {
     setIsFocused(false);
+    onMouseLeave();
   };
 
   const markerProps = {
     coordinates: convertStrapiToMapbox(coordinates),
     anchor: 'top',
     onClick: hasProfile ? onClick : undefined,
-    onMouseEnter: hasProfile ? onMouseEnter : undefined,
-    onMouseLeave: hasProfile ? onMouseLeave : undefined
+    onMouseEnter: hasProfile ? mouseEnter : undefined,
+    onMouseLeave: hasProfile ? mouseLeave : undefined
   };
 
   return (
@@ -69,15 +79,15 @@ export default function MapCityMarker(city) {
                   cx="10.02"
                   cy="10.02"
                   r="9.52"
-                  fill={isFocused ? '#FF7C74' : '#fffad4'}
-                  stroke={isFocused ? '#FFFAD4' : '#B8B27C'}
+                  fill={isHighlighted || isFocused ? '#FF7C74' : '#fffad4'}
+                  stroke={isHighlighted || isFocused ? '#FFFAD4' : '#B8B27C'}
                 />
                 <circle
                   cx="10.02"
                   cy="10.02"
                   r="6.18"
-                  fill={isFocused ? '#FF7C74' : '#fffad4'}
-                  stroke={isFocused ? '#FFFAD4' : '#B8B27C'}
+                  fill={isHighlighted || isFocused ? '#FF7C74' : '#fffad4'}
+                  stroke={isHighlighted || isFocused ? '#FFFAD4' : '#B8B27C'}
                 />
               </svg>
             ) : (
