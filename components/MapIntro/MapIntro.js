@@ -10,6 +10,7 @@ export default function MapIntro({ children, isOpen = false, onClose = () => {} 
   return (
     <Modal
       isOpen={isOpen}
+      onRequestClose={onClose}
       style={{
         overlay: styles.overlay,
         content: {
