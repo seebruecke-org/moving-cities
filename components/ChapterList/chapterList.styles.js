@@ -57,9 +57,9 @@ export const accordionItem = css`
 
 export const accordionPanel = css`
   max-width: 67rem;
-  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  padding: 1rem 1.5rem 4rem 1.5rem;
 
   @media (min-width: 768px) {
-    padding: 2rem 0 2rem 9rem;
+    padding: 2rem 0 8rem 9rem;
   }
 `;
