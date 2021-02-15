@@ -27,6 +27,7 @@ export const container = css`
 export const title = css`
   font-size: 2.4rem;
   font-weight: 700;
+  line-height: 1.2;
   margin-top: 0;
 `;
 
