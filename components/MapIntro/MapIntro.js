@@ -45,7 +45,8 @@ export default function MapIntro({ children, isOpen = false, onClose = () => {} 
           height="24"
           viewBox="0 0 34 24"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg">
+          xmlns="http://www.w3.org/2000/svg"
+          css={styles.ctaIcon}>
           <path
             stroke="currentColor"
             strokeWidth="2"

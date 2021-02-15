@@ -12,7 +12,7 @@ export const close = css`
 
   @media (min-width: 768px) {
     position: fixed;
-    right: 2rem;
+    right: 4rem;
     top: 2rem;
     width: 2.5rem;
   }
@@ -33,6 +33,10 @@ export const cta = css`
   @media (min-width: 768px) {
     align-self: center;
   }
+`;
+
+export const ctaIcon = css`
+  margin-left: 1.5rem;
 `;
 
 export const content = {
