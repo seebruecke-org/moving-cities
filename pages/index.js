@@ -23,6 +23,7 @@ import { convertStrapiToMapbox, getMapBounds } from '../lib/coordiantes';
 import useCookie from '../lib/hooks/useCookie';
 import { getTranslations } from '../lib/default';
 import { hasProfile } from '../lib/city';
+import { useState } from 'react/cjs/react.development';
 
 const Map = dynamic(() => import('../components/Map'));
 
@@ -33,14 +34,17 @@ const HomePage = () => {
     cities: state.cities,
     navigation: state.navigation
   }));
-  const citiesAcceptMoreRefugees = cities.filter(
-    ({ accepts_more_refugees }) => !!accepts_more_refugees
-  );
-  const activeCity = cities.find(({ isActive }) => isActive === true);
+  const [filter, setFilter] = useState('filter_solidarity_based');
   const dispatch = useDispatch();
   const { cookie, setCookie } = useCookie(COOKIE_NAME);
   const fitBounds = useCallback(getMapBounds(cities), [cities]);
   const i18n = useI18n();
+
+  const citiesAcceptMoreRefugees = cities.filter(
+    ({ accepts_more_refugees }) => !!accepts_more_refugees
+  );
+  const activeCities = filter === 'filter_solidarity_based' ? cities : citiesAcceptMoreRefugees;
+  const activeCity = activeCities.find(({ isActive }) => isActive === true);
 
   const mapProps = {
     fitBounds,
@@ -69,18 +73,32 @@ const HomePage = () => {
 
       <Main>
         <MapFilterOverlay>
-          <Checkbox checked={true}>
+          <Checkbox
+            name="filter_solidarity_based"
+            checked={filter === 'filter_solidarity_based'}
+            onChange={({ target }) => {
+              if (target.checked) {
+                setFilter('filter_solidarity_based');
+              }
+            }}>
             {cities.length} {i18n.t('filter.solidarity_based')}
           </Checkbox>
 
-          <Checkbox>
+          <Checkbox
+            name="filter_accepts_more_refugees"
+            checked={filter === 'filter_accepts_more_refugees'}
+            onChange={({ target }) => {
+              if (target.checked) {
+                setFilter('filter_accepts_more_refugees');
+              }
+            }}>
             {citiesAcceptMoreRefugees.length} {i18n.t('filter.accepts_more_refugees')}
           </Checkbox>
         </MapFilterOverlay>
 
         <Map {...mapProps}>
-          {cities &&
-            cities.map((city) => (
+          {activeCities &&
+            activeCities.map((city) => (
               <MapCityMarker
                 {...city}
                 key={`map-${city.name}`}
@@ -102,8 +120,8 @@ const HomePage = () => {
         <Navigation items={navigation} />
         <BottomSheet>
           <SidebarList label={i18n.t('city.profiles')}>
-            {cities &&
-              cities.filter(hasProfile).map((city) => (
+            {activeCities &&
+              activeCities.filter(hasProfile).map((city) => (
                 <CityListItem
                   {...city}
                   key={`sidebar-${city.name}`}
