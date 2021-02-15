@@ -19,11 +19,16 @@ export const item = css`
 `;
 
 export const link = css`
-  align-items: center;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   padding: 1.25rem 1.5rem;
   width: 100%;
+
+  @media (min-width: 768px) {
+    align-items: center;
+    flex-direction: row;
+  }
 
   :hover,
   :focus {
@@ -33,12 +38,18 @@ export const link = css`
 
 export const linkContent = css`
   display: block;
+  line-height: 1.2;
   max-width: 80rem;
 `;
 
 export const cityName = css`
   font-size: 1.3rem;
-  justify-self: flex-end;
-  margin-left: auto;
-  margin-right: 4rem;
+  order: -1;
+
+  @media (min-width: 768px) {
+    justify-self: flex-end;
+    margin-left: auto;
+    margin-right: 4rem;
+    order: inherit;
+  }
 `;

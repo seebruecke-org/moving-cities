@@ -22,7 +22,7 @@ const ActivitiesList = ({ activities = [] }) => (
       } = city;
 
       return (
-        <li css={styles.item}>
+        <li css={styles.item} key={`activity-${title}`}>
           <Link href={`/cities/${countrySlug}/${citySlug}#chapter-3`}>
             <a css={styles.link}>
               <span css={styles.linkContent}>{title}</span>
