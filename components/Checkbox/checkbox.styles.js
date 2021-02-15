@@ -4,7 +4,7 @@ export const container = css`
   align-items: center;
   display: flex;
   min-height: 2.6rem;
-  padding-left: 3.75rem;
+  padding-left: 4.5rem;
   position: relative;
 `;
 
