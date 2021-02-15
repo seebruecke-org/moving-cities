@@ -7,8 +7,8 @@ export const container = css`
 
   display: none;
   left: 0;
-  max-width: 40rem;
-  padding: 3rem;
+  max-width: 35rem;
+  margin: 3rem 0 0 3rem;
   position: absolute;
   top: 0;
 

@@ -43,7 +43,7 @@ export const checkbox = css`
   }
 
   ::after {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 15' fill='none'><path stroke='currentColor' strokeWidth='2' d='M1 1l14 14m0-14L1 15'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'><path stroke='currentColor' d='M1 1l14 14m0-14L1 15'/></svg>");
     background-size: 100% 100%;
     content: '';
     height: 1.6rem;
