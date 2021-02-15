@@ -5,6 +5,7 @@ export const close = css`
   align-self: flex-end;
   background: transparent;
   border: 0;
+  color: white;
   display: block;
   height: auto;
   padding: 1rem;
@@ -43,7 +44,8 @@ export const content = {
   flexDirection: 'column',
   fontFamily: 'var(--font-sans)',
   fontSize: '2.1rem',
-  fontWeight: '500'
+  fontWeight: '500',
+  justifyContent: 'center'
 };
 
 export const overlay = {
