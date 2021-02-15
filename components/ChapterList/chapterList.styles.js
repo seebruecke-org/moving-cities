@@ -17,6 +17,7 @@ export const accordionButton = css`
   cursor: pointer;
   display: flex;
   font-size: 2.1rem;
+  outline: none;
   padding: 1rem 1.5rem 2.25rem 1.5rem;
 
   @media (min-width: 768px) {
