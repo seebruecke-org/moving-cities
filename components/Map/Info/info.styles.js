@@ -26,3 +26,8 @@ export const button = css`
     color: white;
   }
 `;
+
+export const text = css`
+  position: relative;
+  top: 0.1rem;
+`;
