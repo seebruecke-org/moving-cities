@@ -43,7 +43,7 @@ export const containerIsOpen = css`
 
 export const about = css`
   background: white;
-  border: 0.1px solid currentColor;
+  border: 0.1px solid black;
   border-radius: 2.4rem;
   cursor: pointer;
   display: block;
