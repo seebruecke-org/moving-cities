@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { useWindowSize } from 'react-use';
+import dynamic from 'next/dynamic';
 
 import Layout from '../../components/Layout';
 
 import CityListItem from '../../components/CityListItem';
 import Main from '../../components/Main';
-import Map from '../../components/Map';
 import MapOverlay from '../../components/MapOverlay';
 import Navigation from '../../components/Navigation';
 import CityProfile from '../../components/CityProfile';
@@ -20,6 +20,8 @@ import { hasProfile } from '../../lib/city';
 
 import { BLOCK_FRAGMENTS } from '../../components/Blocks';
 import { FRAGMENT as BLOCK_ACTIVITY } from '../../components/Blocks/Activity';
+
+const Map = dynamic(() => import('../../components/Map'));
 
 export default function CityPage({ slug, contentType, ...props }) {
   const cities = useSelector((state) => state.cities);
@@ -149,6 +151,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
     const content = isCity ? city[0] : country[0];
 
     return {
+      revalidate: 120,
       props: {
         initialReduxState: {
           cities
@@ -178,6 +181,26 @@ export async function getStaticPaths() {
                 country {
                     slug
                 }
+
+                intro_long {
+                  __typename
+                }
+
+                chapter_1 {
+                  __typename
+                }
+
+                chapter_2 {
+                  __typename
+                }
+
+                chapter_3 {
+                  __typename
+                }
+
+                chapter_4 {
+                  __typename
+                }
             }
 
             countries {
@@ -187,9 +210,11 @@ export async function getStaticPaths() {
     `);
 
   return {
-    fallback: false,
+    fallback: true,
     paths: [
-      ...cities.map(({ slug, country: { slug: countrySlug } }) => `/cities/${countrySlug}/${slug}`),
+      ...cities
+        .filter(hasProfile)
+        .map(({ slug, country: { slug: countrySlug } }) => `/cities/${countrySlug}/${slug}`),
       ...countries.map(({ slug }) => `/cities/${slug}`)
     ]
   };

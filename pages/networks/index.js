@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useI18n } from 'next-localization';
+import dynamic from 'next/dynamic';
 
 import Layout from '../../components/Layout';
 
@@ -7,13 +8,14 @@ import BottomSheet from '../../components/BottomSheet';
 import NetworkListItem from '../../components/NetworkListItem';
 import SidebarList from '../../components/SidebarList';
 import Main from '../../components/Main';
-import Map, { Layer } from '../../components/Map';
 import Navigation from '../../components/Navigation';
 import SEO from '../../components/SEO';
 import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 import { getTranslations } from '../../lib/default';
+
+const Map = dynamic(() => import('../../components/Map'));
 
 const NetworksPage = () => {
   const networks = useSelector((state) => state.networks);
@@ -25,9 +27,7 @@ const NetworksPage = () => {
       <SEO title={i18n.t('city.networks')} />
 
       <Main>
-        <Map>
-          <Layer type="symbol" id="marker" />
-        </Map>
+        <Map></Map>
       </Main>
 
       <Sidebar>

@@ -20,6 +20,14 @@ export default function GenericPage(props) {
 
 export async function getStaticProps({ params: { slug } }) {
   const [pageSlug] = slug;
+
+  if (!pageSlug) {
+    return {
+      notFound: true,
+      props: {}
+    };
+  }
+
   const { pages } = await fetcher(`
         query {
             pages(where: { slug: "${pageSlug}" }) {
@@ -45,7 +53,7 @@ export async function getStaticPaths() {
     `);
 
   return {
-    fallback: false,
+    fallback: true,
     paths: pages.map(({ slug }) => `/${slug}`)
   };
 }
