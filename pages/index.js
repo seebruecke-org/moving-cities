@@ -58,6 +58,13 @@ const HomePage = () => {
 
     onInfoOpen() {
       setCookie(null);
+    },
+
+    onClick() {
+      dispatch({
+        type: 'SET_ACTIVE_CITY',
+        slug: null
+      });
     }
   };
 
