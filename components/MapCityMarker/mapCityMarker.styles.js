@@ -26,4 +26,7 @@ export const profileIcon = css`
 export const name = css`
   font-family: var(--font-sans);
   font-size: 1.1rem;
+  line-height: 1;
+  max-width: 9rem;
+  text-align: center;
 `;
