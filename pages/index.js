@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useI18n } from 'next-localization';
 import dynamic from 'next/dynamic';
@@ -23,32 +23,30 @@ import { convertStrapiToMapbox, getMapBounds } from '../lib/coordiantes';
 import useCookie from '../lib/hooks/useCookie';
 import { getTranslations } from '../lib/default';
 import { hasProfile } from '../lib/city';
-import { useState } from 'react/cjs/react.development';
 
 const Map = dynamic(() => import('../components/Map'));
 
 const COOKIE_NAME = 'intro_shown';
 
 const HomePage = () => {
+  const i18n = useI18n();
+  const dispatch = useDispatch();
+
+  const [filter, setFilter] = useState('solidarity_based');
+  const { cookie, setCookie } = useCookie(COOKIE_NAME);
   const { cities, navigation } = useSelector((state) => ({
-    cities: state.cities,
+    cities: state.cities || [],
     navigation: state.navigation
   }));
-  const [filter, setFilter] = useState('filter_solidarity_based');
-  const dispatch = useDispatch();
-  const { cookie, setCookie } = useCookie(COOKIE_NAME);
-  const fitBounds = useCallback(getMapBounds(cities), [cities]);
-  const i18n = useI18n();
 
   const citiesAcceptMoreRefugees = cities.filter(
     ({ accepts_more_refugees }) => !!accepts_more_refugees
   );
-  const activeCities =
-    (filter === 'filter_solidarity_based' ? cities : citiesAcceptMoreRefugees) || [];
+  const activeCities = filter === 'solidarity_based' ? cities : citiesAcceptMoreRefugees;
   const activeCity = activeCities.find(({ isActive }) => isActive === true);
 
   const mapProps = {
-    fitBounds,
+    fitBounds: activeCity ? undefined : useCallback(getMapBounds(cities), [cities]),
     fitBoundsOptions: {
       duration: 0,
       padding: 50
@@ -82,11 +80,11 @@ const HomePage = () => {
       <Main>
         <MapFilterOverlay>
           <Checkbox
-            name="filter_solidarity_based"
-            checked={filter === 'filter_solidarity_based'}
+            name="solidarity_based"
+            checked={filter === 'solidarity_based'}
             onChange={({ target }) => {
               if (target.checked) {
-                setFilter('filter_solidarity_based');
+                setFilter('solidarity_based');
               }
             }}>
             {cities.length} {i18n.t('filter.solidarity_based')}
@@ -183,7 +181,7 @@ const HomePage = () => {
   );
 };
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
   const lngDict = await getTranslations(locale);
   const { cities } = await fetcher(`
     query {
@@ -222,6 +220,7 @@ export async function getServerSideProps({ locale }) {
   `);
 
   return {
+    revalidate: 120,
     props: {
       lngDict,
       initialReduxState: {
