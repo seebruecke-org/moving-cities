@@ -48,6 +48,7 @@ export default function CityPage({ slug, network }) {
                 key={`network-list-${network.slug}`}
                 isActive={slug === network.slug}
                 name={network.name}
+                slug={network.slug}
               />
             ))}
           </SidebarList>
