@@ -24,7 +24,7 @@ import { FRAGMENT as BLOCK_ACTIVITY } from '../../components/Blocks/Activity';
 const Map = dynamic(() => import('../../components/Map'));
 
 export default function CityPage({ slug, contentType, ...props }) {
-  const cities = useSelector((state) => state.cities);
+  const cities = useSelector((state) => state.cities) || [];
   const navigation = useSelector((state) => state.navigation);
   const { width: windowWidth } = useWindowSize();
   const shouldShowCitiesList = windowWidth && windowWidth > 768;
@@ -46,16 +46,15 @@ export default function CityPage({ slug, contentType, ...props }) {
 
         {shouldShowCitiesList && (
           <SidebarList label="City profiles">
-            {cities &&
-              cities.filter(hasProfile).map((city) => {
-                const cityProps = {
-                  ...city,
-                  isActive: slug === city.slug,
-                  key: `city-list-${city.slug}`
-                };
-
-                return <CityListItem {...cityProps} />;
-              })}
+            {cities.filter(hasProfile).map(({ slug: citySlug, name, country }) => (
+              <CityListItem
+                key={`city-list-${slug}`}
+                isActive={citySlug === slug}
+                slug={slug}
+                name={name}
+                country={country}
+              />
+            ))}
           </SidebarList>
         )}
       </Sidebar>

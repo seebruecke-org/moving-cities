@@ -106,7 +106,7 @@ const HomePage = () => {
           {activeCities.map((city) => (
             <MapCityMarker
               coordinates={city.coordinates}
-              key={`map-city-${city.name}`}
+              key={`map-city-${city.slug}`}
               hasProfile={hasProfile(city)}
               name={city.name}
               onClick={() =>

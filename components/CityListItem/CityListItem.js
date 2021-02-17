@@ -9,15 +9,11 @@ const CityListItem = ({
   slug,
   country: { slug: countrySlug },
   onClick = () => {},
-  accepts_more_refugees,
   ...props
 }) => {
-  const href = `/cities/${countrySlug}/${slug}`;
-
   return (
-    <Link href={href}>
+    <Link href={`/cities/${countrySlug}/${slug}`}>
       <a
-        href={href}
         css={[styles.name, (isActive || isHighlighted) && styles.active]}
         onClick={onClick}
         {...props}>
