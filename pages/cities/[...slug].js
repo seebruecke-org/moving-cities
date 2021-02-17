@@ -114,7 +114,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   try {
     const { cities, city, country } = await fetcher(`
             query {
-                cities {
+                cities(sort: "name") {
                     name
                     slug
 

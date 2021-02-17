@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import * as styles from './networkListItem.styles';
 
-const NetworkListItem = ({ name, slug, isActive, onClick = () => {}, ...props }) => {
+const NetworkListItem = ({ name, slug, isActive = false, onClick = () => {}, ...props }) => {
   const href = `/networks/${slug}/`;
 
   return (
