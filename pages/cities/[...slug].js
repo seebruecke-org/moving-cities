@@ -114,7 +114,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   try {
     const { cities, city, country } = await fetcher(`
             query {
-                cities {
+                cities(sort: "name") {
                     name
                     slug
 
@@ -212,9 +212,11 @@ export async function getStaticPaths() {
   return {
     fallback: true,
     paths: [
-      ...cities
-        .filter(hasProfile)
-        .map(({ slug, country: { slug: countrySlug } }) => `/cities/${countrySlug}/${slug}`),
+      ...cities.filter(hasProfile).map(({ slug, country: { slug: countrySlug } }) => ({
+        params: {
+          slug: [countrySlug, slug]
+        }
+      })),
       ...countries.map(({ slug }) => `/cities/${slug}`)
     ]
   };

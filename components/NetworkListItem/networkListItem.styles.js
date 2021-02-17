@@ -13,3 +13,7 @@ export const name = css`
     background-color: var(--color-red);
   }
 `;
+
+export const active = css`
+  background-color: var(--color-red);
+`;
