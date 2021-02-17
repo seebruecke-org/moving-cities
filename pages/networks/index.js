@@ -55,7 +55,7 @@ const NetworksPage = () => {
       <SEO title={i18n.t('city.networks')} />
 
       <Main>
-        <Map {...mapProps}>
+        <Map infoControl={false} {...mapProps}>
           {networks.map(({ cities, isActive, ...network }) => {
             return cities.map((city) => {
               return (

@@ -12,7 +12,7 @@ const MapboxMap = ReactMapboxGl({
   accessToken: process.env.MAPBOX_ACCESS_TOKEN
 });
 
-export default function Map({ children, onInfoOpen = () => {}, ...props }) {
+export default function Map({ children, onInfoOpen = () => {}, infoControl = true, ...props }) {
   const { width: windowWidth } = useWindowSize();
 
   return (
@@ -22,7 +22,7 @@ export default function Map({ children, onInfoOpen = () => {}, ...props }) {
         containerStyle={styles.container}
         {...props}>
         <Controls>
-          <Info onClick={() => onInfoOpen()} />
+          {infoControl && <Info onClick={() => onInfoOpen()} />}
           {windowWidth > 768 && <ZoomControl style={styles.zoomControl} />}
         </Controls>
 
