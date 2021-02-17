@@ -15,17 +15,13 @@ export const resetPopup = css`
 `;
 
 export const container = css`
-  ${boxShadow()}
-
-  background: var(--color-red);
-  border-radius: 1.5rem;
   font-family: var(--font-sans);
   max-width: 30rem;
-  padding: 0.75rem 1.5rem;
 `;
 
 export const title = css`
   font-size: 1.75rem;
+  font-weight: 400;
   line-height: 1.2;
   margin-bottom: 0;
   margin-top: 0;
@@ -36,7 +32,18 @@ export const icon = css`
 `;
 
 export const cta = css`
+  ${boxShadow()}
+
   align-items: center;
+  background-color: var(--color-red);
+  border-radius: 1.5rem;
   cursor: pointer;
   display: flex;
+  padding: 0.75rem 1.5rem;
+
+  :hover,
+  :focus {
+    background-color: black;
+    color: white;
+  }
 `;
