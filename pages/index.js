@@ -46,7 +46,7 @@ const HomePage = () => {
   const activeCity = activeCities.find(({ isActive }) => isActive === true);
 
   const mapProps = {
-    fitBounds: activeCity ? undefined : useCallback(getMapBounds(cities), [cities]),
+    fitBounds: useCallback(getMapBounds(cities), [cities]),
     fitBoundsOptions: {
       duration: 0,
       padding: 50
