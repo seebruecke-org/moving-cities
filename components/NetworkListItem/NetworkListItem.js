@@ -2,10 +2,16 @@ import Link from 'next/link';
 
 import * as styles from './networkListItem.styles';
 
-const NetworkListItem = ({ name }) => (
-  <Link href="">
-    <a css={styles.name}>{name}</a>
-  </Link>
-);
+const NetworkListItem = ({ name, slug, isActive, onClick = () => {}, ...props }) => {
+  const href = `/networks/${slug}/`;
+
+  return (
+    <Link href={href}>
+      <a href={href} css={[styles.name, isActive && styles.active]} onClick={onClick} {...props}>
+        {name}
+      </a>
+    </Link>
+  );
+};
 
 export default NetworkListItem;

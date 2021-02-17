@@ -9,6 +9,7 @@ const CityListItem = ({
   slug,
   country: { slug: countrySlug },
   onClick = () => {},
+  accepts_more_refugees,
   ...props
 }) => {
   const href = `/cities/${countrySlug}/${slug}`;

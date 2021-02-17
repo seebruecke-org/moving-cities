@@ -43,7 +43,8 @@ const HomePage = () => {
   const citiesAcceptMoreRefugees = cities.filter(
     ({ accepts_more_refugees }) => !!accepts_more_refugees
   );
-  const activeCities = filter === 'filter_solidarity_based' ? cities : citiesAcceptMoreRefugees;
+  const activeCities =
+    (filter === 'filter_solidarity_based' ? cities : citiesAcceptMoreRefugees) || [];
   const activeCity = activeCities.find(({ isActive }) => isActive === true);
 
   const mapProps = {
@@ -104,32 +105,31 @@ const HomePage = () => {
         </MapFilterOverlay>
 
         <Map {...mapProps}>
-          {activeCities &&
-            activeCities.map((city) => (
-              <MapCityMarker
-                {...city}
-                key={`map-${city.name}`}
-                hasProfile={hasProfile(city)}
-                onClick={() =>
-                  dispatch({
-                    type: 'SET_ACTIVE_CITY',
-                    slug: city.slug
-                  })
-                }
-                onMouseEnter={() => {
-                  dispatch({
-                    type: 'SET_HIGHLIGHTED_CITY',
-                    slug: city.slug
-                  });
-                }}
-                onMouseLeave={() => {
-                  dispatch({
-                    type: 'SET_HIGHLIGHTED_CITY',
-                    slug: null
-                  });
-                }}
-              />
-            ))}
+          {activeCities.map((city) => (
+            <MapCityMarker
+              {...city}
+              key={`map-${city.name}`}
+              hasProfile={hasProfile(city)}
+              onClick={() =>
+                dispatch({
+                  type: 'SET_ACTIVE_CITY',
+                  slug: city.slug
+                })
+              }
+              onMouseEnter={() => {
+                dispatch({
+                  type: 'SET_HIGHLIGHTED_CITY',
+                  slug: city.slug
+                });
+              }}
+              onMouseLeave={() => {
+                dispatch({
+                  type: 'SET_HIGHLIGHTED_CITY',
+                  slug: null
+                });
+              }}
+            />
+          ))}
 
           {activeCity && <MapCityPopup {...activeCity} />}
         </Map>
@@ -139,23 +139,28 @@ const HomePage = () => {
         <Navigation items={navigation} />
         <BottomSheet>
           <SidebarList label={i18n.t('city.profiles')}>
-            {activeCities &&
-              activeCities.filter(hasProfile).map((city) => (
+            {activeCities
+              .filter(hasProfile)
+              .map(({ slug, isActive, isHighlighted, country, name }) => (
                 <CityListItem
-                  {...city}
-                  key={`sidebar-${city.name}`}
+                  slug={slug}
+                  isActive={isActive}
+                  isHighlighted={isHighlighted}
+                  country={country}
+                  name={name}
+                  key={`sidebar-${name}`}
                   onClick={(event) => {
                     event.preventDefault();
 
                     dispatch({
                       type: 'SET_ACTIVE_CITY',
-                      slug: city.slug
+                      slug: slug
                     });
                   }}
                   onMouseEnter={() => {
                     dispatch({
                       type: 'SET_HIGHLIGHTED_CITY',
-                      slug: city.slug
+                      slug: slug
                     });
                   }}
                   onMouseLeave={() => {
