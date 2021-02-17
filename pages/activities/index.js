@@ -46,7 +46,7 @@ const ActivitiesPage = () => {
   );
 };
 
-export async function getServerSideProps({ query, locale }) {
+export async function getStaticProps({ query = [], locale }) {
   const lngDict = await getTranslations(locale);
   const { activities } = await fetcher(`
     query {
@@ -63,6 +63,7 @@ export async function getServerSideProps({ query, locale }) {
       : activities;
 
   return {
+    revalidate: 120,
     props: {
       lngDict,
       initialReduxState: {

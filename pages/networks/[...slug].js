@@ -100,8 +100,14 @@ export async function getStaticPaths() {
         }
     `);
 
+  const paths = networks.map(({ slug }) => ({
+    params: {
+      slug: [slug]
+    }
+  }));
+
   return {
-    fallback: true,
-    paths: [...networks.map(({ slug }) => `/networks/${slug}`)]
+    fallback: false,
+    paths
   };
 }

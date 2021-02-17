@@ -212,9 +212,11 @@ export async function getStaticPaths() {
   return {
     fallback: true,
     paths: [
-      ...cities
-        .filter(hasProfile)
-        .map(({ slug, country: { slug: countrySlug } }) => `/cities/${countrySlug}/${slug}`),
+      ...cities.filter(hasProfile).map(({ slug, country: { slug: countrySlug } }) => ({
+        params: {
+          slug: [countrySlug, slug]
+        }
+      })),
       ...countries.map(({ slug }) => `/cities/${slug}`)
     ]
   };

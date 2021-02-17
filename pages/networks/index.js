@@ -105,7 +105,7 @@ const NetworksPage = () => {
   );
 };
 
-export async function getServerSideProps({ locale }) {
+export async function getStaticProps({ locale }) {
   const lngDict = await getTranslations(locale);
   const { networks } = await fetcher(`
     query {
@@ -126,6 +126,7 @@ export async function getServerSideProps({ locale }) {
   `);
 
   return {
+    revalidate: 120,
     props: {
       lngDict,
       initialReduxState: {
