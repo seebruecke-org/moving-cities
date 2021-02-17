@@ -16,6 +16,12 @@ export const close = css`
     top: 2rem;
     width: 2.5rem;
   }
+
+  :hover,
+  :focus {
+    color: black;
+    cursor: pointer;
+  }
 `;
 
 export const cta = css`
@@ -24,6 +30,7 @@ export const cta = css`
   background: transparent;
   border: 0;
   color: white;
+  cursor: pointer;
   display: flex;
   font-family: inherit;
   font-size: inherit;
@@ -33,9 +40,39 @@ export const cta = css`
   @media (min-width: 768px) {
     align-self: center;
   }
+
+  :hover,
+  :focus {
+    text-decoration: underline;
+    text-decoration-thickness: 0.25rem;
+    text-underline-offset: 0.35rem;
+  }
+
+  :hover > svg,
+  :focus > svg {
+    animation: none;
+  }
 `;
 
 export const ctaIcon = css`
+  @keyframes bounce {
+    0% {
+      transform: translateX(0);
+    }
+
+    10% {
+      transform: translateX(1rem);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  animation-delay: 500ms;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
+  animation-name: bounce;
   margin-left: 1.5rem;
 `;
 
