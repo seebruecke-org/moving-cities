@@ -1,13 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useI18n } from 'next-localization';
-import { useCallback } from 'react';
 import dynamic from 'next/dynamic';
 
-import Layout from '../../components/Layout';
-
 import BottomSheet from '../../components/BottomSheet';
-import MapCityMarker from '../../components/MapCityMarker';
-import MapNetworkPopup from '../../components/MapNetworkPopup';
+import Layout from '../../components/Layout';
 import NetworkListItem from '../../components/NetworkListItem';
 import SidebarList from '../../components/SidebarList';
 import Main from '../../components/Main';
@@ -17,66 +13,21 @@ import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 import { getTranslations } from '../../lib/default';
-import { getMapBounds } from '../../lib/coordiantes';
 
-const Map = dynamic(() => import('../../components/Map'));
+const MapNetworks = dynamic(() => import('../../components/MapNetworks'));
 
 const NetworksPage = () => {
   const networks = useSelector((state) => state.networks) || [];
-  const activeNetwork = networks.find(({ isActive }) => isActive === true);
-  const cities = networks.map(({ cities }) => cities, []).flat();
   const navigation = useSelector((state) => state.navigation);
-  const fitBounds = activeNetwork
-    ? useCallback(getMapBounds(activeNetwork.cities), [activeNetwork.cities])
-    : useCallback(getMapBounds(cities), [cities]);
   const i18n = useI18n();
   const dispatch = useDispatch();
-
-  const mapProps = {
-    fitBounds,
-    fitBoundsOptions: {
-      duration: 0,
-      padding: 50
-    },
-    flyToOptions: {
-      speed: 1.2
-    },
-
-    onClick() {
-      dispatch({
-        type: 'SET_ACTIVE_NETWORK',
-        slug: null
-      });
-    }
-  };
 
   return (
     <Layout>
       <SEO title={i18n.t('city.networks')} />
 
       <Main>
-        <Map infoControl={false} {...mapProps}>
-          {networks.map(({ cities, isHighlighted, isActive, ...network }) => {
-            return cities.map(({ name, coordinates }) => {
-              return (
-                <MapCityMarker
-                  coordinates={coordinates}
-                  key={`map-city-${name}`}
-                  isActive={isActive}
-                  isHighlighted={isHighlighted}
-                  onClick={() => {
-                    dispatch({
-                      type: 'SET_ACTIVE_NETWORK',
-                      slug: network.slug
-                    });
-                  }}
-                />
-              );
-            });
-          })}
-
-          {activeNetwork && <MapNetworkPopup {...activeNetwork} />}
-        </Map>
+        <MapNetworks networks={networks} />
       </Main>
 
       <Sidebar>
