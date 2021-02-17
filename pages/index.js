@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useI18n } from 'next-localization';
 import dynamic from 'next/dynamic';
@@ -9,8 +9,6 @@ import BottomSheet from '../components/BottomSheet';
 import Checkbox from '../components/Checkbox';
 import CityListItem from '../components/CityListItem';
 import Main from '../components/Main';
-import MapCityMarker from '../components/MapCityMarker';
-import MapCityPopup from '../components/MapCityPopup';
 import MapFilterOverlay from '../components/MapFilterOverlay';
 import MapIntro from '../components/MapIntro';
 import Navigation from '../components/Navigation';
@@ -19,12 +17,11 @@ import Sidebar from '../components/Sidebar';
 import SidebarList from '../components/SidebarList';
 
 import { fetcher } from '../lib/hooks/useAPI';
-import { convertStrapiToMapbox, getMapBounds } from '../lib/coordiantes';
 import useCookie from '../lib/hooks/useCookie';
 import { getTranslations } from '../lib/default';
 import { hasProfile } from '../lib/city';
 
-const Map = dynamic(() => import('../components/Map'));
+const MapCity = dynamic(() => import('../components/MapCity'));
 
 const COOKIE_NAME = 'intro_shown';
 
@@ -43,35 +40,6 @@ const HomePage = () => {
     ({ accepts_more_refugees }) => !!accepts_more_refugees
   );
   const activeCities = filter === 'solidarity_based' ? cities : citiesAcceptMoreRefugees;
-  const activeCity = activeCities.find(({ isActive }) => isActive === true);
-
-  const mapProps = {
-    fitBounds: useCallback(getMapBounds(cities), [cities]),
-    fitBoundsOptions: {
-      duration: 0,
-      padding: 50
-    },
-    flyToOptions: {
-      speed: 1.2
-    },
-
-    onInfoOpen() {
-      setCookie(null);
-    },
-
-    onClick() {
-      dispatch({
-        type: 'SET_ACTIVE_CITY',
-        slug: null
-      });
-    }
-  };
-
-  if (activeCity) {
-    mapProps.fitBounds = undefined;
-    mapProps.center = convertStrapiToMapbox(activeCity.coordinates);
-    mapProps.zoom = [8];
-  }
 
   return (
     <Layout>
@@ -102,36 +70,7 @@ const HomePage = () => {
           </Checkbox>
         </MapFilterOverlay>
 
-        <Map {...mapProps}>
-          {activeCities.map((city) => (
-            <MapCityMarker
-              coordinates={city.coordinates}
-              key={`map-city-${city.slug}`}
-              hasProfile={hasProfile(city)}
-              name={city.name}
-              onClick={() =>
-                dispatch({
-                  type: 'SET_ACTIVE_CITY',
-                  slug: city.slug
-                })
-              }
-              onMouseEnter={() => {
-                dispatch({
-                  type: 'SET_HIGHLIGHTED_CITY',
-                  slug: city.slug
-                });
-              }}
-              onMouseLeave={() => {
-                dispatch({
-                  type: 'SET_HIGHLIGHTED_CITY',
-                  slug: null
-                });
-              }}
-            />
-          ))}
-
-          {activeCity && <MapCityPopup {...activeCity} />}
-        </Map>
+        <MapCity cities={activeCities} onInfoOpen={() => setCookie(null)} />
       </Main>
 
       <Sidebar>
