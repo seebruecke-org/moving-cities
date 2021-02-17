@@ -98,7 +98,14 @@ export default function MapCityMarker({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 css={styles.icon}>
-                <circle cx="3.7" cy="3.2" r="3" fill="#FFFAD4" stroke="#C4C4C4" strokeWidth=".3" />
+                <circle
+                  cx="3.7"
+                  cy="3.2"
+                  r="3"
+                  fill={isHighlighted || isFocused ? '#FF7C74' : '#fffad4'}
+                  stroke={isHighlighted || isFocused ? '#FFFAD4' : '#B8B27C'}
+                  strokeWidth=".3"
+                />
               </svg>
             )}
           </>

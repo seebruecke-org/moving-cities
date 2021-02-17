@@ -17,7 +17,7 @@ import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 import { getTranslations } from '../../lib/default';
-import { getMapBounds } from '../../lib/coordiantes';
+import { getMapBounds, getCitiesCenter } from '../../lib/coordiantes';
 
 const Map = dynamic(() => import('../../components/Map'));
 
@@ -56,13 +56,14 @@ const NetworksPage = () => {
 
       <Main>
         <Map infoControl={false} {...mapProps}>
-          {networks.map(({ cities, isActive, ...network }) => {
-            return cities.map((city) => {
+          {networks.map(({ cities, isHighlighted, isActive, ...network }) => {
+            return cities.map(({ name, coordinates }) => {
               return (
                 <MapCityMarker
-                  {...city}
-                  key={`map-${city.name}`}
+                  coordinates={coordinates}
+                  key={`map-city-${name}`}
                   isActive={isActive}
+                  isHighlighted={isHighlighted}
                   onClick={() => {
                     dispatch({
                       type: 'SET_ACTIVE_NETWORK',
@@ -94,6 +95,18 @@ const NetworksPage = () => {
                   dispatch({
                     type: 'SET_ACTIVE_NETWORK',
                     slug: slug
+                  });
+                }}
+                onMouseEnter={() => {
+                  dispatch({
+                    type: 'SET_HIGHLIGHTED_NETWORK',
+                    slug: slug
+                  });
+                }}
+                onMouseLeave={() => {
+                  dispatch({
+                    type: 'SET_HIGHLIGHTED_NETWORK',
+                    slug: null
                   });
                 }}
               />
