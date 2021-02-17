@@ -7,18 +7,12 @@ import * as styles from './header.styles';
 
 const Logo = () => (
   <div css={styles.logoContainer}>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="70"
-      height="70"
-      viewBox="0 0 70 70"
-      css={styles.logo}>
-      <path
-        stroke="currentColor"
-        strokeMiterlimit="10"
-        strokeWidth="2.5"
-        d="M9 35H0M25 35H14M56 35H45M70 35h-9M35 9V0M35 25V14M35 56V45M35 70v-9M16 16l-6-6M28 28l-7-7M49 49l-7-7M60 60l-6-6M54 16l6-6M42 28l7-7M21 49l7-7M10 60l6-6"
-      />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" css={styles.logo}>
+      <path d="M45.6 96.7h27.5v6.6H45.6zM126.9 96.7h27.5v6.6h-27.5zM96.7 126.9h6.6v27.5h-6.6zM96.7 45.6h6.6v27.5h-6.6zM59.2 63.8l4.7-4.6 19.4 19.4-4.6 4.7zM116.7 121.3l4.7-4.6 19.4 19.4-4.6 4.7zM59.2 136.2l19.5-19.5 4.6 4.7L64 140.8zM116.7 78.7l19.5-19.5 4.6 4.7-19.4 19.4z" />
+
+      <g className="outer">
+        <path d="M167.6 96.7h27.5v6.6h-27.5zM4.9 96.7h27.5v6.6H4.9zM96.7 4.9h6.6v27.5h-6.6zM96.7 167.6h6.6v27.5h-6.6zM145.4 150l4.7-4.6 19.4 19.5-4.7 4.6zM30.4 35l4.7-4.6 19.4 19.4-4.6 4.7zM145.4 50L165 30.4l4.6 4.7-19.4 19.4zM30.4 165l19.4-19.5 4.7 4.6-19.4 19.5z" />
+      </g>
     </svg>
   </div>
 );

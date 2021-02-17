@@ -17,7 +17,7 @@ import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 import { getTranslations } from '../../lib/default';
-import { getMapBounds, getCitiesCenter } from '../../lib/coordiantes';
+import { getMapBounds } from '../../lib/coordiantes';
 
 const Map = dynamic(() => import('../../components/Map'));
 

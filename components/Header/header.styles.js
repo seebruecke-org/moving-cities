@@ -48,6 +48,20 @@ export const logo = css`
     height: 7rem;
     width: 7.1rem;
   }
+
+  :hover > path,
+  :focus > path {
+    transform: rotate(-10deg);
+    transform-origin: center center;
+    transition: transform 200ms ease-in-out;
+  }
+
+  :hover > g,
+  :focus > g {
+    transform: rotate(10deg);
+    transform-origin: center center;
+    transition: transform 200ms ease-in-out;
+  }
 `;
 
 export const burger = css`
