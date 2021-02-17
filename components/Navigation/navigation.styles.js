@@ -42,6 +42,28 @@ export const inner = css`
   }
 `;
 
+export const icon = css`
+  height: 2.25rem;
+  margin-right: 0.5rem;
+  width: 2.25rem;
+
+  @media (min-width: 500px) {
+    margin-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    height: 3.4rem;
+    margin-right: 1rem;
+    width: 3.4rem;
+  }
+`;
+
+export const iconActive = css`
+  > circle:nth-child(2) {
+    fill: var(--color-red);
+  }
+`;
+
 export const item = css`
   align-items: center;
   cursor: pointer;
@@ -53,50 +75,9 @@ export const item = css`
     font-size: 3rem;
   }
 
-  :hover::after,
-  :focus::after {
-    background-color: var(--color-red);
-  }
-
-  ::before {
-    background-color: currentColor;
-    border-radius: 50%;
-    content: '';
-    display: inline-block;
-    height: 2.25rem;
-    margin-right: 0.5rem;
-    width: 2.25rem;
-
-    @media (min-width: 500px) {
-      margin-right: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      height: 3.4rem;
-      margin-right: 1rem;
-      width: 3.4rem;
-    }
-  }
-
-  ::after {
-    background-color: white;
-    border: 0.2rem solid white;
-    border-radius: 50%;
-    content: '';
-    display: block;
-    height: 1.85rem;
-    left: 0.17rem;
-    position: absolute;
-    top: 0.32rem;
-    width: 1.85rem;
-
-    @media (min-width: 768px) {
-      border-width 0.25rem;
-      height: 3rem;
-      left: 0.2rem;
-      top: 0.7rem;
-      width: 3rem;
-    }
+  :hover > svg > circle:nth-child(2),
+  :focus > svg > circle:nth-child(2) {
+    fill: var(--color-red);
   }
 `;
 
