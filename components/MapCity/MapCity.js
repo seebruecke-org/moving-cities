@@ -11,6 +11,20 @@ import { convertStrapiToMapbox, getMapBounds } from '../../lib/coordiantes';
 export default function MapCity({ cities, ...props }) {
   const dispatch = useDispatch();
   const activeCity = cities.find(({ isActive }) => isActive === true);
+  const groupedCities = cities.reduce(
+    (acc, city) => {
+      const cityHasProfile = hasProfile(city);
+
+      if (cityHasProfile) {
+        acc[1].push(city);
+      } else {
+        acc[0].push(city);
+      }
+
+      return acc;
+    },
+    [[], []]
+  );
   const mapProps = {
     ...props,
     fitBounds: useCallback(getMapBounds(cities), [cities]),
@@ -39,32 +53,34 @@ export default function MapCity({ cities, ...props }) {
 
   return (
     <Map {...mapProps}>
-      {cities.map((city) => (
-        <MapCityMarker
-          coordinates={city.coordinates}
-          key={`map-city-${city.slug}`}
-          hasProfile={hasProfile(city)}
-          name={city.name}
-          onClick={() =>
-            dispatch({
-              type: 'SET_ACTIVE_CITY',
-              slug: city.slug
-            })
-          }
-          onMouseEnter={() => {
-            dispatch({
-              type: 'SET_HIGHLIGHTED_CITY',
-              slug: city.slug
-            });
-          }}
-          onMouseLeave={() => {
-            dispatch({
-              type: 'SET_HIGHLIGHTED_CITY',
-              slug: null
-            });
-          }}
-        />
-      ))}
+      {groupedCities.map((cities) => {
+        return cities.map((city) => (
+          <MapCityMarker
+            coordinates={city.coordinates}
+            key={`map-city-${city.slug}`}
+            hasProfile={hasProfile(city)}
+            name={city.name}
+            onClick={() =>
+              dispatch({
+                type: 'SET_ACTIVE_CITY',
+                slug: city.slug
+              })
+            }
+            onMouseEnter={() => {
+              dispatch({
+                type: 'SET_HIGHLIGHTED_CITY',
+                slug: city.slug
+              });
+            }}
+            onMouseLeave={() => {
+              dispatch({
+                type: 'SET_HIGHLIGHTED_CITY',
+                slug: null
+              });
+            }}
+          />
+        ));
+      })}
 
       {activeCity && <MapCityPopup {...activeCity} />}
     </Map>
