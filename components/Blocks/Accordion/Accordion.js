@@ -17,9 +17,12 @@ export default function AccordionBlock({ items = [] }) {
   return (
     <ClassNames>
       {({ css }) => (
-        <Accordion allowMultipleExpanded={true} allowZeroExpanded={true} className={css`
-        ${styles.accordion}
-      `}>
+        <Accordion
+          allowMultipleExpanded={true}
+          allowZeroExpanded={true}
+          className={css`
+            ${styles.accordion}
+          `}>
           {items.map(({ title, content = '' }, index) => (
             <AccordionItem
               id={`accordion-item-${index + 1}`}
