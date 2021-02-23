@@ -7,6 +7,7 @@ export const accordion = css`
   @media (min-width: 768px) {
     margin-bottom: 6rem;
     margin-top: 6rem;
+    margin-right: -25rem;
   }
 `;
 
@@ -50,8 +51,8 @@ export const accordionButtonIcon = css`
     margin-right: 1.5rem;
     width: 2.8rem;
   }
-`
+`;
 
 export const accordionPanel = css`
-  padding: 0 1.5rem 1.5rem 6rem;
+  padding: 0 1.5rem 1.5rem 5.5rem;
 `;
