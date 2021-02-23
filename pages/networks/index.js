@@ -13,6 +13,7 @@ import Sidebar from '../../components/Sidebar';
 
 import { fetcher } from '../../lib/hooks/useAPI';
 import { getTranslations } from '../../lib/default';
+import { convertStrapiToMapbox } from '../../lib/coordiantes';
 
 const MapNetworks = dynamic(() => import('../../components/MapNetworks'));
 
@@ -94,7 +95,13 @@ export async function getStaticProps({ locale }) {
     props: {
       lngDict,
       initialReduxState: {
-        networks
+        networks: networks.map(({ cities, ...network }) => ({
+          ...network,
+          cities: cities.map(({ coordinates, ...city }) => ({
+            ...city,
+            coordinates: convertStrapiToMapbox(coordinates)
+          }))
+        }))
       }
     }
   };

@@ -14,9 +14,9 @@ export default function MapCity({ cities, ...props }) {
   const [mapZoom, setMapZoom] = useState(null);
   const groupedCities = cities.reduce(
     (acc, city) => {
-      const cityHasProfile = hasProfile(city);
+      const { hasProfile } = city;
 
-      if (cityHasProfile) {
+      if (hasProfile) {
         acc[1].push(city);
       } else {
         acc[0].push(city);
@@ -65,7 +65,7 @@ export default function MapCity({ cities, ...props }) {
           <MapCityMarker
             coordinates={city.coordinates}
             key={`map-city-${city.slug}`}
-            hasProfile={hasProfile(city)}
+            hasProfile={city.hasProfile}
             name={city.name}
             zoom={mapZoom}
             onClick={() =>

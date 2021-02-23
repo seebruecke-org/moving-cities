@@ -46,7 +46,7 @@ export default function CityPage({ slug, contentType, ...props }) {
 
         {shouldShowCitiesList && (
           <SidebarList label="City profiles">
-            {cities.filter(hasProfile).map(({ slug: citySlug, name, country }) => (
+            {cities.map(({ slug: citySlug, name, country }) => (
               <CityListItem
                 key={`city-list-${slug}`}
                 isActive={citySlug === slug}
@@ -153,7 +153,11 @@ export async function getStaticProps({ locale, params: { slug } }) {
       revalidate: 120,
       props: {
         initialReduxState: {
-          cities
+          cities: cities.filter(hasProfile).map(({ name, slug, country }) => ({
+            name,
+            slug,
+            country
+          }))
         },
 
         contentType: isCity ? 'city' : 'country',

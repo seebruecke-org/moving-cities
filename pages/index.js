@@ -79,7 +79,7 @@ const HomePage = () => {
         <BottomSheet>
           <SidebarList label={i18n.t('city.profiles')}>
             {activeCities
-              .filter(hasProfile)
+              .filter(({ hasProfile }) => !!hasProfile)
               .map(({ slug, isActive, isHighlighted, country, name }) => (
                 <CityListItem
                   slug={slug}
@@ -165,10 +165,17 @@ export async function getStaticProps({ locale }) {
     props: {
       lngDict,
       initialReduxState: {
-        cities: cities.map(({ coordinates, ...city }) => ({
-          ...city,
-          coordinates: convertStrapiToMapbox(coordinates)
-        }))
+        cities: cities.map(
+          ({ coordinates, name, intro, slug, accepts_more_refugees, country, ...rest }) => ({
+            name,
+            intro,
+            slug,
+            accepts_more_refugees,
+            country,
+            coordinates: convertStrapiToMapbox(coordinates),
+            hasProfile: hasProfile(rest)
+          })
+        )
       }
     }
   };

@@ -35,6 +35,9 @@ export default function MapCityMarker({
     onMouseLeave: hasProfile ? mouseLeave : undefined
   };
 
+  const fillColor = isHighlighted || isFocused ? '#FF7C74' : '#fffad4';
+  const strokeColor = isHighlighted || isFocused ? '#FFFAD4' : '#B8B27C';
+
   return (
     <Marker {...markerProps}>
       <div css={styles.container}>
@@ -74,20 +77,8 @@ export default function MapCityMarker({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 css={styles.profileIcon}>
-                <circle
-                  cx="10.02"
-                  cy="10.02"
-                  r="9.52"
-                  fill={isHighlighted || isFocused ? '#FF7C74' : '#fffad4'}
-                  stroke={isHighlighted || isFocused ? '#FFFAD4' : '#B8B27C'}
-                />
-                <circle
-                  cx="10.02"
-                  cy="10.02"
-                  r="6.18"
-                  fill={isHighlighted || isFocused ? '#FF7C74' : '#fffad4'}
-                  stroke={isHighlighted || isFocused ? '#FFFAD4' : '#B8B27C'}
-                />
+                <circle cx="10.02" cy="10.02" r="9.52" fill={fillColor} stroke={strokeColor} />
+                <circle cx="10.02" cy="10.02" r="6.18" fill={fillColor} stroke={strokeColor} />
               </svg>
             ) : (
               <svg
@@ -101,8 +92,8 @@ export default function MapCityMarker({
                   cx="3.7"
                   cy="3.2"
                   r="3"
-                  fill={isHighlighted || isFocused ? '#FF7C74' : '#fffad4'}
-                  stroke={isHighlighted || isFocused ? '#FFFAD4' : '#B8B27C'}
+                  fill={fillColor}
+                  stroke={strokeColor}
                   strokeWidth=".3"
                 />
               </svg>
