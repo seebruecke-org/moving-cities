@@ -18,7 +18,7 @@ export const accordionItem = css`
   overflow: hidden;
 
   @media (min-width: 768px) {
-    border-radius: 4rem;
+    border-radius: 2.5rem;
   }
 `;
 
