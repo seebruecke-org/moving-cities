@@ -1,11 +1,11 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v3 as uuidv3 } from 'uuid';
 
 import Label from '../Label';
 
 import * as styles from './checkbox.styles';
 
 const Checkbox = ({ children, id, ...props }) => {
-  const cbId = id || uuidv4();
+  const cbId = id || uuidv3(JSON.stringify({ id, ...props }), uuidv3.URL);
 
   return (
     <div css={styles.container}>
