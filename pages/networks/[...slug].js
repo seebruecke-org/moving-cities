@@ -33,7 +33,7 @@ export default function CityPage({ slug, network }) {
 
       <Main>
         <Map />
-        <MapOverlay>
+        <MapOverlay backTo={`/${i18n.t('network.slug')}`}>
           <NetworkProfile {...network} />
         </MapOverlay>
       </Main>
