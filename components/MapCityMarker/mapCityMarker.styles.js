@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 
 const ICON_BASE = css`
   cursor: pointer;
-  filter: drop-shadow(0 0 0.2rem var(--color-yellow-bright));
 `;
 
 export const container = css`
