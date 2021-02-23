@@ -13,6 +13,10 @@ export default function Blocks({ blocks = [] }) {
     ComponentBlocksImage: Image
   };
 
+  if (!blocks) {
+    return null;
+  }
+
   return (
     <div>
       {blocks.map(({ __typename, ...block }, index) => {

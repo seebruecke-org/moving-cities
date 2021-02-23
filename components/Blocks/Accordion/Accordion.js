@@ -9,6 +9,7 @@ import {
 } from 'react-accessible-accordion';
 import React from 'react';
 
+import Blocks from '../Blocks';
 import Richtext from '../Richtext';
 
 import * as styles from './accordion.styles';
@@ -76,7 +77,11 @@ export default function AccordionBlock({ items = [] }) {
                 className={css`
                   ${styles.accordionPanel}
                 `}>
-                <Richtext richtext={content} />
+                {typeof content === 'string' ? (
+                  <Richtext richtext={content} />
+                ) : (
+                  <Blocks blocks={content} />
+                )}
               </AccordionItemPanel>
             </AccordionItem>
           ))}

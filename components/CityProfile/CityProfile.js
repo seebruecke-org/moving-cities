@@ -23,10 +23,8 @@ export default function CityProfile({
         return null;
       }
 
-      const activityTitle = blocks && blocks[0]?.activity?.title;
-
       return {
-        title: activityTitle || i18n.t(`chapter.title-${index + 1}`),
+        title: i18n.t(`chapter.title-${index + 1}`),
         blocks
       };
     })

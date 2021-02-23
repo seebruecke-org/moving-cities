@@ -1,5 +1,5 @@
-import Blocks from '../';
+import Accordion from '../Accordion';
 
-export default function Activity({ activity: { content } }) {
-  return <Blocks blocks={content} />;
+export default function Activity({ activities }) {
+  return <Accordion items={activities} />;
 }

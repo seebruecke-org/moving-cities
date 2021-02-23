@@ -6,7 +6,7 @@ import { FRAGMENT as RICHTEXT_FRAGMENT } from '../Richtext';
 
 export const FRAGMENT = `
     ... on ComponentBlocksActivity {
-        activity {
+        activities {
             title
             content {
                 __typename
