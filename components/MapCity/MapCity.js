@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import Map from '../Map';
 import MapCityMarker from '../MapCityMarker';
@@ -11,6 +11,7 @@ import { convertStrapiToMapbox, getMapBounds } from '../../lib/coordiantes';
 export default function MapCity({ cities, ...props }) {
   const dispatch = useDispatch();
   const activeCity = cities.find(({ isActive }) => isActive === true);
+  const [mapZoom, setMapZoom] = useState(null);
   const groupedCities = cities.reduce(
     (acc, city) => {
       const cityHasProfile = hasProfile(city);
@@ -37,6 +38,10 @@ export default function MapCity({ cities, ...props }) {
       speed: 1.2
     },
 
+    onZoomEnd(map) {
+      setMapZoom(map.getZoom());
+    },
+
     onClick() {
       dispatch({
         type: 'SET_ACTIVE_CITY',
@@ -60,6 +65,7 @@ export default function MapCity({ cities, ...props }) {
             key={`map-city-${city.slug}`}
             hasProfile={hasProfile(city)}
             name={city.name}
+            zoom={mapZoom}
             onClick={() =>
               dispatch({
                 type: 'SET_ACTIVE_CITY',

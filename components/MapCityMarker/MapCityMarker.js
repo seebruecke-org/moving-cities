@@ -11,6 +11,7 @@ export default function MapCityMarker({
   coordinates,
   isActive = false,
   isHighlighted = false,
+  zoom,
   onClick = () => {},
   onMouseEnter = () => {},
   onMouseLeave = () => {},
@@ -111,7 +112,7 @@ export default function MapCityMarker({
           </>
         )}
 
-        {hasProfile && <span css={styles.name}>{name}</span>}
+        {(hasProfile || (zoom && zoom > 8)) && <span css={styles.name}>{name}</span>}
       </div>
     </Marker>
   );
