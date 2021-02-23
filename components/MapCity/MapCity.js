@@ -43,10 +43,12 @@ export default function MapCity({ cities, ...props }) {
     },
 
     onClick() {
-      dispatch({
-        type: 'SET_ACTIVE_CITY',
-        slug: null
-      });
+      if (activeCity) {
+        dispatch({
+          type: 'SET_ACTIVE_CITY',
+          slug: null
+        });
+      }
     }
   };
 
