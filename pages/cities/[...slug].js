@@ -50,7 +50,7 @@ export default function CityPage({ slug, contentType, ...props }) {
               <CityListItem
                 key={`city-list-${slug}`}
                 isActive={citySlug === slug}
-                slug={slug}
+                slug={citySlug}
                 name={name}
                 country={country}
               />

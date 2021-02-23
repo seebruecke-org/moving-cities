@@ -12,7 +12,7 @@ const CityListItem = ({
   ...props
 }) => {
   return (
-    <Link href={`/cities/${countrySlug}/${slug}`}>
+    <Link href={`/cities/${countrySlug}/${slug}`} passHref>
       <a
         css={[styles.name, (isActive || isHighlighted) && styles.active]}
         onClick={onClick}
