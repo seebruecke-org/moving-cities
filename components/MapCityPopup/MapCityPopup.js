@@ -4,8 +4,6 @@ import Link from 'next/link';
 
 import { Popup } from '../Map';
 
-import { convertStrapiToMapbox } from '../../lib/coordiantes';
-
 import * as styles from './mapCityPopup.styles';
 
 export default function MapCityPopup({
@@ -18,7 +16,7 @@ export default function MapCityPopup({
   const i18n = useI18n();
 
   return (
-    <Popup coordinates={convertStrapiToMapbox(coordinates)}>
+    <Popup coordinates={coordinates}>
       <Global styles={styles.resetPopup} />
       <div css={styles.container}>
         <h3 css={styles.title}>{name}</h3>

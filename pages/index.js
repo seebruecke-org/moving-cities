@@ -20,6 +20,7 @@ import { fetcher } from '../lib/hooks/useAPI';
 import useCookie from '../lib/hooks/useCookie';
 import { getTranslations } from '../lib/default';
 import { hasProfile } from '../lib/city';
+import { convertStrapiToMapbox } from '../lib/coordiantes';
 
 const MapCity = dynamic(() => import('../components/MapCity'));
 
@@ -164,7 +165,10 @@ export async function getStaticProps({ locale }) {
     props: {
       lngDict,
       initialReduxState: {
-        cities
+        cities: cities.map(({ coordinates, ...city }) => ({
+          ...city,
+          coordinates: convertStrapiToMapbox(coordinates)
+        }))
       }
     }
   };

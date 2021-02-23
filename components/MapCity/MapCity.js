@@ -6,7 +6,7 @@ import MapCityMarker from '../MapCityMarker';
 import MapCityPopup from '../MapCityPopup';
 
 import { hasProfile } from '../../lib/city';
-import { convertStrapiToMapbox, getMapBounds } from '../../lib/coordiantes';
+import { getMapBounds } from '../../lib/coordiantes';
 
 export default function MapCity({ cities, ...props }) {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export default function MapCity({ cities, ...props }) {
 
   if (activeCity) {
     mapProps.fitBounds = undefined;
-    mapProps.center = convertStrapiToMapbox(activeCity.coordinates);
+    mapProps.center = activeCity.coordinates;
     mapProps.zoom = [8];
   }
 

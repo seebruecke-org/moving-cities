@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 import { Marker } from '../Map';
 
-import { convertStrapiToMapbox } from '../../lib/coordiantes';
-
 import * as styles from './mapCityMarker.styles';
 
 export default function MapCityMarker({
@@ -30,7 +28,7 @@ export default function MapCityMarker({
   };
 
   const markerProps = {
-    coordinates: convertStrapiToMapbox(coordinates),
+    coordinates: coordinates,
     anchor: 'top',
     onClick: hasProfile ? onClick : undefined,
     onMouseEnter: hasProfile ? mouseEnter : undefined,
