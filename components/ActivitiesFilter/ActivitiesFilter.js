@@ -14,7 +14,12 @@ export default function ActivitiesFilter({ filters = [] }) {
     <form method="get" css={styles.form}>
       <SidebarList label={i18n.t('filter.activities.by')}>
         {filters.map((filter) => (
-          <ActivityListItem name={filter} checked={!!router.query[filter]} />
+          <ActivityListItem
+            key={`activity-filter-${filter}`}
+            name={filter}
+            label={i18n.t(`filter.${filter}`)}
+            defaultChecked={!!router.query[filter]}
+          />
         ))}
       </SidebarList>
 

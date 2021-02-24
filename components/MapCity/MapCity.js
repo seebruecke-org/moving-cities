@@ -5,7 +5,6 @@ import Map from '../Map';
 import MapCityMarker from '../MapCityMarker';
 import MapCityPopup from '../MapCityPopup';
 
-import { hasProfile } from '../../lib/city';
 import { getMapBounds } from '../../lib/coordiantes';
 
 export default function MapCity({ cities, ...props }) {

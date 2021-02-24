@@ -2,10 +2,10 @@ import Checkbox from '../../Checkbox';
 
 import * as styles from './activityListItem.styles';
 
-const ActivityListItem = ({ name, ...props }) => (
+const ActivityListItem = ({ name, label, ...props }) => (
   <div css={styles.item}>
     <Checkbox name={name} {...props}>
-      {name}
+      {label}
     </Checkbox>
   </div>
 );
