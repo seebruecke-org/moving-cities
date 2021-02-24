@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 
-export const container = css``;
+export const container = css`
+  position: relative;
+`;
 
 export const title = css`
   font-size: 3rem;
@@ -19,9 +21,17 @@ export const toCountryLink = css`
   display: flex;
   flex-grow: 0;
   font-size: 1.7rem;
+  line-height: 1.2;
   max-width: 25rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.75rem 1.25rem;
   width: max-content;
+
+  @media (min-width: 768px) {
+    padding: 0.5rem 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 
   :hover,
   :focus {
@@ -31,6 +41,7 @@ export const toCountryLink = css`
 `;
 
 export const toCountryProfileIcon = css`
+  flex-shrink: 0;
   margin-right: 0.5rem;
 `;
 
