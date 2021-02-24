@@ -21,13 +21,21 @@ export const container = css`
   border-radius: 2rem;
   font-family: var(--font-sans);
   max-width: 30rem;
-  padding: 3rem 2rem 2rem 2rem;
+  padding: 2.25rem;
+  position: relative;
+`;
+
+export const header = css`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const title = css`
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 1.2;
+  margin-bottom: 0;
   margin-top: 0;
 `;
 
@@ -48,3 +56,24 @@ export const cta = css`
     background-color: var(--color-red);
   }
 `;
+
+export const close = css`
+  background: transparent;
+  border: 0;
+  color: black;
+  height: auto;
+  margin-left: 2rem;
+  padding: 0;
+  width: 3.25rem;
+
+  :hover,
+  :focus {
+    color: var(--color-red);
+    cursor: pointer;
+  }
+`;
+
+export const closeIcon = css`
+  height: auto;
+  width: 100%;
+`
