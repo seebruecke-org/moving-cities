@@ -21,13 +21,13 @@ export default function ActivitiesFilter({ filters = [] }) {
             defaultChecked={!!router.query[filter]}
           />
         ))}
-      </SidebarList>
 
-      <footer css={styles.footer}>
-        <button type="submit" css={styles.button}>
-          {i18n.t('filter.activities.title')}
-        </button>
-      </footer>
+        <footer css={styles.footer}>
+          <button type="submit" css={styles.button}>
+            {i18n.t('filter.activities.title')}
+          </button>
+        </footer>
+      </SidebarList>
     </form>
   );
 }

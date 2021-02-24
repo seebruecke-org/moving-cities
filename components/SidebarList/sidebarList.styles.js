@@ -5,6 +5,18 @@ export const container = css`
   flex: 1;
   flex-direction: column;
   height: 100%;
+  position: relative;
+  width: 100%;
+`;
+
+export const innerContainer = css`
+  height: 100%;
+
+  left: 0;
+  margin: 0;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
   width: 100%;
 `;
 
@@ -16,23 +28,11 @@ export const label = css`
   padding-left: 1.5rem;
 `;
 
-export const listContainer = css`
-  flex: 1;
-  position: relative;
+export const list = css`
+  list-style: none;
+  padding: 0;
 
   @media (max-width: 768px) {
-    margin-top: 3.5rem;
+    margin-top: 5rem;
   }
-`;
-
-export const list = css`
-  height: 100%;
-  list-style: none;
-  left: 0;
-  margin: 0;
-  overflow-y: auto;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
 `;

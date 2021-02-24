@@ -7,9 +7,9 @@ const SidebarList = ({ label, children, ...props }) => {
 
   return (
     <div css={styles.container}>
-      <h2 css={styles.label}>{label}</h2>
+      <div css={styles.innerContainer}>
+        <h2 css={styles.label}>{label}</h2>
 
-      <div css={styles.listContainer}>
         <ul css={styles.list} {...props}>
           {childrenArr.map((child, index) => (
             <li key={`sidebar-item-${index}`}>{child}</li>
