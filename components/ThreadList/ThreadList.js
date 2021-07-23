@@ -17,8 +17,14 @@ export default function ThreadList({ pane, items }) {
               {...item}
               onClick={(event) => {
                 event.preventDefault();
-                setPaneData(item.data);
-                setPaneIndex(index);
+                if (paneData) {
+                  setPaneData(null);
+                  setPaneIndex(0);
+                } else {
+                  setPaneData(item.data);
+                  setPaneIndex(index);
+                }
+
               }}
               active={paneData && index === paneIndex}
             />
