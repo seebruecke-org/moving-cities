@@ -42,7 +42,7 @@ const OVERLAY_SECONDARY_ITEMS = [
 function OverlayItemPrimary({ target, label }) {
   return (
     <Link href={target}>
-      <a className="font-bold">{label}</a>
+      <a className="font-raptor font-bold text-5xl hover:text-black">{label}</a>
     </Link>
   );
 }
@@ -50,7 +50,7 @@ function OverlayItemPrimary({ target, label }) {
 function OverlayItemSecondary({ target, label }) {
   return (
     <Link href={target}>
-      <a>{label}</a>
+      <a className="font-raptor font-bold text-3xl hover:text-black">{label}</a>
     </Link>
   );
 }
@@ -60,44 +60,52 @@ export default function Menu() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   return (
-    <div className="absolute left-0 top-0 w-full md:w-12 md:h-screen z-30">
-      <header className="bg-gradient-to-r from-pink-300 to-red-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-12 flex md:flex-col text-white p-4 md:h-full">
-        <Burger
-          onOpen={() => setIsOverlayOpen(true)}
-          onClose={() => setIsOverlayOpen(false)}
-          className="order-last md:order-auto ml-auto"
-        />
+    <>
+      <div className="absolute left-0 top-0 w-full md:w-16 md:h-screen z-50 shadow-sm">
+        <header className="bg-gradient-to-r from-pink-300 to-red-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-16 text-white p-4 md:h-full whitespace-nowrap shadow-lg flex md:block">
+          <Burger
+            onOpen={() => setIsOverlayOpen(true)}
+            onClose={() => setIsOverlayOpen(false)}
+            className="order-last md:order-auto ml-auto"
+          />
 
-        <Link href="/">
-          <a className="flex md:flex-col items-center ">
-            <span className="md:rotate-90 uppercase order-last md:order-auto">
-              {t('menu.name')}
-            </span>
+          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full md:absolute md:top-16 md:left-1 md:origin-top-right">
+            <Link href="/">
+              <a className="flex items-center hover:text-black">
+                <span className="uppercase order-last md:order-2 font-raptor text-3xl whitespace-nowrap">
+                  Moving Cities
+                </span>
 
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="44"
-              height="82"
-              viewBox="0 0 44 82"
-              className="rotate-90 md:rotate-0 hidden md:block">
-              <path
-                fill="currentColor"
-                d="M11 78.3c-6-1-5.7-7-4.8-9.8 0-2.8 8.1-5.3 9.7-11.3C17.5 51 1 50.5 0 45.9c-.8-4.6 10.2-2 11-6.8.7-4.8-7.4-5.8-8.4-11.1s3.6-4.5 5.3-12.7c1.7-8.2-2.4-9-1.7-13s8.3-2 9.7.7c1.5 2.6 8 .6 13.8-2.1 5.8-2.7 5.5 2.5 3.6 8.2-1.8 5.7 8 1.4 10.3 8.1C46 24 37.1 19.8 29.7 22c-7.4 2.1.9 5.3 3 11.3 2 6-5.7 8.9-8.8 11.4-3.2 2.5 13.2 10 11.3 13.8-2 3.7-4.3 1.3-6.7 5.3-2.4 4 4.6 10.4.6 15.9-4 5.4-10.7-.2-18.2-1.4z"
-              />
-            </svg>
-          </a>
-        </Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="826"
+                  height="447"
+                  viewBox="0 0 826 447"
+                  className="h-12 w-auto md:order-1 mx-7 relative top-1 hidden md:block">
+                  <path
+                    fill="currentColor"
+                    d="M37 111c10-61 70-57 99-48 29 10 53 83 114 99S317 9 364 0c46-8 19 104 68 111 49 8 58-75 112-85s45 37 128 54c83 18 91-24 131-17 41 8 20 84-7 99-27 14-6 81 21 140s-26 55-83 37c-57-19-13 81-82 104-68 24-25-66-47-141s-54 8-115 29-89-56-114-88c-26-32-101 134-139 114s-14-43-54-68c-40-24-105 47-159 7-55-41 1-109 13-185z"
+                  />
+                </svg>
+              </a>
+            </Link>
 
-        <div className="hidden md:flex md:flex-col">
-          <Link href="/approaches">
-            <a className="md:rotate-90 uppercase whitespace-nowrap">Inspiring Approaches</a>
-          </Link>
+            <div className="hidden md:inline-block space-x-6">
+              <Link href="/about">
+                <a className="uppercase whitespace-nowrap font-raptor text-m hover:text-black">
+                  About
+                </a>
+              </Link>
 
-          <Link href="/about">
-            <a className="md:rotate-90 uppercase whitespace-nowrap">About</a>
-          </Link>
-        </div>
-      </header>
+              <Link href="/approaches">
+                <a className="uppercase whitespace-nowrap font-raptor text-m hover:text-black">
+                  Inspiring Approaches
+                </a>
+              </Link>
+            </div>
+          </span>
+        </header>
+      </div>
 
       {isOverlayOpen && (
         <Overlay>
@@ -107,6 +115,9 @@ export default function Menu() {
                 <OverlayItemPrimary {...item} />
               </li>
             ))}
+          </ul>
+
+          <ul className="mt-auto">
             {OVERLAY_SECONDARY_ITEMS.map((item) => (
               <li>
                 <OverlayItemSecondary {...item} />
@@ -115,6 +126,6 @@ export default function Menu() {
           </ul>
         </Overlay>
       )}
-    </div>
+    </>
   );
 }

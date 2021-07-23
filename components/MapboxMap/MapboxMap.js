@@ -19,7 +19,7 @@ export default function MapboxMap() {
   });
 
   return (
-    <div className="h-full w-full z-0">
+    <div className="h-full w-full z-0 hidden md:block">
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}

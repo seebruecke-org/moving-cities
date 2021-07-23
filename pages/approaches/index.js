@@ -47,7 +47,7 @@ export default function ApproachesOverviewPage() {
         ))}
       </ul>
 
-      <ul className="grid grid-cols-3 my-6">
+      <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
         {APPROACHES.map((approach) => (
           <li>
             <Approach {...approach} />

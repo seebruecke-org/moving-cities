@@ -32,7 +32,7 @@ const MENU_ITEMS = [
 
 export default function CityProgramPage() {
   return (
-    <div className="flex">
+    <div className="md:flex">
       <SidebarMenu items={MENU_ITEMS} />
 
       <article>

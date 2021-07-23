@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function SidebarMenu({ items }) {
   return (
-    <nav className="sticky top-0 h-full shadow-lg w-72 flex-grow-0 flex-shrink-0">
+    <nav className="md:sticky top-0 h-full shadow-lg w-72 flex-grow-0 flex-shrink-0">
       {items.map(({ target, label, active: topLevelActive, items }, index) => (
         <>
           <Link href={target}>
