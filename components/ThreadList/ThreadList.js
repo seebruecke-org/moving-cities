@@ -9,7 +9,7 @@ export default function ThreadList({ pane, items }) {
   const [paneIndex, setPaneIndex] = useState(0);
 
   return (
-    <nav className="h-full relative shadow-lg z-20">
+    <nav className="h-full relative shadow-lg z-20 w-72 flex-grow-0 flex-shrink-0">
       <ul className="h-full">
         {items.map((item, index) => (
           <li key={`thread-item-${index}`}>
@@ -24,7 +24,6 @@ export default function ThreadList({ pane, items }) {
                   setPaneData(item.data);
                   setPaneIndex(index);
                 }
-
               }}
               active={paneData && index === paneIndex}
             />
