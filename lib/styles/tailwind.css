@@ -1,42 +1,37 @@
-@import 'tailwindcss/base';
-
-html {
-  font-size: 62.5%;
-  height: -webkit-fill-available;
-}
-
-body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-  /* Raptor V3 */
+  html {
+    font-size: 62.5%;
+    height: -webkit-fill-available;
+  }
 
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+
+  /* Raptor V3 */
   @font-face {
-    font-display: fallback;
-    font-family: "Raptor V3";
+    font-family: 'Raptor';
     font-weight: 900;
     src: url(/fonts/Raptor V3/RaptorV3Premium-Black.woff2) format('woff2'),
       url(/fonts/Raptor V3/RaptorV3Premium-Black.woff) format('woff');
   }
 
   @font-face {
-    font-display: fallback;
-    font-family: "Raptor V3";
+    font-family: 'Raptor';
     font-weight: 700;
     src: url(/fonts/Raptor V3/RaptorV3Premium-Bold.woff2) format('woff2'),
       url(/fonts/Raptor V3/RaptorV3Premium-Bold.woff) format('woff');
   }
 
   @font-face {
-    font-display: fallback;
-    font-family: "Raptor V3";
+    font-family: 'Raptor';
     font-weight: 500;
     src: url(/fonts/Raptor V3/RaptorV3Premium-Medium.woff2) format('woff2'),
       url(/fonts/Raptor V3/RaptorV3Premium-Medium.woff) format('woff');
   }
 }
-
-@tailwind components;
-@tailwind utilities;

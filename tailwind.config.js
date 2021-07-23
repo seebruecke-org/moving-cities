@@ -26,7 +26,7 @@ module.exports = {
     },
 
     fontFamily: {
-      raptor: ['Raptor V3'],
+      raptor: ['Raptor', 'sans-serif'],
       rubik: ['Rubik']
     },
 
@@ -44,10 +44,10 @@ module.exports = {
       '2xs': '0.75rem'
     },
 
-    extend: {},
+    extend: {}
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-}
+  plugins: []
+};

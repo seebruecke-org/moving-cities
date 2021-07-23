@@ -5,7 +5,7 @@
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],
       "@/public/*": ["public/*"],
-      "@/locales/*": ["locales/*"],
+      "@/locales/*": ["locales/*"]
     }
   }
 }
