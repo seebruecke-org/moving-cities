@@ -4,7 +4,7 @@ import Markdown from '@/components/Markdown';
 
 export default function Section({ title, content }) {
   return (
-    <Columns className="my-20 max-w-7xl pl-10">
+    <Columns className="my-6 md:my-20 max-w-7xl pl-10">
       {title ? (
         <Heading level={2}>{title}</Heading>
       ) : <span />}

@@ -1,8 +1,10 @@
+import Context from '@/components/Blocks/Context';
 import Intro from '@/components/Blocks/Intro';
 import Quote from '@/components/Blocks/Quote';
 import Section from '@/components/Blocks/Section';
 
 const BLOCKS = {
+  Context: Context,
   Intro: Intro,
   Quote: Quote,
   Section: Section
