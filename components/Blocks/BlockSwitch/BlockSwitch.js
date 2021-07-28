@@ -1,7 +1,9 @@
+import Intro from '@/components/Blocks/Intro';
 import Quote from '@/components/Blocks/Quote';
 import Section from '@/components/Blocks/Section';
 
 const BLOCKS = {
+  Intro: Intro,
   Quote: Quote,
   Section: Section
 };

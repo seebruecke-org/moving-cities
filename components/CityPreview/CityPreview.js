@@ -5,7 +5,7 @@ import Markdown from '@/components/Markdown';
 
 export default function CityPreview({ title, subtitle, uri, approaches, onClose = () => {} }) {
   return (
-    <article className="bg-yellow-300 px-10 pt-16 h-full overflow-y-auto flex flex-col">
+    <article className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col">
       <div className="flex mb-10 items-start">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
         </button>
       </div>
 
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-8">
         <Heading level={2} as={3}>
           What is unique about Zurich?
         </Heading>
@@ -61,17 +61,17 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
 
         {uri && (
           <Button href={uri} className="w-auto self-start">
-            View the city
+            View the city <span className="text-red-300 ml-3 text-4xl leading-none -my-4">→</span>
           </Button>
         )}
 
         {approaches && (
-          <div className="space-y-4">
-            <Heading level={2} as={3} className="mt-4">
+          <div className="space-y-8 pt-4">
+            <Heading level={2} as={3}>
               Approaches
             </Heading>
 
-            <ul className="space-y-4">
+            <ul className="space-y-8">
               {approaches.map((approach) => (
                 <li>
                   <Approach {...approach} />

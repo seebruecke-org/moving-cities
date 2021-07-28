@@ -6,13 +6,13 @@ export default function ThreadListItem({ target, title, subtitle, active, ...pro
     <Link href={target}>
       <a
         className={clsx(
-          'flex items-start px-6 py-4 hover:bg-yellow-300',
+          'flex items-start px-6 py-4 hover:bg-yellow-300 border-b border-grey-300',
           active && 'bg-yellow-300'
         )}
         {...props}>
         <span>
           <h2 className="text-2xl font-bold font-raptor mt-1">{title}</h2>
-          <p className="text-m font-raptor pr-4">{subtitle}</p>
+          <p className="text-xl md:text-m font-raptor">{subtitle}</p>
         </span>
 
         <svg
@@ -20,7 +20,7 @@ export default function ThreadListItem({ target, title, subtitle, active, ...pro
           width="10"
           height="14"
           viewBox="0 0 10 14"
-          className={clsx('mt-3 ml-auto w-8 h-auto', active && 'text-red-300')}>
+          className={clsx('mt-3 ml-auto w-4 md:w-8 h-auto', active && 'text-red-300')}>
           <path
             stroke="currentColor"
             stroke-linecap="round"

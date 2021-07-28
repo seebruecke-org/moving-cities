@@ -1,10 +1,22 @@
-export default function ProgramHeader({ city, title }) {
+import Columns from "@/components/Columns";
+
+export default function ProgramHeader({ city, title, children }) {
   return (
-    <header className="bg-yellow-300">
-      <h1 className="font-raptor text-4xl md:text-6xl font-bold">
-        <span className="block text-red-300">{city}</span>
-        <span className="font-raptor text-xl font-bold">{title}</span>
-      </h1>
+    <header className="bg-yellow-300 grid pb-20 px-20 pt-20">
+      <Columns>
+        <div>
+
+        </div>
+
+        <div className="space-y-10">
+          <h1 className="font-raptor font-bold">
+            <span className="block text-3xl text-red-300">{city}</span>
+            <span className="font-raptor text-5xl font-bold leading-none">{title}</span>
+          </h1>
+
+          {children}
+        </div>
+      </Columns>
     </header>
   );
 }

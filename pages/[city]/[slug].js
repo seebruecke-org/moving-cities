@@ -3,16 +3,17 @@ import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Columns from '@/components/Columns';
 import ProgramHeader from '@/components/ProgramHeader';
 import Heading from '@/components/Heading';
+import Paragraph from '@/components/Paragraph';
 import SidebarMenu from '@/components/SidebarMenu';
 
 const MENU_ITEMS = [
   {
-    target: '/',
+    target: '/amsterdam',
     label: 'About the City'
   },
 
   {
-    target: '/',
+    target: '/amsterdam/top-program',
     label: 'Inspiring approaches',
     active: true,
     items: [
@@ -35,8 +36,19 @@ export default function CityProgramPage() {
     <div className="md:flex">
       <SidebarMenu items={MENU_ITEMS} />
 
-      <article>
-        <ProgramHeader city="Amsterdam" title="The surprising impact of regional Solidarity" />
+      <article className="flex-grow">
+        <ProgramHeader
+          city="Amsterdam"
+          title="Tilburg’s TOP ‘Language, Orientation and Participation’ programme (2017-2018)"
+          pills={['Social Rights', 'Political Participation', 'Political whatever']}
+        >
+          <Heading level={2}>What is inspiring?</Heading>
+
+          <Paragraph className="font-bold">
+            From obligation to tailor-made support: What makes the case of TOP so inspiring is that it has been born out of difficult circumstances: In response to a controversial Participation Declaration for newcomers that narrowly focuses on values and norms, Tilburgs officials opted for a pragmatic and strategic approach. They saw an opportunity in the Participation Declaration to have a say on centrally coordinated national civic integration policies and viewed it as a stepping stone to develop an integrated programme that spanned 12 weeks. Instead of focusing only on norms and values, Tilburg’s orientation programme was tailored to the different needs and interests of newcomers.
+
+          </Paragraph>
+        </ProgramHeader>
         <BlockSwitch
           blocks={[
             {

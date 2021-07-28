@@ -8,18 +8,17 @@ import SidebarMenu from '@/components/SidebarMenu';
 const MENU_ITEMS = [
   {
     target: '/',
-    label: 'About the City'
+    label: 'About the City',
+    active: true,
   },
 
   {
-    target: '/',
+    target: '/amsterdam/top-program',
     label: 'Inspiring approaches',
-    active: true,
     items: [
       {
         target: '/amsterdam/top-program',
-        label: 'The TOP Program',
-        active: true
+        label: 'The TOP Program'
       },
 
       {
@@ -35,7 +34,7 @@ export default function CityPage() {
     <div className="md:flex">
       <SidebarMenu items={MENU_ITEMS} />
 
-      <article>
+      <article className="flex-grow">
         <CityHeader title="Amsterdam" subtitle="The surprising impact of regional Solidarity" />
         <BlockSwitch
           blocks={[
@@ -59,21 +58,31 @@ export default function CityPage() {
           ]}
         />
 
-        <Columns>
-          <Heading level={2}>Inspiring approaches of the city</Heading>
+        <div className="max-w-7xl">
+          <Columns>
+            <Heading level={2}>Inspiring approaches of the city</Heading>
 
-          <ul className="flex">
-            {[
-              {
-                title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
-                pillars: ['Social Rights', 'Residence Security', 'Communal Reception'],
-                uri: '/amsterdam/top-programme'
-              }
-            ].map((approach) => (
-              <Approach {...approach} />
-            ))}
-          </ul>
-        </Columns>
+            <ul className="flex space-x-6">
+              {[
+                {
+                  title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
+                  pillars: ['Social Rights', 'Residence Security', 'Communal Reception'],
+                  uri: '/amsterdam/top-programme'
+                },
+
+                {
+                  title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
+                  pillars: ['Social Rights', 'Residence Security', 'Communal Reception'],
+                  uri: '/amsterdam/top-programme'
+                }
+              ].map((approach) => (
+                <li>
+                  <Approach {...approach} />
+                </li>
+              ))}
+            </ul>
+          </Columns>
+        </div>
       </article>
     </div>
   );
