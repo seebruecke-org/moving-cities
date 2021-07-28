@@ -6,7 +6,7 @@ export default function Pill({ target, active, children }) {
     <Link href={target}>
       <a
         className={clsx(
-          'border rounded-3xl border-black hover:border-red-300 block py-3 px-6 font-raptor font-medium text-xs',
+          'border rounded-3xl border-black hover:border-red-300 block py-3 px-6 font-raptor font-semibold text-xs',
           active && 'bg-yellow-300'
         )}>
         {children}

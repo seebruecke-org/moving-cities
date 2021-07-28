@@ -9,7 +9,7 @@ function CustomApp({ Component, pageProps }) {
     <div>
       <Menu />
 
-      <main className="relative md:ml-16 md:h-screen">
+      <main className="relative md:ml-20 md:h-screen">
         <Component {...pageProps} />
       </main>
     </div>

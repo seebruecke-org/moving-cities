@@ -5,14 +5,14 @@ import Markdown from '@/components/Markdown';
 
 export default function CityPreview({ title, subtitle, uri, approaches, onClose = () => {} }) {
   return (
-    <article className="bg-yellow-300 p-10 h-full overflow-y-auto flex flex-col">
+    <article className="bg-yellow-300 px-10 pt-16 h-full overflow-y-auto flex flex-col">
       <div className="flex mb-10 items-start">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="180"
           height="206"
           viewBox="0 0 180 206"
-          className="text-white mr-8">
+          className="text-white mr-8 -mt-8">
           <path
             fill="currentColor"
             d="M67 19l25-6 16-10 3-3 10 8 10 23-10 16 16 27 18-4 8-6h3v10h14l-5 10 5 6-14 6-3 4h-8l8 18 3 22v9h-3v7l3 12-3 15-18-5-14-10-6 10h-10l-4-10-3 6-4 1-12-7h-5l-8 6H59l-10-6h-7c2 4 5 10 0 6-4-5 3-10 7-12v-13h6l4-9 8-5v-13l-4-4v-6l-11-9 3-7 4-18-17-25-4-6V35h-8l-6-4H14l-9 4-5-11 5-11-5-5h10l4-5 5 5 11 5v6h8l4-6h13l-3-5 11-8 8 8v5l-4 6z"
@@ -24,11 +24,11 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
         </svg>
 
         <div>
-          <h1 className="text-red-300 text-6xl leading-none">{title}</h1>
-          <p className="text-3xl leading-none font-bold">{subtitle}</p>
+          <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">{title}</h1>
+          <p className="text-4xl leading-none font-raptor font-bold">{subtitle}</p>
         </div>
 
-        <button onClick={onClose} className="group">
+        <button onClick={onClose} className="group font-raptor font-semibold mt-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="37"

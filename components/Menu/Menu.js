@@ -61,18 +61,18 @@ export default function Menu() {
 
   return (
     <>
-      <div className="absolute left-0 top-0 w-full md:w-16 md:h-screen z-50 shadow-sm">
-        <header className="bg-gradient-to-r from-pink-300 to-red-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-16 text-white p-4 md:h-full whitespace-nowrap shadow-lg flex md:block">
+      <div className="absolute left-0 top-0 w-full md:w-20 md:h-screen z-50">
+        <header className="bg-gradient-to-r from-pink-300 to-red-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-20 text-white p-4 md:h-full whitespace-nowrap flex md:block">
           <Burger
             onOpen={() => setIsOverlayOpen(true)}
             onClose={() => setIsOverlayOpen(false)}
             className="order-last md:order-auto ml-auto"
           />
 
-          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full md:absolute md:top-16 md:left-1 md:origin-top-right">
+          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full md:absolute md:top-24 md:left-5 md:origin-top-right">
             <Link href="/">
               <a className="flex items-center hover:text-black">
-                <span className="uppercase order-last md:order-2 font-raptor text-3xl whitespace-nowrap">
+                <span className="uppercase order-last md:order-2 font-raptor font-semibold text-4xl whitespace-nowrap leading-none">
                   Moving Cities
                 </span>
 
@@ -81,7 +81,7 @@ export default function Menu() {
                   width="826"
                   height="447"
                   viewBox="0 0 826 447"
-                  className="h-12 w-auto md:order-1 mx-7 relative top-1 hidden md:block">
+                  className="h-12 w-auto md:order-1 mx-7 relative hidden md:block">
                   <path
                     fill="currentColor"
                     d="M37 111c10-61 70-57 99-48 29 10 53 83 114 99S317 9 364 0c46-8 19 104 68 111 49 8 58-75 112-85s45 37 128 54c83 18 91-24 131-17 41 8 20 84-7 99-27 14-6 81 21 140s-26 55-83 37c-57-19-13 81-82 104-68 24-25-66-47-141s-54 8-115 29-89-56-114-88c-26-32-101 134-139 114s-14-43-54-68c-40-24-105 47-159 7-55-41 1-109 13-185z"
@@ -92,13 +92,13 @@ export default function Menu() {
 
             <div className="hidden md:inline-block space-x-6">
               <Link href="/about">
-                <a className="uppercase whitespace-nowrap font-raptor text-m hover:text-black">
+                <a className="uppercase whitespace-nowrap font-raptor text-xl hover:text-black">
                   About
                 </a>
               </Link>
 
               <Link href="/approaches">
-                <a className="uppercase whitespace-nowrap font-raptor text-m hover:text-black">
+                <a className="uppercase whitespace-nowrap font-raptor text-xl hover:text-black">
                   Inspiring Approaches
                 </a>
               </Link>

@@ -6,7 +6,7 @@ export default function FloatingTabsItem({ target, label, active = false }) {
     <Link href={target}>
       <a
         className={clsx(
-          'px-4 py-4 text-s font-raptor font-medium h-full flex',
+          'px-4 py-4 text-s font-raptor font-semibold h-full flex',
           active && 'bg-yellow-300 shadow-md'
         )}>
         {label}

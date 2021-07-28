@@ -27,7 +27,7 @@ export default function Burger({ onOpen = () => {}, onClose = () => {}, classNam
         width="52"
         height="41"
         viewBox="0 0 52 41"
-        className="w-full h-auto">
+        className="w-16 h-auto -ml-1">
         <g stroke="currentColor" stroke-linecap="round" stroke-width="3" filter="url(#filter0_d)">
           <path d="M7.5 20.5h29M7.5 29.5h29M7.5 11.5h29" />
         </g>

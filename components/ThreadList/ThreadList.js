@@ -9,7 +9,9 @@ export default function ThreadList({ pane, items }) {
   const [paneIndex, setPaneIndex] = useState(0);
 
   return (
-    <nav className="h-full relative md:shadow-lg z-20 md:w-72 flex-grow-0 flex-shrink-0">
+    <nav className="h-full relative z-20 md:w-72 flex-grow-0 flex-shrink-0">
+      <span className="absolute top-0 left-0 w-3 bg-gradient-to-r from-black to-yellow-300 h-full opacity-20" />
+
       <ul className="h-full">
         {items.map((item, index) => (
           <li key={`thread-item-${index}`}>
