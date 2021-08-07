@@ -8,9 +8,7 @@ export default function Summary({ items }) {
 
   return (
     <div className="md:border-2 md:border-black md:rounded-3xl md:px-8 md:py-12 md:mt-4">
-      <Heading level={5}>
-        {t('keyTakeaways')}
-      </Heading>
+      <Heading level={5}>{t('keyTakeaways')}</Heading>
 
       <ul className="border border-black md:border-0 rounded-2xl px-4 py-8 mt-4 flex flex-col md:flex-row md:space-x-8">
         {items.map((item, index) => (

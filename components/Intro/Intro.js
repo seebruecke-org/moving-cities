@@ -26,9 +26,7 @@ export default function Intro({ onClose = () => {} }) {
   return (
     <div className="relative w-full space-y-8 h-screen">
       <div className="md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
-        <h1 className="font-raptor text-4xl font-bold leading-none mb-4">
-          {t('title')}
-        </h1>
+        <h1 className="font-raptor text-4xl font-bold leading-none mb-4">{t('title')}</h1>
 
         <Button onClick={onClose} priority>
           {t('cta')}
@@ -45,11 +43,13 @@ export default function Intro({ onClose = () => {} }) {
 
       <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28">
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/" count={29} className="text-red-300" onClick={onClose} /> {t('withCaseStudies')}
+          <Count href="/" count={29} className="text-red-300" onClick={onClose} />{' '}
+          {t('withCaseStudies')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/cities" count={684} className="text-pink-300" /> {t('withSolidarityBasedPolicy')}
+          <Count href="/cities" count={684} className="text-pink-300" />{' '}
+          {t('withSolidarityBasedPolicy')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">

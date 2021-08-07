@@ -20,7 +20,7 @@ export default function AllCitiesOverview() {
         items={[
           {
             target: '/',
-            label: tCity('featuredCities'),
+            label: tCity('featuredCities')
           },
 
           {

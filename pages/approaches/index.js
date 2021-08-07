@@ -52,9 +52,7 @@ export default function ApproachesOverviewPage() {
         {tApproaches('inspiringApproaches')}
       </Heading>
 
-      <Paragraph className="font-bold">
-        {tApproaches('intro')}
-      </Paragraph>
+      <Paragraph className="font-bold">{tApproaches('intro')}</Paragraph>
 
       <ul className="space-x-4 hidden md:flex">
         {PILLS.map(({ label, ...pill }) => (

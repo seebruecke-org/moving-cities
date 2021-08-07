@@ -29,13 +29,9 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
         </svg>
 
         <div>
-          <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">
-            {title}
-          </h1>
+          <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">{title}</h1>
 
-          <p className="text-4xl leading-none font-raptor font-bold">
-            {subtitle}
-          </p>
+          <p className="text-4xl leading-none font-raptor font-bold">{subtitle}</p>
         </div>
 
         <button onClick={onClose} className="group font-raptor font-semibold mt-2">
@@ -72,9 +68,7 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
         {uri && (
           <Button href={uri} className="w-auto self-start">
             {t('viewCity')}
-            <span className="text-red-300 ml-3 text-4xl leading-none -my-4">
-              →
-            </span>
+            <span className="text-red-300 ml-3 text-4xl leading-none -my-4">→</span>
           </Button>
         )}
 
