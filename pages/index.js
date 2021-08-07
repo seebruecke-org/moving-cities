@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
-import CityPreview from '@/components/CityPreview';
-import FloatingTabs from '@/components/FloatingTabs';
-import MapboxMap from '@/components/MapboxMap';
-import ThreadList from '@/components/ThreadList';
-
+const CityPreview = dynamic(() => import('@/components/CityPreview'));
+const FloatingTabs = dynamic(() => import('@/components/FloatingTabs'));
 const Intro = dynamic(() => import('@/components/Intro'));
+const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
+const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
 export default function HomePage() {
   const [isIntroVisible, setIsIntroVisible] = useState(true);

@@ -26,7 +26,9 @@ export default function Page() {
       <SidebarMenu items={MENU_ITEMS} />
 
       <article>
-        <Heading level={1}>Partners &amp; Contributors</Heading>
+        <Heading level={1} className="md:pl-10 pt-10">
+          Partners &amp; Contributors
+        </Heading>
 
         <BlockSwitch
           blocks={[

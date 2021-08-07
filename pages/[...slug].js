@@ -34,7 +34,7 @@ export default function CityPage() {
     <div className="md:flex">
       <SidebarMenu items={MENU_ITEMS} />
 
-      <article className="flex-grow">
+      <article className="flex-grow pb-28">
         <CityHeader
           title="Palermo"
           subtitle="The open-harbor city challenging European migration politics."
@@ -85,11 +85,11 @@ export default function CityPage() {
           ]}
         />
 
-        <div className="max-w-7xl">
+        <div className="px-8 max-w-7xl">
           <Columns>
             <Heading level={2}>Inspiring approaches of the city</Heading>
 
-            <ul className="flex space-x-6">
+            <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
               {[
                 {
                   title: 'The Charter of Palermo',

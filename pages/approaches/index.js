@@ -31,7 +31,7 @@ const PILLS = [
 
 export default function ApproachesOverviewPage() {
   return (
-    <>
+    <div className="px-6 md:pl-72 md:pr-0 pb-28">
       <Heading level={1}>Inspiring Approaches</Heading>
 
       <Paragraph className="font-bold mt-20">
@@ -39,7 +39,7 @@ export default function ApproachesOverviewPage() {
         Which topic are you interested in?
       </Paragraph>
 
-      <ul className="flex space-x-4">
+      <ul className="space-x-4 hidden md:flex">
         {PILLS.map(({ label, ...pill }) => (
           <li>
             <Pill {...pill}>{label}</Pill>
@@ -54,7 +54,7 @@ export default function ApproachesOverviewPage() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 

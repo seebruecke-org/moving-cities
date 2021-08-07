@@ -42,18 +42,22 @@ const OVERLAY_SECONDARY_ITEMS = [
   }
 ];
 
-function OverlayItemPrimary({ target, label }) {
+function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-5xl hover:text-black">{label}</a>
+      <a className="font-raptor font-bold text-5xl hover:text-black" {...props}>
+        {label}
+      </a>
     </Link>
   );
 }
 
-function OverlayItemSecondary({ target, label }) {
+function OverlayItemSecondary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-3xl hover:text-black">{label}</a>
+      <a className="font-raptor font-bold text-3xl hover:text-black" {...props}>
+        {label}
+      </a>
     </Link>
   );
 }
@@ -74,7 +78,9 @@ export default function Menu() {
 
           <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full md:absolute md:top-24 md:left-5 md:origin-top-right">
             <Link href="/">
-              <a className="flex items-center hover:text-black">
+              <a
+                className="flex items-center hover:text-black"
+                onClick={() => setIsOverlayOpen(false)}>
                 <span
                   className={clsx(
                     'uppercase order-last md:order-2 font-raptor font-semibold text-4xl whitespace-nowrap leading-none',
@@ -127,15 +133,15 @@ export default function Menu() {
           <ul>
             {OVERLAY_PRIMARY_ITEMS.map((item) => (
               <li>
-                <OverlayItemPrimary {...item} />
+                <OverlayItemPrimary {...item} onClick={() => setIsOverlayOpen(false)} />
               </li>
             ))}
           </ul>
 
-          <ul className="mt-auto">
+          <ul className="mt-auto pb-28 md:pb-0">
             {OVERLAY_SECONDARY_ITEMS.map((item) => (
               <li>
-                <OverlayItemSecondary {...item} />
+                <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
               </li>
             ))}
           </ul>

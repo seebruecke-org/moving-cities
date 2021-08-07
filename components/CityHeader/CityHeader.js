@@ -2,7 +2,7 @@ import Columns from '@/components/Columns';
 
 export default function CityHeader({ title, subtitle }) {
   return (
-    <header className="bg-yellow-300 pb-20 px-20">
+    <header className="bg-yellow-300 pb-20 px-8 md:px-20">
       <Columns>
         <div></div>
 
