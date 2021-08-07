@@ -1,16 +1,21 @@
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Button from '@/components/Button';
 import Paragraph from '@/components/Paragraph';
 
 import intro from '@/public/images/intro.png';
 
-function Count({ count, className }) {
+function Count({ count, className, onClick = () => {}, ...props }) {
   return (
-    <span className={clsx('font-raptor text-6xl font-bold underline block', className)}>
-      {count}
-    </span>
+    <Link {...props}>
+      <a
+        className={clsx('font-raptor text-6xl font-bold underline block', className)}
+        onClick={onClick}>
+        {count}
+      </a>
+    </Link>
   );
 }
 
@@ -28,7 +33,7 @@ export default function Intro({ onClose = () => {} }) {
       </div>
 
       <div className="md:absolute md:top-0 md:right-72 md:w-full">
-        <Image src={intro} />
+        <Image src={intro} priority placeholder="blur" />
       </div>
 
       <Paragraph className="md:absolute md:bottom-8 md:left-8 md:max-w-3xl px-8">
@@ -39,20 +44,21 @@ export default function Intro({ onClose = () => {} }) {
 
       <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28">
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count count={29} className="text-red-300" /> Featured Cities with Case Studies
+          <Count href="/" count={29} className="text-red-300" onClick={onClose} /> Featured Cities
+          with Case Studies
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count count={684} className="text-pink-300" /> Cities actively supporting a
-          solidarity-based migration policy
+          <Count href="/cities" count={684} className="text-pink-300" /> Cities actively supporting
+          a solidarity-based migration policy
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count count={11} className="text-red-300" /> European Networks
+          <Count href="/networks" count={11} className="text-red-300" /> European Networks
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count count={55} className="text-pink-300" />
+          <Count href="/approaches" count={55} className="text-pink-300" />
           Inspiring Approaches
         </Paragraph>
       </div>
