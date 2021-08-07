@@ -34,7 +34,7 @@ const styles = {
 
   option: (provided, state) => {
     const { options } = state;
-    const index = options.findIndex(option => option.label === state.label);
+    const index = options.findIndex((option) => option.label === state.label);
 
     return {
       ...provided,
@@ -51,30 +51,33 @@ const styles = {
         cursor: 'pointer'
       },
 
-      '&:before': index !== 0 ? {
-        backgroundColor: '#E1E1E1',
-        content: '""',
-        height: '1px',
-        left: '1rem',
-        position: 'absolute',
-        right: '1rem',
-        top: '0',
-      } : {}
-    }
+      '&:before':
+        index !== 0
+          ? {
+              backgroundColor: '#E1E1E1',
+              content: '""',
+              height: '1px',
+              left: '1rem',
+              position: 'absolute',
+              right: '1rem',
+              top: '0'
+            }
+          : {}
+    };
   },
 
   placeholder: (provided) => ({
     ...provided,
     color: 'black',
     fontFamily: 'Raptor',
-    fontSize: '1.6rem',
+    fontSize: '1.6rem'
   }),
 
   singleValue: (provided) => ({
     ...provided,
     color: 'black',
     fontFamily: 'Raptor',
-    fontSize: '1.6rem',
+    fontSize: '1.6rem'
   }),
 
   valueContainer: (provided) => ({
@@ -85,25 +88,42 @@ const styles = {
 
 function DropdownIndicator(props) {
   if (props.isFocused === true) {
-    return <C.DropdownIndicator {...props}>
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="17" viewBox="0 0 28 17" fill="none">
-      <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="M26 15L14 3 2 15"/>
-    </svg>
-  </C.DropdownIndicator>;
+    return (
+      <C.DropdownIndicator {...props}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="28"
+          height="17"
+          viewBox="0 0 28 17"
+          fill="none">
+          <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="M26 15L14 3 2 15" />
+        </svg>
+      </C.DropdownIndicator>
+    );
   }
 
-  return <C.DropdownIndicator {...props}>
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="17" viewBox="0 0 28 17" fill="none">
-      <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="M2 2l12 12L26 2"/>
-    </svg>
-  </C.DropdownIndicator>;
+  return (
+    <C.DropdownIndicator {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="17"
+        viewBox="0 0 28 17"
+        fill="none">
+        <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="M2 2l12 12L26 2" />
+      </svg>
+    </C.DropdownIndicator>
+  );
 }
 
 export default function Select(props) {
-  return <ReactSelect
-    styles={styles}
-    isSearchable={false}
-    /*defaultMenuIsOpen*/
-    components={{ DropdownIndicator }}
-    {...props} />
-};
+  return (
+    <ReactSelect
+      styles={styles}
+      isSearchable={false}
+      /*defaultMenuIsOpen*/
+      components={{ DropdownIndicator }}
+      {...props}
+    />
+  );
+}

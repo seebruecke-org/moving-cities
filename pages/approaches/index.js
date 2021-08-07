@@ -41,7 +41,9 @@ export default function ApproachesOverviewPage() {
 
   return (
     <div className="px-6 md:pl-72 md:pr-0 pb-28">
-      <Heading level={1} className="my-10 md:mb-28">Inspiring Approaches</Heading>
+      <Heading level={1} className="my-10 md:mb-28">
+        Inspiring Approaches
+      </Heading>
 
       <Paragraph className="font-bold">
         We collected 55 inspiring local approaches which cities have implemented in their politics.
