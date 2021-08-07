@@ -21,7 +21,7 @@ export default function HomePage() {
 
           {
             target: '/networks',
-            label: 'Netzwerke'
+            label: 'Networks'
           }
         ]}
       />
@@ -30,61 +30,52 @@ export default function HomePage() {
         pane={CityPreview}
         items={[
           {
-            target: '/what',
-            title: 'Amsterdam',
-            subtitle: 'Groundbreaking player in migration policies',
+            target: '/palermo',
+            title: 'Palermo',
+            subtitle: 'The open-harbor city challenging European migration politics.',
             data: {
-              title: 'Amsterdam',
-              subtitle: 'Groundbreaking player in migration policies',
-              uri: '/amsterdam',
+              title: 'Palermo',
+              subtitle: 'The open-harbor city challenging European migration politics.',
+              uri: '/palermo',
               approaches: [
                 {
-                  title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
-                  pillars: ['Social Rights', 'Residence Security', 'Communal Reception'],
-                  uri: '/amsterdam/top-programme'
+                  title: 'The Charter of Palermo',
+                  pillars: ['advocacy work', 'networking'],
+                  uri: '/palermo/charter'
                 },
 
                 {
-                  title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
-                  pillars: ['Social Rights', 'Residence Security', 'Communal Reception'],
-                  uri: '/amsterdam/top-programme'
+                  title: 'Open Harbors Policy',
+                  pillars: ['advocacy work', 'networking'],
+                  uri: '/palermo/open-harbors'
                 }
               ]
             }
           },
 
           {
-            target: '/what',
-            title: 'Amsterdam',
-            subtitle: 'Groundbreaking player in migration policies ',
+            target: '/palermo',
+            title: 'Palermo',
+            subtitle: 'The open-harbor city challenging European migration politics.',
             data: {
-              title: 'Amsterdam',
-              subtitle: 'Groundbreaking player in migration policies',
-              uri: '/amsterdam'
+              title: 'Palermo',
+              subtitle: 'The open-harbor city challenging European migration politics.',
+              uri: '/palermo',
+              approaches: [
+                {
+                  title: 'The Charter of Palermo',
+                  pillars: ['advocacy work', 'networking'],
+                  uri: '/palermo/charter'
+                },
+
+                {
+                  title: 'Open Harbors Policy',
+                  pillars: ['advocacy work', 'networking'],
+                  uri: '/palermo/open-harbors'
+                }
+              ]
             }
           },
-
-          {
-            target: '/what',
-            title: 'Amsterdam',
-            subtitle: 'Groundbreaking player in migration policies ',
-            data: {
-              title: 'Amsterdam',
-              subtitle: 'Groundbreaking player in migration policies',
-              uri: '/amsterdam'
-            }
-          },
-
-          {
-            target: '/what',
-            title: 'Amsterdam',
-            subtitle: 'Groundbreaking player in migration policies ',
-            data: {
-              title: 'Amsterdam',
-              subtitle: 'Groundbreaking player in migration policies',
-              uri: '/amsterdam'
-            }
-          }
         ]}
       />
 
