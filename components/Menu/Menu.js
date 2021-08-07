@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
 import Link from 'next/link';
 
 import Burger from './Burger';
@@ -64,12 +65,23 @@ function OverlayItemSecondary({ target, label, ...props }) {
 
 export default function Menu() {
   const { t } = useTranslation();
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const overlayRef = useRef();
+  const [isOverlayOpen, setIsOverlayOpen] = useState(null);
+
+  useEffect(() => {
+    const currentRef = overlayRef?.current;
+
+    if (isOverlayOpen === true) {
+      disableBodyScroll(currentRef);
+    } else if (isOverlayOpen === false) {
+      enableBodyScroll(currentRef);
+    }
+  }, [isOverlayOpen]);
 
   return (
     <>
       <div className="absolute left-0 top-0 w-full md:w-20 md:h-screen z-50">
-        <header className="bg-gradient-to-r from-pink-300 to-red-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-20 text-white p-4 md:h-full whitespace-nowrap flex md:block">
+        <header className="bg-gradient-to-r from-pink-300 to-red-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-20 text-white px-8 pt-5 pb-4 md:h-full whitespace-nowrap flex md:block">
           <Burger
             onOpen={() => setIsOverlayOpen(true)}
             onClose={() => setIsOverlayOpen(false)}
@@ -129,7 +141,7 @@ export default function Menu() {
       </div>
 
       {isOverlayOpen && (
-        <Overlay>
+        <Overlay ref={overlayRef}>
           <ul>
             {OVERLAY_PRIMARY_ITEMS.map((item) => (
               <li>
