@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import CityPreview from '@/components/CityPreview';
 import FloatingTabs from '@/components/FloatingTabs';
 import MapboxMap from '@/components/MapboxMap';
@@ -7,8 +9,8 @@ import ThreadList from '@/components/ThreadList';
 import { getTranslations } from '@/lib/global';
 
 export default function AllNetworksOverview() {
-  const { t: tCity } = useTranslation();
-  const { t: tSlugs } = useTranslation();
+  const { t: tCity } = useTranslation('city');
+  const { t: tSlugs } = useTranslation('slugs');
 
   return (
     <div className="flex flex-col md:flex-row md:h-full">
@@ -89,7 +91,7 @@ export default function AllNetworksOverview() {
 }
 
 export async function getStaticProps({ locale }) {
-  const translations = await getTranslations(locale);
+  const translations = await getTranslations(locale, ['city']);
 
   return {
     revalidate: 60,
