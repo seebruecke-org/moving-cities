@@ -9,7 +9,7 @@ const MENU_ITEMS = [
   {
     target: '/',
     label: 'About the City',
-    active: true,
+    active: true
   },
 
   {
@@ -35,7 +35,10 @@ export default function CityPage() {
       <SidebarMenu items={MENU_ITEMS} />
 
       <article className="flex-grow">
-        <CityHeader title="Palermo" subtitle="The open-harbor city challenging European migration politics." />
+        <CityHeader
+          title="Palermo"
+          subtitle="The open-harbor city challenging European migration politics."
+        />
         <BlockSwitch
           blocks={[
             {
@@ -66,7 +69,7 @@ export default function CityPage() {
               __typename: 'Section',
               title: 'Political activities and advocacy beyond the city level?',
               content: `Advocacy and contestation efforts of the city of Palermo have successfully managed to go far beyond rhetoric. Rather, they have triggered political processes, produced important changes in political positioning and further promoted cross-local networking and co-operation. The Palermo Charter Platform Process, and its most recent initiative From the sea to the city are particularly meaningful in such a perspective, insofar as they capitalise on this advocacy work, both in practical and symbolic terms. Cross-local co-operation with other cities has also been a key component of these advocacy efforts, and can be important also in the coming future where Palermo aims to contribute to a network of solidarity cities that opposes the exclusionary migration policies of the EU.`
-            },
+            }
 
             /*{
               __typename: 'Context',

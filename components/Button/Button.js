@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
-export default function Button({ href, children, className, ...props }) {
+export default function Button({ href, children, className, priority = false, ...props }) {
   const commonProps = {
     ...props,
     className: clsx(
-      'bg-white border border-white hover:border-black focus:border-black active:bg-yellow-300 active:border-yellow-300 rounded-3xl px-6 pt-6 pb-4 flex font-raptor leading-none text-xl shadow-md font-semibold',
+      'border hover:border-black focus:border-black active:bg-yellow-300 active:border-yellow-300 rounded-3xl px-6 pt-6 pb-4 flex font-raptor leading-none text-xl shadow-md font-semibold',
+      priority ? 'bg-yellow-300 border-yellow-300' : 'bg-white border-white',
       className
     )
   };

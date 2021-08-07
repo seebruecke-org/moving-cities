@@ -1,12 +1,10 @@
-import Columns from "@/components/Columns";
+import Columns from '@/components/Columns';
 
 export default function ProgramHeader({ city, title, children }) {
   return (
     <header className="bg-yellow-300 grid pb-20 px-20 pt-20">
       <Columns>
-        <div>
-
-        </div>
+        <div></div>
 
         <div className="space-y-10">
           <h1 className="font-raptor font-bold">

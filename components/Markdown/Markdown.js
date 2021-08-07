@@ -5,7 +5,7 @@ import Heading from '../Heading';
 
 const components = {
   h2: ({ children }) => {
-    return <Heading level={2}>{children}</Heading>
+    return <Heading level={2}>{children}</Heading>;
   },
 
   p: ({ children }) => {

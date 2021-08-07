@@ -40,12 +40,18 @@ export default function CityProgramPage() {
         <ProgramHeader
           city="Palermo"
           title="The Charter of Palermo"
-          pills={['advocacy work', 'networking ']}
-        >
+          pills={['advocacy work', 'networking ']}>
           <Heading level={2}>What is inspiring?</Heading>
 
           <Paragraph className="font-bold">
-            The Charter of Palermo is a political manifesto, launched in the context of an international conference of institutions and civil society initiatives and approved by the city government in March 2015. It is composed of several chapters, devoted to specific aspects of migration and rights, such as border regimes, the need to revise EU legislation and Italian citizenship laws, protection, political participation, work, housing, health, vulnerable migrant people and unaccompanied minors. Its subtitle reads: “From the [sic] migration as suffering, to mobility as an inalienable human right” – and it catches the essence of the political message behind the Charter.
+            The Charter of Palermo is a political manifesto, launched in the context of an
+            international conference of institutions and civil society initiatives and approved by
+            the city government in March 2015. It is composed of several chapters, devoted to
+            specific aspects of migration and rights, such as border regimes, the need to revise EU
+            legislation and Italian citizenship laws, protection, political participation, work,
+            housing, health, vulnerable migrant people and unaccompanied minors. Its subtitle reads:
+            “From the [sic] migration as suffering, to mobility as an inalienable human right” – and
+            it catches the essence of the political message behind the Charter.
           </Paragraph>
         </ProgramHeader>
         <BlockSwitch

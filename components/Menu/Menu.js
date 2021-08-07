@@ -75,7 +75,11 @@ export default function Menu() {
           <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full md:absolute md:top-24 md:left-5 md:origin-top-right">
             <Link href="/">
               <a className="flex items-center hover:text-black">
-                <span className={clsx("uppercase order-last md:order-2 font-raptor font-semibold text-4xl whitespace-nowrap leading-none", shadowStyles['text-shadow'])}>
+                <span
+                  className={clsx(
+                    'uppercase order-last md:order-2 font-raptor font-semibold text-4xl whitespace-nowrap leading-none',
+                    shadowStyles['text-shadow']
+                  )}>
                   Moving Cities
                 </span>
 
@@ -95,13 +99,21 @@ export default function Menu() {
 
             <div className="hidden md:inline-block space-x-6">
               <Link href="/about">
-                <a className={clsx("uppercase whitespace-nowrap font-raptor text-xl hover:text-black", shadowStyles['text-shadow'])}>
+                <a
+                  className={clsx(
+                    'uppercase whitespace-nowrap font-raptor text-xl hover:text-black',
+                    shadowStyles['text-shadow']
+                  )}>
                   About
                 </a>
               </Link>
 
               <Link href="/approaches">
-                <a className={clsx("uppercase whitespace-nowrap font-raptor text-xl hover:text-black", shadowStyles['text-shadow'])}>
+                <a
+                  className={clsx(
+                    'uppercase whitespace-nowrap font-raptor text-xl hover:text-black',
+                    shadowStyles['text-shadow']
+                  )}>
                   Inspiring Approaches
                 </a>
               </Link>

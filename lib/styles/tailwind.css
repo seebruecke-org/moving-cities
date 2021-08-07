@@ -17,28 +17,28 @@
   @font-face {
     font-family: 'Raptor';
     font-weight: 900;
-    src: url("/fonts/Raptor V3/RaptorV3Premium-Black.woff2") format('woff2'),
-      url("/fonts/Raptor V3/RaptorV3Premium-Black.woff") format('woff');
+    src: url('/fonts/Raptor V3/RaptorV3Premium-Black.woff2') format('woff2'),
+      url('/fonts/Raptor V3/RaptorV3Premium-Black.woff') format('woff');
   }
 
   @font-face {
     font-family: 'Raptor';
     font-weight: 700;
-    src: url("/fonts/Raptor V3/RaptorV3Premium-Bold.woff2") format('woff2'),
-      url("/fonts/Raptor V3/RaptorV3Premium-Bold.woff") format('woff');
+    src: url('/fonts/Raptor V3/RaptorV3Premium-Bold.woff2') format('woff2'),
+      url('/fonts/Raptor V3/RaptorV3Premium-Bold.woff') format('woff');
   }
 
   @font-face {
     font-family: 'Raptor';
     font-weight: 600;
-    src: url("/fonts/Raptor V3/RaptorV3Premium-Semibold.woff2") format('woff2'),
-      url("/fonts/Raptor V3/RaptorV3Premium-Semibold.woff") format('woff');
+    src: url('/fonts/Raptor V3/RaptorV3Premium-Semibold.woff2') format('woff2'),
+      url('/fonts/Raptor V3/RaptorV3Premium-Semibold.woff') format('woff');
   }
 
   @font-face {
     font-family: 'Raptor';
     font-weight: 400;
-    src: url("/fonts/Raptor V3/RaptorV3Premium-Regular.woff2") format('woff2'),
-      url("/fonts/Raptor V3/RaptorV3Premium-Regular.woff") format('woff');
+    src: url('/fonts/Raptor V3/RaptorV3Premium-Regular.woff2') format('woff2'),
+      url('/fonts/Raptor V3/RaptorV3Premium-Regular.woff') format('woff');
   }
 }
