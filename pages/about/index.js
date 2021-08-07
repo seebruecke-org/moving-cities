@@ -3,6 +3,8 @@ import Heading from '@/components/Heading';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
+import { getTranslations } from '@/lib/global';
+
 const MENU_ITEMS = [
   {
     target: '/about',
@@ -81,8 +83,12 @@ export default function Page() {
 }
 
 export async function getStaticProps({ locale }) {
+  const translations = await getTranslations(locale, ['city']);
+
   return {
     revalidate: 60,
-    props: {}
+    props: {
+      ...translations
+    }
   };
 }

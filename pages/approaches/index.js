@@ -7,6 +7,9 @@ import Pill from '@/components/Pill';
 import Select from '@/components/Select';
 import SEO from '@/components/SEO';
 
+import { getTranslations } from '@/lib/global';
+import { useTranslation } from 'next-i18next';
+
 const APPROACHES = [
   {
     title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
@@ -35,6 +38,7 @@ const PILLS = [
 
 export default function ApproachesOverviewPage() {
   const router = useRouter();
+  const { t: tApproaches } = useTranslation('approaches');
 
   const onChange = ({ value }) => {
     router.push(value);
@@ -42,15 +46,14 @@ export default function ApproachesOverviewPage() {
 
   return (
     <div className="px-6 md:pl-72 md:pr-0 pb-28">
-      <SEO title="Inspiring Approaches" />
+      <SEO title={tApproaches('inspiringApproaches')} />
 
       <Heading level={1} className="my-10 md:mb-28">
-        Inspiring Approaches
+        {tApproaches('inspiringApproaches')}
       </Heading>
 
       <Paragraph className="font-bold">
-        We collected 55 inspiring local approaches which cities have implemented in their politics.
-        Which topic are you interested in?
+        {tApproaches('intro')}
       </Paragraph>
 
       <ul className="space-x-4 hidden md:flex">
@@ -79,8 +82,12 @@ export default function ApproachesOverviewPage() {
 }
 
 export async function getStaticProps({ locale }) {
+  const translations = await getTranslations(locale, ['approaches']);
+
   return {
     revalidate: 60,
-    props: {}
+    props: {
+      ...translations
+    }
   };
 }

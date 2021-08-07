@@ -1,6 +1,8 @@
 {
   "menu": {
     "name": "Moving Cities",
+    "approaches": "Inspiring Approaches",
+    "about": "About",
 
     "burger": {
       "open": "Menü öffnen"

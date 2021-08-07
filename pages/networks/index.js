@@ -4,7 +4,12 @@ import MapboxMap from '@/components/MapboxMap';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
+import { getTranslations } from '@/lib/global';
+
 export default function AllNetworksOverview() {
+  const { t: tCity } = useTranslation();
+  const { t: tSlugs } = useTranslation();
+
   return (
     <div className="flex flex-col md:flex-row md:h-full">
       <SEO title="All networks" />
@@ -13,17 +18,17 @@ export default function AllNetworksOverview() {
         items={[
           {
             target: '/',
-            label: 'Featured Cities'
+            label: tCity('featuredCities')
           },
 
           {
-            target: '/cities',
-            label: 'All Cities'
+            target: `/${tSlugs('cities')}`,
+            label: tCity('allCities')
           },
 
           {
-            target: '/networks',
-            label: 'Networks',
+            target: `/${tSlugs('networks')}`,
+            label: tCity('networks'),
             active: true
           }
         ]}
@@ -84,8 +89,12 @@ export default function AllNetworksOverview() {
 }
 
 export async function getStaticProps({ locale }) {
+  const translations = await getTranslations(locale);
+
   return {
     revalidate: 60,
-    props: {}
+    props: {
+      ...translations
+    }
   };
 }

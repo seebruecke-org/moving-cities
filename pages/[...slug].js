@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import Approach from '@/components/Approach';
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Columns from '@/components/Columns';
@@ -5,6 +7,8 @@ import CityHeader from '@/components/CityHeader';
 import Heading from '@/components/Heading';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
+
+import { getTranslations } from '@/lib/global';
 
 const MENU_ITEMS = [
   {
@@ -31,6 +35,8 @@ const MENU_ITEMS = [
 ];
 
 export default function CityPage() {
+  const { t } = useTranslation('approaches');
+
   return (
     <div className="md:flex">
       <SEO title="Palermo" />
@@ -95,7 +101,9 @@ export default function CityPage() {
 
         <div className="px-8 max-w-7xl">
           <Columns>
-            <Heading level={2}>Inspiring approaches of the city</Heading>
+            <Heading level={2}>
+              {t('inspiringApproaches')}
+            </Heading>
 
             <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
               {[
@@ -131,8 +139,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ locale }) {
+  const translations = await getTranslations(locale, ['approaches']);
+
   return {
     revalidate: 60,
-    props: {}
+    props: {
+      ...translations
+    }
   };
 }

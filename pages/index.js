@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 
 import SEO from '@/components/SEO';
@@ -9,8 +10,12 @@ const Intro = dynamic(() => import('@/components/Intro'));
 const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
 const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
+import { getTranslations } from '@/lib/global';
+
 export default function HomePage() {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
+  const { t } = useTranslation('city');
+  const { t: tSlugs } = useTranslation('slugs');
 
   return (
     <>
@@ -24,18 +29,18 @@ export default function HomePage() {
             items={[
               {
                 target: '/',
-                label: 'Featured Cities',
+                label: t('featuredCities'),
                 active: true
               },
 
               {
-                target: '/cities',
-                label: 'All Cities'
+                target: `/${tSlugs('cities')}`,
+                label: t('allCities')
               },
 
               {
-                target: '/networks',
-                label: 'Networks'
+                target: `/${tSlugs('networks')}`,
+                label: t('networks')
               }
             ]}
           />
@@ -101,8 +106,12 @@ export default function HomePage() {
 }
 
 export async function getStaticProps({ locale }) {
+  const translations = await getTranslations(locale, ['city', 'intro']);
+
   return {
     revalidate: 60,
-    props: {}
+    props: {
+      ...translations
+    }
   };
 }

@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,15 +21,17 @@ function Count({ count, className, onClick = () => {}, ...props }) {
 }
 
 export default function Intro({ onClose = () => {} }) {
+  const { t } = useTranslation('intro');
+
   return (
     <div className="relative w-full space-y-8 h-screen">
       <div className="md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
         <h1 className="font-raptor text-4xl font-bold leading-none mb-4">
-          Another migration policy is possible
+          {t('title')}
         </h1>
 
         <Button onClick={onClose} priority>
-          Check out cities
+          {t('cta')}
         </Button>
       </div>
 
@@ -37,29 +40,25 @@ export default function Intro({ onClose = () => {} }) {
       </div>
 
       <Paragraph className="md:absolute md:bottom-8 md:left-8 md:max-w-3xl px-8">
-        Since 2004 cities and activists started pushing their own policies for cities which are open
-        welcoming to refugees ... Currently 600 European cities are actively supporting a
-        solidarity-based migration policy.
+        {t('intro')}
       </Paragraph>
 
       <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28">
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/" count={29} className="text-red-300" onClick={onClose} /> Featured Cities
-          with Case Studies
+          <Count href="/" count={29} className="text-red-300" onClick={onClose} /> {t('withCaseStudies')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/cities" count={684} className="text-pink-300" /> Cities actively supporting
-          a solidarity-based migration policy
+          <Count href="/cities" count={684} className="text-pink-300" /> {t('withSolidarityBasedPolicy')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/networks" count={11} className="text-red-300" /> European Networks
+          <Count href="/networks" count={11} className="text-red-300" /> {t('europeanNetworks')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
           <Count href="/approaches" count={55} className="text-pink-300" />
-          Inspiring Approaches
+          {t('inspiringApproaches')}
         </Paragraph>
       </div>
     </div>
