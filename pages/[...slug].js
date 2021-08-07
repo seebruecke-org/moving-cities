@@ -38,6 +38,11 @@ export default function CityPage() {
         <CityHeader
           title="Palermo"
           subtitle="The open-harbor city challenging European migration politics."
+          summary={[
+            'Proactive and pragmatic use of municipal policy space: »Going the extra mile«',
+            'Regional cooperation and solidarity between municipalities: »Joining Forces«',
+            'Systematic involvement of newcomers: »Nothing about us without us«'
+          ]}
         />
         <BlockSwitch
           blocks={[

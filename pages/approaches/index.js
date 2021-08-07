@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router';
+
 import Approach from '@/components/Approach';
 import Heading from '@/components/Heading';
 import Paragraph from '@/components/Paragraph';
 import Pill from '@/components/Pill';
+import Select from '@/components/Select';
 
 const APPROACHES = [
   {
@@ -19,17 +22,23 @@ const APPROACHES = [
 
 const PILLS = [
   {
-    target: '/approaches/inclusion',
+    target: '/approaches?filter=inclusion',
     label: 'Inclusion'
   },
 
   {
-    target: '/approaches/residence-security',
+    target: '/approaches?filter=residence-security',
     label: 'Resident Security'
   }
 ];
 
 export default function ApproachesOverviewPage() {
+  const router = useRouter();
+
+  const onChange = ({ value }) => {
+    router.push(value);
+  };
+
   return (
     <div className="px-6 md:pl-72 md:pr-0 pb-28">
       <Heading level={1}>Inspiring Approaches</Heading>
@@ -46,6 +55,12 @@ export default function ApproachesOverviewPage() {
           </li>
         ))}
       </ul>
+
+      <Select
+        options={PILLS.map(({ target, label }) => ({ value: target, label }))}
+        onChange={onChange}
+        className="md:hidden"
+      />
 
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
         {APPROACHES.map((approach) => (

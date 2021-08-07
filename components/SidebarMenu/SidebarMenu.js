@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import Link from 'next/link';
-import Select from 'react-select';
+
+import Select from '@/components/Select';
 
 function SidebarSelect({ items }) {
   const router = useRouter();

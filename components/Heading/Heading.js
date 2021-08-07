@@ -6,7 +6,8 @@ export default function Heading({ level = 1, as, children, className, ...props }
     h1: 'text-5xl md:text-6xl leading-tight font-bold font-raptor',
     h2: 'text-3xl md:text-4xl leading-tight font-bold font-raptor',
     h3: 'text-3xl leading-tight font-bold font-raptor',
-    h4: 'text-2xl leading-tight font-bold font-raptor'
+    h4: 'text-2xl leading-tight font-bold font-raptor',
+    h5: 'text-2xl md:text-4xl leading-tight font-semibold md:font-bold font-raptor'
   };
 
   return (
