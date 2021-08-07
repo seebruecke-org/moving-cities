@@ -14,7 +14,7 @@
     "clsx": "^1.1.1",
     "graphql": "^15.5.0",
     "mapbox-gl": "^2.4.0",
-    "next": "^11.0.2-canary.25",
+    "next": "^11.0.2-canary.27",
     "next-compose-plugins": "^2.2.1",
     "next-i18next": "^8.5.5",
     "next-plugin-preact": "^3.0.6",
