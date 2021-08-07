@@ -1,5 +1,8 @@
 {
   "featuredCities": "Featured Cities",
   "allCities": "All Cities",
-  "networks": "Networks"
+  "networks": "Networks",
+  "close": "Close",
+  "viewCity": "View the city",
+  "whatIsUnique": "What is unique about the city?"
 }

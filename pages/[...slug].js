@@ -36,6 +36,7 @@ const MENU_ITEMS = [
 
 export default function CityPage() {
   const { t } = useTranslation('approaches');
+  const { t: tCity } = useTranslation('city');
 
   return (
     <div className="md:flex">
@@ -57,7 +58,7 @@ export default function CityPage() {
           blocks={[
             {
               __typename: 'Section',
-              title: 'What is unique about the city?',
+              title: tCity('whatIsUnique'),
               content: `**Overcoming the European border regime**: Palermo represents an extremely relevant example of a city committed to raise awareness about and advocate for a deep change in EU and national border policies, with a particular focus on maritime migration and search and rescue (SAR) activities in the Mediterranean Sea. In concrete terms, Palermo is also a city where several interesting practices in the field of migration and reception have been taking place, even if at times problems and shortcomings have arisen.`
             },
 
@@ -139,7 +140,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ locale }) {
-  const translations = await getTranslations(locale, ['approaches']);
+  const translations = await getTranslations(locale, ['approaches', 'city']);
 
   return {
     revalidate: 60,

@@ -1,8 +1,11 @@
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 
 import Heading from '@/components/Heading';
 
 export default function Approach({ title, pillars = [], uri }) {
+  const { t } = useTranslation('approaches');
+
   return (
     <Link href={uri}>
       <a className="rounded-xl border-2 border-black hover:border-red-300 p-7 block group">
@@ -20,7 +23,7 @@ export default function Approach({ title, pillars = [], uri }) {
         </ul>
 
         <button type="button" tabIndex="-1" className="font-raptor font-bold text-xl mt-4">
-          Read more
+          {t('readMore')}
           <span className="group-hover:text-red-300 ml-2">⟶</span>
         </button>
       </a>

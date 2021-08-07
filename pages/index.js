@@ -106,7 +106,7 @@ export default function HomePage() {
 }
 
 export async function getStaticProps({ locale }) {
-  const translations = await getTranslations(locale, ['city', 'intro']);
+  const translations = await getTranslations(locale, ['city', 'intro', 'approaches']);
 
   return {
     revalidate: 60,

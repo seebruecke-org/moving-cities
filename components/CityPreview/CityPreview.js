@@ -1,9 +1,14 @@
+import { useTranslation } from 'next-i18next';
+
 import Approach from '@/components/Approach';
 import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
 export default function CityPreview({ title, subtitle, uri, approaches, onClose = () => {} }) {
+  const { t } = useTranslation('city');
+  const { t: tApproaches } = useTranslation('approaches');
+
   return (
     <article className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col">
       <div className="flex mb-10 items-start">
@@ -24,8 +29,13 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
         </svg>
 
         <div>
-          <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">{title}</h1>
-          <p className="text-4xl leading-none font-raptor font-bold">{subtitle}</p>
+          <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">
+            {title}
+          </h1>
+
+          <p className="text-4xl leading-none font-raptor font-bold">
+            {subtitle}
+          </p>
         </div>
 
         <button onClick={onClose} className="group font-raptor font-semibold mt-2">
@@ -42,13 +52,13 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
               d="M3.6 3.5l30 30M3.6 33.5l30-30"
             />
           </svg>
-          Close
+          {t('close')}
         </button>
       </div>
 
       <div className="flex flex-col space-y-8">
         <Heading level={2} as={3}>
-          What is unique about Zurich?
+          {t('whatIsUnique')}
         </Heading>
 
         <Markdown>
@@ -61,14 +71,17 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
 
         {uri && (
           <Button href={uri} className="w-auto self-start">
-            View the city <span className="text-red-300 ml-3 text-4xl leading-none -my-4">→</span>
+            {t('viewCity')}
+            <span className="text-red-300 ml-3 text-4xl leading-none -my-4">
+              →
+            </span>
           </Button>
         )}
 
         {approaches && (
           <div className="space-y-8 pt-4">
             <Heading level={2} as={3}>
-              Approaches
+              {tApproaches('inspiringApproaches')}
             </Heading>
 
             <ul className="space-y-8">
