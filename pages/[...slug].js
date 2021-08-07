@@ -3,6 +3,7 @@ import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Columns from '@/components/Columns';
 import CityHeader from '@/components/CityHeader';
 import Heading from '@/components/Heading';
+import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
 const MENU_ITEMS = [
@@ -32,6 +33,8 @@ const MENU_ITEMS = [
 export default function CityPage() {
   return (
     <div className="md:flex">
+      <SEO title="Palermo" />
+
       <SidebarMenu items={MENU_ITEMS} />
 
       <article className="flex-grow pb-28">

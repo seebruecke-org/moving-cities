@@ -1,11 +1,14 @@
 import CountryPreview from '@/components/CountryPreview';
 import FloatingTabs from '@/components/FloatingTabs';
 import MapboxMap from '@/components/MapboxMap';
+import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
 export default function AllCitiesOverview() {
   return (
     <div className="flex flex-col md:flex-row md:h-full">
+      <SEO title="All cities" />
+
       <FloatingTabs
         items={[
           {

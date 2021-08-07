@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
+import SEO from '@/components/SEO';
+
 const CityPreview = dynamic(() => import('@/components/CityPreview'));
 const FloatingTabs = dynamic(() => import('@/components/FloatingTabs'));
 const Intro = dynamic(() => import('@/components/Intro'));
@@ -12,6 +14,8 @@ export default function HomePage() {
 
   return (
     <>
+      <SEO title={null} />
+
       {isIntroVisible ? (
         <Intro onClose={() => setIsIntroVisible(false)} />
       ) : (

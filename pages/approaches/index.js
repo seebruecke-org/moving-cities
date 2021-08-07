@@ -5,6 +5,7 @@ import Heading from '@/components/Heading';
 import Paragraph from '@/components/Paragraph';
 import Pill from '@/components/Pill';
 import Select from '@/components/Select';
+import SEO from '@/components/SEO';
 
 const APPROACHES = [
   {
@@ -41,6 +42,8 @@ export default function ApproachesOverviewPage() {
 
   return (
     <div className="px-6 md:pl-72 md:pr-0 pb-28">
+      <SEO title="Inspiring Approaches" />
+
       <Heading level={1} className="my-10 md:mb-28">
         Inspiring Approaches
       </Heading>

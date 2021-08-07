@@ -1,9 +1,8 @@
-import Approach from '@/components/Approach';
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
-import Columns from '@/components/Columns';
 import ProgramHeader from '@/components/ProgramHeader';
 import Heading from '@/components/Heading';
 import Paragraph from '@/components/Paragraph';
+import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
 const MENU_ITEMS = [
@@ -34,6 +33,8 @@ const MENU_ITEMS = [
 export default function CityProgramPage() {
   return (
     <div className="md:flex">
+      <SEO title="The Charter of Palermo" />
+
       <SidebarMenu items={MENU_ITEMS} />
 
       <article className="flex-grow">

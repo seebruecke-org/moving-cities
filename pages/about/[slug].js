@@ -1,5 +1,6 @@
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Heading from '@/components/Heading';
+import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
 const MENU_ITEMS = [
@@ -23,6 +24,8 @@ const MENU_ITEMS = [
 export default function Page() {
   return (
     <div className="md:flex">
+      <SEO title="Partners &amp; Contributors" />
+
       <SidebarMenu items={MENU_ITEMS} />
 
       <article>
