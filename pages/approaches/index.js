@@ -41,9 +41,9 @@ export default function ApproachesOverviewPage() {
 
   return (
     <div className="px-6 md:pl-72 md:pr-0 pb-28">
-      <Heading level={1}>Inspiring Approaches</Heading>
+      <Heading level={1} className="my-10 md:mb-28">Inspiring Approaches</Heading>
 
-      <Paragraph className="font-bold mt-20">
+      <Paragraph className="font-bold">
         We collected 55 inspiring local approaches which cities have implemented in their politics.
         Which topic are you interested in?
       </Paragraph>
@@ -59,7 +59,7 @@ export default function ApproachesOverviewPage() {
       <Select
         options={PILLS.map(({ target, label }) => ({ value: target, label }))}
         onChange={onChange}
-        className="md:hidden"
+        className="md:hidden my-10"
       />
 
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
