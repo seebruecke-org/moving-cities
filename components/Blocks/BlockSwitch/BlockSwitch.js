@@ -1,13 +1,15 @@
 import Context from '@/components/Blocks/Context';
 import Intro from '@/components/Blocks/Intro';
 import Quote from '@/components/Blocks/Quote';
+import Richtext from '@/components/Blocks/Richtext';
 import Section from '@/components/Blocks/Section';
 
 const BLOCKS = {
-  Context: Context,
-  Intro: Intro,
-  Quote: Quote,
-  Section: Section
+  Context,
+  Intro,
+  Quote,
+  Richtext,
+  Section,
 };
 
 export default function BlockSwitch({ blocks }) {
