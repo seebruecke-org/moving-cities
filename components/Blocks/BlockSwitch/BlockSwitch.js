@@ -9,7 +9,7 @@ const BLOCKS = {
   Intro,
   Quote,
   Richtext,
-  Section,
+  Section
 };
 
 export default function BlockSwitch({ blocks }) {

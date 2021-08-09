@@ -30,14 +30,16 @@ export default function HomePage() {
               {
                 target: '/',
                 label: t('featuredCities'),
-                tooltip: '29 cities studied out of over 600 European cities that actively support solidarity based migration policies.',
+                tooltip:
+                  '29 cities studied out of over 600 European cities that actively support solidarity based migration policies.',
                 active: true
               },
 
               {
                 target: `/${tSlugs('cities')}`,
                 label: t('allCities'),
-                tooltip: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+                tooltip:
+                  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
               },
 
               {
