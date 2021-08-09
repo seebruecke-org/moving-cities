@@ -1,16 +1,20 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
-export default function FloatingTabsItem({ target, label, active = false }) {
+export default function FloatingTabsItem({ target, label, active = false, className, ...props }) {
   return (
-    <Link href={target}>
-      <a
-        className={clsx(
-          'px-6 pt-6 pb-5 text-l font-raptor font-semibold h-full flex leading-none',
-          active && 'bg-yellow-300 shadow-md'
-        )}>
-        {label}
-      </a>
-    </Link>
+    <>
+      <Link href={target}>
+        <a
+          className={clsx(
+            'px-6 pt-6 pb-5 text-l font-raptor font-semibold h-full flex leading-none',
+            active && 'bg-yellow-300 shadow-md',
+            className
+          )}
+          {...props}>
+          {label}
+        </a>
+      </Link>
+    </>
   );
 }
