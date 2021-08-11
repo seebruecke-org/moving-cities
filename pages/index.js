@@ -10,9 +10,10 @@ const Intro = dynamic(() => import('@/components/Intro'));
 const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
 const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
+import { fetchFeaturedCities } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
-export default function HomePage() {
+export default function HomePage({ cities }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
@@ -30,76 +31,41 @@ export default function HomePage() {
               {
                 target: '/',
                 label: t('featuredCities'),
-                tooltip:
-                  '29 cities studied out of over 600 European cities that actively support solidarity based migration policies.',
+                tooltip: t('featuredCitiesIntro'),
                 active: true
               },
 
               {
                 target: `/${tSlugs('cities')}`,
                 label: t('allCities'),
-                tooltip:
-                  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+                tooltip: t('allCitiesIntro'),
               },
 
               {
                 target: `/${tSlugs('networks')}`,
-                label: t('networks')
+                label: t('networks'),
+                tooltip: t('networksIntro'),
               }
             ]}
           />
 
           <ThreadList
             pane={CityPreview}
-            items={[
-              {
-                target: '/palermo',
-                title: 'Palermo',
-                subtitle: 'The open-harbor city challenging European migration politics.',
-                data: {
-                  title: 'Palermo',
-                  subtitle: 'The open-harbor city challenging European migration politics.',
-                  uri: '/palermo',
-                  approaches: [
-                    {
-                      title: 'The Charter of Palermo',
-                      pillars: ['advocacy work', 'networking'],
-                      uri: '/palermo/charter'
-                    },
-
-                    {
-                      title: 'Open Harbors Policy',
-                      pillars: ['advocacy work', 'networking'],
-                      uri: '/palermo/open-harbors'
-                    }
-                  ]
-                }
-              },
-
-              {
-                target: '/palermo',
-                title: 'Palermo',
-                subtitle: 'The open-harbor city challenging European migration politics.',
-                data: {
-                  title: 'Palermo',
-                  subtitle: 'The open-harbor city challenging European migration politics.',
-                  uri: '/palermo',
-                  approaches: [
-                    {
-                      title: 'The Charter of Palermo',
-                      pillars: ['advocacy work', 'networking'],
-                      uri: '/palermo/charter'
-                    },
-
-                    {
-                      title: 'Open Harbors Policy',
-                      pillars: ['advocacy work', 'networking'],
-                      uri: '/palermo/open-harbors'
-                    }
-                  ]
-                }
+            items={cities.map(({ name, subtitle, approaches, ...city }) => ({
+              title: name,
+              subtitle,
+              target: '/palermo',
+              data: {
+                title: name,
+                subtitle,
+                uri: '/palermo',
+                approaches: approaches.map(({ title }) => ({
+                  title,
+                  uri: '/palermo/whatever'
+                })),
+                ...city
               }
-            ]}
+            }))}
           />
 
           <MapboxMap />
@@ -111,11 +77,13 @@ export default function HomePage() {
 
 export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'intro', 'approaches']);
+  const cities = await fetchFeaturedCities(locale);
 
   return {
     revalidate: 60,
     props: {
-      ...translations
+      ...translations,
+      cities
     }
   };
 }

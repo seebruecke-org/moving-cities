@@ -6,9 +6,10 @@ import MapboxMap from '@/components/MapboxMap';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
+import { fetchAllCitiesByCountry } from '@/lib/cities'
 import { getTranslations } from '@/lib/global';
 
-export default function AllCitiesOverview() {
+export default function AllCitiesOverview({ countries }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
 
@@ -21,55 +22,32 @@ export default function AllCitiesOverview() {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip:
-              '29 cities studied out of over 600 European cities that actively support solidarity based migration policies.',
-            tooltip:
-              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
+            tooltip: tCity('featuredCitiesIntro'),
           },
 
           {
             target: `/${tSlugs('cities')}`,
             label: tCity('allCities'),
+            tooltip: tCity('allCitiesIntro'),
             active: true
           },
 
           {
             target: `/${tSlugs('networks')}`,
-            label: tCity('networks')
+            label: tCity('networks'),
+            tooltip: tCity('networksIntro'),
           }
         ]}
       />
 
       <ThreadList
         pane={CountryPreview}
-        items={[
-          {
-            target: '/countries/france',
-            title: 'France',
-            subtitle: '45 cities',
-            data: {
-              cities: ['Amay', 'Anderlecht']
-            }
-          },
-
-          {
-            target: '/countries/france',
-            title: 'France',
-            subtitle: '45 cities',
-            data: {
-              cities: ['Amay', 'Anderlecht']
-            }
-          },
-
-          {
-            target: '/countries/france',
-            title: 'France',
-            subtitle: '45 cities',
-            data: {
-              cities: ['Amay', 'Anderlecht']
-            }
-          }
-        ]}
+        items={countries.map(({ name, cities }) => ({
+          target: '/countries/france',
+          title: name,
+          subtitle: cities.length,
+          data: { cities }
+        }))}
       />
 
       <MapboxMap />
@@ -79,11 +57,13 @@ export default function AllCitiesOverview() {
 
 export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city']);
+  const countries = await fetchAllCitiesByCountry(locale);
 
   return {
     revalidate: 60,
     props: {
-      ...translations
+      ...translations,
+      countries
     }
   };
 }

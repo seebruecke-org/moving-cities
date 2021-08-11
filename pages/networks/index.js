@@ -20,17 +20,20 @@ export default function AllNetworksOverview() {
         items={[
           {
             target: '/',
-            label: tCity('featuredCities')
+            label: tCity('featuredCities'),
+            tooltip: tCity('featuredCitiesIntro'),
           },
 
           {
             target: `/${tSlugs('cities')}`,
-            label: tCity('allCities')
+            label: tCity('allCities'),
+            tooltip: tCity('allCitiesIntro'),
           },
 
           {
             target: `/${tSlugs('networks')}`,
             label: tCity('networks'),
+            tooltip: tCity('networksIntro'),
             active: true
           }
         ]}
