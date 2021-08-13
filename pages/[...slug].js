@@ -5,6 +5,8 @@ import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Columns from '@/components/Columns';
 import CityHeader from '@/components/CityHeader';
 import Heading from '@/components/Heading';
+import Quote from '@/components/Blocks/Quote';
+import Section from '@/components/Blocks/Section';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
@@ -42,7 +44,11 @@ export default function CityPage({ city: { name, subtitle , slug, content, appro
           subtitle={subtitle}
           takeaways={takeaways}
         />
-        <BlockSwitch blocks={content} />
+
+        <BlockSwitch blocks={content} renderers={{
+          Quote,
+          Section
+        }} />
 
         {approaches?.length > 0 && (
           <div className="px-8 max-w-7xl">

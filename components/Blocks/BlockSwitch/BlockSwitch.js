@@ -1,26 +1,23 @@
-import Context from '@/components/Blocks/Context';
-import Intro from '@/components/Blocks/Intro';
-import Quote from '@/components/Blocks/Quote';
-import Richtext from '@/components/Blocks/Richtext';
-import Section from '@/components/Blocks/Section';
+import { BLOCK_PREFIX } from "@/lib/blocks";
 
-const BLOCKS = {
-  Context,
-  Intro,
-  Quote,
-  Richtext,
-  Section
-};
-
-export default function BlockSwitch({ blocks = [] }) {
+export default function BlockSwitch({ blocks = [], renderers = {} }) {
   if (!blocks || blocks.length === 0) {
     return null;
   }
 
+  const prefixedRenderers = Object.entries(renderers).reduce((acc, [ key, value ]) => {
+    acc[`${BLOCK_PREFIX}${key}`] = value;
+    return acc;
+  }, []);
+
   return (
     <div className="flex flex-col">
       {blocks.map(({ __typename, ...block }) => {
-        const Component = BLOCKS?.[__typename] ?? null;
+        const Component = prefixedRenderers?.[__typename] ?? null;
+
+        if (Component === null) {
+          return <pre>Block {__typename} not implemented</pre>
+        }
 
         return <Component {...block} />;
       })}

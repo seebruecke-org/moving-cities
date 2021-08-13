@@ -1,4 +1,4 @@
-export default function Quote({ author, content }) {
+export default function Quote({ quoteAuthor: author, quoteContent: content }) {
   return (
     <blockquote className="w-full max-w-7xl my-8 md:my-16 pr-10 pl-10 md:pr-10">
       <p className="text-4xl md:text-5xl font-bold font-raptor leading-tight">

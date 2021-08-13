@@ -1,7 +1,7 @@
 import Columns from '@/components/Columns';
 import Paragraph from '@/components/Paragraph';
 
-export default function Section({ content }) {
+export default function Section({ introContent: content }) {
   return (
     <Columns className="max-w-7xl">
       <span />
