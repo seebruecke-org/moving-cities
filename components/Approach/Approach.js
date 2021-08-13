@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Heading from '@/components/Heading';
 
-export default function Approach({ title, pillars = [], uri }) {
+export default function Approach({ title, categories = [], uri }) {
   const { t } = useTranslation('approaches');
 
   return (
@@ -14,10 +14,10 @@ export default function Approach({ title, pillars = [], uri }) {
         </Heading>
 
         <ul className="flex flex-wrap mt-2">
-          {pillars.map((pillar, index) => (
+          {categories.map(({ title }, index) => (
             <li className="flex flex-wrap">
               {index > 0 && <span className="text-m mx-2">•</span>}
-              <p className="text-xl">{pillar}</p>
+              <p className="text-xl">{title}</p>
             </li>
           ))}
         </ul>

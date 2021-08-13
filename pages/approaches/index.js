@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import Approach from '@/components/Approach';
 import Heading from '@/components/Heading';
@@ -7,22 +8,8 @@ import Pill from '@/components/Pill';
 import Select from '@/components/Select';
 import SEO from '@/components/SEO';
 
+import { fetchAllApproaches, fetchApproachCategories } from '@/lib/approaches';
 import { getTranslations } from '@/lib/global';
-import { useTranslation } from 'next-i18next';
-
-const APPROACHES = [
-  {
-    title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
-    pillars: ['Social Rights', 'Residence Security', 'Communal Reception'],
-    uri: '/amsterdam/top-programme'
-  },
-
-  {
-    title: 'TOP ‘Language, Orientation and Participation’ programme (2017-2018)',
-    pillars: ['Social Rights', 'Residence Security', 'Communal Reception'],
-    uri: '/amsterdam/top-programme'
-  }
-];
 
 const PILLS = [
   {
@@ -36,7 +23,7 @@ const PILLS = [
   }
 ];
 
-export default function ApproachesOverviewPage() {
+export default function ApproachesOverviewPage({ approaches, categories }) {
   const router = useRouter();
   const { t: tApproaches } = useTranslation('approaches');
 
@@ -55,23 +42,23 @@ export default function ApproachesOverviewPage() {
       <Paragraph className="font-bold">{tApproaches('intro')}</Paragraph>
 
       <ul className="space-x-4 hidden md:flex">
-        {PILLS.map(({ label, ...pill }) => (
+        {categories.map(({ title, slug }) => (
           <li>
-            <Pill {...pill}>{label}</Pill>
+            <Pill target={`/approaches/?filter=${slug}`}>{title}</Pill>
           </li>
         ))}
       </ul>
 
       <Select
-        options={PILLS.map(({ target, label }) => ({ value: target, label }))}
+        options={categories.map(({ title, slug }) => ({ value: `/approaches/?filter=${slug}`, label: title }))}
         onChange={onChange}
         className="md:hidden my-10"
       />
 
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
-        {APPROACHES.map((approach) => (
+        {approaches.map((approach) => (
           <li>
-            <Approach {...approach} />
+            <Approach {...approach} uri={`/${approach.city.slug}/${approach.slug}`} />
           </li>
         ))}
       </ul>
@@ -81,11 +68,15 @@ export default function ApproachesOverviewPage() {
 
 export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['approaches']);
+  const approaches = await fetchAllApproaches(locale);
+  const categories = await fetchApproachCategories(locale);
 
   return {
     revalidate: 60,
     props: {
-      ...translations
+      ...translations,
+      categories,
+      approaches
     }
   };
 }
