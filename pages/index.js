@@ -12,8 +12,9 @@ const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
 import { fetchFeaturedCities } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
+import { fetchIntro } from '@/lib/intro';
 
-export default function HomePage({ cities }) {
+export default function HomePage({ cities, intro }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
@@ -23,7 +24,7 @@ export default function HomePage({ cities }) {
       <SEO title={null} />
 
       {isIntroVisible ? (
-        <Intro onClose={() => setIsIntroVisible(false)} />
+        <Intro onClose={() => setIsIntroVisible(false)} {...intro} />
       ) : (
         <div className="flex flex-col md:flex-row md:h-full">
           <FloatingTabs
@@ -77,12 +78,14 @@ export default function HomePage({ cities }) {
 
 export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'intro', 'approaches']);
+  const intro = await fetchIntro(locale);
   const cities = await fetchFeaturedCities(locale);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
+      intro,
       cities
     }
   };

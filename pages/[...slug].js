@@ -11,7 +11,7 @@ import SidebarMenu from '@/components/SidebarMenu';
 import { fetchCityBySlug, fetchAllCityPaths } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
-export default function CityPage({ city: { name, subtitle , slug, content, approaches } }) {
+export default function CityPage({ city: { name, subtitle , slug, content, approaches, takeaways } }) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
 
@@ -40,11 +40,7 @@ export default function CityPage({ city: { name, subtitle , slug, content, appro
         <CityHeader
           title={name}
           subtitle={subtitle}
-          summary={[
-            'Proactive and pragmatic use of municipal policy space: »Going the extra mile«',
-            'Regional cooperation and solidarity between municipalities: »Joining Forces«',
-            'Systematic involvement of newcomers: »Nothing about us without us«'
-          ]}
+          takeaways={takeaways}
         />
         <BlockSwitch blocks={content} />
 

@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 
 import Heading from '@/components/Heading';
-import Paragraph from '@/components/Paragraph';
+import Markdown from '@/components/Markdown';
 
 export default function Summary({ items }) {
   const { t } = useTranslation('approaches');
@@ -11,11 +11,11 @@ export default function Summary({ items }) {
       <Heading level={5}>{t('keyTakeaways')}</Heading>
 
       <ul className="border border-black md:border-0 rounded-2xl px-4 py-8 mt-4 flex flex-col md:flex-row md:space-x-8">
-        {items.map((item, index) => (
+        {items.map(({ content }, index) => (
           <li>
             <span className="font-raptor text-red-300 font-bold text-5xl">{index + 1}</span>
 
-            <Paragraph>{item}</Paragraph>
+            <Markdown>{content}</Markdown>
           </li>
         ))}
       </ul>

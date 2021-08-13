@@ -1,7 +1,7 @@
 import Columns from '@/components/Columns';
 import Summary from '@/components/Summary';
 
-export default function CityHeader({ title, subtitle, summary }) {
+export default function CityHeader({ title, subtitle, takeaways }) {
   return (
     <header className="bg-yellow-300 pb-20 px-8 md:px-20 mb-8">
       <Columns>
@@ -16,9 +16,9 @@ export default function CityHeader({ title, subtitle, summary }) {
         </div>
       </Columns>
 
-      {summary && (
+      {takeaways && (
         <div className="mt-8">
-          <Summary items={summary} />
+          <Summary items={takeaways} />
         </div>
       )}
     </header>

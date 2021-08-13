@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import Paragraph from '@/components/Paragraph';
 
-import intro from '@/public/images/intro.png';
+import introImage from '@/public/images/intro.png';
 
 function Count({ count, className, onClick = () => {}, ...props }) {
   return (
@@ -20,13 +20,15 @@ function Count({ count, className, onClick = () => {}, ...props }) {
   );
 }
 
-export default function Intro({ onClose = () => {} }) {
+export default function Intro({ onClose = () => {}, title, intro }) {
   const { t } = useTranslation('intro');
 
   return (
     <div className="relative w-full space-y-8 h-screen">
       <div className="md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
-        <h1 className="font-raptor text-4xl font-bold leading-none mb-4">{t('title')}</h1>
+        <h1 className="font-raptor text-4xl font-bold leading-none mb-4">
+          {title}
+        </h1>
 
         <Button onClick={onClose} priority>
           {t('cta')}
@@ -34,11 +36,11 @@ export default function Intro({ onClose = () => {} }) {
       </div>
 
       <div className="md:absolute md:top-0 md:right-72 md:w-full">
-        <Image src={intro} priority placeholder="blur" />
+        <Image src={introImage} priority placeholder="blur" />
       </div>
 
       <Paragraph className="md:absolute md:bottom-8 md:left-8 md:max-w-3xl px-8">
-        {t('intro')}
+        {intro}
       </Paragraph>
 
       <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28">

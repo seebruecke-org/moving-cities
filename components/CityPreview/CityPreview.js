@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
-export default function CityPreview({ title, subtitle, uri, approaches, onClose = () => {} }) {
+export default function CityPreview({ title, subtitle, uri, approaches, intro, onClose = () => {} }) {
   const { t } = useTranslation('city');
   const { t: tApproaches } = useTranslation('approaches');
 
@@ -53,17 +53,17 @@ export default function CityPreview({ title, subtitle, uri, approaches, onClose 
       </div>
 
       <div className="flex flex-col space-y-8">
-        <Heading level={2} as={3}>
-          {t('whatIsUnique')}
-        </Heading>
+        {intro && (
+          <>
+            <Heading level={2} as={3}>
+              {t('whatIsUnique')}
+            </Heading>
 
-        <Markdown>
-          What sets Tilburg apart from other progressive Dutch municipalities is its focus on
-          regional solidarity and prompt efforts to remedy the shortcomings of the Dutch (civic)
-          integration policies. Moreover, newcomers are actively involved in policy processes and
-          all migration policies aim for a stable environment and for mutual commitment between
-          administration and newcomers.
-        </Markdown>
+            <Markdown>
+              {intro}
+            </Markdown>
+          </>
+        )}
 
         {uri && (
           <Button href={uri} className="w-auto self-start">
