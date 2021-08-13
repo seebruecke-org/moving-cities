@@ -51,17 +51,17 @@ export default function HomePage({ cities }) {
 
           <ThreadList
             pane={CityPreview}
-            items={cities.map(({ name, subtitle, approaches, ...city }) => ({
+            items={cities.map(({ name, subtitle, slug, approaches, ...city }) => ({
               title: name,
               subtitle,
-              target: '/palermo',
+              target: `/${slug}`,
               data: {
                 title: name,
                 subtitle,
-                uri: '/palermo',
-                approaches: approaches.map(({ title }) => ({
+                uri: `/${slug}`,
+                approaches: approaches.map(({ title, slug: approachSlug }) => ({
                   title,
-                  uri: '/palermo/whatever'
+                  uri: `/${slug}/${approachSlug}`
                 })),
                 ...city
               }

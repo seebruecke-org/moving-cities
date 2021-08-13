@@ -12,7 +12,11 @@ const BLOCKS = {
   Section
 };
 
-export default function BlockSwitch({ blocks }) {
+export default function BlockSwitch({ blocks = [] }) {
+  if (!blocks || blocks.length === 0) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col">
       {blocks.map(({ __typename, ...block }) => {
