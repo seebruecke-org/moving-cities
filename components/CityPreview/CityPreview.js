@@ -28,7 +28,7 @@ export default function CityPreview({ title, subtitle, uri, approaches, intro, o
           />
         </svg>
 
-        <div>
+        <div className="mr-8">
           <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">{title}</h1>
 
           <p className="text-4xl leading-none font-raptor font-bold">{subtitle}</p>
