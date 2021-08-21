@@ -5,7 +5,14 @@ import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
-export default function CityPreview({ title, subtitle, uri, approaches, intro, onClose = () => {} }) {
+export default function CityPreview({
+  title,
+  subtitle,
+  uri,
+  approaches,
+  intro,
+  onClose = () => {}
+}) {
   const { t } = useTranslation('city');
   const { t: tApproaches } = useTranslation('approaches');
 
@@ -59,9 +66,7 @@ export default function CityPreview({ title, subtitle, uri, approaches, intro, o
               {t('whatIsUnique')}
             </Heading>
 
-            <Markdown>
-              {intro}
-            </Markdown>
+            <Markdown>{intro}</Markdown>
           </>
         )}
 

@@ -1,5 +1,5 @@
-import { useTranslation } from "next-i18next";
-import { useState } from "react";
+import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 import Link from 'next/link';
 
 export default function CountryPreview({ cities }) {
@@ -23,9 +23,7 @@ export default function CountryPreview({ cities }) {
                   {networks.map(({ name: networkName, slug }) => (
                     <li>
                       <Link href={`/${tSlugs('networks')}/${slug}`}>
-                        <a>
-                          {networkName}
-                        </a>
+                        <a>{networkName}</a>
                       </Link>
                     </li>
                   ))}

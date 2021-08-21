@@ -22,13 +22,13 @@ export default function AllNetworksOverview({ networks }) {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro'),
+            tooltip: tCity('featuredCitiesIntro')
           },
 
           {
             target: `/${tSlugs('cities')}`,
             label: tCity('allCities'),
-            tooltip: tCity('allCitiesIntro'),
+            tooltip: tCity('allCitiesIntro')
           },
 
           {
@@ -42,24 +42,23 @@ export default function AllNetworksOverview({ networks }) {
 
       <ThreadList
         pane={NetworkPreview}
-        items={
-          networks.map(({ name, content, cities, slug }) => ({
-            target: `/${tSlugs('networks')}/${slug}`,
+        items={networks.map(({ name, content, cities, slug }) => ({
+          target: `/${tSlugs('networks')}/${slug}`,
+          title: name,
+          subtitle: cities.reduce((acc, city) => {
+            const { country } = city;
+
+            acc = `${acc} ${country?.name}`;
+
+            return acc;
+          }, ''),
+          data: {
             title: name,
-            subtitle: cities.reduce((acc, city) => {
-              const { country } = city;
-
-              acc = `${acc} ${country?.name}`;
-
-              return acc;
-            }, ''),
-            data: {
-              title: name,
-              content,
-              featuredCities: cities.filter(({ is_featured }) => is_featured),
-              cities: cities.filter(({ is_featured }) => !is_featured)
-            }
-          }))}
+            content,
+            featuredCities: cities.filter(({ is_featured }) => is_featured),
+            cities: cities.filter(({ is_featured }) => !is_featured)
+          }
+        }))}
       />
 
       <MapboxMap />

@@ -50,7 +50,10 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
       </ul>
 
       <Select
-        options={categories.map(({ title, slug }) => ({ value: `/approaches/?filter=${slug}`, label: title }))}
+        options={categories.map(({ title, slug }) => ({
+          value: `/approaches/?filter=${slug}`,
+          label: title
+        }))}
         onChange={onChange}
         className="md:hidden my-10"
       />

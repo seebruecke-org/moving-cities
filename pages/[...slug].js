@@ -13,7 +13,9 @@ import SidebarMenu from '@/components/SidebarMenu';
 import { fetchCityBySlug, fetchAllCityPaths } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
-export default function CityPage({ city: { name, subtitle , slug, content, approaches, takeaways } }) {
+export default function CityPage({
+  city: { name, subtitle, slug, content, approaches, takeaways }
+}) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
 
@@ -21,34 +23,35 @@ export default function CityPage({ city: { name, subtitle , slug, content, appro
     <div className="md:flex">
       <SEO title={name} />
 
-      <SidebarMenu items={[
-        {
-          target: `/${slug}`,
-          label: tCity('aboutTheCity'),
-          active: true
-        },
+      <SidebarMenu
+        items={[
+          {
+            target: `/${slug}`,
+            label: tCity('aboutTheCity'),
+            active: true
+          },
 
-        {
-          target: `/${slug}/${approaches?.[0]?.slug}`,
-          label: t('inspiringApproaches'),
-          items: approaches.map(({ title, slug: approachSlug }) => ({
-            target: `/${slug}/${approachSlug}`,
-            label: title
-          }))
-        }
-      ]} />
+          {
+            target: `/${slug}/${approaches?.[0]?.slug}`,
+            label: t('inspiringApproaches'),
+            items: approaches.map(({ title, slug: approachSlug }) => ({
+              target: `/${slug}/${approachSlug}`,
+              label: title
+            }))
+          }
+        ]}
+      />
 
       <article className="flex-grow pb-28">
-        <CityHeader
-          title={name}
-          subtitle={subtitle}
-          takeaways={takeaways}
-        />
+        <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} />
 
-        <BlockSwitch blocks={content} renderers={{
-          Quote,
-          Section
-        }} />
+        <BlockSwitch
+          blocks={content}
+          renderers={{
+            Quote,
+            Section
+          }}
+        />
 
         {approaches?.length > 0 && (
           <div className="px-8 max-w-7xl">
@@ -56,9 +59,11 @@ export default function CityPage({ city: { name, subtitle , slug, content, appro
               <Heading level={2}>{t('inspiringApproaches')}</Heading>
 
               <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
-                {approaches.map(({ slug: approachSlug, ...approach }) => <li>
+                {approaches.map(({ slug: approachSlug, ...approach }) => (
+                  <li>
                     <Approach {...approach} uri={`/${slug}/${approachSlug}`} />
-                  </li>)}
+                  </li>
+                ))}
               </ul>
             </Columns>
           </div>
@@ -69,11 +74,11 @@ export default function CityPage({ city: { name, subtitle , slug, content, appro
 }
 
 export async function getStaticPaths({ locales }) {
-  const cities = await Promise.all(locales.map(async locale => await fetchAllCityPaths(locale)));
+  const cities = await Promise.all(locales.map(async (locale) => await fetchAllCityPaths(locale)));
 
   const paths = cities.flat().map(({ slug }) => ({
     params: { slug: [slug] }
-  }))
+  }));
 
   return {
     paths,
@@ -88,7 +93,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   if (!city) {
     return {
       notFound: true
-    }
+    };
   }
 
   return {

@@ -39,13 +39,13 @@ export default function HomePage({ cities, intro }) {
               {
                 target: `/${tSlugs('cities')}`,
                 label: t('allCities'),
-                tooltip: t('allCitiesIntro'),
+                tooltip: t('allCitiesIntro')
               },
 
               {
                 target: `/${tSlugs('networks')}`,
                 label: t('networks'),
-                tooltip: t('networksIntro'),
+                tooltip: t('networksIntro')
               }
             ]}
           />

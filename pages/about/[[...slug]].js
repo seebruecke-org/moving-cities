@@ -8,32 +8,37 @@ import SidebarMenu from '@/components/SidebarMenu';
 import { fetchAboutBySlug, fetchAllAboutPaths, fetchAllAbouts } from '@/lib/abouts';
 import { getTranslations } from '@/lib/global';
 
-export default function About({ navigation, about: { title, content }}) {
+export default function About({ navigation, about: { title, content } }) {
   return (
     <div className="md:flex">
       <SEO title="About" />
 
-      <SidebarMenu items={navigation.map(({ title, slug }) => ({
-        target: `/about/${slug}`,
-        label: title
-      }))} />
+      <SidebarMenu
+        items={navigation.map(({ title, slug }) => ({
+          target: `/about/${slug}`,
+          label: title
+        }))}
+      />
 
       <article>
         <Heading level={1} className="pl-8 md:pl-10 pt-10">
           {title}
         </Heading>
 
-        <BlockSwitch blocks={content} renderers={{
-          Intro,
-          Section
-        }} />
+        <BlockSwitch
+          blocks={content}
+          renderers={{
+            Intro,
+            Section
+          }}
+        />
       </article>
     </div>
   );
 }
 
 export async function getStaticPaths({ locales }) {
-  const abouts = await Promise.all(locales.map(async locale => await fetchAllAboutPaths(locale)));
+  const abouts = await Promise.all(locales.map(async (locale) => await fetchAllAboutPaths(locale)));
 
   const paths = abouts.flat().map(({ slug }) => ({
     params: { slug: [slug] }
@@ -53,7 +58,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   if (about === null) {
     return {
       notFound: true
-    }
+    };
   }
 
   return {

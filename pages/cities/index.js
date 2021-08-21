@@ -6,7 +6,7 @@ import MapboxMap from '@/components/MapboxMap';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
-import { fetchAllCitiesByCountry } from '@/lib/cities'
+import { fetchAllCitiesByCountry } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
 export default function AllCitiesOverview({ countries }) {
@@ -22,7 +22,7 @@ export default function AllCitiesOverview({ countries }) {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro'),
+            tooltip: tCity('featuredCitiesIntro')
           },
 
           {
@@ -35,7 +35,7 @@ export default function AllCitiesOverview({ countries }) {
           {
             target: `/${tSlugs('networks')}`,
             label: tCity('networks'),
-            tooltip: tCity('networksIntro'),
+            tooltip: tCity('networksIntro')
           }
         ]}
       />

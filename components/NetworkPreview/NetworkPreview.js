@@ -14,7 +14,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
         {title}
       </Heading>
 
-      <BlockSwitch blocks={content} renderers={{Richtext}} />
+      <BlockSwitch blocks={content} renderers={{ Richtext }} />
 
       {featuredCities && (
         <>

@@ -36,7 +36,15 @@ const MENU_ITEMS = [
   }
 ];
 
-export default function CityProgramPage({ approach: { title, intro, content, city: { name: cityName, slug: citySlug }, categories }}) {
+export default function CityProgramPage({
+  approach: {
+    title,
+    intro,
+    content,
+    city: { name: cityName, slug: citySlug },
+    categories
+  }
+}) {
   const { t } = useTranslation('approaches');
 
   return (
@@ -46,33 +54,25 @@ export default function CityProgramPage({ approach: { title, intro, content, cit
       <SidebarMenu items={MENU_ITEMS} />
 
       <article className="flex-grow">
-        <ProgramHeader
-          city={cityName}
-          title={title}
-          pills={categories.map(({ title }) => title)}>
-          <Heading level={2}>
-            {t('whatIsInspiring')}
-          </Heading>
+        <ProgramHeader city={cityName} title={title} pills={categories.map(({ title }) => title)}>
+          <Heading level={2}>{t('whatIsInspiring')}</Heading>
 
-          <Paragraph className="font-bold">
-            {intro}
-          </Paragraph>
+          <Paragraph className="font-bold">{intro}</Paragraph>
         </ProgramHeader>
-        <BlockSwitch
-          blocks={content}
-          renderers={{ Section, Quote }}
-        />
+        <BlockSwitch blocks={content} renderers={{ Section, Quote }} />
       </article>
     </div>
   );
 }
 
 export async function getStaticPaths({ locales }) {
-  const approaches = await Promise.all(locales.map(async locale => await fetchAllApproachPaths(locale)));
+  const approaches = await Promise.all(
+    locales.map(async (locale) => await fetchAllApproachPaths(locale))
+  );
 
   const paths = approaches.flat().map(({ slug, city: { slug: citySlug } }) => ({
     params: { city: citySlug, slug }
-  }))
+  }));
 
   return {
     paths,

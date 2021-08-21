@@ -27,9 +27,7 @@ export default function Intro({ onClose = () => {}, title, intro }) {
   return (
     <div className="relative w-full space-y-8 h-screen">
       <div className="md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
-        <h1 className="font-raptor text-4xl font-bold leading-none mb-4">
-          {title}
-        </h1>
+        <h1 className="font-raptor text-4xl font-bold leading-none mb-4">{title}</h1>
 
         <Button onClick={onClose} priority>
           {t('cta')}
@@ -40,9 +38,7 @@ export default function Intro({ onClose = () => {}, title, intro }) {
         <Image src={introImage} priority placeholder="blur" />
       </div>
 
-      <Paragraph className="md:absolute md:bottom-8 md:left-8 md:max-w-3xl px-8">
-        {intro}
-      </Paragraph>
+      <Paragraph className="md:absolute md:bottom-8 md:left-8 md:max-w-3xl px-8">{intro}</Paragraph>
 
       <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28">
         <Paragraph className="md:max-w-xs md:text-right">
@@ -56,7 +52,8 @@ export default function Intro({ onClose = () => {}, title, intro }) {
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href={`/${tSlugs('networks')}`} count={11} className="text-red-300" /> {t('europeanNetworks')}
+          <Count href={`/${tSlugs('networks')}`} count={11} className="text-red-300" />{' '}
+          {t('europeanNetworks')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">

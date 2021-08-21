@@ -1,11 +1,11 @@
-import { BLOCK_PREFIX } from "@/lib/blocks";
+import { BLOCK_PREFIX } from '@/lib/blocks';
 
 export default function BlockSwitch({ blocks = [], renderers = {} }) {
   if (!blocks || blocks.length === 0) {
     return null;
   }
 
-  const prefixedRenderers = Object.entries(renderers).reduce((acc, [ key, value ]) => {
+  const prefixedRenderers = Object.entries(renderers).reduce((acc, [key, value]) => {
     acc[`${BLOCK_PREFIX}${key}`] = value;
     return acc;
   }, []);
@@ -16,7 +16,7 @@ export default function BlockSwitch({ blocks = [], renderers = {} }) {
         const Component = prefixedRenderers?.[__typename] ?? null;
 
         if (Component === null) {
-          return <pre>Block {__typename} not implemented</pre>
+          return <pre>Block {__typename} not implemented</pre>;
         }
 
         return <Component {...block} />;
