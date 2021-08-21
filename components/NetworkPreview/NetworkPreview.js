@@ -1,6 +1,7 @@
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Button from '@/components/Button';
 import Heading from '@/components/Heading';
+import Richtext from '@/components/Blocks/Richtext';
 
 export default function NetworkPreview({ title, content, featuredCities, cities }) {
   return (
@@ -9,7 +10,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
         {title}
       </Heading>
 
-      {content && <BlockSwitch blocks={content} />}
+      <BlockSwitch blocks={content} renderers={{Richtext}} />
 
       {featuredCities && (
         <>
@@ -17,8 +18,8 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
             Featured cities
           </Heading>
 
-          {featuredCities.map(({ name }) => (
-            <Button>{name}</Button>
+          {featuredCities.map(({ name, slug }) => (
+            <Button href={`/cities/${slug}`}>{name}</Button>
           ))}
         </>
       )}

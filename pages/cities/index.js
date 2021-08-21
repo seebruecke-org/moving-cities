@@ -45,7 +45,7 @@ export default function AllCitiesOverview({ countries }) {
         items={countries.map(({ name, cities }) => ({
           target: '/countries/france',
           title: name,
-          subtitle: cities.length,
+          subtitle: `${cities.length} cities`,
           data: { cities }
         }))}
       />
