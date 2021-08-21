@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Richtext from '@/components/Blocks/Richtext';
 
 export default function NetworkPreview({ title, content, featuredCities, cities }) {
+  const { t: tSlugs } = useTranslation('slugs');
+
   return (
     <article className="bg-white h-full p-10 overflow-y-auto">
       <Heading level={1} as={2}>
@@ -19,7 +23,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
           </Heading>
 
           {featuredCities.map(({ name, slug }) => (
-            <Button href={`/cities/${slug}`}>{name}</Button>
+            <Button href={`/${tSlugs('cities')}/${slug}`}>{name}</Button>
           ))}
         </>
       )}

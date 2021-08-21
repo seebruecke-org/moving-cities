@@ -22,6 +22,7 @@ function Count({ count, className, onClick = () => {}, ...props }) {
 
 export default function Intro({ onClose = () => {}, title, intro }) {
   const { t } = useTranslation('intro');
+  const { t: tSlugs } = useTranslation('slugs');
 
   return (
     <div className="relative w-full space-y-8 h-screen">
@@ -50,16 +51,16 @@ export default function Intro({ onClose = () => {}, title, intro }) {
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/cities" count={684} className="text-pink-300" />{' '}
+          <Count href={`/${tSlugs('cities')}`} count={684} className="text-pink-300" />{' '}
           {t('withSolidarityBasedPolicy')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/networks" count={11} className="text-red-300" /> {t('europeanNetworks')}
+          <Count href={`/${tSlugs('networks')}`} count={11} className="text-red-300" /> {t('europeanNetworks')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/approaches" count={55} className="text-pink-300" />
+          <Count href={`/${tSlugs('approaches')}`} count={55} className="text-pink-300" />
           {t('inspiringApproaches')}
         </Paragraph>
       </div>
