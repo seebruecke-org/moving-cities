@@ -44,7 +44,7 @@ export default function AllNetworksOverview({ networks }) {
         pane={NetworkPreview}
         items={
           networks.map(({ name, content, cities, slug }) => ({
-            target: `/networks/${slug}`,
+            target: `/${tSlugs('networks')}/${slug}`,
             title: name,
             subtitle: cities.reduce((acc, city) => {
               const { country } = city;
