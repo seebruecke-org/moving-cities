@@ -9,7 +9,7 @@ const components = {
   },
 
   p: ({ children }) => {
-    return <Paragraph>{children}</Paragraph>;
+    return <Paragraph className="mb-6">{children}</Paragraph>;
   }
 };
 

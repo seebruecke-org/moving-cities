@@ -8,33 +8,9 @@ import Section from '@/components/Blocks/Section';
 import SidebarMenu from '@/components/SidebarMenu';
 
 import { fetchApproachBySlug, fetchAllApproachPaths } from '@/lib/approaches';
+import { fetchApproaches } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { useTranslation } from 'next-i18next';
-
-const MENU_ITEMS = [
-  {
-    target: '/palermo',
-    label: 'About the City'
-  },
-
-  {
-    target: '/palermo/charter',
-    label: 'Inspiring approaches',
-    active: true,
-    items: [
-      {
-        target: '/palermo/charter',
-        label: 'The TOP Program',
-        active: true
-      },
-
-      {
-        target: '/palermo/open-harbors',
-        label: 'Open Harbors Policy'
-      }
-    ]
-  }
-];
 
 export default function CityProgramPage({
   approach: {
@@ -43,15 +19,35 @@ export default function CityProgramPage({
     content,
     city: { name: cityName, slug: citySlug },
     categories
-  }
+  },
+  menu
 }) {
   const { t } = useTranslation('approaches');
+  const { t: tCity } = useTranslation('city');
 
   return (
     <div className="md:flex">
       <SEO title={title} />
 
-      <SidebarMenu items={MENU_ITEMS} />
+      <SidebarMenu
+        items={[
+          {
+            target: `/${citySlug}`,
+            label: tCity('aboutTheCity')
+          },
+
+          {
+            target: `/${citySlug}/${menu.approaches[0].slug}`,
+            label: t('inspiringApproaches'),
+            active: true,
+            items: menu.approaches.map(({ title, slug: approachSlug }, index) => ({
+              target: `/${citySlug}/${approachSlug}`,
+              label: title,
+              active: index === 0
+            }))
+          }
+        ]}
+      />
 
       <article className="flex-grow">
         <ProgramHeader city={cityName} title={title} pills={categories.map(({ title }) => title)}>
@@ -80,15 +76,17 @@ export async function getStaticPaths({ locales }) {
   };
 }
 
-export async function getStaticProps({ locale, params: { slug } }) {
-  const translations = await getTranslations(locale, 'approaches');
+export async function getStaticProps({ locale, params: { city, slug } }) {
+  const translations = await getTranslations(locale, ['approaches', 'city']);
   const approach = await fetchApproachBySlug(locale, slug);
+  const menu = await fetchApproaches(locale, city);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
-      approach
+      approach,
+      menu
     }
   };
 }

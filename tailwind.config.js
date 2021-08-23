@@ -44,10 +44,12 @@ module.exports = {
       '2xs': '0.75rem'
     },
 
-    extend: {}
+    extend: {
+      maxWidth: {
+        '8xl': '115rem'
+      }
+    }
   },
-  variants: {
-    extend: {}
-  },
+  variants: {},
   plugins: []
 };

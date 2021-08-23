@@ -6,7 +6,7 @@ import Heading from '@/components/Heading';
 import Richtext from '@/components/Blocks/Richtext';
 
 export default function NetworkPreview({ title, content, featuredCities, cities }) {
-  const { t: tSlugs } = useTranslation('slugs');
+  const { t } = useTranslation('networks');
 
   return (
     <article className="bg-white h-full p-10 overflow-y-auto">
@@ -19,11 +19,11 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
       {featuredCities && (
         <>
           <Heading level={2} as={3}>
-            Featured cities
+            {t('featuredCities')}
           </Heading>
 
           {featuredCities.map(({ name, slug }) => (
-            <Button href={`/${tSlugs('cities')}/${slug}`}>{name}</Button>
+            <Button href={`/${slug}`}>{name}</Button>
           ))}
         </>
       )}
@@ -31,7 +31,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
       {cities && (
         <>
           <Heading level={2} as={3}>
-            All cities
+            {t('allCities')}
           </Heading>
 
           <ul>

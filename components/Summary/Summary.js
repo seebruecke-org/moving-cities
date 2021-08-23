@@ -12,7 +12,7 @@ export default function Summary({ items }) {
 
       <ul className="border border-black md:border-0 rounded-2xl px-4 py-8 mt-4 flex flex-col md:flex-row md:space-x-8">
         {items.map(({ content }, index) => (
-          <li>
+          <li className="w-2/3">
             <span className="font-raptor text-red-300 font-bold text-5xl">{index + 1}</span>
 
             <Markdown>{content}</Markdown>

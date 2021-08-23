@@ -21,7 +21,7 @@ export default function Burger({ onOpen = () => {}, onClose = () => {}, classNam
 
         setIsOpen(!isOpen);
       }}
-      className={clsx('md:w-full hover:text-black', className)}>
+      className={clsx('hover:text-black', className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="52"

@@ -3,7 +3,7 @@ import Columns from '@/components/Columns';
 export default function ProgramHeader({ city, title, children }) {
   return (
     <header className="bg-yellow-300 grid pb-20 px-8 md:px-20 pt-20">
-      <Columns>
+      <Columns className="max-w-8xl">
         <div></div>
 
         <div className="space-y-10">

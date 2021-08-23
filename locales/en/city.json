@@ -8,5 +8,10 @@
   "close": "Close",
   "viewCity": "View the city",
   "whatIsUnique": "What is unique about the city?",
-  "aboutTheCity": "About the city"
+  "aboutTheCity": "About the city",
+  "download": {
+    "title": "Download the Report",
+    "intro": "The city report contains all the information about the city’s migration policies, its approaches and political context.",
+    "cta": "Download Report"
+  }
 }

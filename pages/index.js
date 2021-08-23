@@ -60,9 +60,9 @@ export default function HomePage({ cities, intro }) {
                 title: name,
                 subtitle,
                 uri: `/${slug}`,
-                approaches: approaches.map(({ title, slug: approachSlug }) => ({
-                  title,
-                  uri: `/${slug}/${approachSlug}`
+                approaches: approaches.map(({ slug: approachSlug, ...approach }) => ({
+                  uri: `/${slug}/${approachSlug}`,
+                  ...approach
                 })),
                 ...city
               }
