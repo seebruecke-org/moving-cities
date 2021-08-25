@@ -15,7 +15,7 @@ export default function About({ navigation, about: { title, content } }) {
 
       <SidebarMenu
         items={navigation.map(({ title, slug }) => ({
-          target: `/about/${slug !== 'about' && slug}`,
+          target: `/about/${slug !== 'about' ? slug : ''}`,
           label: title
         }))}
       />
