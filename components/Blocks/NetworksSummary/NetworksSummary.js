@@ -3,9 +3,9 @@ import Heading from "@/components/Heading";
 import Markdown from "@/components/Markdown";
 
 export default function NetworksSummary({ networksSummaryTitle, networksSummaryContent }) {
-  return <section className="bg-yellow-300 py-12 px-8 md:px-10">
-    <div className="max-w-8xl grid grid-cols-10">
-      <div className="col-start-4 col-span-7">
+  return <section className="bg-yellow-300 pt-12 pb-6 px-8 md:px-10">
+    <div className="max-w-8xl md:grid md:grid-cols-10">
+      <div className="md:col-start-4 md:col-span-7">
         <Heading level={2}>{networksSummaryTitle}</Heading>
 
         <div className="mt-6 md:mt-8">
@@ -18,16 +18,16 @@ export default function NetworksSummary({ networksSummaryTitle, networksSummaryC
           Member of the following networks
         </Heading>
 
-        <div className="flex space-x-4 mt-6">
-          <Button>
+        <div className="flex mt-6 max-w-full flex-wrap">
+          <Button className="mr-6 mb-6">
             Solidarity City
           </Button>
 
-          <Button>
+          <Button className="mr-6 mb-6">
             Solidarity City
           </Button>
 
-          <Button>
+          <Button className="mr-6 mb-6">
             Solidarity City
           </Button>
         </div>

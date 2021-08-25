@@ -1,0 +1,8 @@
+.icon svg {
+  height: auto;
+  max-width: 100%;
+}
+
+.icon path {
+  fill: white;
+}

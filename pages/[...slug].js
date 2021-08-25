@@ -18,7 +18,7 @@ import { fetchCityBySlug, fetchAllCityPaths } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
 export default function CityPage({
-  city: { name, subtitle, slug, content, report, approaches, takeaways, country, summary }
+  city: { name, subtitle, icon, slug, content, report, approaches, takeaways, country, summary }
 }) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
@@ -47,7 +47,7 @@ export default function CityPage({
       />
 
       <article className="flex-grow pb-28">
-        <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} />
+        <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} icon={icon} />
 
         <BlockSwitch
           blocks={[
@@ -68,11 +68,11 @@ export default function CityPage({
         />
 
         {report && (
-          <Columns className="pl-8 md:pl-10 max-w-8xl md:mt-10">
+          <Columns className="px-8 py-12 md:pl-10 max-w-8xl md:mt-10">
             <Heading level={2}>{report.title}</Heading>
 
             <div className="flex flex-col">
-              <Markdown>{report.content}</Markdown>
+              <Markdown>{report.intro}</Markdown>
 
               <Button href={report.file.url} priority className="self-start mt-8 w-auto">
                 {tCity('download.cta')}
