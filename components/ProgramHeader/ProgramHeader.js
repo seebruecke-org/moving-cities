@@ -1,8 +1,12 @@
+import { useTranslation } from 'next-i18next';
+
 import Button from '@/components/Button';
 import CityIcon from '@/components/CityIcon';
 import Columns from '@/components/Columns';
 
 export default function ProgramHeader({ city, title, icon, children, categories }) {
+  const { t: tSlugs } = useTranslation('slugs');
+
   return (
     <header className="bg-yellow-300 grid py-20 pt-20 px-8 mb-12">
       <Columns className="max-w-8xl">
@@ -16,9 +20,9 @@ export default function ProgramHeader({ city, title, icon, children, categories 
 
           {categories?.length > 0 && (
             <ul className="flex flex-wrap">
-              {categories.map(({ title }) => (
+              {categories.map(({ title, slug }) => (
                 <li>
-                  <Button className="mr-6 mb-6">{title}</Button>
+                  <Button href={`/${tSlugs('approaches')}/${slug}`} className="mr-6 mb-6">{title}</Button>
                 </li>
               ))}
             </ul>

@@ -1,3 +1,5 @@
+import { useTranslation } from 'next-i18next';
+
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Heading from '@/components/Heading';
 import Intro from '@/components/Blocks/Intro';
@@ -9,13 +11,15 @@ import { fetchAboutBySlug, fetchAllAboutPaths, fetchAllAbouts } from '@/lib/abou
 import { getTranslations } from '@/lib/global';
 
 export default function About({ navigation, about: { title, content } }) {
+  const { t: tSlugs } = useTranslation('slugs');
+
   return (
     <div className="md:flex">
-      <SEO title="About" />
+      <SEO title={title} />
 
       <SidebarMenu
         items={navigation.map(({ title, slug }) => ({
-          target: `/about/${slug !== 'about' ? slug : ''}`,
+          target: `/${tSlugs('about')}/${slug !== tSlugs('about') ? slug : ''}`,
           label: title
         }))}
       />
@@ -42,7 +46,6 @@ export async function getStaticPaths({ locales }) {
 
   const paths = abouts
     .flat()
-    .filter(({ slug }) => slug !== 'about')
     .map(({ slug }) => ({
       params: { slug: [slug] }
     }));

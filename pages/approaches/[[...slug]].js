@@ -17,6 +17,7 @@ import { getTranslations } from '@/lib/global';
 
 export default function ApproachesOverviewPage({ approaches, categories }) {
   const router = useRouter();
+  const { t: tSlugs } = useTranslation('slugs');
   const { t: tApproaches } = useTranslation('approaches');
 
   const onChange = ({ value }) => {
@@ -33,24 +34,24 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
 
       <Paragraph className="md:font-bold">{tApproaches('intro')}</Paragraph>
 
-      <ul className="space-x-4 hidden md:flex">
+      <ul className="space-x-4 hidden md:flex mt-6">
         {categories.map(({ title, slug }) => (
           <li>
-            <Pill target={`/approaches/${slug}`}>{title}</Pill>
+            <Pill target={`/${tSlugs('approaches')}/${slug}`} active={slug === router?.query?.slug?.[0]}>{title}</Pill>
           </li>
         ))}
       </ul>
 
       <Select
         options={categories.map(({ title, slug }) => ({
-          value: `/approaches/${slug}`,
+          value: `/${tSlugs('approaches')}/${slug}`,
           label: title
         }))}
         onChange={onChange}
         className="md:hidden my-10"
       />
 
-      <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+      <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
         {approaches.map((approach) => (
           <li>
             <Approach {...approach} uri={`/${approach.city.slug}/${approach.slug}`} />
@@ -76,9 +77,9 @@ export async function getStaticPaths({ locales }) {
   };
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['approaches']);
-  const approaches = await fetchAllApproaches(locale);
+  const approaches = await fetchAllApproaches(locale, slug?.[0]);
   const categories = await fetchApproachCategories(locale);
 
   return {

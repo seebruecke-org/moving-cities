@@ -59,7 +59,7 @@ export default function CityPreview({
           {summary.title}
         </Heading>
 
-        <Markdown>{summary.content}</Markdown>
+        <Markdown isSmall>{summary.content}</Markdown>
 
         {uri && (
           <Button href={uri} className="w-auto self-start">

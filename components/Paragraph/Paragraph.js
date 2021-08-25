@@ -1,5 +1,5 @@
 import clsx from 'clsx';
 
-export default function Paragraph({ children, className }) {
-  return <p className={clsx('text-2xl leading-tight font-raptor', className)}>{children}</p>;
+export default function Paragraph({ children, className, isSmall = false }) {
+  return <p className={clsx('leading-tight font-raptor', className, isSmall ? 'text-2xl' : 'text-3xl')}>{children}</p>;
 }
