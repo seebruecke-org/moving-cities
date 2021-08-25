@@ -46,7 +46,7 @@ export default function CityProgramPage({
             items: menu.approaches.map(({ title, slug: approachSlug }, index) => ({
               target: `/${citySlug}/${approachSlug}`,
               label: title,
-              active: query.slug = approachSlug
+              active: (query.slug = approachSlug)
             }))
           }
         ]}

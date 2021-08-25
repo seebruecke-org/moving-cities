@@ -33,7 +33,7 @@ export default function CityPage({
       target: `/${slug}`,
       label: tCity('aboutTheCity'),
       active: true
-    },
+    }
   ];
 
   if (approaches?.length > 0) {
@@ -44,16 +44,14 @@ export default function CityPage({
         target: `/${slug}/${approachSlug}`,
         label: title
       }))
-    })
+    });
   }
 
   return (
     <div className="md:flex">
       <SEO title={name} />
 
-      <SidebarMenu
-        items={menuItems}
-      />
+      <SidebarMenu items={menuItems} />
 
       <article className="flex-grow pb-28">
         <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} icon={icon} />

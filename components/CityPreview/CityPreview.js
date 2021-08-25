@@ -1,10 +1,13 @@
 import { useTranslation } from 'next-i18next';
+import clsx from 'clsx';
 
 import Approach from '@/components/Approach';
 import Button from '@/components/Button';
 import CityIcon from '@/components/CityIcon';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
+
+import styles from './styles.module.css';
 
 export default function CityPreview({
   title,
@@ -19,7 +22,11 @@ export default function CityPreview({
   const { t: tApproaches } = useTranslation('approaches');
 
   return (
-    <article className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col">
+    <article
+      className={clsx(
+        'bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col',
+        styles.cityPreview
+      )}>
       <div className="flex mb-10 items-start">
         {icon && <CityIcon icon={icon} className="w-56 mr-12" />}
 
@@ -62,7 +69,7 @@ export default function CityPreview({
         )}
 
         {approaches?.length > 0 && (
-          <div className="space-y-8 pt-4">
+          <div className="space-y-8 pt-12">
             <Heading level={2} as={3}>
               {tApproaches('inspiringApproaches')}
             </Heading>
