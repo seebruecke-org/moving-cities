@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import ProgramHeader from '@/components/ProgramHeader';
 import Heading from '@/components/Heading';
@@ -24,6 +26,7 @@ export default function CityProgramPage({
 }) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
+  const { query } = useRouter();
 
   return (
     <div className="md:flex">
@@ -43,7 +46,7 @@ export default function CityProgramPage({
             items: menu.approaches.map(({ title, slug: approachSlug }, index) => ({
               target: `/${citySlug}/${approachSlug}`,
               label: title,
-              active: index === 0
+              active: query.slug = approachSlug
             }))
           }
         ]}

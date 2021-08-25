@@ -28,27 +28,31 @@ export default function CityPage({
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
 
+  const menuItems = [
+    {
+      target: `/${slug}`,
+      label: tCity('aboutTheCity'),
+      active: true
+    },
+  ];
+
+  if (approaches?.length > 0) {
+    menuItems.push({
+      target: `/${slug}/${approaches?.[0]?.slug}`,
+      label: t('inspiringApproaches'),
+      items: approaches.map(({ title, slug: approachSlug }) => ({
+        target: `/${slug}/${approachSlug}`,
+        label: title
+      }))
+    })
+  }
+
   return (
     <div className="md:flex">
       <SEO title={name} />
 
       <SidebarMenu
-        items={[
-          {
-            target: `/${slug}`,
-            label: tCity('aboutTheCity'),
-            active: true
-          },
-
-          {
-            target: `/${slug}/${approaches?.[0]?.slug}`,
-            label: t('inspiringApproaches'),
-            items: approaches.map(({ title, slug: approachSlug }) => ({
-              target: `/${slug}/${approachSlug}`,
-              label: title
-            }))
-          }
-        ]}
+        items={menuItems}
       />
 
       <article className="flex-grow pb-28">
