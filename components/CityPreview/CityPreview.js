@@ -10,7 +10,7 @@ export default function CityPreview({
   subtitle,
   uri,
   approaches,
-  intro,
+  summary,
   onClose = () => {}
 }) {
   const { t } = useTranslation('city');
@@ -60,15 +60,11 @@ export default function CityPreview({
       </div>
 
       <div className="flex flex-col space-y-8">
-        {intro && (
-          <>
-            <Heading level={2} as={3}>
-              {t('whatIsUnique')}
-            </Heading>
+        <Heading level={2} as={3}>
+          {summary.title}
+        </Heading>
 
-            <Markdown>{intro}</Markdown>
-          </>
-        )}
+        <Markdown>{summary.content}</Markdown>
 
         {uri && (
           <Button href={uri} className="w-auto self-start">

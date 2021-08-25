@@ -7,8 +7,8 @@ import Columns from '@/components/Columns';
 import CityHeader from '@/components/CityHeader';
 import CountryContext from '@/components/CountryContext';
 import Heading from '@/components/Heading';
+import Markdown from '@/components/Markdown';
 import NetworksSummary from '@/components/Blocks/NetworksSummary';
-import Paragraph from '@/components/Paragraph';
 import Quote from '@/components/Blocks/Quote';
 import Section from '@/components/Blocks/Section';
 import SEO from '@/components/SEO';
@@ -18,7 +18,7 @@ import { fetchCityBySlug, fetchAllCityPaths } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
 export default function CityPage({
-  city: { name, subtitle, slug, content, report, approaches, takeaways, country }
+  city: { name, subtitle, slug, content, report, approaches, takeaways, country, summary }
 }) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
@@ -50,7 +50,16 @@ export default function CityPage({
         <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} />
 
         <BlockSwitch
-          blocks={content}
+          blocks={[
+            {
+              __typename: 'ComponentBlocksSection',
+              title: summary.title,
+              sectionContent: {
+                content: summary.content
+              }
+            },
+            ...content
+          ]}
           renderers={{
             Quote,
             Section,
@@ -58,14 +67,14 @@ export default function CityPage({
           }}
         />
 
-        {report?.url && (
+        {report && (
           <Columns className="pl-8 md:pl-10 max-w-8xl md:mt-10">
-            <Heading level={2}>{tCity('download.title')}</Heading>
+            <Heading level={2}>{report.title}</Heading>
 
             <div className="flex flex-col">
-              <Paragraph>{tCity('download.intro')}</Paragraph>
+              <Markdown>{report.content}</Markdown>
 
-              <Button href={report.url} priority className="self-start mt-8 w-auto">
+              <Button href={report.file.url} priority className="self-start mt-8 w-auto">
                 {tCity('download.cta')}
               </Button>
             </div>
