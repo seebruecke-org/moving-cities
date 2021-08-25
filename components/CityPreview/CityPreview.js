@@ -61,7 +61,7 @@ export default function CityPreview({
           </Button>
         )}
 
-        {approaches && (
+        {approaches?.length > 0 && (
           <div className="space-y-8 pt-4">
             <Heading level={2} as={3}>
               {tApproaches('inspiringApproaches')}
