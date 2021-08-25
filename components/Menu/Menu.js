@@ -82,7 +82,7 @@ export default function Menu() {
   return (
     <>
       <div className="absolute left-0 top-0 w-full md:w-20 md:h-screen z-50">
-        <header className="bg-gradient-to-r from-pink-300 to-red-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-20 text-white px-8 md:px-4 pt-5 pb-4 md:h-full whitespace-nowrap flex md:block">
+        <header className="bg-gradient-to-br from-red-300 to-pink-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-20 text-white px-8 md:px-4 pt-5 pb-4 md:h-full whitespace-nowrap flex md:block">
           <Burger
             onOpen={() => setIsOverlayOpen(true)}
             onClose={() => setIsOverlayOpen(false)}

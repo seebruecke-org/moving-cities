@@ -15,9 +15,9 @@ import { useTranslation } from 'next-i18next';
 export default function CityProgramPage({
   approach: {
     title,
-    intro,
+    summary,
     content,
-    city: { name: cityName, slug: citySlug },
+    city: { name: cityName, slug: citySlug, icon: cityIcon },
     categories
   },
   menu
@@ -50,10 +50,10 @@ export default function CityProgramPage({
       />
 
       <article className="flex-grow">
-        <ProgramHeader city={cityName} title={title} pills={categories.map(({ title }) => title)}>
-          <Heading level={2}>{t('whatIsInspiring')}</Heading>
+        <ProgramHeader city={cityName} title={title} categories={categories} icon={cityIcon}>
+          <Heading level={2}>{summary.title}</Heading>
 
-          <Paragraph className="font-bold">{intro}</Paragraph>
+          <Paragraph className="font-bold">{summary.content}</Paragraph>
         </ProgramHeader>
         <BlockSwitch blocks={content} renderers={{ Section, Quote }} />
       </article>

@@ -4,8 +4,8 @@ import Summary from '@/components/Summary';
 
 export default function CityHeader({ title, subtitle, takeaways, icon }) {
   return (
-    <header className="bg-yellow-300 py-10 md:py-20 px-8 md:pt-20 mb-8">
-      <Columns className="max-w-8xl md:pl-48 items-center">
+    <header className="bg-yellow-300 py-10 md:py-20 px-8 md:pt-20 mb-12">
+      <Columns className="max-w-8xl items-center">
         <CityIcon icon={icon} />
 
         <div>

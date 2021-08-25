@@ -30,7 +30,7 @@ function SidebarSelect({ items }) {
 
 function SidebarMenu({ items }) {
   return (
-    <nav className="hidden md:block md:sticky top-0 md:h-screen w-72 flex-grow-0 flex-shrink-0 relative">
+    <nav className="hidden md:block md:sticky top-0 md:h-screen w-96 flex-grow-0 flex-shrink-0 relative">
       <span className="absolute top-0 left-full w-3 bg-gradient-to-r from-black h-full opacity-20" />
 
       {items.map(({ target, label, active: topLevelActive, items }, index) => (
@@ -51,7 +51,7 @@ function SidebarMenu({ items }) {
               <Link href={target}>
                 <a
                   className={clsx(
-                    'block pl-12 py-3 hover:underline',
+                    'block pl-12 pr-8 py-3 hover:underline',
                     active && 'underline',
                     topLevelActive && 'bg-yellow-300'
                   )}>

@@ -1,18 +1,22 @@
 import { useTranslation } from 'next-i18next';
+import dynamic from 'next/dynamic';
 
 import Approach from '@/components/Approach';
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Button from '@/components/Button';
 import Columns from '@/components/Columns';
 import CityHeader from '@/components/CityHeader';
-import CountryContext from '@/components/CountryContext';
+import CityNext from '@/components/CityNext';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
+import Media from '@/components/Blocks/Media';
 import NetworksSummary from '@/components/Blocks/NetworksSummary';
 import Quote from '@/components/Blocks/Quote';
 import Section from '@/components/Blocks/Section';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
+
+const CountryContext = dynamic(() => import('@/components/CountryContext'));
 
 import { fetchCityBySlug, fetchAllCityPaths } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
@@ -63,6 +67,7 @@ export default function CityPage({
           renderers={{
             Quote,
             Section,
+            Media,
             NetworksSummary
           }}
         />
@@ -76,6 +81,7 @@ export default function CityPage({
 
               <Button href={report.file.url} priority className="self-start mt-8 w-auto">
                 {tCity('download.cta')}
+                <span className="text-red-300 ml-4">⤓</span>
               </Button>
             </div>
           </Columns>
@@ -88,7 +94,7 @@ export default function CityPage({
         )}
 
         {approaches?.length > 0 && (
-          <Columns className="px-8 md:px-10 max-w-8xl mt-8 md:mt-16">
+          <Columns className="px-8 md:px-10 max-w-8xl mt-8 md:mt-24">
             <Heading level={2}>{t('inspiringApproaches')}</Heading>
 
             <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
@@ -100,6 +106,10 @@ export default function CityPage({
             </ul>
           </Columns>
         )}
+
+        <div className="mt-48">
+          <CityNext name="Marseille" subtitle="Solutions that benefit everyone" uri="/marseille" />
+        </div>
       </article>
     </div>
   );
