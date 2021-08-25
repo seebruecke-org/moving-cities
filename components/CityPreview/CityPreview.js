@@ -21,9 +21,7 @@ export default function CityPreview({
   return (
     <article className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col">
       <div className="flex mb-10 items-start">
-        {icon && (
-          <CityIcon icon={icon} className="w-56 mr-12" />
-        )}
+        {icon && <CityIcon icon={icon} className="w-56 mr-12" />}
 
         <div className="mr-8">
           <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">{title}</h1>

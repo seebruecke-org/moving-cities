@@ -2,7 +2,6 @@ import CityIcon from '@/components/CityIcon';
 import Columns from '@/components/Columns';
 import Summary from '@/components/Summary';
 
-
 export default function CityHeader({ title, subtitle, takeaways, icon }) {
   return (
     <header className="bg-yellow-300 py-10 md:py-20 px-8 md:pt-20 mb-8">
