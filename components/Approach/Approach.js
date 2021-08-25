@@ -29,7 +29,7 @@ export default function Approach({ title, city, categories = [], uri }) {
           ))}
         </ul>
 
-        <button type="button" tabIndex="-1" className="font-raptor font-bold text-xl mt-auto justify-end">
+        <button type="button" tabIndex="-1" className="font-raptor font-bold text-xl mt-auto justify-end self-start">
           {t('readMore')}
           <span className="group-hover:text-red-300 ml-2">⟶</span>
         </button>
