@@ -2,10 +2,12 @@ import NextImage from 'next/image';
 
 import Columns from '@/components/Columns';
 
+import { buildCMSUrl } from '@/lib/api';
+
 export default function Media({ media: { url, width, height } }) {
   const props = {
     layout: 'responsive',
-    src: `http://localhost:1337${url}`,
+    src: buildCMSUrl(url),
     width,
     height
   };

@@ -18,6 +18,7 @@ import SidebarMenu from '@/components/SidebarMenu';
 
 const CountryContext = dynamic(() => import('@/components/CountryContext'));
 
+import { buildCMSUrl } from '@/lib/api';
 import { fetchCityBySlug, fetchAllCityPaths } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
@@ -79,7 +80,10 @@ export default function CityPage({
             <div className="flex flex-col">
               <Markdown>{report.intro}</Markdown>
 
-              <Button href={report.file.url} priority className="self-start mt-8 w-auto">
+              <Button
+                href={buildCMSUrl(report.file.url)}
+                priority
+                className="self-start mt-8 w-auto">
                 {tCity('download.cta')}
                 <span className="text-red-300 ml-4">⤓</span>
               </Button>

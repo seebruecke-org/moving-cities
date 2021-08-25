@@ -7,7 +7,11 @@ export default function Quote({ quoteAuthor: author, quoteContent: content }) {
         <span className="text-red-300">”</span>
       </p>
 
-      {author && <cite className="font-raptor text-xl not-italic col-span-8 leading-none mt-4 md:mt-0">{author}</cite>}
+      {author && (
+        <cite className="font-raptor text-xl not-italic col-span-8 leading-none mt-4 md:mt-0">
+          {author}
+        </cite>
+      )}
     </blockquote>
   );
 }
