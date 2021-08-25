@@ -31,7 +31,7 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
         {tApproaches('inspiringApproaches')}
       </Heading>
 
-      <Paragraph className="font-bold">{tApproaches('intro')}</Paragraph>
+      <Paragraph className="md:font-bold">{tApproaches('intro')}</Paragraph>
 
       <ul className="space-x-4 hidden md:flex">
         {categories.map(({ title, slug }) => (

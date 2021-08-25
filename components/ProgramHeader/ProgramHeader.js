@@ -6,12 +6,12 @@ export default function ProgramHeader({ city, title, icon, children, categories 
   return (
     <header className="bg-yellow-300 grid py-20 pt-20 px-8 mb-12">
       <Columns className="max-w-8xl">
-        <CityIcon icon={icon} />
+        <CityIcon icon={icon} className="w-2/4 md:w-full" />
 
-        <div className="space-y-10">
+        <div className="mt-16 md:mt-0 space-y-10">
           <h1 className="font-raptor font-bold">
             <span className="block text-3xl text-red-300">{city}</span>
-            <span className="font-raptor text-5xl font-bold leading-none">{title}</span>
+            <span className="font-raptor text-4xl md:text-5xl font-bold leading-none">{title}</span>
           </h1>
 
           {categories?.length > 0 && (

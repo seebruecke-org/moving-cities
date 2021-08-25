@@ -9,6 +9,8 @@ import Paragraph from '@/components/Paragraph';
 
 import introImage from '@/public/images/intro.png';
 
+import styles from './styles.module.css';
+
 function Count({ count, className, onClick = () => {}, ...props }) {
   return (
     <Link {...props}>
@@ -26,18 +28,19 @@ export default function Intro({ onClose = () => {}, title, intro }) {
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
-    <div className="relative w-full space-y-8 h-screen overflow-hidden">
-      <div className="md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
-        <h1 className="font-raptor text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300">
+    <div className="relative w-full h-screen overflow-x-hidden">
+      <div className="relative md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
+        <h1 className={clsx("font-raptor text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300", styles.title)}>
           {title}
         </h1>
 
         <Button onClick={onClose} priority>
           {t('cta')}
+          <span className="text-red-300 ml-4">→</span>
         </Button>
       </div>
 
-      <div className="md:absolute md:top-56 md:left-16 md:w-4/5">
+      <div className="-ml-96 md:ml-0 -mr-96 -mt-48 md:mt-0 -mb-16 md:mb-0 md:mr-0 md:absolute md:top-56 md:left-16 md:w-4/5">
         <Image src={introImage} priority placeholder="blur" />
       </div>
 

@@ -21,7 +21,7 @@ export default function HomePage({ cities, intro }) {
 
   return (
     <>
-      <SEO title={null} />
+      <SEO title={null} description={intro} />
 
       {isIntroVisible ? (
         <Intro onClose={() => setIsIntroVisible(false)} {...intro} />

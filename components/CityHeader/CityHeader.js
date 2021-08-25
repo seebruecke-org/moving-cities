@@ -6,9 +6,9 @@ export default function CityHeader({ title, subtitle, takeaways, icon }) {
   return (
     <header className="bg-yellow-300 py-10 md:py-20 px-8 md:pt-20 mb-12">
       <Columns className="max-w-8xl items-center">
-        <CityIcon icon={icon} />
+        <CityIcon icon={icon} className="w-2/4 md:w-full" />
 
-        <div>
+        <div className="mt-12 md:mt-0">
           <h1 className="font-raptor font-bold text-red-300 text-5xl md:text-6xl leading-none">
             {title}
           </h1>
