@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Button from '@/components/Button';
+import Markdown from '@/components/Markdown';
 import Paragraph from '@/components/Paragraph';
 
 import introImage from '@/public/images/intro.png';
@@ -25,22 +26,26 @@ export default function Intro({ onClose = () => {}, title, intro }) {
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
-    <div className="relative w-full space-y-8 h-screen">
+    <div className="relative w-full space-y-8 h-screen overflow-hidden">
       <div className="md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
-        <h1 className="font-raptor text-4xl font-bold leading-none mb-4">{title}</h1>
+        <h1 className="font-raptor text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300">
+          {title}
+        </h1>
 
         <Button onClick={onClose} priority>
           {t('cta')}
         </Button>
       </div>
 
-      <div className="md:absolute md:top-0 md:right-72 md:w-full">
+      <div className="md:absolute md:top-56 md:left-16 md:w-4/5">
         <Image src={introImage} priority placeholder="blur" />
       </div>
 
-      <Paragraph className="md:absolute md:bottom-8 md:left-8 md:max-w-3xl px-8">{intro}</Paragraph>
+      <div className="md:absolute md:bottom-8 md:left-8 md:max-w-5xl px-8">
+        <Markdown>{intro}</Markdown>
+      </div>
 
-      <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28">
+      <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28 md:h-screen justify-between md:flex md:flex-col">
         <Paragraph className="md:max-w-xs md:text-right">
           <Count href="/" count={29} className="text-red-300" onClick={onClose} />{' '}
           {t('withCaseStudies')}
