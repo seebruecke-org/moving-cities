@@ -1,4 +1,6 @@
 import { useTranslation } from 'next-i18next';
+import { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +12,30 @@ import Paragraph from '@/components/Paragraph';
 import introImage from '@/public/images/intro.png';
 
 import styles from './styles.module.css';
+
+function CityShape({ image }) {
+  const duration = 2500;
+  const [active, setActive] = useState(false);
+  const { x } = useSpring({ config: { duration }, x: active ? 1 : 0 });
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setActive(!active);
+    }, duration);
+
+    return () => clearTimeout(id);
+  }, [active]);
+
+  useEffect(() => {
+    setActive(true);
+  }, []);
+
+  return (
+    <div>
+      <Image src={image} priority placeholder="blur" />
+    </div>
+  );
+}
 
 function Count({ count, className, onClick = () => {}, ...props }) {
   return (
@@ -45,7 +71,7 @@ export default function Intro({ onClose = () => {}, title, intro }) {
       </div>
 
       <div className="-ml-96 md:ml-0 -mr-96 -mt-48 md:mt-0 -mb-16 md:mb-0 md:mr-0 md:absolute md:top-56 md:left-16 md:w-4/5">
-        <Image src={introImage} priority placeholder="blur" />
+        <CityShape image={introImage} />
       </div>
 
       <div className="md:absolute md:bottom-8 md:left-8 md:max-w-5xl px-8">

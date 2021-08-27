@@ -14,7 +14,11 @@ export default function Markdown({ children, isSmall }) {
     },
 
     p: ({ children }) => {
-      return <Paragraph className="mb-6" isSmall={isSmall}>{children}</Paragraph>;
+      return (
+        <Paragraph className="mb-6" isSmall={isSmall}>
+          {children}
+        </Paragraph>
+      );
     }
   };
 

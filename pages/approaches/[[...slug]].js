@@ -37,7 +37,11 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
       <ul className="space-x-4 hidden md:flex mt-6">
         {categories.map(({ title, slug }) => (
           <li>
-            <Pill target={`/${tSlugs('approaches')}/${slug}`} active={slug === router?.query?.slug?.[0]}>{title}</Pill>
+            <Pill
+              target={`/${tSlugs('approaches')}/${slug}`}
+              active={slug === router?.query?.slug?.[0]}>
+              {title}
+            </Pill>
           </li>
         ))}
       </ul>

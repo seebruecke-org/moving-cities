@@ -44,11 +44,9 @@ export default function About({ navigation, about: { title, content } }) {
 export async function getStaticPaths({ locales }) {
   const abouts = await Promise.all(locales.map(async (locale) => await fetchAllAboutPaths(locale)));
 
-  const paths = abouts
-    .flat()
-    .map(({ slug }) => ({
-      params: { slug: [slug] }
-    }));
+  const paths = abouts.flat().map(({ slug }) => ({
+    params: { slug: [slug] }
+  }));
 
   return {
     paths,
