@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { options } from 'preact';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { WebMercatorViewport } from 'react-map-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -9,13 +9,22 @@ options.debounceRendering = function (q) {
   q();
 };
 
-export default function MapboxMap() {
+const getFitBounds = (bounds) => {
+  const viewport = new WebMercatorViewport({
+    width: 800,
+    height: 600
+  }).fitBounds(bounds, { padding: 20 });
+
+  const { longitude, latitude, zoom } = viewport;
+  return { longitude, latitude, zoom };
+};
+
+export default function MapboxMap({ children, bounds, options }) {
   const [viewport, setViewport] = useState({
     width: '100%',
     height: '100%',
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 8
+    ...options,
+    ...getFitBounds(bounds)
   });
 
   return (
@@ -24,8 +33,9 @@ export default function MapboxMap() {
         {...viewport}
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/tanja-sb/ckr4smomm0rf717nzwi8x399q"
-        onViewportChange={(nextViewport) => setViewport(nextViewport)}
-      />
+        onViewportChange={(nextViewport) => setViewport(nextViewport)}>
+        {children}
+      </ReactMapGL>
     </div>
   );
 }

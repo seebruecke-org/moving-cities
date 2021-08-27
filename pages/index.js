@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import { Marker } from 'react-map-gl';
 import dynamic from 'next/dynamic';
 
 import SEO from '@/components/SEO';
@@ -11,6 +12,7 @@ const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
 const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
 import { fetchFeaturedCities } from '@/lib/cities';
+import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
 
@@ -18,6 +20,37 @@ export default function HomePage({ cities, intro }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
+  const bounds = getBounds(cities.map(({ coordinates }) => coordinates));
+  const markers = cities.map(
+    ({
+      coordinates: {
+        geometry: { coordinates }
+      },
+      name
+    }) => {
+      const [longitude, latitude] = coordinates;
+
+      return (
+        <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 40 40"
+            width="40"
+            height="40"
+            fill="none">
+            <circle
+              cx="20"
+              cy="20"
+              r="17"
+              stroke="#F55511"
+              stroke-dasharray="4 2"
+              stroke-width="6"
+            />
+          </svg>
+        </Marker>
+      );
+    }
+  );
 
   return (
     <>
@@ -69,7 +102,7 @@ export default function HomePage({ cities, intro }) {
             }))}
           />
 
-          <MapboxMap />
+          <MapboxMap bounds={bounds}>{markers}</MapboxMap>
         </div>
       )}
     </>
