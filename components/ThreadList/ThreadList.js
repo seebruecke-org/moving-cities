@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Item from './Item';
 import PaneWrapper from './PaneWrapper';
 
-export default function ThreadList({ pane, items }) {
+export default function ThreadList({ pane, items, onOpen = () => {}, onClose = () => {} }) {
   const Pane = pane;
   const [paneData, setPaneData] = useState(null);
   const [paneIndex, setPaneIndex] = useState(0);
@@ -17,27 +17,33 @@ export default function ThreadList({ pane, items }) {
       )}
 
       <ul className="h-full">
-        {items.map((item, index) => (
-          <li key={`thread-item-${index}`}>
-            <Item
-              {...item}
-              onClick={(event) => {
-                if (window.innerWidth > 768) {
-                  event.preventDefault();
+        {items.map((item, index) => {
+          const isActive = item.active || (paneData && index === paneIndex);
 
-                  if (paneData && paneIndex === index) {
-                    setPaneData(null);
-                    setPaneIndex(0);
-                  } else {
-                    setPaneData(item.data);
-                    setPaneIndex(index);
+          return (
+            <li key={`thread-item-${index}`}>
+              <Item
+                {...item}
+                onClick={(event) => {
+                  if (window.innerWidth > 768) {
+                    event.preventDefault();
+
+                    if (isActive) {
+                      setPaneData(null);
+                      setPaneIndex(0);
+                      onClose();
+                    } else {
+                      setPaneData(item.data);
+                      setPaneIndex(index);
+                      onOpen(item.data);
+                    }
                   }
-                }
-              }}
-              active={paneData && index === paneIndex}
-            />
-          </li>
-        ))}
+                }}
+                active={isActive}
+              />
+            </li>
+          );
+        })}
       </ul>
 
       {paneData && (
@@ -47,6 +53,7 @@ export default function ThreadList({ pane, items }) {
             onClose={() => {
               setPaneData(null);
               setPaneIndex(0);
+              onClose();
             }}
           />
         </PaneWrapper>

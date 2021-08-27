@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
-export default function ThreadListItem({ target, title, subtitle, active, ...props }) {
+export default function ThreadListItem({ target, title, subtitle, active, data, ...props }) {
   return (
     <Link href={target}>
       <a

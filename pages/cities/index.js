@@ -75,8 +75,8 @@ export default function AllCitiesOverview({ countries }) {
 
       <ThreadList
         pane={CountryPreview}
-        items={countries.map(({ name, cities }) => ({
-          target: '/countries/france',
+        items={countries.map(({ name, cities, slug }) => ({
+          target: `/${tSlugs('cities')}/${slug}`,
           title: name,
           subtitle: `${cities.length} cities`,
           data: { cities }

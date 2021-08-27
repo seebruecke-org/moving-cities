@@ -99,21 +99,6 @@ export default function AllNetworksOverview({ networks }) {
   );
 }
 
-export async function getStaticPaths({ locales }) {
-  const networks = await Promise.all(
-    locales.map(async (locale) => await fetchAllNetworkPaths(locale))
-  );
-
-  const paths = networks.flat().map(({ slug }) => ({
-    params: { slug: [slug] }
-  }));
-
-  return {
-    paths,
-    fallback: 'blocking'
-  };
-}
-
 export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'networks']);
   const networks = await fetchAllNetworks(locale);

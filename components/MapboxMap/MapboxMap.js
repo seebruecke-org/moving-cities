@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { options } from 'preact';
 import ReactMapGL, { WebMercatorViewport } from 'react-map-gl';
 
@@ -10,6 +10,10 @@ options.debounceRendering = function (q) {
 };
 
 const getFitBounds = (bounds) => {
+  if (!bounds) {
+    return {};
+  }
+
   const viewport = new WebMercatorViewport({
     width: 800,
     height: 600
@@ -23,9 +27,13 @@ export default function MapboxMap({ children, bounds, options }) {
   const [viewport, setViewport] = useState({
     width: '100%',
     height: '100%',
-    ...options,
-    ...getFitBounds(bounds)
+    ...getFitBounds(bounds),
+    ...options
   });
+
+  useEffect(() => {
+    setViewport((state) => ({ ...state, ...options }));
+  }, [options]);
 
   return (
     <div className="h-full w-full z-0 hidden md:block">

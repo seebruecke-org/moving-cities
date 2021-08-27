@@ -15,36 +15,62 @@ import { fetchFeaturedCities } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
+import { useStore } from '@/lib/store';
 
 export default function HomePage({ cities, intro }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
-  const bounds = getBounds(cities.map(({ coordinates }) => coordinates));
+  const mapProps = {};
+  const { setActiveCity, setFocusedCity } = useStore();
+  const activeCity = useStore((state) => state.activeCity);
+  const focusedCity = useStore((state) => state.focusedCity);
+
+  if (activeCity) {
+    const [longitude, latitude] = activeCity.coordinates.geometry.coordinates;
+
+    mapProps.options = {
+      latitude,
+      longitude,
+      zoom: 8
+    };
+  } else {
+    mapProps.bounds = getBounds(cities.map(({ coordinates }) => coordinates));
+  }
+
   const markers = cities.map(
     ({
       coordinates: {
         geometry: { coordinates }
       },
+      id,
       name
     }) => {
       const [longitude, latitude] = coordinates;
 
       return (
-        <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
+        <Marker
+          key={`marker-${name}`}
+          longitude={longitude}
+          latitude={latitude}
+          onClick={() => {
+            setFocusedCity({ id });
+          }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 40 40"
             width="40"
             height="40"
-            fill="none">
+            fill="none"
+            className="group cursor-pointer">
             <circle
               cx="20"
               cy="20"
               r="17"
-              stroke="#F55511"
+              stroke="currentColor"
               stroke-dasharray="4 2"
               stroke-width="6"
+              className="text-red-300 group-hover:text-black"
             />
           </svg>
         </Marker>
@@ -85,10 +111,17 @@ export default function HomePage({ cities, intro }) {
 
           <ThreadList
             pane={CityPreview}
-            items={cities.map(({ name, subtitle, slug, approaches, ...city }) => ({
+            onOpen={({ id, coordinates }) => {
+              setActiveCity({ id, coordinates });
+            }}
+            onClose={() => {
+              setActiveCity(null);
+            }}
+            items={cities.map(({ id, name, subtitle, slug, approaches, ...city }) => ({
               title: name,
               subtitle,
               target: `/${slug}`,
+              active: focusedCity?.id === id,
               data: {
                 title: name,
                 subtitle,
@@ -102,7 +135,7 @@ export default function HomePage({ cities, intro }) {
             }))}
           />
 
-          <MapboxMap bounds={bounds}>{markers}</MapboxMap>
+          <MapboxMap {...mapProps}>{markers}</MapboxMap>
         </div>
       )}
     </>
