@@ -17,7 +17,7 @@ import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
 import { useStore } from '@/lib/store';
 
-export default function HomePage({ cities, intro }) {
+export default function HomePage({ cities, intro, routeHasChanged }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
@@ -82,7 +82,7 @@ export default function HomePage({ cities, intro }) {
     <>
       <SEO title={null} description={intro} />
 
-      {isIntroVisible ? (
+      {isIntroVisible && !routeHasChanged ? (
         <Intro onClose={() => setIsIntroVisible(false)} {...intro} />
       ) : (
         <div className="flex flex-col md:flex-row md:h-full">
