@@ -13,7 +13,7 @@ export default function Section({ title, sectionContent: { content } }) {
         <span />
       )}
 
-      <Markdown>{content}</Markdown>
+      <Markdown isSmall={false}>{content}</Markdown>
     </Columns>
   );
 }

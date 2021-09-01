@@ -25,7 +25,11 @@ function SidebarSelect({ items }) {
     router.push(value);
   };
 
-  return <Select options={options} className="md:hidden" onChange={onChange} />;
+  return (
+    <div className="py-6 px-8">
+      <Select options={options} className="md:hidden" onChange={onChange} />
+    </div>
+  );
 }
 
 function SidebarMenu({ items }) {

@@ -6,7 +6,7 @@ export default function Section({ introContent: content }) {
     <Columns className="max-w-8xl">
       <span />
 
-      <Paragraph className="text-4xl font-bold pl-8">{content}</Paragraph>
+      <Paragraph className="text-l md:text-3xl font-bold pl-8 leading-tight">{content}</Paragraph>
     </Columns>
   );
 }

@@ -25,8 +25,8 @@ export default function About({ navigation, about: { title, content } }) {
       />
 
       <article>
-        <Heading level={1} className="pl-8 md:pl-10 pt-10">
-          {title}
+        <Heading level={1} className="pl-8 md:pl-10 pt-10 md:pt-10 mb-4 md:mb-20">
+          <span className="text-3xl md:text-6xl leading-none block">{title}</span>
         </Heading>
 
         <BlockSwitch
