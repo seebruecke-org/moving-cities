@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Item from './Item';
 import PaneWrapper from './PaneWrapper';
@@ -7,6 +7,15 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
   const Pane = pane;
   const [paneData, setPaneData] = useState(null);
   const [paneIndex, setPaneIndex] = useState(0);
+
+  useEffect(() => {
+    const activeItemIndex = items.findIndex(({ active }) => active === true);
+
+    if (activeItemIndex !== -1) {
+      setPaneIndex(activeItemIndex);
+      setPaneData(items[activeItemIndex]?.data);
+    }
+  }, [items]);
 
   return (
     <nav className="md:h-full relative z-20 md:w-96 flex-grow-0 flex-shrink-0">
@@ -18,7 +27,7 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
 
       <ul className="h-full">
         {items.map((item, index) => {
-          const isActive = item.active || (paneData && index === paneIndex);
+          const isActive = paneData && index === paneIndex;
 
           return (
             <li key={`thread-item-${index}`}>

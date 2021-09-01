@@ -1,3 +1,5 @@
-.networkPreview {
-  min-width: 69rem;
+@screen md {
+  .networkPreview {
+    min-width: 69rem;
+  }
 }

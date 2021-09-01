@@ -12,12 +12,16 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
   const { t } = useTranslation('networks');
 
   return (
-    <article className={clsx('bg-white h-full p-10 overflow-y-auto', styles.networkPreview)}>
+    <article
+      className={clsx(
+        'bg-white h-full p-8 md:p-10 overflow-y-auto pb-28 md:pb-0',
+        styles.networkPreview
+      )}>
       <Heading level={1} as={2}>
         {title}
       </Heading>
 
-      <div className="mt-28">
+      <div className="mt-10 md:mt-28">
         <BlockSwitch blocks={content} renderers={{ Richtext }} />
       </div>
 

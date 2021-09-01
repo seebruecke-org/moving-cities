@@ -1,6 +1,9 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
+import { useRouter } from 'next/router';
+import clsx from 'clsx';
 
+import BackTo from '@/components/BackTo';
 import CountryPreview from '@/components/CountryPreview';
 import FloatingTabs from '@/components/FloatingTabs';
 import MapboxMap from '@/components/MapboxMap';
@@ -10,10 +13,12 @@ import ThreadList from '@/components/ThreadList';
 import { fetchAllCitiesByCountry } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
+import { fetchAllCountryPaths } from '@/lib/networks';
 
 export default function AllCitiesOverview({ countries }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
+  const { query } = useRouter();
 
   const bounds = getBounds(
     countries.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
@@ -50,7 +55,10 @@ export default function AllCitiesOverview({ countries }) {
     <div className="flex flex-col md:flex-row md:h-full">
       <SEO title={tCity('allCities')} />
 
+      {query?.slug && <BackTo title="All cities" uri="/cities" className="md:hidden" />}
+
       <FloatingTabs
+        className={clsx(query?.slug && 'hidden md:block')}
         items={[
           {
             target: '/',
@@ -75,12 +83,20 @@ export default function AllCitiesOverview({ countries }) {
 
       <ThreadList
         pane={CountryPreview}
-        items={countries.map(({ name, cities, slug }) => ({
-          target: `/${tSlugs('cities')}/${slug}`,
-          title: name,
-          subtitle: `${cities.length} cities`,
-          data: { cities }
-        }))}
+        onOpen={({ target }) => {
+          //router.push(target, undefined, { shallow: true });
+        }}
+        items={countries.map(({ name, cities, slug, ...country }) => {
+          const target = `/${tSlugs('cities')}/${slug}`;
+
+          return {
+            ...country,
+            target,
+            title: name,
+            subtitle: `${cities.length} cities`,
+            data: { cities, target }
+          };
+        })}
       />
 
       <MapboxMap bounds={bounds}>{markers}</MapboxMap>
@@ -88,9 +104,24 @@ export default function AllCitiesOverview({ countries }) {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticPaths({ locales }) {
+  const countries = await Promise.all(
+    locales.map(async (locale) => await fetchAllCountryPaths(locale))
+  );
+
+  const paths = countries.flat().map(({ slug }) => ({
+    params: { slug: [slug] }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking'
+  };
+}
+
+export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city']);
-  const countries = await fetchAllCitiesByCountry(locale);
+  const countries = await fetchAllCitiesByCountry(locale, { active: slug?.[0] });
 
   return {
     revalidate: 60,

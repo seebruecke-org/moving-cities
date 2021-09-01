@@ -1,6 +1,9 @@
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import { Marker } from 'react-map-gl';
+import clsx from 'clsx';
 
+import BackTo from '@/components/BackTo';
 import FloatingTabs from '@/components/FloatingTabs';
 import MapboxMap from '@/components/MapboxMap';
 import NetworkPreview from '@/components/NetworkPreview';
@@ -11,9 +14,11 @@ import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
 
-export default function AllNetworksOverview({ networks }) {
+export default function NetworkPage({ networks }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
+  const { t } = useTranslation('networks');
+  const { query } = useRouter();
 
   const bounds = getBounds(
     networks.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
@@ -48,9 +53,12 @@ export default function AllNetworksOverview({ networks }) {
 
   return (
     <div className="flex flex-col md:flex-row md:h-full">
-      <SEO title="All networks" />
+      <SEO title={t('allNetworks')} />
+
+      {query?.slug && <BackTo title="All networks" uri="/networks" className="md:hidden" />}
 
       <FloatingTabs
+        className={clsx(query?.slug && 'hidden md:block')}
         items={[
           {
             target: '/',
@@ -75,7 +83,8 @@ export default function AllNetworksOverview({ networks }) {
 
       <ThreadList
         pane={NetworkPreview}
-        items={networks.map(({ name, content, cities, slug }) => ({
+        items={networks.map(({ name, content, cities, slug, ...network }) => ({
+          ...network,
           target: `/${tSlugs('networks')}/${slug}`,
           title: name,
           subtitle: cities.reduce((acc, city) => {
@@ -99,9 +108,24 @@ export default function AllNetworksOverview({ networks }) {
   );
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticPaths({ locales }) {
+  const networks = await Promise.all(
+    locales.map(async (locale) => await fetchAllNetworkPaths(locale))
+  );
+
+  const paths = networks.flat().map(({ slug }) => ({
+    params: { slug: [slug] }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking'
+  };
+}
+
+export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city', 'networks']);
-  const networks = await fetchAllNetworks(locale);
+  const networks = await fetchAllNetworks(locale, { active: slug?.[0] });
 
   return {
     revalidate: 60,
