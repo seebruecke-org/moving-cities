@@ -7,7 +7,7 @@ export default function BackTo({ title, uri, className }) {
       <Link href={uri}>
         <a
           className={clsx(
-            'font-bold font-raptor text-xl block py-6 shadow-xl px-8 hover:text-red-300',
+            'font-bold font-raptor text-s block py-6 shadow-xl px-6 hover:text-red-300',
             className
           )}>
           <span className="text-red-300 mr-2">⟵</span>

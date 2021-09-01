@@ -1,13 +1,22 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 
-export default function ThreadListItem({ target, title, subtitle, active, data, ...props }) {
+export default function ThreadListItem({
+  target,
+  title,
+  subtitle,
+  active,
+  data,
+  className,
+  ...props
+}) {
   return (
     <Link href={target}>
       <a
         className={clsx(
           'flex items-start pl-6 pr-4 py-4 hover:bg-yellow-300 border-b border-grey-300',
-          active && 'bg-yellow-300'
+          active && 'bg-yellow-300',
+          className
         )}
         {...props}>
         <span>

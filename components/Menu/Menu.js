@@ -46,7 +46,7 @@ const OVERLAY_SECONDARY_ITEMS = [
 function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-5xl hover:text-black" {...props}>
+      <a className="font-raptor font-bold text-3xl hover:text-black" {...props}>
         {label}
       </a>
     </Link>
@@ -56,7 +56,7 @@ function OverlayItemPrimary({ target, label, ...props }) {
 function OverlayItemSecondary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-3xl hover:text-black" {...props}>
+      <a className="font-raptor font-bold text-m hover:text-black" {...props}>
         {label}
       </a>
     </Link>

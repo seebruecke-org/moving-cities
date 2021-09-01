@@ -26,13 +26,14 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
       )}
 
       <ul className="h-full">
-        {items.map((item, index) => {
+        {items.map(({ className, ...item }, index) => {
           const isActive = paneData && index === paneIndex;
 
           return (
             <li key={`thread-item-${index}`}>
               <Item
                 {...item}
+                className={className}
                 onClick={(event) => {
                   if (window.innerWidth > 768) {
                     event.preventDefault();

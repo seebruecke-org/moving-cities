@@ -83,10 +83,12 @@ export default function NetworkPage({ networks }) {
 
       <ThreadList
         pane={NetworkPreview}
-        items={networks.map(({ name, content, cities, slug, ...network }) => ({
+        items={networks.map(({ name, content, cities, slug, active, ...network }) => ({
           ...network,
+          className: clsx(!active && 'hidden md:block'),
           target: `/${tSlugs('networks')}/${slug}`,
           title: name,
+          active,
           subtitle: cities.reduce((acc, city) => {
             const { country } = city;
 
