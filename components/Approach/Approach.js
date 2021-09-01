@@ -10,9 +10,9 @@ export default function Approach({ title, city, categories = [], uri }) {
     <Link href={uri}>
       <a className="flex flex-col rounded-xl border-2 border-black hover:border-red-300 p-7 group h-full">
         <Heading level={3} as={4}>
-          {city?.title && (
-            <span>
-              {city.title}
+          {city?.name && (
+            <span className="block text-xl mb-4 font-normal">
+              {city.name}
               <span className="sr-only">:</span>
             </span>
           )}
@@ -23,8 +23,8 @@ export default function Approach({ title, city, categories = [], uri }) {
         <ul className="flex flex-wrap mt-2 mb-4">
           {categories.map(({ title }, index) => (
             <li className="flex flex-wrap">
-              {index > 0 && <span className="text-m mx-2">•</span>}
-              <p className="text-l">{title}</p>
+              {index > 0 && <span className="font-raptor text-l leading-normal mx-2">•</span>}
+              <p className="font-raptor text-l leading-normal">{title}</p>
             </li>
           ))}
         </ul>
