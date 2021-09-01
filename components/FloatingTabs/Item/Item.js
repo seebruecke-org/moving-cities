@@ -1,11 +1,13 @@
+import { forwardRef } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 
-export default function FloatingTabsItem({ target, label, active = false, className, ...props }) {
+function FloatingTabsItem({ target, label, active = false, className, ...props }, ref) {
   return (
     <>
       <Link href={target}>
         <a
+          ref={ref}
           className={clsx(
             'px-6 pt-6 pb-5 text-l font-raptor font-semibold h-full flex leading-none',
             active && 'bg-yellow-300 shadow-md',
@@ -18,3 +20,5 @@ export default function FloatingTabsItem({ target, label, active = false, classN
     </>
   );
 }
+
+export default forwardRef(FloatingTabsItem);
