@@ -55,7 +55,9 @@ export default function AllCitiesOverview({ countries }) {
     <div className="flex flex-col md:flex-row md:h-full">
       <SEO title={tCity('allCities')} />
 
-      {query?.slug && <BackTo title="All cities" uri="/cities" className="md:hidden" />}
+      {query?.slug && (
+        <BackTo title={tCity('allCities')} uri={`/${tSlugs('cities')}`} className="md:hidden" />
+      )}
 
       <FloatingTabs
         className={clsx(query?.slug && 'hidden md:block')}
@@ -83,9 +85,6 @@ export default function AllCitiesOverview({ countries }) {
 
       <ThreadList
         pane={CountryPreview}
-        onOpen={({ target }) => {
-          //router.push(target, undefined, { shallow: true });
-        }}
         items={countries.map(({ name, cities, slug, ...country }) => {
           const target = `/${tSlugs('cities')}/${slug}`;
 

@@ -55,7 +55,9 @@ export default function NetworkPage({ networks }) {
     <div className="flex flex-col md:flex-row md:h-full">
       <SEO title={t('allNetworks')} />
 
-      {query?.slug && <BackTo title="All networks" uri="/networks" className="md:hidden" />}
+      {query?.slug && (
+        <BackTo title={t('allNetworks')} uri={`/${tSlugs('networks')}`} className="md:hidden" />
+      )}
 
       <FloatingTabs
         className={clsx(query?.slug && 'hidden md:block')}

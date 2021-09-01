@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import Item from './Item';
 import PaneWrapper from './PaneWrapper';
 
+const SCREEN_SMALL = 768;
+
 export default function ThreadList({ pane, items, onOpen = () => {}, onClose = () => {} }) {
   const Pane = pane;
   const [paneData, setPaneData] = useState(null);
@@ -11,7 +13,7 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
   useEffect(() => {
     const activeItemIndex = items.findIndex(({ active }) => active === true);
 
-    if (activeItemIndex !== -1) {
+    if (activeItemIndex !== -1 && window.innerWidth > SCREEN_SMALL) {
       setPaneIndex(activeItemIndex);
       setPaneData(items[activeItemIndex]?.data);
     }
@@ -35,7 +37,7 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
                 {...item}
                 className={className}
                 onClick={(event) => {
-                  if (window.innerWidth > 768) {
+                  if (window.innerWidth > SCREEN_SMALL) {
                     event.preventDefault();
 
                     if (isActive) {
