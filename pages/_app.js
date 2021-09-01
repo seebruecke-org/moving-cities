@@ -30,7 +30,7 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
     <Provider createStore={createStore}>
       <Menu />
 
-      <main className="relative md:ml-20 md:h-screen">
+      <main className="relative md:ml-24 md:h-screen">
         <Component {...pageProps} routeHasChanged={routeHasChanged} />
       </main>
     </Provider>

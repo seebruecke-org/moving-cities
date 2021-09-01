@@ -20,10 +20,10 @@ export default function FloatingTabs({ items, className }) {
   }, [activeItemIndex]);
 
   return (
-    <div className={clsx('md:absolute md:top-12 md:right-12 md:rounded-lg z-10', className)}>
-      <ul className="flex bg-white shadow-lg">
+    <div className={clsx('md:absolute md:top-12 md:right-12 z-10', className)}>
+      <ul className="flex bg-white shadow-lg md:rounded-lg overflow-hidden">
         {items.map(({ tooltip, ...item }, index) => (
-          <li className={clsx('w-2/3 md:w-auto')}>
+          <li className={clsx('w-2/3')}>
             <Item
               {...item}
               className={clsx(index > 0 && 'border-l border-grey-300')}

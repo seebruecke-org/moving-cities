@@ -9,12 +9,13 @@ function FloatingTabsItem({ target, label, active = false, className, ...props }
         <a
           ref={ref}
           className={clsx(
-            'px-6 pt-6 pb-5 text-xs font-raptor font-semibold h-full flex leading-none',
+            'px-6 pt-4 pb-3 text-xs font-raptor font-semibold h-full flex flex-col leading-tight',
             active && 'bg-yellow-300 shadow-md',
             className
           )}
           {...props}>
-          {label}
+          <span className="md:whitespace-nowrap">{label}</span>
+          <span>(28)</span>
         </a>
       </Link>
     </>

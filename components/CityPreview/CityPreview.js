@@ -27,8 +27,8 @@ export default function CityPreview({
         'bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col',
         styles.cityPreview
       )}>
-      <div className="flex mb-10 items-start">
-        {icon && <CityIcon icon={icon} className="w-56 mr-12" />}
+      <div className="flex mb-24 items-start">
+        {icon && <CityIcon icon={icon} className="w-52 mr-12" />}
 
         <div className="mr-8">
           <h1 className="text-red-300 text-5xl font-raptor font-bold leading-none">{title}</h1>
@@ -36,7 +36,7 @@ export default function CityPreview({
           <p className="text-3xl leading-none font-raptor font-bold">{subtitle}</p>
         </div>
 
-        <button onClick={onClose} className="group font-raptor font-semibold mt-2">
+        <button onClick={onClose} className="group font-raptor font-semibold font-2xs mt-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="37"
