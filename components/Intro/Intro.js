@@ -41,7 +41,7 @@ function Count({ count, className, onClick = () => {}, ...props }) {
   return (
     <Link {...props}>
       <a
-        className={clsx('font-raptor text-6xl font-bold underline block', className)}
+        className={clsx('font-raptor text-5xl font-bold underline block', className)}
         onClick={onClick}>
         {count}
       </a>
@@ -55,7 +55,7 @@ export default function Intro({ onClose = () => {}, title, intro }) {
 
   return (
     <div className="relative w-full h-screen overflow-x-hidden">
-      <div className="relative md:absolute md:top-8 md:left-8 z-10 md:max-w-3xl px-8 pt-12">
+      <div className="relative md:absolute md:top-8 md:left-8 z-10 md:max-w-5xl px-8 pt-12">
         <h1
           className={clsx(
             'font-raptor text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',

@@ -31,17 +31,17 @@ module.exports = {
     },
 
     fontSize: {
-      '6xl': '7.5rem',
-      '5xl': '4rem',
-      '4xl': '3rem',
-      '3xl': '2.25rem',
-      '2xl': '1.875rem',
-      xl: '1.5rem',
-      l: '1.31rem',
-      m: '1.13rem',
-      s: '1rem',
-      xs: '0.875rem',
-      '2xs': '0.75rem'
+      '6xl': '12rem',
+      '5xl': '6.4rem',
+      '4xl': '4.8rem',
+      '3xl': '3.6rem',
+      '2xl': '3rem',
+      xl: '2.4rem',
+      l: '2.1rem',
+      m: '1.8rem',
+      s: '1.6rem',
+      xs: '1.4rem',
+      '2xs': '1.2rem'
     },
 
     extend: {

@@ -31,9 +31,9 @@ export default function CityPreview({
         {icon && <CityIcon icon={icon} className="w-56 mr-12" />}
 
         <div className="mr-8">
-          <h1 className="text-red-300 text-6xl font-raptor font-bold leading-none">{title}</h1>
+          <h1 className="text-red-300 text-5xl font-raptor font-bold leading-none">{title}</h1>
 
-          <p className="text-4xl leading-none font-raptor font-bold">{subtitle}</p>
+          <p className="text-3xl leading-none font-raptor font-bold">{subtitle}</p>
         </div>
 
         <button onClick={onClose} className="group font-raptor font-semibold mt-2">
@@ -49,6 +49,11 @@ export default function CityPreview({
               stroke-width="3"
               d="M3.6 3.5l30 30M3.6 33.5l30-30"
             />
+            Regional solidarity and pragmatic solutions: What sets Tilburg apart from other
+            progressive Dutch municipalities is its focus on regional solidarity and prompt efforts
+            to remedy the shortcomings of the Dutch (civic) integration policies. Moreover,
+            newcomers are actively involved in policy processes and all migration policies aim for a
+            stable environment and for mutual commitment between administration and newcomers.
           </svg>
           {t('close')}
         </button>
@@ -64,7 +69,7 @@ export default function CityPreview({
         {uri && (
           <Button href={uri} className="w-auto self-start">
             {t('viewCity')}
-            <span className="text-red-300 ml-3 text-4xl leading-none -my-4">→</span>
+            <span className="text-red-300 ml-4 text-3xl leading-none -my-3">→</span>
           </Button>
         )}
 

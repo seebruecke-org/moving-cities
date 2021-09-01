@@ -38,9 +38,9 @@ function SidebarMenu({ items }) {
           <Link href={target}>
             <a
               className={clsx(
-                'px-8 block whitespace-nowrap font-bold pb-8 hover:bg-yellow-300',
+                'px-12 block font-raptor font-bold pb-6 hover:bg-yellow-300 text-m leading-snug',
                 topLevelActive && 'bg-yellow-300',
-                index === 0 ? 'pt-16' : 'pt-8'
+                index === 0 ? 'pt-24' : 'pt-8'
               )}>
               {label}
             </a>
@@ -51,7 +51,7 @@ function SidebarMenu({ items }) {
               <Link href={target}>
                 <a
                   className={clsx(
-                    'block pl-12 pr-8 py-3 hover:underline',
+                    'block pl-12 pr-8 py-3 hover:underline font-raptor text-xs',
                     active && 'underline',
                     topLevelActive && 'bg-yellow-300'
                   )}>

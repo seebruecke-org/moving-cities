@@ -17,7 +17,7 @@ function CityItem({ name, networks }) {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="flex justify-between font-raptor text-xl py-4 px-8 w-full group">
+          className="flex justify-between font-raptor text-m py-4 px-8 w-full group">
           <span className="group-hover:underline">{name}</span>
 
           {isOpen ? '-' : '+'}
@@ -25,7 +25,7 @@ function CityItem({ name, networks }) {
 
         {isOpen && (
           <div>
-            <Heading level={3} as={4} className="px-8 py-4">
+            <Heading level={3} as={5} className="px-8 py-4">
               City Networks
             </Heading>
 
@@ -33,7 +33,7 @@ function CityItem({ name, networks }) {
               {networks.map(({ name: networkName, slug }) => (
                 <li>
                   <Link href={`/${tSlugs('networks')}/${slug}`}>
-                    <a className="font-raptor text-xl group">
+                    <a className="font-raptor text-s group">
                       <span className="group-hover:underline">{networkName}</span>
 
                       <span className="text-red-300 ml-4">⟶</span>

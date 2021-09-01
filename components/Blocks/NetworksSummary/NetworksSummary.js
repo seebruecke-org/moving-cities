@@ -4,12 +4,12 @@ import Markdown from '@/components/Markdown';
 
 export default function NetworksSummary({ networksSummaryTitle, networksSummaryContent }) {
   return (
-    <section className="bg-yellow-300 pt-20 pb-16 px-8 md:px-10">
-      <div className="max-w-8xl md:grid md:grid-cols-10">
-        <div className="md:col-start-4 md:col-span-6">
+    <section className="bg-yellow-300 pt-16 pb-16 px-8 md:px-28">
+      <div className="max-w-8xl md:grid md:grid-cols-9">
+        <div className="md:col-start-4 md:col-span-5">
           <Heading level={2}>{networksSummaryTitle}</Heading>
 
-          <div className="mt-6 md:mt-8">
+          <div className="mt-6 md:mt-12">
             <Markdown>{networksSummaryContent}</Markdown>
           </div>
 

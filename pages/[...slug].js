@@ -80,7 +80,9 @@ export default function CityPage({
             <Heading level={2}>{report.title}</Heading>
 
             <div className="flex flex-col">
-              <Markdown>{report.intro}</Markdown>
+              <div className="mb-4">
+                <Markdown>{report.intro}</Markdown>
+              </div>
 
               <Button
                 href={buildCMSUrl(report.file.url)}

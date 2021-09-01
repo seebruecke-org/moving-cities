@@ -9,7 +9,7 @@ function FloatingTabsItem({ target, label, active = false, className, ...props }
         <a
           ref={ref}
           className={clsx(
-            'px-6 pt-6 pb-5 text-l font-raptor font-semibold h-full flex leading-none',
+            'px-6 pt-6 pb-5 text-xs font-raptor font-semibold h-full flex leading-none',
             active && 'bg-yellow-300 shadow-md',
             className
           )}
