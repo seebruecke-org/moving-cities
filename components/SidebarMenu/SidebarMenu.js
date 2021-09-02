@@ -26,8 +26,8 @@ function SidebarSelect({ items }) {
   };
 
   return (
-    <div className="py-6 px-8">
-      <Select options={options} className="md:hidden" onChange={onChange} />
+    <div className="py-6 px-8 md:hidden">
+      <Select options={options} onChange={onChange} />
     </div>
   );
 }
