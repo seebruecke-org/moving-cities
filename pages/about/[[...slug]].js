@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Heading from '@/components/Heading';
 import Intro from '@/components/Blocks/Intro';
+import Media from '@/components/Blocks/Media';
 import Section from '@/components/Blocks/Section';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
@@ -33,6 +34,7 @@ export default function About({ navigation, about: { title, content } }) {
           blocks={content}
           renderers={{
             Intro,
+            Media,
             Section
           }}
         />
