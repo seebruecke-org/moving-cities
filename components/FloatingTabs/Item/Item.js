@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 
-function FloatingTabsItem({ target, label, active = false, className, ...props }, ref) {
+function FloatingTabsItem({ target, label, active = false, count, className, ...props }, ref) {
   return (
     <>
       <Link href={target}>
@@ -15,7 +15,10 @@ function FloatingTabsItem({ target, label, active = false, className, ...props }
           )}
           {...props}>
           <span className="md:whitespace-nowrap">{label}</span>
-          <span>(28)</span>
+
+          {count && (
+            <span>({count})</span>
+          )}
         </a>
       </Link>
     </>

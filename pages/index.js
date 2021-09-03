@@ -107,19 +107,22 @@ export default function HomePage({
                 target: '/',
                 label: t('featuredCities'),
                 tooltip: t('featuredCitiesIntro'),
-                active: true
+                active: true,
+                count: featuredCitiesCount
               },
 
               {
                 target: `/${tSlugs('cities')}`,
                 label: t('allCities'),
-                tooltip: t('allCitiesIntro')
+                tooltip: t('allCitiesIntro'),
+                count: citiesCount
               },
 
               {
                 target: `/${tSlugs('networks')}`,
                 label: t('networks'),
-                tooltip: t('networksIntro')
+                tooltip: t('networksIntro'),
+                count: networksCount
               }
             ]}
           />
