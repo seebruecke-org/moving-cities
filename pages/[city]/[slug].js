@@ -29,7 +29,7 @@ export default function CityProgramPage({
   const { query } = useRouter();
 
   return (
-    <div className="md:flex">
+    <div className="md:flex pb-28 md:pb-0">
       <SEO title={title} />
 
       <SidebarMenu

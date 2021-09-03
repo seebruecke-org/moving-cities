@@ -48,7 +48,7 @@ export default function CityPage({
   }
 
   return (
-    <div className="md:flex">
+    <div className="md:flex ob-28 md:pb-0">
       <SEO title={name} />
 
       <SidebarMenu items={menuItems} />
