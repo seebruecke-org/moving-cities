@@ -13,7 +13,7 @@ export default function CityHeader({ title, subtitle, takeaways, icon }) {
             {title}
           </h1>
 
-          <p className="font-raptor font-bold text-3xl md:text-4xl leading-tight -mt-2">
+          <p className="font-raptor font-bold text-2xl md:text-4xl leading-tight -mt-2">
             {subtitle}
           </p>
         </div>

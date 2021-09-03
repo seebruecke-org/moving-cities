@@ -15,7 +15,7 @@ export default function ProgramHeader({ city, title, icon, children, categories 
         <div className="mt-16 md:mt-0">
           <h1 className="font-raptor font-bold">
             <span className="block text-3xl text-red-300">{city}</span>
-            <span className="font-raptor text-4xl md:text-4xl font-bold leading-none">{title}</span>
+            <span className="font-raptor text-2xl md:text-4xl font-bold leading-none">{title}</span>
           </h1>
 
           {categories?.length > 0 && (
