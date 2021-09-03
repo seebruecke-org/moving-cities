@@ -9,18 +9,18 @@ export default function CityHeader({ title, subtitle, takeaways, icon }) {
         <CityIcon icon={icon} className="md:pl-48 w-2/4 md:w-full" />
 
         <div className="mt-12 md:mt-0">
-          <h1 className="font-raptor font-bold text-red-300 text-5xl md:text-6xl leading-none">
+          <h1 className="font-raptor font-bold text-red-300 text-4xl md:text-6xl leading-none">
             {title}
           </h1>
 
-          <p className="font-raptor font-bold text-2xl md:text-4xl leading-tight -mt-2">
+          <p className="font-raptor font-bold text-xl md:text-4xl leading-tight -mt-2">
             {subtitle}
           </p>
         </div>
       </Columns>
 
       {takeaways && (
-        <div className="mt-48 md:pl-44 max-w-8xl">
+        <div className="mt-28 md:mt-48 md:pl-44 max-w-8xl">
           <Summary items={takeaways} />
         </div>
       )}
