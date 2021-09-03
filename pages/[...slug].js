@@ -19,11 +19,12 @@ import SidebarMenu from '@/components/SidebarMenu';
 const CountryContext = dynamic(() => import('@/components/CountryContext'));
 
 import { buildCMSUrl } from '@/lib/api';
-import { fetchCityBySlug, fetchAllCityPaths } from '@/lib/cities';
+import { fetchCityBySlug, fetchAllCityPaths, fetchNextCity } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
 export default function CityPage({
-  city: { name, subtitle, icon, slug, content, report, approaches, takeaways, country, summary }
+  city: { name, subtitle, icon, slug, content, report, approaches, takeaways, country, summary },
+  next
 }) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
@@ -115,9 +116,11 @@ export default function CityPage({
           </Columns>
         )}
 
-        <div className="mt-48">
-          <CityNext name="Marseille" subtitle="Solutions that benefit everyone" uri="/marseille" />
-        </div>
+        {next && (
+          <div className="mt-48">
+            <CityNext {...next} />
+          </div>
+        )}
       </article>
     </div>
   );
@@ -139,6 +142,7 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['approaches', 'city']);
   const city = await fetchCityBySlug(slug[0], locale);
+  const next = await fetchNextCity(slug[0], locale);
 
   if (!city) {
     return {
@@ -150,7 +154,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
     revalidate: 60,
     props: {
       ...translations,
-      city
+      city,
+      next
     }
   };
 }

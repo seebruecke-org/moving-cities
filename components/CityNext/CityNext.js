@@ -2,11 +2,9 @@ import Link from 'next/link';
 
 import Columns from '@/components/Columns';
 
-export default function CityNext({ name, uri, subtitle }) {
+export default function CityNext({ name, slug, subtitle }) {
   return (
-
-
-      <Link href={uri}>
+      <Link href={`/${slug}`}>
         <a className="flex flex-col bg-gradient-to-br from-red-300 to-pink-300 py-20 px-8 hover:from-black hover:to-black hover:text-white font-raptor text-s md:text-m font-medium">
         <Columns>
           <span />
@@ -25,6 +23,5 @@ export default function CityNext({ name, uri, subtitle }) {
           </Columns>
         </a>
       </Link>
-
   );
 }
