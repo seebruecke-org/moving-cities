@@ -21,13 +21,16 @@ function SidebarSelect({ items }) {
     return acc;
   }, []);
 
+  const activeItem = items.find(({ active }) => active) || items[0];
+  const value = { value: activeItem.target, label: activeItem?.label };
+
   const onChange = ({ value }) => {
     router.push(value);
   };
 
   return (
     <div className="py-6 px-8 md:hidden">
-      <Select options={options} onChange={onChange} />
+      <Select options={options} onChange={onChange} defaultValue={value} />
     </div>
   );
 }

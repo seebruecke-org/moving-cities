@@ -19,9 +19,10 @@ export default function About({ navigation, about: { title, content } }) {
       <SEO title={title} />
 
       <SidebarMenu
-        items={navigation.map(({ title, slug }) => ({
+        items={navigation.map(({ title, slug, active }) => ({
           target: `/${tSlugs('about')}/${slug !== tSlugs('about') ? slug : ''}`,
-          label: title
+          label: title,
+          active
         }))}
       />
 
@@ -59,7 +60,7 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city']);
   const about = await fetchAboutBySlug(slug, locale);
-  const navigation = await fetchAllAbouts(locale);
+  const navigation = await fetchAllAbouts(locale, { active: slug?.[0] });
 
   if (about === null) {
     return {
