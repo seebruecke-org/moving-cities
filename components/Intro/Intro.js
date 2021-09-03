@@ -49,7 +49,15 @@ function Count({ count, className, onClick = () => {}, ...props }) {
   );
 }
 
-export default function Intro({ onClose = () => {}, title, intro }) {
+export default function Intro({
+  onClose = () => {},
+  title,
+  intro,
+  approachesCount,
+  networksCount,
+  featuredCitiesCount,
+  citiesCount
+}) {
   const { t } = useTranslation('intro');
   const { t: tSlugs } = useTranslation('slugs');
 
@@ -80,22 +88,26 @@ export default function Intro({ onClose = () => {}, title, intro }) {
 
       <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28 md:h-screen justify-between md:flex md:flex-col">
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href="/" count={29} className="text-red-300" onClick={onClose} />{' '}
+          <Count href="/" count={featuredCitiesCount} className="text-red-300" onClick={onClose} />{' '}
           {t('withCaseStudies')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href={`/${tSlugs('cities')}`} count={684} className="text-pink-300" />{' '}
+          <Count href={`/${tSlugs('cities')}`} count={citiesCount} className="text-pink-300" />{' '}
           {t('withSolidarityBasedPolicy')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href={`/${tSlugs('networks')}`} count={11} className="text-red-300" />{' '}
+          <Count href={`/${tSlugs('networks')}`} count={networksCount} className="text-red-300" />{' '}
           {t('europeanNetworks')}
         </Paragraph>
 
         <Paragraph className="md:max-w-xs md:text-right">
-          <Count href={`/${tSlugs('approaches')}`} count={55} className="text-pink-300" />
+          <Count
+            href={`/${tSlugs('approaches')}`}
+            count={approachesCount}
+            className="text-pink-300"
+          />
           {t('inspiringApproaches')}
         </Paragraph>
       </div>

@@ -17,7 +17,15 @@ import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
 import { useStore } from '@/lib/store';
 
-export default function HomePage({ cities, intro, routeHasChanged }) {
+export default function HomePage({
+  cities,
+  intro,
+  routeHasChanged,
+  citiesCount,
+  featuredCitiesCount,
+  networksCount,
+  approachesCount
+}) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
@@ -83,7 +91,14 @@ export default function HomePage({ cities, intro, routeHasChanged }) {
       <SEO title={null} description={intro} />
 
       {isIntroVisible && !routeHasChanged ? (
-        <Intro onClose={() => setIsIntroVisible(false)} {...intro} />
+        <Intro
+          onClose={() => setIsIntroVisible(false)}
+          {...intro}
+          citiesCount={citiesCount}
+          featuredCitiesCount={featuredCitiesCount}
+          networksCount={networksCount}
+          approachesCount={approachesCount}
+        />
       ) : (
         <div className="flex flex-col md:flex-row md:h-full">
           <FloatingTabs
@@ -144,14 +159,14 @@ export default function HomePage({ cities, intro, routeHasChanged }) {
 
 export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'intro', 'approaches']);
-  const intro = await fetchIntro(locale);
+  const data = await fetchIntro(locale);
   const cities = await fetchFeaturedCities(locale);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
-      intro,
+      ...data,
       cities
     }
   };
