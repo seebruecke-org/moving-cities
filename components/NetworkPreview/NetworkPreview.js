@@ -14,7 +14,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
   return (
     <article
       className={clsx(
-        'bg-white h-full p-8 md:p-10 overflow-y-auto pb-28 md:pb-0',
+        'bg-white h-full p-8 md:p-10 overflow-y-auto pb-28',
         styles.networkPreview
       )}>
       <Heading level={1} as={2}>
