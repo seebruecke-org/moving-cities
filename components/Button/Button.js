@@ -5,7 +5,7 @@ export default function Button({ href, children, className, priority = false, ..
   const commonProps = {
     ...props,
     className: clsx(
-      'border hover:border-black focus:border-black active:bg-yellow-300 active:border-yellow-300 rounded-3xl px-6 pt-5 pb-3 flex font-raptor leading-none text-l shadow-md font-semibold',
+      'border hover:border-black focus:border-black active:bg-yellow-300 active:border-yellow-300 rounded-3xl px-5 md:px-6 pt-4 md:pt-5 pb-2 md:pb-3 flex font-raptor leading-none text-m md:text-l shadow-md font-semibold',
       priority ? 'bg-yellow-300 border-yellow-300' : 'bg-white border-white',
       className
     )
