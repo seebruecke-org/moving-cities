@@ -15,7 +15,7 @@ export default function About({ navigation, about: { title, content } }) {
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
-    <div className="md:flex">
+    <div className="md:flex pb-28 md:pb-0">
       <SEO title={title} />
 
       <SidebarMenu
@@ -26,7 +26,7 @@ export default function About({ navigation, about: { title, content } }) {
       />
 
       <article>
-        <Heading level={1} className="pl-8 md:pl-10 pt-10 md:pt-10 mb-4 md:mb-20">
+        <Heading level={1} className="pl-8 md:pl-10 pt-10 md:pt-10 mb-4 md:mb-20 max-w-full">
           <span className="text-3xl md:text-6xl leading-none block">{title}</span>
         </Heading>
 
