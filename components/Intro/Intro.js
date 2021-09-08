@@ -62,7 +62,7 @@ export default function Intro({
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
-    <div className="relative w-full h-screen overflow-x-hidden">
+    <div className="relative w-full h-screen overflow-x-hidden pb-28 md:pb-0">
       <div className="relative md:absolute md:top-8 md:left-8 z-10 md:max-w-5xl px-8 pt-12">
         <h1
           className={clsx(
