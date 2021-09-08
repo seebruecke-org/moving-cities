@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import SEO from '@/components/SEO';
 
 const CityPreview = dynamic(() => import('@/components/CityPreview'));
+const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
 const FloatingTabs = dynamic(() => import('@/components/FloatingTabs'));
 const Intro = dynamic(() => import('@/components/Intro'));
 const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
@@ -148,6 +149,8 @@ export default function HomePage({
           />
 
           <MapboxMap {...mapProps}>{markers}</MapboxMap>
+
+          <FloatingCta target={tSlugs('map_cta')} label={t('addCity')} />
         </div>
       )}
     </>

@@ -2,5 +2,6 @@
   "cities": "cities",
   "networks": "networks",
   "about": "about",
-  "approaches": "approaches"
+  "approaches": "approaches",
+  "map_cta": "about/add-city"
 }

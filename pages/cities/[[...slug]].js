@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
 import CountryPreview from '@/components/CountryPreview';
+import FloatingCta from '@/components/FloatingCta';
 import FloatingTabs from '@/components/FloatingTabs';
 import MapboxMap from '@/components/MapboxMap';
 import SEO from '@/components/SEO';
@@ -102,6 +103,8 @@ export default function AllCitiesOverview({ countries, counts }) {
       />
 
       <MapboxMap bounds={bounds}>{markers}</MapboxMap>
+
+      <FloatingCta target={tSlugs('map_cta')} label={tCity('addCity')} />
     </div>
   );
 }

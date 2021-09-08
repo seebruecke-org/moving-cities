@@ -4,6 +4,7 @@ import { Marker } from 'react-map-gl';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
+import FloatingCta from '@/components/FloatingCta';
 import FloatingTabs from '@/components/FloatingTabs';
 import MapboxMap from '@/components/MapboxMap';
 import NetworkPreview from '@/components/NetworkPreview';
@@ -112,6 +113,8 @@ export default function NetworkPage({ networks, counts }) {
       />
 
       <MapboxMap bounds={bounds}>{markers}</MapboxMap>
+
+      <FloatingCta target={tSlugs('map_cta')} label={tCity('addCity')} />
     </div>
   );
 }
