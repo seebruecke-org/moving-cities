@@ -32,27 +32,15 @@ export default function Markdown({ children, isSmall }) {
     },
 
     ul: ({ ordered, children }) => {
-      return (
-        <List ordered={ordered}>
-          {children}
-        </List>
-      );
+      return <List ordered={ordered}>{children}</List>;
     },
 
     ol: ({ ordered, children }) => {
-      return (
-        <List ordered={ordered}>
-          {children}
-        </List>
-      );
+      return <List ordered={ordered}>{children}</List>;
     },
 
     li: ({ children }) => {
-      return (
-        <ListItem>
-          {children}
-        </ListItem>
-      );
+      return <ListItem>{children}</ListItem>;
     }
   };
 
