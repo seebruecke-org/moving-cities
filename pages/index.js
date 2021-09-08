@@ -11,7 +11,7 @@ const Intro = dynamic(() => import('@/components/Intro'));
 const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
 const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
-import { fetchFeaturedCities } from '@/lib/cities';
+import { fetchFeaturedCities, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
@@ -21,10 +21,7 @@ export default function HomePage({
   cities,
   intro,
   routeHasChanged,
-  citiesCount,
-  featuredCitiesCount,
-  networksCount,
-  approachesCount
+  counts
 }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
@@ -94,10 +91,7 @@ export default function HomePage({
         <Intro
           onClose={() => setIsIntroVisible(false)}
           {...intro}
-          citiesCount={citiesCount}
-          featuredCitiesCount={featuredCitiesCount}
-          networksCount={networksCount}
-          approachesCount={approachesCount}
+          {...counts}
         />
       ) : (
         <div className="flex flex-col md:flex-row md:h-full">
@@ -108,21 +102,21 @@ export default function HomePage({
                 label: t('featuredCities'),
                 tooltip: t('featuredCitiesIntro'),
                 active: true,
-                count: featuredCitiesCount
+                count: counts.featuredCitiesCount
               },
 
               {
                 target: `/${tSlugs('cities')}`,
                 label: t('allCities'),
                 tooltip: t('allCitiesIntro'),
-                count: citiesCount
+                count: counts.citiesCount
               },
 
               {
                 target: `/${tSlugs('networks')}`,
                 label: t('networks'),
                 tooltip: t('networksIntro'),
-                count: networksCount
+                count: counts.networksCount
               }
             ]}
           />
@@ -164,13 +158,15 @@ export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'intro', 'approaches']);
   const data = await fetchIntro(locale);
   const cities = await fetchFeaturedCities(locale);
+  const counts = await fetchCounts(locale);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
       ...data,
-      cities
+      cities,
+      counts
     }
   };
 }

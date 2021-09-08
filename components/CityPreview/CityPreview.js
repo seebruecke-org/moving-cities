@@ -49,11 +49,6 @@ export default function CityPreview({
               stroke-width="3"
               d="M3.6 3.5l30 30M3.6 33.5l30-30"
             />
-            Regional solidarity and pragmatic solutions: What sets Tilburg apart from other
-            progressive Dutch municipalities is its focus on regional solidarity and prompt efforts
-            to remedy the shortcomings of the Dutch (civic) integration policies. Moreover,
-            newcomers are actively involved in policy processes and all migration policies aim for a
-            stable environment and for mutual commitment between administration and newcomers.
           </svg>
           {t('close')}
         </button>

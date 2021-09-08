@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import clsx from 'clsx';
 
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
@@ -9,6 +10,7 @@ import styles from './styles.module.css';
 
 export default function CountryContext({ name, content, open = false }) {
   const [isOpen, setIsOpen] = useState(open);
+  const { t } = useTranslation('city');
 
   return (
     <div className="md:py-12">
@@ -20,7 +22,7 @@ export default function CountryContext({ name, content, open = false }) {
             'cursor-pointer hover:bg-black hover:text-white pb-4'
           )}>
           <Heading level={2} className="px-10 pt-6">
-            Political Context of {name}
+            {t('politicalContext', { name })}
           </Heading>
         </summary>
 

@@ -1,8 +1,11 @@
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 
 import Columns from '@/components/Columns';
 
 export default function CityNext({ name, slug, subtitle }) {
+  const { t } = useTranslation('city');
+
   return (
     <Link href={`/${slug}`}>
       <a className="flex flex-col bg-gradient-to-br from-red-300 to-pink-300 py-20 px-8 hover:from-black hover:to-black hover:text-white font-raptor text-s md:text-m font-medium">
@@ -10,7 +13,7 @@ export default function CityNext({ name, slug, subtitle }) {
           <span />
           <div className="flex justify-between items-center max-w-8xl w-full">
             <div className="mr-20">
-              Next Featured City
+              {t('nextFeaturedCity')}
               <span className="sr-only">:</span>
               <span className="text-2xl md:text-3xl font-bold block leading-none mt-4 md:mt-6">
                 {name}

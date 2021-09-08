@@ -13,8 +13,9 @@ import ThreadList from '@/components/ThreadList';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
+import { fetchCounts } from '@/lib/cities';
 
-export default function NetworkPage({ networks }) {
+export default function NetworkPage({ networks, counts }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { t } = useTranslation('networks');
@@ -65,20 +66,23 @@ export default function NetworkPage({ networks }) {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro')
+            tooltip: tCity('featuredCitiesIntro'),
+            count: counts.featuredCitiesCount
           },
 
           {
             target: `/${tSlugs('cities')}`,
             label: tCity('allCities'),
-            tooltip: tCity('allCitiesIntro')
+            tooltip: tCity('allCitiesIntro'),
+            count: counts.citiesCount
           },
 
           {
             target: `/${tSlugs('networks')}`,
             label: tCity('networks'),
             tooltip: tCity('networksIntro'),
-            active: true
+            active: true,
+            count: counts.networksCount
           }
         ]}
       />
@@ -130,12 +134,14 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city', 'networks']);
   const networks = await fetchAllNetworks(locale, { active: slug?.[0] });
+  const counts = await fetchCounts(locale);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
-      networks
+      networks,
+      counts
     }
   };
 }

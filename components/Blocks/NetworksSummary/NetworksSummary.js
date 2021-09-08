@@ -1,8 +1,12 @@
+import { useTranslation } from 'next-i18next';
+
 import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
 export default function NetworksSummary({ networksSummaryTitle, networksSummaryContent }) {
+  const { t } = useTranslation('city');
+
   return (
     <section className="bg-yellow-300 pt-16 pb-16 px-8 md:px-28">
       <div className="max-w-8xl md:grid md:grid-cols-9">
@@ -14,7 +18,7 @@ export default function NetworksSummary({ networksSummaryTitle, networksSummaryC
           </div>
 
           <Heading level={3} as={4} className="mt-16">
-            Member of the following networks
+            {t('memberOfNetworks')}
           </Heading>
 
           <div className="flex mt-6 max-w-full flex-wrap">

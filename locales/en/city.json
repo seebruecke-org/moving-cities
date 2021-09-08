@@ -10,5 +10,8 @@
   "aboutTheCity": "About the city",
   "download": {
     "cta": "Download Report"
-  }
+  },
+  "memberOfNetworks": "Member of the following networks",
+  "nextFeaturedCity": "Next Featured City",
+  "politicalContext": "Political Context of {{name}}"
 }

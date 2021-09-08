@@ -9,6 +9,7 @@ import styles from './styles.module.css';
 
 function CityItem({ name, networks }) {
   const { t: tSlugs } = useTranslation();
+  const { t } = useTranslation('city');
   const [isOpen, setIsOpen] = useState(false);
 
   if (networks?.length > 0) {
@@ -26,7 +27,7 @@ function CityItem({ name, networks }) {
         {isOpen && (
           <div>
             <Heading level={3} as={5} className="px-8 py-4">
-              City Networks
+              {t('networks')}
             </Heading>
 
             <ul className="bg-white w-full px-8 py-4">

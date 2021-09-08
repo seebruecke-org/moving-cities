@@ -10,12 +10,12 @@ import MapboxMap from '@/components/MapboxMap';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
-import { fetchAllCitiesByCountry } from '@/lib/cities';
+import { fetchAllCitiesByCountry, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchAllCountryPaths } from '@/lib/networks';
 
-export default function AllCitiesOverview({ countries }) {
+export default function AllCitiesOverview({ countries, counts }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
@@ -65,20 +65,23 @@ export default function AllCitiesOverview({ countries }) {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro')
+            tooltip: tCity('featuredCitiesIntro'),
+            count: counts.featuredCitiesCount
           },
 
           {
             target: `/${tSlugs('cities')}`,
             label: tCity('allCities'),
             tooltip: tCity('allCitiesIntro'),
-            active: true
+            active: true,
+            count: counts.citiesCount
           },
 
           {
             target: `/${tSlugs('networks')}`,
             label: tCity('networks'),
-            tooltip: tCity('networksIntro')
+            tooltip: tCity('networksIntro'),
+            count: counts.networksCount
           }
         ]}
       />
@@ -121,12 +124,14 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city']);
   const countries = await fetchAllCitiesByCountry(locale, { active: slug?.[0] });
+  const counts = await fetchCounts(locale);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
-      countries
+      countries,
+      counts
     }
   };
 }
