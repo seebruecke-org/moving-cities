@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
 import Item from './Item';
@@ -13,7 +14,7 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
   useEffect(() => {
     const activeItemIndex = items.findIndex(({ active }) => active === true);
 
-    if (activeItemIndex !== -1 && window.innerWidth > SCREEN_SMALL) {
+    if (activeItemIndex !== -1) {
       setPaneIndex(activeItemIndex);
       setPaneData(items[activeItemIndex]?.data);
     }
@@ -28,11 +29,11 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
       )}
 
       <ul className="h-full">
-        {items.map(({ className, ...item }, index) => {
+        {items.map(({ className, __typename, ...item }, index) => {
           const isActive = paneData && index === paneIndex;
 
           return (
-            <li key={`thread-item-${index}`}>
+            <li key={`thread-item-${index}`} className={clsx((paneData && !isActive) && 'hidden md:flex')}>
               <Item
                 {...item}
                 className={className}

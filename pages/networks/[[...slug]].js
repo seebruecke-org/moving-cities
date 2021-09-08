@@ -92,7 +92,6 @@ export default function NetworkPage({ networks, counts }) {
         pane={NetworkPreview}
         items={networks.map(({ name, content, cities, slug, active, ...network }) => ({
           ...network,
-          className: clsx(!active && 'hidden md:flex'),
           target: `/${tSlugs('networks')}/${slug}`,
           title: name,
           active,

@@ -31,7 +31,7 @@ export default function ThreadListItem({
           viewBox="0 0 10 14"
           className={clsx(
             'mt-3 ml-auto w-4 md:w-5 h-auto flex-grow-0 flex-shrink-0',
-            active && 'text-red-300'
+            active && 'text-red-300 hidden md:flex'
           )}>
           <path
             stroke="currentColor"

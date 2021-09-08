@@ -20,6 +20,7 @@ export default function AllCitiesOverview({ countries, counts }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
+  const isSingleView = !!query?.slug?.[0];
 
   const bounds = getBounds(
     countries.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
@@ -56,12 +57,12 @@ export default function AllCitiesOverview({ countries, counts }) {
     <div className="flex flex-col md:flex-row md:h-full">
       <SEO title={tCity('allCities')} />
 
-      {query?.slug && (
+      {isSingleView && (
         <BackTo title={tCity('allCities')} uri={`/${tSlugs('cities')}`} className="md:hidden" />
       )}
 
       <FloatingTabs
-        className={clsx(query?.slug && 'hidden md:block')}
+        className={clsx(isSingleView && 'hidden md:block')}
         items={[
           {
             target: '/',
@@ -97,6 +98,7 @@ export default function AllCitiesOverview({ countries, counts }) {
             target,
             title: name,
             subtitle: `${cities.length} cities`,
+            active: isSingleView && query.slug[0] === slug,
             data: { cities, target }
           };
         })}
