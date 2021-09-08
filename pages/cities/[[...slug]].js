@@ -25,6 +25,7 @@ export default function AllCitiesOverview({ countries, counts }) {
   const bounds = getBounds(
     countries.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
   );
+
   const markers = countries
     .map(({ cities }) => {
       return cities.map(
@@ -97,7 +98,7 @@ export default function AllCitiesOverview({ countries, counts }) {
             ...country,
             target,
             title: name,
-            subtitle: `${cities.length} cities`,
+            subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
             active: isSingleView && query.slug[0] === slug,
             data: { cities, target }
           };

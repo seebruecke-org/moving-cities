@@ -21,6 +21,7 @@ export default function NetworkPage({ networks, counts }) {
   const { t: tSlugs } = useTranslation('slugs');
   const { t } = useTranslation('networks');
   const { query } = useRouter();
+  const isSingleView = !!query?.slug?.[0];
 
   const bounds = getBounds(
     networks.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
@@ -94,7 +95,7 @@ export default function NetworkPage({ networks, counts }) {
           ...network,
           target: `/${tSlugs('networks')}/${slug}`,
           title: name,
-          active,
+          active: isSingleView && query.slug[0] === slug,
           subtitle: cities.reduce((acc, city) => {
             const { country } = city;
 

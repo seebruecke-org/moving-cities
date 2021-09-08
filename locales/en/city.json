@@ -14,5 +14,6 @@
   "memberOfNetworks": "Member of the following networks",
   "nextFeaturedCity": "Next Featured City",
   "politicalContext": "Political Context of {{name}}",
-  "addCity": "Add your city"
+  "addCity": "Add your city",
+  "countryThreadSubtitle": "{{count}} Cities"
 }

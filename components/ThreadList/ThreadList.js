@@ -11,7 +11,7 @@ export default function ThreadList({ pane, items }) {
   const router = useRouter();
 
   useEffect(() => {
-    const activeItemIndex = items.findIndex(({ active }) => active === true);
+    const activeItemIndex = items.findIndex(({ active }) => active);
 
     if (activeItemIndex !== -1) {
       setPaneData({
@@ -44,11 +44,14 @@ export default function ThreadList({ pane, items }) {
                 onClick={(event) => {
                   event.preventDefault();
 
+                  // On large screens the pane get's opened
                   if (window.innerWidth > 768) {
                     setPaneData({
                       index,
                       ...item?.data
                     });
+                  // On small screens, a navigation to the target
+                  // page is forced
                   } else {
                     router.push(item.target);
                   }
