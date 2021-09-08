@@ -34,7 +34,9 @@ export default function ThreadList({ pane, items }) {
           const isActive = paneData?.index === index;
 
           return (
-            <li key={`thread-item-${index}`} className={clsx(hasActiveItem && !isActive && 'hidden md:flex')}>
+            <li
+              key={`thread-item-${index}`}
+              className={clsx(hasActiveItem && !isActive && 'hidden md:flex')}>
               <Item
                 {...item}
                 className={className}

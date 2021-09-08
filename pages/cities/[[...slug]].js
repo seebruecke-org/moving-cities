@@ -1,7 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
@@ -21,17 +20,6 @@ export default function AllCitiesOverview({ countries, counts }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
-  const [items, setItems] = useState(countries.map(({ name, cities, slug, ...country }) => {
-    const target = `/${tSlugs('cities')}/${slug}`;
-
-    return {
-      ...country,
-      target,
-      title: name,
-      subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
-      data: { cities, target }
-    };
-  }));
   const isSingleView = !!query?.slug?.[0];
 
   const bounds = getBounds(
@@ -101,7 +89,20 @@ export default function AllCitiesOverview({ countries, counts }) {
         ]}
       />
 
-      <ThreadList pane={CountryPreview} items={items} />
+      <ThreadList
+        pane={CountryPreview}
+        items={countries.map(({ name, cities, slug, ...country }) => {
+          const target = `/${tSlugs('cities')}/${slug}`;
+
+          return {
+            ...country,
+            target,
+            title: name,
+            subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
+            data: { cities, target }
+          };
+        })}
+      />
 
       <MapboxMap bounds={bounds}>{markers}</MapboxMap>
 
