@@ -66,7 +66,7 @@ export default function Intro({
       <div className="relative md:absolute md:top-8 md:left-8 z-10 md:max-w-5xl px-8 pt-12">
         <h1
           className={clsx(
-            'font-raptor text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
+            'font-raptor text-3xl sm:text-4xl md:text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
             styles.title
           )}>
           {title}
@@ -83,10 +83,10 @@ export default function Intro({
       </div>
 
       <div className="md:absolute md:bottom-8 md:left-8 md:max-w-5xl px-8">
-        <Markdown>{intro}</Markdown>
+        <Markdown isSmall={false}>{intro}</Markdown>
       </div>
 
-      <div className="md:absolute md:right-8 md:top-0 px-8 space-y-8 pb-28 md:h-screen justify-between md:flex md:flex-col">
+      <div className="md:absolute md:right-8 md:top-0 px-8 md:py-28 space-y-8 md:h-screen justify-between md:flex md:flex-col">
         <Paragraph className="md:max-w-xs md:text-right">
           <Count href="/" count={featuredCitiesCount} className="text-red-300" onClick={onClose} />{' '}
           {t('withCaseStudies')}
