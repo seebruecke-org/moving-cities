@@ -1,6 +1,7 @@
 import { useTranslation } from 'next-i18next';
 
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
+import Follow from '@/components/Blocks/Follow';
 import Heading from '@/components/Heading';
 import Intro from '@/components/Blocks/Intro';
 import Media from '@/components/Blocks/Media';
@@ -34,6 +35,7 @@ export default function About({ navigation, about: { title, content } }) {
         <BlockSwitch
           blocks={content}
           renderers={{
+            Follow,
             Intro,
             Media,
             Section
