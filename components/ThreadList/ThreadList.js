@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Item from './Item';
@@ -7,19 +7,19 @@ import PaneWrapper from './PaneWrapper';
 
 export default function ThreadList({ pane, items }) {
   const Pane = pane;
-  const [paneData, setPaneData] = useState(null);
+  const activeItemIndex = items.findIndex(({ active }) => active);
+  const hasActiveItem = activeItemIndex !== -1;
+
   const router = useRouter();
 
-  useEffect(() => {
-    const activeItemIndex = items.findIndex(({ active }) => active);
-
-    if (activeItemIndex !== -1) {
-      setPaneData({
-        index: activeItemIndex,
-        ...items?.[activeItemIndex]?.data
-      });
-    }
-  }, []);
+  const [paneData, setPaneData] = useState(
+    hasActiveItem
+      ? {
+          index: activeItemIndex,
+          ...items[activeItemIndex].data
+        }
+      : null
+  );
 
   return (
     <nav className="md:h-full relative z-20 md:w-64 flex-grow-0 flex-shrink-0">
@@ -31,12 +31,10 @@ export default function ThreadList({ pane, items }) {
 
       <ul className="h-full">
         {items.map(({ className, __typename, ...item }, index) => {
-          const isActive = paneData && index === paneData?.index;
+          const isActive = paneData?.index === index;
 
           return (
-            <li
-              key={`thread-item-${index}`}
-              className={clsx(paneData && !isActive && 'hidden md:flex')}>
+            <li key={`thread-item-${index}`} className={clsx(!isActive && 'hidden md:flex')}>
               <Item
                 {...item}
                 className={className}
@@ -50,8 +48,8 @@ export default function ThreadList({ pane, items }) {
                       index,
                       ...item?.data
                     });
-                  // On small screens, a navigation to the target
-                  // page is forced
+                    // On small screens, a navigation to the target
+                    // page is forced
                   } else {
                     router.push(item.target);
                   }

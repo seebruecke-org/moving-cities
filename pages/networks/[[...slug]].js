@@ -1,6 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { Marker } from 'react-map-gl';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
@@ -21,7 +22,32 @@ export default function NetworkPage({ networks, counts }) {
   const { t: tSlugs } = useTranslation('slugs');
   const { t } = useTranslation('networks');
   const { query } = useRouter();
+  const [items, setItems] = useState([]);
   const isSingleView = !!query?.slug?.[0];
+  const networksString = JSON.stringify(networks);
+
+  useEffect(() => {
+    setItems(
+      networks.map(({ name, content, cities, slug, ...network }) => ({
+        ...network,
+        target: `/${tSlugs('networks')}/${slug}`,
+        title: name,
+        subtitle: cities.reduce((acc, city) => {
+          const { country } = city;
+
+          acc = `${acc} ${country?.name}`;
+
+          return acc;
+        }, ''),
+        data: {
+          title: name,
+          content,
+          featuredCities: cities.filter(({ is_featured }) => is_featured),
+          cities: cities.filter(({ is_featured }) => !is_featured)
+        }
+      }))
+    );
+  }, [networksString]);
 
   const bounds = getBounds(
     networks.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
@@ -89,27 +115,7 @@ export default function NetworkPage({ networks, counts }) {
         ]}
       />
 
-      <ThreadList
-        pane={NetworkPreview}
-        items={networks.map(({ name, content, cities, slug, ...network }) => ({
-          ...network,
-          target: `/${tSlugs('networks')}/${slug}`,
-          title: name,
-          subtitle: cities.reduce((acc, city) => {
-            const { country } = city;
-
-            acc = `${acc} ${country?.name}`;
-
-            return acc;
-          }, ''),
-          data: {
-            title: name,
-            content,
-            featuredCities: cities.filter(({ is_featured }) => is_featured),
-            cities: cities.filter(({ is_featured }) => !is_featured)
-          }
-        }))}
-      />
+      <ThreadList pane={NetworkPreview} items={items} />
 
       <MapboxMap bounds={bounds}>{markers}</MapboxMap>
 
