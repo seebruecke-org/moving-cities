@@ -141,25 +141,23 @@ export default function Menu() {
         </header>
       </div>
 
-      {isOverlayOpen && (
-        <Overlay ref={overlayRef}>
-          <ul>
-            {OVERLAY_PRIMARY_ITEMS.map((item) => (
-              <li>
-                <OverlayItemPrimary {...item} onClick={() => setIsOverlayOpen(false)} />
-              </li>
-            ))}
-          </ul>
+      <Overlay ref={overlayRef} isOpen={isOverlayOpen}>
+        <ul>
+          {OVERLAY_PRIMARY_ITEMS.map((item) => (
+            <li>
+              <OverlayItemPrimary {...item} onClick={() => setIsOverlayOpen(false)} />
+            </li>
+          ))}
+        </ul>
 
-          <ul className="mt-auto pb-28 md:pb-0">
-            {OVERLAY_SECONDARY_ITEMS.map((item) => (
-              <li>
-                <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
-              </li>
-            ))}
-          </ul>
-        </Overlay>
-      )}
+        <ul className="mt-auto pb-28 md:pb-0">
+          {OVERLAY_SECONDARY_ITEMS.map((item) => (
+            <li>
+              <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
+            </li>
+          ))}
+        </ul>
+      </Overlay>
     </>
   );
 }
