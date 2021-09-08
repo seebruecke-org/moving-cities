@@ -52,7 +52,7 @@ export default function CityPage({
     <div className="md:flex ob-28 md:pb-0">
       <SEO title={name} />
 
-      <SidebarMenu items={menuItems} />
+      <SidebarMenu items={menuItems} selectClassName="bg-yellow-300" />
 
       <article className="flex-grow pb-28">
         <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} icon={icon} />

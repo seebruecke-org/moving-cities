@@ -50,13 +50,14 @@ export default function CityProgramPage({
             }))
           }
         ]}
+        selectClassName="bg-yellow-300"
       />
 
       <article className="flex-grow">
         <ProgramHeader city={cityName} title={title} categories={categories} icon={cityIcon}>
           <Heading level={2}>{summary.title}</Heading>
 
-          <Paragraph className="font-bold">{summary.content}</Paragraph>
+          <Paragraph className="font-bold mt-8" isSmall={false}>{summary.content}</Paragraph>
         </ProgramHeader>
         <BlockSwitch blocks={content} renderers={{ Section, Quote }} />
       </article>

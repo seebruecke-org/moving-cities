@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import Select from '@/components/Select';
 
-function SidebarSelect({ items }) {
+function SidebarSelect({ items, className }) {
   const router = useRouter();
   const options = items.reduce((acc, { target, label, items }) => {
     acc.push({ value: target, label });
@@ -29,7 +29,7 @@ function SidebarSelect({ items }) {
   };
 
   return (
-    <div className="py-6 px-8 md:hidden">
+    <div className={clsx("py-6 px-8 md:hidden", className)}>
       <Select options={options} onChange={onChange} defaultValue={value} />
     </div>
   );
@@ -72,11 +72,11 @@ function SidebarMenu({ items }) {
   );
 }
 
-export default function Menu({ items }) {
+export default function Menu({ items, selectClassName }) {
   return (
     <>
       <SidebarMenu items={items} />
-      <SidebarSelect items={items} />
+      <SidebarSelect items={items} className={selectClassName} />
     </>
   );
 }

@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+import clsx from 'clsx';
 import Link from 'next/link';
 
 import Burger from './Burger';
 import Overlay from './Overlay';
 
+import { useIsMounted } from '@/lib/hooks';
+
 import shadowStyles from './shadow.module.css';
-import clsx from 'clsx';
 
 const OVERLAY_PRIMARY_ITEMS = [
   {
@@ -67,14 +69,21 @@ export default function Menu() {
   const { t } = useTranslation();
   const { t: tSlugs } = useTranslation('slugs');
   const overlayRef = useRef();
-  const [isOverlayOpen, setIsOverlayOpen] = useState(null);
+  const isFirstRender = useIsMounted();
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   useEffect(() => {
     const currentRef = overlayRef?.current;
 
+    if (isFirstRender) {
+      return;
+    }
+
     if (isOverlayOpen === true) {
+      console.log('disable', isOverlayOpen, currentRef);
       disableBodyScroll(currentRef);
     } else if (isOverlayOpen === false) {
+      console.log('enable', isOverlayOpen, currentRef);
       enableBodyScroll(currentRef);
     }
   }, [isOverlayOpen]);

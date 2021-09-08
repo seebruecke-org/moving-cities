@@ -3,9 +3,9 @@ import ReactSelect, { components as C } from 'react-select';
 const styles = {
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: '#FAF11A',
-    border: state.isFocused ? '1px solid black' : '1px solid #FAF11A',
-    boxShadow: '0 0.4rem 1.6rem rgba(0, 0, 0, .25)',
+    backgroundColor: 'white',
+    border: '1px solid black',
+    boxShadow: '0 0.3rem 0.4rem rgba(0, 0, 0, .2)',
     color: 'black',
     fontFamily: 'Raptor',
     padding: '0.4rem 0.8rem',
@@ -70,14 +70,16 @@ const styles = {
     ...provided,
     color: 'black',
     fontFamily: 'Raptor',
-    fontSize: '1.6rem'
+    fontSize: '1.6rem',
+    fontWeight: '700'
   }),
 
   singleValue: (provided) => ({
     ...provided,
     color: 'black',
     fontFamily: 'Raptor',
-    fontSize: '1.6rem'
+    fontSize: '1.6rem',
+    fontWeight: '700'
   }),
 
   valueContainer: (provided) => ({
