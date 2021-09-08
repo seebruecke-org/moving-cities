@@ -16,9 +16,7 @@ function FloatingTabsItem({ target, label, active = false, count, className, ...
           {...props}>
           <span className="md:whitespace-nowrap">{label}</span>
 
-          {count && (
-            <span>({count})</span>
-          )}
+          {count && <span>({count})</span>}
         </a>
       </Link>
     </>

@@ -15,9 +15,7 @@ export default function Section({ title, sectionContent = {}, children }) {
         <span />
       )}
 
-      {content && (
-        <Markdown isSmall={false}>{content}</Markdown>
-      )}
+      {content && <Markdown isSmall={false}>{content}</Markdown>}
 
       {children}
     </Columns>

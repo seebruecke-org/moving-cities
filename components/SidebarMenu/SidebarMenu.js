@@ -29,7 +29,7 @@ function SidebarSelect({ items, className }) {
   };
 
   return (
-    <div className={clsx("py-6 px-8 md:hidden", className)}>
+    <div className={clsx('py-6 px-8 md:hidden', className)}>
       <Select options={options} onChange={onChange} defaultValue={value} />
     </div>
   );

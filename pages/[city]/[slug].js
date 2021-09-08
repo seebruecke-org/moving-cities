@@ -57,7 +57,9 @@ export default function CityProgramPage({
         <ProgramHeader city={cityName} title={title} categories={categories} icon={cityIcon}>
           <Heading level={2}>{summary.title}</Heading>
 
-          <Paragraph className="font-bold mt-8" isSmall={false}>{summary.content}</Paragraph>
+          <Paragraph className="font-bold mt-8" isSmall={false}>
+            {summary.content}
+          </Paragraph>
         </ProgramHeader>
         <BlockSwitch blocks={content} renderers={{ Section, Quote }} />
       </article>
