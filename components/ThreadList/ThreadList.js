@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Item from './Item';
@@ -11,15 +11,18 @@ export default function ThreadList({ pane, items }) {
   const hasActiveItem = activeItemIndex !== -1;
 
   const router = useRouter();
+  const [paneData, setPaneData] = useState(null);
 
-  const [paneData, setPaneData] = useState(
-    hasActiveItem
-      ? {
-          index: activeItemIndex,
-          ...items[activeItemIndex].data
-        }
-      : null
-  );
+  useEffect(() => {
+    if (activeItemIndex !== -1) {
+      setPaneData({
+        index: activeItemIndex,
+        ...items[activeItemIndex].data
+      })
+    } else {
+      setPaneData(null);
+    }
+  }, [activeItemIndex]);
 
   return (
     <nav className="md:h-full relative z-20 md:w-64 flex-grow-0 flex-shrink-0">
