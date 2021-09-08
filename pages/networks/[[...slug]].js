@@ -58,12 +58,12 @@ export default function NetworkPage({ networks, counts }) {
     <div className="flex flex-col md:flex-row md:h-full">
       <SEO title={t('allNetworks')} />
 
-      {query?.slug && (
+      {isSingleView && (
         <BackTo title={t('allNetworks')} uri={`/${tSlugs('networks')}`} className="md:hidden" />
       )}
 
       <FloatingTabs
-        className={clsx(query?.slug && 'hidden md:block')}
+        className={clsx(isSingleView && 'hidden md:block')}
         items={[
           {
             target: '/',
@@ -91,11 +91,10 @@ export default function NetworkPage({ networks, counts }) {
 
       <ThreadList
         pane={NetworkPreview}
-        items={networks.map(({ name, content, cities, slug, active, ...network }) => ({
+        items={networks.map(({ name, content, cities, slug, ...network }) => ({
           ...network,
           target: `/${tSlugs('networks')}/${slug}`,
           title: name,
-          active: isSingleView && query.slug[0] === slug,
           subtitle: cities.reduce((acc, city) => {
             const { country } = city;
 

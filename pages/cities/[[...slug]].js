@@ -99,7 +99,6 @@ export default function AllCitiesOverview({ countries, counts }) {
             target,
             title: name,
             subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
-            active: isSingleView && query.slug[0] === slug,
             data: { cities, target }
           };
         })}
