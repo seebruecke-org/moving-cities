@@ -89,24 +89,27 @@ export default function NetworkPage({ networks, counts }) {
         ]}
       />
 
-      <ThreadList pane={NetworkPreview} items={networks.map(({ name, content, cities, slug, ...network }) => ({
-      ...network,
-      target: `/${tSlugs('networks')}/${slug}`,
-      title: name,
-      subtitle: cities.reduce((acc, city) => {
-        const { country } = city;
+      <ThreadList
+        pane={NetworkPreview}
+        items={networks.map(({ name, content, cities, slug, ...network }) => ({
+          ...network,
+          target: `/${tSlugs('networks')}/${slug}`,
+          title: name,
+          subtitle: cities.reduce((acc, city) => {
+            const { country } = city;
 
-        acc = `${acc} ${country?.name}`;
+            acc = `${acc} ${country?.name}`;
 
-        return acc;
-      }, ''),
-      data: {
-        title: name,
-        content,
-        featuredCities: cities.filter(({ is_featured }) => is_featured),
-        cities: cities.filter(({ is_featured }) => !is_featured)
-      }
-    }))} />
+            return acc;
+          }, ''),
+          data: {
+            title: name,
+            content,
+            featuredCities: cities.filter(({ is_featured }) => is_featured),
+            cities: cities.filter(({ is_featured }) => !is_featured)
+          }
+        }))}
+      />
 
       <MapboxMap bounds={bounds}>{markers}</MapboxMap>
 

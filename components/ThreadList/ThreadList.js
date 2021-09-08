@@ -18,7 +18,7 @@ export default function ThreadList({ pane, items }) {
       setPaneData({
         index: activeItemIndex,
         ...items[activeItemIndex].data
-      })
+      });
     } else {
       setPaneData(null);
     }
