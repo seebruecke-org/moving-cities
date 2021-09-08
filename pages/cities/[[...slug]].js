@@ -104,7 +104,7 @@ export default function AllCitiesOverview({ countries, counts }) {
 
       <MapboxMap bounds={bounds}>{markers}</MapboxMap>
 
-      <FloatingCta target={tSlugs('map_cta')} label={tCity('addCity')} />
+      <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
     </div>
   );
 }

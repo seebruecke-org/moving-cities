@@ -141,7 +141,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
 
           <MapboxMap {...mapProps}>{markers}</MapboxMap>
 
-          <FloatingCta target={tSlugs('map_cta')} label={t('addCity')} />
+          <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
         </div>
       )}
     </>
