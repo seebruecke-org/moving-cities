@@ -1,24 +1,25 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Item from './Item';
 import PaneWrapper from './PaneWrapper';
 
-const SCREEN_SMALL = 768;
-
-export default function ThreadList({ pane, items, onOpen = () => {}, onClose = () => {} }) {
+export default function ThreadList({ pane, items }) {
   const Pane = pane;
   const [paneData, setPaneData] = useState(null);
-  const [paneIndex, setPaneIndex] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const activeItemIndex = items.findIndex(({ active }) => active === true);
 
     if (activeItemIndex !== -1) {
-      setPaneIndex(activeItemIndex);
-      setPaneData(items[activeItemIndex]?.data);
+      setPaneData({
+        index: activeItemIndex,
+        ...items?.[activeItemIndex]?.data
+      });
     }
-  }, [items]);
+  }, []);
 
   return (
     <nav className="md:h-full relative z-20 md:w-64 flex-grow-0 flex-shrink-0">
@@ -30,7 +31,7 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
 
       <ul className="h-full">
         {items.map(({ className, __typename, ...item }, index) => {
-          const isActive = paneData && index === paneIndex;
+          const isActive = paneData && index === paneData?.index;
 
           return (
             <li
@@ -39,22 +40,19 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
               <Item
                 {...item}
                 className={className}
+                active={isActive}
                 onClick={(event) => {
-                  if (window.innerWidth > SCREEN_SMALL) {
-                    event.preventDefault();
+                  event.preventDefault();
 
-                    if (isActive) {
-                      setPaneData(null);
-                      setPaneIndex(0);
-                      onClose();
-                    } else {
-                      setPaneData(item.data);
-                      setPaneIndex(index);
-                      onOpen(item.data);
-                    }
+                  if (window.innerWidth > 768) {
+                    setPaneData({
+                      index,
+                      ...item?.data
+                    });
+                  } else {
+                    router.push(item.target);
                   }
                 }}
-                active={isActive}
               />
             </li>
           );
@@ -67,8 +65,6 @@ export default function ThreadList({ pane, items, onOpen = () => {}, onClose = (
             {...paneData}
             onClose={() => {
               setPaneData(null);
-              setPaneIndex(0);
-              onClose();
             }}
           />
         </PaneWrapper>
