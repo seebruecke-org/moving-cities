@@ -1,6 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
@@ -15,31 +16,23 @@ import { fetchAllCitiesByCountry, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchAllCountryPaths } from '@/lib/networks';
-import { useEffect, useState } from 'react';
 
 export default function AllCitiesOverview({ countries, counts }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(countries.map(({ name, cities, slug, ...country }) => {
+    const target = `/${tSlugs('cities')}/${slug}`;
+
+    return {
+      ...country,
+      target,
+      title: name,
+      subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
+      data: { cities, target }
+    };
+  }));
   const isSingleView = !!query?.slug?.[0];
-  const countriesString = JSON.stringify(countries);
-
-  useEffect(() => {
-    setItems(
-      countries.map(({ name, cities, slug, ...country }) => {
-        const target = `/${tSlugs('cities')}/${slug}`;
-
-        return {
-          ...country,
-          target,
-          title: name,
-          subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
-          data: { cities, target }
-        };
-      })
-    );
-  }, [countriesString]);
 
   const bounds = getBounds(
     countries.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
