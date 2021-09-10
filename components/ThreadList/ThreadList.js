@@ -5,7 +5,12 @@ import { useRouter } from 'next/router';
 import Item from './Item';
 import PaneWrapper from './PaneWrapper';
 
-export default function ThreadList({ pane, items }) {
+export default function ThreadList({
+  pane,
+  items,
+  onAfterOpen = () => {},
+  onAfterClose = () => {}
+}) {
   const Pane = pane;
   const activeItemIndex = items.findIndex(({ active }) => active);
   const hasActiveItem = activeItemIndex !== -1;
@@ -60,6 +65,7 @@ export default function ThreadList({ pane, items }) {
                   // On large screens the pane get's opened
                   if (window.innerWidth > 768) {
                     setActiveItem(index);
+                    onAfterOpen(items[index]);
                     // On small screens, a navigation to the target
                     // page is forced
                   } else {
@@ -78,6 +84,7 @@ export default function ThreadList({ pane, items }) {
             {...paneData}
             onClose={() => {
               resetActiveItem();
+              onAfterClose();
             }}
           />
         </PaneWrapper>

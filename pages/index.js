@@ -115,13 +115,15 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
 
           <ThreadList
             pane={CityPreview}
-            onOpen={({ id, coordinates }) => {
+            onAfterOpen={({ id, coordinates }) => {
               setActiveCity({ id, coordinates });
             }}
-            onClose={() => {
+            onAfterClose={() => {
               setActiveCity(null);
             }}
-            items={cities.map(({ id, name, subtitle, slug, approaches, ...city }) => ({
+            items={cities.map(({ id, name, subtitle, slug, approaches, summary, ...city }) => ({
+              ...city,
+              id,
               title: name,
               subtitle,
               target: `/${slug}`,
@@ -134,7 +136,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
                   uri: `/${slug}/${approachSlug}`,
                   ...approach
                 })),
-                ...city
+                summary
               }
             }))}
           />
