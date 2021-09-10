@@ -29,6 +29,7 @@ export default function ThreadList({
 
   function resetActiveItem() {
     setPaneData(null);
+    onAfterClose();
   }
 
   useEffect(() => {
@@ -64,8 +65,13 @@ export default function ThreadList({
 
                   // On large screens the pane get's opened
                   if (window.innerWidth > 768) {
-                    setActiveItem(index);
-                    onAfterOpen(items[index]);
+                    if (paneData && paneData?.index === index) {
+                      resetActiveItem();
+                    } else if ((paneData && paneData?.index !== index) || !paneData) {
+                      setActiveItem(index);
+                      onAfterOpen(items[index]);
+                    }
+
                     // On small screens, a navigation to the target
                     // page is forced
                   } else {
@@ -84,7 +90,6 @@ export default function ThreadList({
             {...paneData}
             onClose={() => {
               resetActiveItem();
-              onAfterClose();
             }}
           />
         </PaneWrapper>
