@@ -1,6 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
@@ -21,38 +22,58 @@ export default function AllCitiesOverview({ countries, counts }) {
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
   const isSingleView = !!query?.slug?.[0];
+  const [markers, setMarkers] = useState([]);
+  const [bounds, setBounds] = useState(null);
+  const [activeCountry, setActiveCountry] = useState(null);
 
-  const bounds = getBounds(
-    countries.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
-  );
+  function countryIsActive(country) {
+    if (activeCountry) {
+      return activeCountry.id === country.id;
+    }
 
-  const markers = countries
-    .map(({ cities }) => {
-      return cities.map(
-        ({
-          coordinates: {
-            geometry: { coordinates }
-          },
-          name
-        }) => {
-          const [longitude, latitude] = coordinates;
+    return true;
+  }
 
-          return (
-            <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                width="16"
-                height="16"
-                fill="none">
-                <circle cx="8" cy="8" r="8" fill="#F55511" />
-              </svg>
-            </Marker>
-          );
-        }
-      );
-    })
-    .flat();
+  useEffect(() => {
+    const markers = countries
+      .filter(countryIsActive)
+      .map(({ cities }) => {
+        return cities.map(
+          ({
+            coordinates: {
+              geometry: { coordinates }
+            },
+            name
+          }) => {
+            const [longitude, latitude] = coordinates;
+
+            return (
+              <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                  fill="none">
+                  <circle cx="8" cy="8" r="8" fill="#F55511" />
+                </svg>
+              </Marker>
+            );
+          }
+        );
+      })
+      .flat();
+
+    const bounds = getBounds(
+      countries
+        .filter(countryIsActive)
+        .map(({ cities }) => cities.map(({ coordinates }) => coordinates))
+        .flat()
+    );
+
+    setBounds(bounds);
+    setMarkers(markers);
+  }, [activeCountry]);
 
   return (
     <div className="flex flex-col md:flex-row md:h-full">
@@ -91,6 +112,12 @@ export default function AllCitiesOverview({ countries, counts }) {
 
       <ThreadList
         pane={CountryPreview}
+        onAfterOpen={(country) => {
+          setActiveCountry(country);
+        }}
+        onAfterClose={() => {
+          setActiveCountry(null);
+        }}
         items={countries.map(({ name, cities, slug, ...country }) => {
           const target = `/${tSlugs('cities')}/${slug}`;
 
@@ -104,7 +131,7 @@ export default function AllCitiesOverview({ countries, counts }) {
         })}
       />
 
-      <MapboxMap bounds={bounds}>{markers}</MapboxMap>
+      {markers && <MapboxMap bounds={bounds}>{markers}</MapboxMap>}
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
     </div>

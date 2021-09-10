@@ -1,6 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { Marker } from 'react-map-gl';
+import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
@@ -21,38 +22,59 @@ export default function NetworkPage({ networks, counts }) {
   const { t: tSlugs } = useTranslation('slugs');
   const { t } = useTranslation('networks');
   const { query } = useRouter();
+  const [activeNetwork, setActiveNetwork] = useState(null);
+  const [markers, setMarkers] = useState([]);
+  const [bounds, setBounds] = useState(null);
   const isSingleView = !!query?.slug?.[0];
 
-  const bounds = getBounds(
-    networks.map(({ cities }) => cities.map(({ coordinates }) => coordinates)).flat()
-  );
-  const markers = networks
-    .map(({ cities }) => {
-      return cities.map(
-        ({
-          coordinates: {
-            geometry: { coordinates }
-          },
-          name
-        }) => {
-          const [longitude, latitude] = coordinates;
+  function networkIsActive(network) {
+    if (activeNetwork) {
+      return activeNetwork.id === network.id;
+    }
 
-          return (
-            <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                width="16"
-                height="16"
-                fill="none">
-                <circle cx="8" cy="8" r="8" fill="#F55511" />
-              </svg>
-            </Marker>
-          );
-        }
-      );
-    })
-    .flat();
+    return true;
+  }
+
+  useEffect(() => {
+    const markers = networks
+      .filter(networkIsActive)
+      .map(({ cities }) => {
+        return cities.map(
+          ({
+            coordinates: {
+              geometry: { coordinates }
+            },
+            name
+          }) => {
+            const [longitude, latitude] = coordinates;
+
+            return (
+              <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                  fill="none">
+                  <circle cx="8" cy="8" r="8" fill="#F55511" />
+                </svg>
+              </Marker>
+            );
+          }
+        );
+      })
+      .flat();
+
+    const bounds = getBounds(
+      networks
+        .filter(networkIsActive)
+        .map(({ cities }) => cities.map(({ coordinates }) => coordinates))
+        .flat()
+    );
+
+    setMarkers(markers);
+    setBounds(bounds);
+  }, [activeNetwork]);
 
   return (
     <div className="flex flex-col md:flex-row md:h-full">
@@ -91,6 +113,12 @@ export default function NetworkPage({ networks, counts }) {
 
       <ThreadList
         pane={NetworkPreview}
+        onAfterOpen={(network) => {
+          setActiveNetwork(network);
+        }}
+        onAfterClose={() => {
+          setActiveNetwork(null);
+        }}
         items={networks.map(({ name, content, cities, slug, ...network }) => ({
           ...network,
           target: `/${tSlugs('networks')}/${slug}`,
@@ -111,7 +139,7 @@ export default function NetworkPage({ networks, counts }) {
         }))}
       />
 
-      <MapboxMap bounds={bounds}>{markers}</MapboxMap>
+      {markers && <MapboxMap bounds={bounds}>{markers}</MapboxMap>}
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
     </div>
