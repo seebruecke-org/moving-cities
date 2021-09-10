@@ -13,14 +13,24 @@ export default function ThreadList({ pane, items }) {
   const router = useRouter();
   const [paneData, setPaneData] = useState(null);
 
+  function setActiveItem(index) {
+    const item = items[index];
+
+    setPaneData({
+      index: index,
+      ...item.data
+    });
+  }
+
+  function resetActiveItem() {
+    setPaneData(null);
+  }
+
   useEffect(() => {
     if (activeItemIndex !== -1) {
-      setPaneData({
-        index: activeItemIndex,
-        ...items[activeItemIndex].data
-      });
+      setActiveItem(activeItemIndex);
     } else {
-      setPaneData(null);
+      resetActiveItem();
     }
   }, [activeItemIndex]);
 
@@ -49,10 +59,7 @@ export default function ThreadList({ pane, items }) {
 
                   // On large screens the pane get's opened
                   if (window.innerWidth > 768) {
-                    setPaneData({
-                      index,
-                      ...item?.data
-                    });
+                    setActiveItem(index);
                     // On small screens, a navigation to the target
                     // page is forced
                   } else {
@@ -70,7 +77,7 @@ export default function ThreadList({ pane, items }) {
           <Pane
             {...paneData}
             onClose={() => {
-              setPaneData(null);
+              resetActiveItem();
             }}
           />
         </PaneWrapper>
