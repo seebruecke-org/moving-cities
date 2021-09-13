@@ -48,7 +48,7 @@ export default function ThreadList({
         <span className="absolute top-0 left-full w-3 bg-gradient-to-r from-black h-full opacity-20 hidden md:block" />
       )}
 
-      <ul className="h-full overflow-y-auto">
+      <ul className="md:h-full md:overflow-y-auto">
         {items.map(({ className, __typename, ...item }, index) => {
           const isActive = paneData?.index === index;
 
