@@ -41,7 +41,7 @@ function Count({ count, className, onClick = () => {}, ...props }) {
   return (
     <Link {...props}>
       <a
-        className={clsx('font-raptor text-5xl font-bold underline block', className)}
+        className={clsx('font-raptor text-5xl font-bold underline block hover:text-black', className)}
         onClick={onClick}
       >
         {count}
