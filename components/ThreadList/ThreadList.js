@@ -41,14 +41,14 @@ export default function ThreadList({
   }, [activeItemIndex]);
 
   return (
-    <nav className="md:h-full relative z-20 md:w-72 flex-grow-0 flex-shrink-0">
+    <nav className="md:h-full relative z-20 flex flex-grow-0 flex-shrink-0">
       <span className="absolute top-0 left-0 w-3 bg-gradient-to-r from-black h-full opacity-20 hidden md:block" />
 
       {!paneData && (
         <span className="absolute top-0 left-full w-3 bg-gradient-to-r from-black h-full opacity-20 hidden md:block" />
       )}
 
-      <ul className="md:h-full md:overflow-y-auto">
+      <ul className="md:h-full md:overflow-y-auto md:w-72">
         {items.map(({ className, __typename, ...item }, index) => {
           const isActive = paneData?.index === index;
 
