@@ -88,7 +88,7 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
   const menu = await fetchApproaches(locale, city);
 
   return {
-    revalidate: 60,
+    revalidate: 30,
     props: {
       ...translations,
       approach,

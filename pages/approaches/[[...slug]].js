@@ -88,7 +88,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const categories = await fetchApproachCategories(locale);
 
   return {
-    revalidate: 60,
+    revalidate: 30,
     props: {
       ...translations,
       categories,
