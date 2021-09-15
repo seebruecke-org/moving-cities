@@ -29,11 +29,13 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
             {t('featuredCities')}
           </Heading>
 
-          <div className="flex flex-wrap space-x-4 space-y-4">
+          <ul className="flex flex-wrap">
             {featuredCities.map(({ name, slug }) => (
-              <Button href={`/${slug}`}>{name}</Button>
+              <li className="mr-4 mb-4">
+                <Button href={`/${slug}`}>{name}</Button>
+              </li>
             ))}
-          </div>
+          </ul>
         </>
       )}
 
