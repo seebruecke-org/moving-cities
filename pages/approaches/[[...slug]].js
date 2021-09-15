@@ -39,7 +39,8 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
           <li>
             <Pill
               target={`/${tSlugs('approaches')}/${slug}`}
-              active={slug === router?.query?.slug?.[0]}>
+              active={slug === router?.query?.slug?.[0]}
+            >
               {title}
             </Pill>
           </li>

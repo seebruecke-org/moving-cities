@@ -28,7 +28,8 @@ export default function CityNext({ name, slug, subtitle }) {
               height="47"
               fill="none"
               viewBox="0 0 21 47"
-              className="w-5 md:w-8 h-auto">
+              className="w-5 md:w-8 h-auto"
+            >
               <path
                 fill="currentColor"
                 fill-rule="evenodd"

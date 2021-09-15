@@ -9,7 +9,8 @@ export default function BackTo({ title, uri, className }) {
           className={clsx(
             'font-bold font-raptor text-s block py-6 shadow-xl px-6 hover:text-red-300',
             className
-          )}>
+          )}
+        >
           <span className="text-red-300 mr-2">⟵</span>
           {title}
         </a>

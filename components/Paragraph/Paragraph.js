@@ -7,7 +7,8 @@ export default function Paragraph({ children, className, isSmall = true }) {
         'leading-tight font-raptor',
         className,
         isSmall ? 'text-s md:text-m' : 'text-m md:text-l'
-      )}>
+      )}
+    >
       {children}
     </p>
   );

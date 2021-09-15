@@ -56,14 +56,16 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
           latitude={latitude}
           onClick={() => {
             setFocusedCity({ id });
-          }}>
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 40 40"
             width="40"
             height="40"
             fill="none"
-            className="group cursor-pointer">
+            className="group cursor-pointer"
+          >
             <circle
               cx="20"
               cy="20"

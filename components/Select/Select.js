@@ -97,7 +97,8 @@ function DropdownIndicator(props) {
           width="28"
           height="17"
           viewBox="0 0 28 17"
-          fill="none">
+          fill="none"
+        >
           <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="M26 15L14 3 2 15" />
         </svg>
       </C.DropdownIndicator>
@@ -111,7 +112,8 @@ function DropdownIndicator(props) {
         width="28"
         height="17"
         viewBox="0 0 28 17"
-        fill="none">
+        fill="none"
+      >
         <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="M2 2l12 12L26 2" />
       </svg>
     </C.DropdownIndicator>

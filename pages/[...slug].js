@@ -88,7 +88,8 @@ export default function CityPage({
               <Button
                 href={buildCMSUrl(report.file.url)}
                 priority
-                className="self-start mt-8 w-auto">
+                className="self-start mt-8 w-auto"
+              >
                 {tCity('download.cta')}
                 <span className="text-red-300 ml-4">⤓</span>
               </Button>

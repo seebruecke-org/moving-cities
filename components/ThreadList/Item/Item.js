@@ -17,7 +17,8 @@ export default function ThreadListItem({
         active && 'bg-yellow-300',
         className
       )}
-      {...props}>
+      {...props}
+    >
       <span>
         <h2 className="text-m font-bold font-raptor mt-1">{title}</h2>
         <p className="text-2xs md:text-xs font-raptor leading-snug">{subtitle}</p>
@@ -31,7 +32,8 @@ export default function ThreadListItem({
         className={clsx(
           'mt-3 ml-auto w-4 md:w-5 h-auto flex-grow-0 flex-shrink-0',
           active && 'text-red-300 hidden md:flex'
-        )}>
+        )}
+      >
         <path
           stroke="currentColor"
           stroke-linecap="round"

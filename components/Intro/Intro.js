@@ -42,7 +42,8 @@ function Count({ count, className, onClick = () => {}, ...props }) {
     <Link {...props}>
       <a
         className={clsx('font-raptor text-5xl font-bold underline block', className)}
-        onClick={onClick}>
+        onClick={onClick}
+      >
         {count}
       </a>
     </Link>
@@ -68,7 +69,8 @@ export default function Intro({
           className={clsx(
             'font-raptor text-3xl sm:text-4xl md:text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
             styles.title
-          )}>
+          )}
+        >
           {title}
         </h1>
 

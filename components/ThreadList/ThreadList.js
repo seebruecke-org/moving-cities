@@ -55,7 +55,8 @@ export default function ThreadList({
           return (
             <li
               key={`thread-item-${index}`}
-              className={clsx(hasActiveItem && !isActive && 'hidden md:flex')}>
+              className={clsx(hasActiveItem && !isActive && 'hidden md:flex')}
+            >
               <Item
                 {...item}
                 className={className}

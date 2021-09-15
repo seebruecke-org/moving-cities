@@ -48,7 +48,8 @@ function SidebarMenu({ items }) {
                 'px-12 block font-raptor font-bold pb-6 hover:bg-yellow-300 text-m leading-snug',
                 topLevelActive && 'bg-yellow-300',
                 index === 0 ? 'pt-24' : 'pt-8'
-              )}>
+              )}
+            >
               {label}
             </a>
           </Link>
@@ -61,7 +62,8 @@ function SidebarMenu({ items }) {
                     'block pl-12 pr-8 py-3 hover:underline font-raptor text-xs',
                     active && 'underline',
                     topLevelActive && 'bg-yellow-300'
-                  )}>
+                  )}
+                >
                   {label}
                 </a>
               </Link>

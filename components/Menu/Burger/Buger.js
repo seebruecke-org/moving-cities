@@ -21,13 +21,15 @@ export default function Burger({ onOpen = () => {}, onClose = () => {}, classNam
 
         setIsOpen(!isOpen);
       }}
-      className={clsx('hover:text-black', className)}>
+      className={clsx('hover:text-black', className)}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="52"
         height="41"
         viewBox="0 0 52 41"
-        className="w-16 h-auto -ml-1">
+        className="w-16 h-auto -ml-1"
+      >
         <g stroke="currentColor" stroke-linecap="round" stroke-width="3" filter="url(#filter0_d)">
           <path d="M7.5 20.5h29M7.5 29.5h29M7.5 11.5h29" />
         </g>
@@ -40,7 +42,8 @@ export default function Burger({ onOpen = () => {}, onClose = () => {}, classNam
             x="0"
             y="0"
             color-interpolation-filters="sRGB"
-            filterUnits="userSpaceOnUse">
+            filterUnits="userSpaceOnUse"
+          >
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"

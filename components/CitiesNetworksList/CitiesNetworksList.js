@@ -18,7 +18,8 @@ function CityItem({ name, networks }) {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="flex justify-between font-raptor text-s md:text-m py-4 px-8 w-full group">
+          className="flex justify-between font-raptor text-s md:text-m py-4 px-8 w-full group"
+        >
           <span className="group-hover:underline">{name}</span>
 
           {isOpen ? '-' : '+'}
@@ -59,7 +60,8 @@ export default function CitiesNetworksList({ cities, className }) {
         'bg-yellow-300 h-full overflow-y-auto flex flex-col',
         styles.countryPreview,
         className
-      )}>
+      )}
+    >
       {cities.map((city) => (
         <li className="flex flex-wrap border-b border-grey-300">
           <CityItem {...city} />

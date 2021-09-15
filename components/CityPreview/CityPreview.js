@@ -26,7 +26,8 @@ export default function CityPreview({
       className={clsx(
         'bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col',
         styles.cityPreview
-      )}>
+      )}
+    >
       <div className="flex mb-24 items-start">
         {icon && <CityIcon icon={icon} className="w-52 mr-12" />}
 
@@ -42,7 +43,8 @@ export default function CityPreview({
             width="37"
             height="37"
             viewBox="0 0 37 37"
-            className="group-hover:text-red-300">
+            className="group-hover:text-red-300"
+          >
             <path
               stroke="currentColor"
               stroke-linecap="round"

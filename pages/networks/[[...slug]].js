@@ -36,34 +36,41 @@ export default function NetworkPage({ networks, counts }) {
   }
 
   useEffect(() => {
-    const markers = networks
+    const cities = networks
       .filter(networkIsActive)
-      .map(({ cities }) => {
-        return cities.map(
-          ({
-            coordinates: {
-              geometry: { coordinates }
-            },
-            name
-          }) => {
-            const [longitude, latitude] = coordinates;
+      .map(({ cities }) => cities)
+      .flat()
+      .filter((thing, index, self) =>
+  index === self.findIndex((t) => (
+    t.name === thing.name
+  ))
+)
+;
 
-            return (
-              <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  height="16"
-                  fill="none">
-                  <circle cx="8" cy="8" r="8" fill="#F55511" />
-                </svg>
-              </Marker>
-            );
-          }
+    const markers = cities.map(
+      ({
+        coordinates: {
+          geometry: { coordinates }
+        },
+        name
+      }) => {
+        const [longitude, latitude] = coordinates;
+
+        return (
+          <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+              fill="none"
+            >
+              <circle cx="8" cy="8" r="8" fill="#F55511" />
+            </svg>
+          </Marker>
         );
-      })
-      .flat();
+      }
+    );
 
     const bounds = getBounds(
       networks
@@ -123,13 +130,12 @@ export default function NetworkPage({ networks, counts }) {
           ...network,
           target: `/${tSlugs('networks')}/${slug}`,
           title: name,
-          subtitle: cities.reduce((acc, city) => {
-            const { country } = city;
-
-            acc = `${acc} ${country?.name}`;
-
-            return acc;
-          }, ''),
+          subtitle: cities
+            .map(({ country }) => country?.name)
+            .filter(Boolean)
+            // remove duplicates
+            .filter((item, pos, self) => self.indexOf(item) == pos)
+            .join(', '),
           data: {
             title: name,
             content,

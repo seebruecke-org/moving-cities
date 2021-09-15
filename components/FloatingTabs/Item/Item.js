@@ -13,7 +13,8 @@ function FloatingTabsItem({ target, label, active = false, count, className, ...
             active && 'bg-yellow-300 shadow-md',
             className
           )}
-          {...props}>
+          {...props}
+        >
           <span className="md:whitespace-nowrap">{label}</span>
 
           {count && <span>({count})</span>}

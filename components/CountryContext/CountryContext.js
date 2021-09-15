@@ -20,12 +20,19 @@ export default function CountryContext({ name, content, open = false }) {
             styles.summary,
             isOpen && 'mb-10 border-b-2',
             'cursor-pointer hover:bg-black hover:text-white pb-4'
-          )}>
+          )}
+        >
           <Heading level={2} className="px-10 pt-6 flex justify-between sm:items-center">
             {t('politicalContext', { name })}
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="23" fill="none" viewBox="0 0 40 23">
-              <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="m2 2 18 18L38 2"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="23"
+              fill="none"
+              viewBox="0 0 40 23"
+            >
+              <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="m2 2 18 18L38 2" />
             </svg>
           </Heading>
         </summary>
