@@ -10,7 +10,7 @@ export default function Markdown({ children, isSmall }) {
     a: ({ children, href }) => {
       return (
         <Link href={href}>
-          <a className="underline">{children}</a>
+          <a className="underline hover:text-pink-300">{children}</a>
         </Link>
       );
     },
