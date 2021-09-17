@@ -79,7 +79,6 @@ export default function CityProgramPage({
 
             <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
               {approaches
-                .filter(({ slug }) => slug !== query.slug)
                 .map(({ slug: approachSlug, ...approach }) => (
                   <li>
                     <Approach {...approach} uri={`/${citySlug}/${approachSlug}`} />
