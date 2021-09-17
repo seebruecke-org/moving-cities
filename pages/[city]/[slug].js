@@ -24,8 +24,9 @@ export default function CityProgramPage({
     title,
     summary,
     content,
-    city: { name: cityName, slug: citySlug, icon: cityIcon, approaches },
-    categories
+    city: { name: cityName, slug: citySlug, icon: cityIcon, approaches: cityApproaches },
+    categories,
+    related_approaches
   },
   menu
 }) {
@@ -33,6 +34,8 @@ export default function CityProgramPage({
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
+
+  const approaches = cityApproaches?.length >= 1 ? cityApproaches : related_approaches;
 
   return (
     <div className="md:flex pb-28 md:pb-0">
