@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
+import BackTo from '@/components/BackTo';
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import ProgramHeader from '@/components/ProgramHeader';
 import Heading from '@/components/Heading';
@@ -8,6 +10,9 @@ import Paragraph from '@/components/Paragraph';
 import SEO from '@/components/SEO';
 import Section from '@/components/Blocks/Section';
 import SidebarMenu from '@/components/SidebarMenu';
+
+const Approach = dynamic(() => import('@/components/Approach'));
+const Columns = dynamic(() => import('@/components/Columns'));
 
 import { fetchApproachBySlug, fetchAllApproachPaths } from '@/lib/approaches';
 import { fetchApproaches } from '@/lib/cities';
@@ -19,13 +24,14 @@ export default function CityProgramPage({
     title,
     summary,
     content,
-    city: { name: cityName, slug: citySlug, icon: cityIcon },
-    categories
+    city: { name: cityName, slug: citySlug, icon: cityIcon, approaches },
+    categories,
   },
   menu
 }) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
+  const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
 
   return (
@@ -61,7 +67,24 @@ export default function CityProgramPage({
             {summary.content}
           </Paragraph>
         </ProgramHeader>
+
         <BlockSwitch blocks={content} renderers={{ Section, Quote }} />
+
+        {approaches?.length > 0 && (
+          <Columns className="px-8 md:px-10 max-w-8xl mt-8 md:mt-24">
+            <Heading level={2}>{t('inspiringApproachesOfCity')}</Heading>
+
+            <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
+              {approaches.filter(({ slug }) => slug !== query.slug).map(({ slug: approachSlug, ...approach }) => (
+                <li>
+                  <Approach {...approach} uri={`/${citySlug}/${approachSlug}`} />
+                </li>
+              ))}
+            </ul>
+          </Columns>
+        )}
+
+        <BackTo title={t('allInspiringApproaches')} uri={`/${tSlugs('approaches')}`} className="mx-8 mt-20 md:mt-48" />
       </article>
     </div>
   );
