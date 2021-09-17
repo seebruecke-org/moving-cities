@@ -4,7 +4,11 @@ import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
-export default function NetworksSummary({ networksSummaryTitle, networksSummaryContent, networks = [] }) {
+export default function NetworksSummary({
+  networksSummaryTitle,
+  networksSummaryContent,
+  networks = []
+}) {
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
 
@@ -29,9 +33,7 @@ export default function NetworksSummary({ networksSummaryTitle, networksSummaryC
           <ul className="flex mt-6 max-w-full flex-wrap">
             {networks.map(({ name, slug }) => (
               <li className="mr-4 mb-4">
-                <Button href={`/${tSlugs('networks')}/${slug}`}>
-                  {name}
-                </Button>
+                <Button href={`/${tSlugs('networks')}/${slug}`}>{name}</Button>
               </li>
             ))}
           </ul>
