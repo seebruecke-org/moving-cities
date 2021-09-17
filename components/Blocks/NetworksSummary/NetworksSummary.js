@@ -4,8 +4,13 @@ import Button from '@/components/Button';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
-export default function NetworksSummary({ networksSummaryTitle, networksSummaryContent }) {
+export default function NetworksSummary({ networksSummaryTitle, networksSummaryContent, networks = [] }) {
   const { t } = useTranslation('city');
+  const { t: tSlugs } = useTranslation('slugs');
+
+  if (networks?.length === 0) {
+    return null;
+  }
 
   return (
     <section className="bg-yellow-300 pt-16 pb-16 px-8 md:px-28">
@@ -21,13 +26,15 @@ export default function NetworksSummary({ networksSummaryTitle, networksSummaryC
             {t('memberOfNetworks')}
           </Heading>
 
-          <div className="flex mt-6 max-w-full flex-wrap">
-            <Button className="mr-6 mb-6">Solidarity City</Button>
-
-            <Button className="mr-6 mb-6">Solidarity City</Button>
-
-            <Button className="mr-6 mb-6">Solidarity City</Button>
-          </div>
+          <ul className="flex mt-6 max-w-full flex-wrap">
+            {networks.map(({ name, slug }) => (
+              <li className="mr-4 mb-4">
+                <Button href={`/${tSlugs('networks')}/${slug}`}>
+                  {name}
+                </Button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
