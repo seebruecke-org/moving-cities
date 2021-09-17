@@ -29,10 +29,10 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
       <SEO title={tApproaches('inspiringApproaches')} />
 
       <Heading level={1} className="my-10 md:mb-28">
-        {tApproaches('inspiringApproaches', { count: approaches.length })}
+        {tApproaches('inspiringApproaches')}
       </Heading>
 
-      <Paragraph className="md:font-bold">{tApproaches('intro')}</Paragraph>
+      <Paragraph className="md:font-bold">{tApproaches('intro', { count: approaches.length })}</Paragraph>
 
       <ul className="hidden md:flex md:flex-wrap mt-6">
         {categories.map(({ title, slug }) => (
