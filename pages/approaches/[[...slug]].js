@@ -29,14 +29,14 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
       <SEO title={tApproaches('inspiringApproaches')} />
 
       <Heading level={1} className="my-10 md:mb-28">
-        {tApproaches('inspiringApproaches')}
+        {tApproaches('inspiringApproaches', { count: approaches.length })}
       </Heading>
 
       <Paragraph className="md:font-bold">{tApproaches('intro')}</Paragraph>
 
-      <ul className="space-x-4 hidden md:flex mt-6">
+      <ul className="hidden md:flex md:flex-wrap mt-6">
         {categories.map(({ title, slug }) => (
-          <li>
+          <li className="mr-4 mb-4">
             <Pill
               target={`/${tSlugs('approaches')}/${slug}`}
               active={slug === router?.query?.slug?.[0]}
