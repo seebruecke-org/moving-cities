@@ -32,7 +32,9 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
         {tApproaches('inspiringApproaches')}
       </Heading>
 
-      <Paragraph className="md:font-bold">{tApproaches('intro', { count: approaches.length })}</Paragraph>
+      <Paragraph className="md:font-bold">
+        {tApproaches('intro', { count: approaches.length })}
+      </Paragraph>
 
       <ul className="hidden md:flex md:flex-wrap mt-6">
         {categories.map(({ title, slug }) => (

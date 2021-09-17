@@ -25,7 +25,7 @@ export default function CityProgramPage({
     summary,
     content,
     city: { name: cityName, slug: citySlug, icon: cityIcon, approaches },
-    categories,
+    categories
   },
   menu
 }) {
@@ -75,16 +75,22 @@ export default function CityProgramPage({
             <Heading level={2}>{t('inspiringApproachesOfCity')}</Heading>
 
             <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
-              {approaches.filter(({ slug }) => slug !== query.slug).map(({ slug: approachSlug, ...approach }) => (
-                <li>
-                  <Approach {...approach} uri={`/${citySlug}/${approachSlug}`} />
-                </li>
-              ))}
+              {approaches
+                .filter(({ slug }) => slug !== query.slug)
+                .map(({ slug: approachSlug, ...approach }) => (
+                  <li>
+                    <Approach {...approach} uri={`/${citySlug}/${approachSlug}`} />
+                  </li>
+                ))}
             </ul>
           </Columns>
         )}
 
-        <BackTo title={t('allInspiringApproaches')} uri={`/${tSlugs('approaches')}`} className="mx-8 mt-20 md:mt-48" />
+        <BackTo
+          title={t('allInspiringApproaches')}
+          uri={`/${tSlugs('approaches')}`}
+          className="mx-8 mt-20 md:mt-48"
+        />
       </article>
     </div>
   );

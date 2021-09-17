@@ -40,13 +40,7 @@ export default function NetworkPage({ networks, counts }) {
       .filter(networkIsActive)
       .map(({ cities }) => cities)
       .flat()
-      .filter((thing, index, self) =>
-  index === self.findIndex((t) => (
-    t.name === thing.name
-  ))
-)
-;
-
+      .filter((thing, index, self) => index === self.findIndex((t) => t.name === thing.name));
     const markers = cities.map(
       ({
         coordinates: {
