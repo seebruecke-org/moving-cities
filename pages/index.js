@@ -16,19 +16,17 @@ import { fetchFeaturedCities, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
-import { useStore } from '@/lib/store';
+import useMapReducer from '@/lib/stores/map';
 
 export default function HomePage({ cities, intro, routeHasChanged, counts }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
+  const [{ activeThread }, dispatch] = useMapReducer();
   const mapProps = {};
-  const { setActiveCity, setFocusedCity } = useStore();
-  const activeCity = useStore((state) => state.activeCity);
-  const focusedCity = useStore((state) => state.focusedCity);
 
-  if (activeCity) {
-    const [longitude, latitude] = activeCity.coordinates.geometry.coordinates;
+  if (activeThread) {
+    const [longitude, latitude] = activeThread.coordinates.geometry.coordinates;
 
     mapProps.options = {
       latitude,
@@ -55,7 +53,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
           longitude={longitude}
           latitude={latitude}
           onClick={() => {
-            setFocusedCity({ id });
+            dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
           }}
         >
           <svg
@@ -118,10 +116,10 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
           <ThreadList
             pane={CityPreview}
             onAfterOpen={({ id, coordinates }) => {
-              setActiveCity({ id, coordinates });
+              dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
             }}
             onAfterClose={() => {
-              setActiveCity(null);
+              dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
             }}
             items={cities.map(({ id, name, subtitle, slug, approaches, summary, ...city }) => ({
               ...city,
@@ -129,7 +127,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
               title: name,
               subtitle,
               target: `/${slug}`,
-              active: focusedCity?.id === id,
+              active: activeThread?.id === id,
               data: {
                 title: name,
                 subtitle,

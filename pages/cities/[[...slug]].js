@@ -16,6 +16,7 @@ import { fetchAllCitiesByCountry, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchAllCountryPaths } from '@/lib/networks';
+import useMapReducer from '@/lib/stores/map';
 
 export default function AllCitiesOverview({ countries, counts }) {
   const { t: tCity } = useTranslation('city');
@@ -24,11 +25,11 @@ export default function AllCitiesOverview({ countries, counts }) {
   const isSingleView = !!query?.slug?.[0];
   const [markers, setMarkers] = useState([]);
   const [bounds, setBounds] = useState(null);
-  const [activeCountry, setActiveCountry] = useState(null);
+  const [{ activeThread }, dispatch] = useMapReducer();
 
   function countryIsActive(country) {
-    if (activeCountry) {
-      return activeCountry.id === country.id;
+    if (activeThread) {
+      return activeThread.id === country.id;
     }
 
     return true;
@@ -74,7 +75,7 @@ export default function AllCitiesOverview({ countries, counts }) {
 
     setBounds(bounds);
     setMarkers(markers);
-  }, [activeCountry]);
+  }, [activeThread]);
 
   return (
     <div className="flex flex-col md:flex-row md:h-full">
@@ -114,10 +115,10 @@ export default function AllCitiesOverview({ countries, counts }) {
       <ThreadList
         pane={CountryPreview}
         onAfterOpen={(country) => {
-          setActiveCountry(country);
+          dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: country.id } });
         }}
         onAfterClose={() => {
-          setActiveCountry(null);
+          dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
         }}
         items={countries.map(({ name, cities, slug, ...country }) => {
           const target = `/${tSlugs('cities')}/${slug}`;

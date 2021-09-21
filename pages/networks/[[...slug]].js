@@ -16,20 +16,21 @@ import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
+import useMapReducer from '@/lib/stores/map';
 
 export default function NetworkPage({ networks, counts }) {
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { t } = useTranslation('networks');
   const { query } = useRouter();
-  const [activeNetwork, setActiveNetwork] = useState(null);
+  const [{ activeThread }, dispatch] = useMapReducer();
   const [markers, setMarkers] = useState([]);
   const [bounds, setBounds] = useState(null);
   const isSingleView = !!query?.slug?.[0];
 
   function networkIsActive(network) {
-    if (activeNetwork) {
-      return activeNetwork.id === network.id;
+    if (activeThread) {
+      return activeThread.id === network.id;
     }
 
     return true;
@@ -75,7 +76,7 @@ export default function NetworkPage({ networks, counts }) {
 
     setMarkers(markers);
     setBounds(bounds);
-  }, [activeNetwork]);
+  }, [activeThread]);
 
   return (
     <div className="flex flex-col md:flex-row md:h-full">
@@ -115,10 +116,10 @@ export default function NetworkPage({ networks, counts }) {
       <ThreadList
         pane={NetworkPreview}
         onAfterOpen={(network) => {
-          setActiveNetwork(network);
+          dispatch({ type: 'THREAD_ITEM_ACTIVATE', paypload: { id: network.id } });
         }}
         onAfterClose={() => {
-          setActiveNetwork(null);
+          dispatch({ type: 'THREAD_ITEM_ACTIVATE', paypload: null });
         }}
         items={networks.map(({ name, content, cities, slug, ...network }) => ({
           ...network,
