@@ -14,7 +14,10 @@ import shadowStyles from './shadow.module.css';
 function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:text-black" {...props}>
+      <a
+        className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:text-black"
+        {...props}
+      >
         {label}
       </a>
     </Link>
@@ -52,7 +55,7 @@ export default function Menu() {
     {
       target: `/${tSlugs('about')}`,
       label: t('menu.about')
-    },
+    }
   ];
 
   const OVERLAY_SECONDARY_ITEMS = [

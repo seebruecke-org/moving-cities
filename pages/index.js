@@ -37,45 +37,41 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
     mapProps.bounds = getBounds(cities.map(({ coordinates }) => coordinates));
   }
 
-  const markers = activeThread ? null : cities.map(
-    ({
-      coordinates,
-      id,
-      name
-    }) => {
-      const [longitude, latitude] = coordinates?.geometry?.coordinates;
+  const markers = activeThread
+    ? null
+    : cities.map(({ coordinates, id, name }) => {
+        const [longitude, latitude] = coordinates?.geometry?.coordinates;
 
-      return (
-        <Marker
-          key={`marker-${id}`}
-          longitude={longitude}
-          latitude={latitude}
-          onClick={() => {
-            dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 40 40"
-            width="40"
-            height="40"
-            fill="none"
-            className="group cursor-pointer"
+        return (
+          <Marker
+            key={`marker-${id}`}
+            longitude={longitude}
+            latitude={latitude}
+            onClick={() => {
+              dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
+            }}
           >
-            <circle
-              cx="20"
-              cy="20"
-              r="17"
-              stroke="currentColor"
-              stroke-dasharray="4 2"
-              stroke-width="6"
-              className="text-red-300 group-hover:text-black"
-            />
-          </svg>
-        </Marker>
-      );
-    }
-  );
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 40 40"
+              width="40"
+              height="40"
+              fill="none"
+              className="group cursor-pointer"
+            >
+              <circle
+                cx="20"
+                cy="20"
+                r="17"
+                stroke="currentColor"
+                stroke-dasharray="4 2"
+                stroke-width="6"
+                className="text-red-300 group-hover:text-black"
+              />
+            </svg>
+          </Marker>
+        );
+      });
 
   return (
     <>

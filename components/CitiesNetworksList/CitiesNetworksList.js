@@ -58,11 +58,13 @@ export default function CitiesNetworksList({ cities, className }) {
         className
       )}
     >
-      {cities.filter(({ networks }) => networks?.length > 0).map((city) => (
-        <li className="flex flex-wrap border-b border-grey-300">
-          <CityItem {...city} />
-        </li>
-      ))}
+      {cities
+        .filter(({ networks }) => networks?.length > 0)
+        .map((city) => (
+          <li className="flex flex-wrap border-b border-grey-300">
+            <CityItem {...city} />
+          </li>
+        ))}
     </ul>
   );
 }
