@@ -47,15 +47,15 @@ export default function Menu() {
     {
       target: `/${tSlugs('approaches')}`,
       label: t('menu.approaches')
-    }
-  ];
+    },
 
-  const OVERLAY_SECONDARY_ITEMS = [
     {
       target: `/${tSlugs('about')}`,
       label: t('menu.about')
     },
+  ];
 
+  const OVERLAY_SECONDARY_ITEMS = [
     {
       target: `/${tSlugs('about_contact')}`,
       label: t('menu.contact')
