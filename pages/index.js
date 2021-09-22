@@ -31,21 +31,19 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
     mapProps.options = {
       latitude,
       longitude,
-      zoom: 8
+      zoom: 14
     };
   } else {
     mapProps.bounds = getBounds(cities.map(({ coordinates }) => coordinates));
   }
 
-  const markers = cities.map(
+  const markers = activeThread ? null : cities.map(
     ({
-      coordinates: {
-        geometry: { coordinates }
-      },
+      coordinates,
       id,
       name
     }) => {
-      const [longitude, latitude] = coordinates;
+      const [longitude, latitude] = coordinates?.geometry?.coordinates;
 
       return (
         <Marker
