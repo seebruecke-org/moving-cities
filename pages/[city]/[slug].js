@@ -77,9 +77,9 @@ export default function CityProgramPage({
           <Columns className="px-8 md:px-10 max-w-8xl mt-8 md:mt-24">
             <Heading level={2}>{t('inspiringApproachesOfCity')}</Heading>
 
-            <ul className="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-6 mt-8 md:mt-0">
+            <ul className="flex flex-col md:flex-row flex-wrap mt-8 md:mt-0">
               {approaches.map(({ slug: approachSlug, ...approach }) => (
-                <li>
+                <li className="md:pr-8 pb-8 w-full md:max-w-1/2">
                   <Approach {...approach} uri={`/${citySlug}/${approachSlug}`} />
                 </li>
               ))}
