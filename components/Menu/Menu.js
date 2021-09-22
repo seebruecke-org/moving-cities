@@ -11,40 +11,6 @@ import { useIsMounted } from '@/lib/hooks';
 
 import shadowStyles from './shadow.module.css';
 
-const OVERLAY_PRIMARY_ITEMS = [
-  {
-    target: '/',
-    label: 'Moving Cities'
-  },
-
-  {
-    target: '/approaches',
-    label: 'Inspiring Approaches'
-  }
-];
-
-const OVERLAY_SECONDARY_ITEMS = [
-  {
-    target: '/about',
-    label: 'About'
-  },
-
-  {
-    target: '/about/contact',
-    label: 'Contact'
-  },
-
-  {
-    target: '/about/imprint',
-    label: 'Imprint'
-  },
-
-  {
-    target: '/about/privacy',
-    label: 'Date Privacy'
-  }
-];
-
 function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
@@ -72,6 +38,40 @@ export default function Menu() {
   const isFirstRender = useIsMounted();
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
+  const OVERLAY_PRIMARY_ITEMS = [
+    {
+      target: '/',
+      label: t('menu.name')
+    },
+
+    {
+      target: `/${tSlugs('approaches')}`,
+      label: t('menu.approaches')
+    }
+  ];
+
+  const OVERLAY_SECONDARY_ITEMS = [
+    {
+      target: `/${tSlugs('about')}`,
+      label: t('menu.about')
+    },
+
+    {
+      target: `/${tSlugs('about_contact')}`,
+      label: t('menu.contact')
+    },
+
+    {
+      target: `/${tSlugs('about_imprint')}`,
+      label: t('menu.imprint')
+    },
+
+    {
+      target: `/${tSlugs('about_privacy')}`,
+      label: t('menu.privacy')
+    }
+  ];
+
   useEffect(() => {
     const currentRef = overlayRef?.current;
 
@@ -80,10 +80,8 @@ export default function Menu() {
     }
 
     if (isOverlayOpen === true) {
-      console.log('disable', isOverlayOpen, currentRef);
       disableBodyScroll(currentRef);
     } else if (isOverlayOpen === false) {
-      console.log('enable', isOverlayOpen, currentRef);
       enableBodyScroll(currentRef);
     }
   }, [isOverlayOpen]);
