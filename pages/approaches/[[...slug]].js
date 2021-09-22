@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import Approach from '@/components/Approach';
-import Heading from '@/components/Heading';
-import Paragraph from '@/components/Paragraph';
 import Pill from '@/components/Pill';
 import Select from '@/components/Select';
 import SEO from '@/components/SEO';
@@ -32,11 +30,11 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
         {tApproaches('inspiringApproaches')}
       </h1>
 
-      <Paragraph className="text-xl md:text-2xl md:font-bold">
+      <p className="leading-tight font-raptor text-m md:text-xl xl:text-2xl md:font-bold">
         {tApproaches('intro', { count: approaches.length })}
-      </Paragraph>
+      </p>
 
-      <ul className="hidden md:flex md:flex-wrap mt-6">
+      <ul className="hidden md:flex md:flex-wrap mt-12">
         {categories.map(({ title, slug }) => (
           <li className="mr-6 mb-6">
             <Pill
@@ -58,7 +56,7 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
         className="md:hidden my-10"
       />
 
-      <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
+      <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
         {approaches.map((approach) => (
           <li>
             <Approach {...approach} uri={`/${approach.city.slug}/${approach.slug}`} />
