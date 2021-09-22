@@ -14,6 +14,7 @@ import SidebarMenu from '@/components/SidebarMenu';
 const Approach = dynamic(() => import('@/components/Approach'));
 const Columns = dynamic(() => import('@/components/Columns'));
 
+import { createClient } from '@/lib/api';
 import { fetchApproachBySlug, fetchAllApproachPaths } from '@/lib/approaches';
 import { fetchApproaches } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
@@ -98,8 +99,9 @@ export default function CityProgramPage({
 }
 
 export async function getStaticPaths({ locales }) {
+  const client = createClient();
   const approaches = await Promise.all(
-    locales.map(async (locale) => await fetchAllApproachPaths(locale))
+    locales.map(async (locale) => await fetchAllApproachPaths(client, locale))
   );
 
   const paths = approaches.flat().map(({ slug, city: { slug: citySlug } }) => ({
@@ -114,8 +116,9 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ locale, params: { city, slug } }) {
   const translations = await getTranslations(locale, ['approaches', 'city']);
-  const approach = await fetchApproachBySlug(locale, slug);
-  const menu = await fetchApproaches(locale, city);
+  const client = createClient();
+  const approach = await fetchApproachBySlug(client, locale, slug);
+  const menu = await fetchApproaches(client, locale, city);
 
   return {
     revalidate: 30,

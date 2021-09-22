@@ -21,9 +21,7 @@ export default function Media({ media: { url, width, height, alternativeText, ca
         <NextImage {...props} />
 
         {caption && (
-          <figcaption className="font-raptor text-s leading-none mt-4">
-            {caption}
-          </figcaption>
+          <figcaption className="font-raptor text-s leading-none mt-4">{caption}</figcaption>
         )}
       </figure>
     </Columns>

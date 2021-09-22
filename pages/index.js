@@ -12,6 +12,7 @@ const Intro = dynamic(() => import('@/components/Intro'));
 const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
 const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
+import { createClient } from '@/lib/api';
 import { fetchFeaturedCities, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
@@ -147,9 +148,10 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
 
 export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'intro', 'approaches']);
-  const data = await fetchIntro(locale);
-  const cities = await fetchFeaturedCities(locale);
-  const counts = await fetchCounts(locale);
+  const client = createClient();
+  const data = await fetchIntro(client, locale);
+  const cities = await fetchFeaturedCities(client, locale);
+  const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 30,

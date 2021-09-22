@@ -12,6 +12,7 @@ import NetworkPreview from '@/components/NetworkPreview';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
+import { createClient } from '@/lib/api';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
@@ -150,8 +151,9 @@ export default function NetworkPage({ networks, counts }) {
 }
 
 export async function getStaticPaths({ locales }) {
+  const client = createClient();
   const networks = await Promise.all(
-    locales.map(async (locale) => await fetchAllNetworkPaths(locale))
+    locales.map(async (locale) => await fetchAllNetworkPaths(client, locale))
   );
 
   const paths = networks.flat().map(({ slug }) => ({
@@ -166,8 +168,9 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city', 'networks']);
-  const networks = await fetchAllNetworks(locale, { active: slug?.[0] });
-  const counts = await fetchCounts(locale);
+  const client = createClient();
+  const networks = await fetchAllNetworks(client, locale, { active: slug?.[0] });
+  const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 60,

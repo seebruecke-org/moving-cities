@@ -18,7 +18,7 @@ import SidebarMenu from '@/components/SidebarMenu';
 
 const CountryContext = dynamic(() => import('@/components/CountryContext'));
 
-import { buildCMSUrl } from '@/lib/api';
+import { buildCMSUrl, createClient } from '@/lib/api';
 import { fetchCityBySlug, fetchAllCityPaths, fetchNextCity } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 
@@ -128,7 +128,10 @@ export default function CityPage({
 }
 
 export async function getStaticPaths({ locales }) {
-  const cities = await Promise.all(locales.map(async (locale) => await fetchAllCityPaths(locale)));
+  const client = createClient();
+  const cities = await Promise.all(
+    locales.map(async (locale) => await fetchAllCityPaths(client, locale))
+  );
 
   const paths = cities.flat().map(({ slug }) => ({
     params: { slug: [slug] }
@@ -142,8 +145,9 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['approaches', 'city']);
-  const city = await fetchCityBySlug(slug[0], locale);
-  const next = await fetchNextCity(slug[0], locale);
+  const client = createClient();
+  const city = await fetchCityBySlug(client, slug[0], locale);
+  const next = await fetchNextCity(client, slug[0], locale);
 
   if (!city) {
     return {

@@ -12,6 +12,7 @@ import MapboxMap from '@/components/MapboxMap';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
+import { createClient } from '@/lib/api';
 import { fetchAllCitiesByCountry, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
@@ -141,8 +142,9 @@ export default function AllCitiesOverview({ countries, counts }) {
 }
 
 export async function getStaticPaths({ locales }) {
+  const client = createClient();
   const countries = await Promise.all(
-    locales.map(async (locale) => await fetchAllCountryPaths(locale))
+    locales.map(async (locale) => await fetchAllCountryPaths(client, locale))
   );
 
   const paths = countries.flat().map(({ slug }) => ({
@@ -157,8 +159,9 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city']);
-  const countries = await fetchAllCitiesByCountry(locale, { active: slug?.[0] });
-  const counts = await fetchCounts(locale);
+  const client = createClient();
+  const countries = await fetchAllCitiesByCountry(client, locale, { active: slug?.[0] });
+  const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 60,

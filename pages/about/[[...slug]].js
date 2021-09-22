@@ -9,6 +9,7 @@ import Section from '@/components/Blocks/Section';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
+import { createClient } from '@/lib/api';
 import { fetchAboutBySlug, fetchAllAboutPaths, fetchAllAbouts } from '@/lib/abouts';
 import { getTranslations } from '@/lib/global';
 
@@ -47,7 +48,10 @@ export default function About({ navigation, about: { title, content } }) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const abouts = await Promise.all(locales.map(async (locale) => await fetchAllAboutPaths(locale)));
+  const client = createClient();
+  const abouts = await Promise.all(
+    locales.map(async (locale) => await fetchAllAboutPaths(client, locale))
+  );
 
   const paths = abouts.flat().map(({ slug }) => ({
     params: { slug: [slug] }
@@ -61,8 +65,9 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city']);
-  const about = await fetchAboutBySlug(slug, locale);
-  const navigation = await fetchAllAbouts(locale, { active: slug?.[0] });
+  const client = createClient();
+  const about = await fetchAboutBySlug(client, slug, locale);
+  const navigation = await fetchAllAbouts(client, locale, { active: slug?.[0] });
 
   if (about === null) {
     return {

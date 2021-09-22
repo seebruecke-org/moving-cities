@@ -6,6 +6,7 @@ import Pill from '@/components/Pill';
 import Select from '@/components/Select';
 import SEO from '@/components/SEO';
 
+import { createClient } from '@/lib/api';
 import {
   fetchAllApproaches,
   fetchApproachCategories,
@@ -68,8 +69,9 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
 }
 
 export async function getStaticPaths({ locales }) {
+  const client = createClient();
   const categories = await Promise.all(
-    locales.map(async (locale) => await fetchAllApproachCategoriesPaths(locale))
+    locales.map(async (locale) => await fetchAllApproachCategoriesPaths(client, locale))
   );
 
   const paths = categories.flat().map(({ slug }) => ({
@@ -84,8 +86,9 @@ export async function getStaticPaths({ locales }) {
 
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['approaches']);
-  const approaches = await fetchAllApproaches(locale, slug?.[0]);
-  const categories = await fetchApproachCategories(locale);
+  const client = createClient();
+  const approaches = await fetchAllApproaches(client, locale, slug?.[0]);
+  const categories = await fetchApproachCategories(client, locale);
 
   return {
     revalidate: 30,

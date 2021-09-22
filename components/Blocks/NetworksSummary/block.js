@@ -5,9 +5,10 @@ export default `
   networksSummaryContent: content
 `;
 
-export async function sideload(data, context, locale) {
-  async function fetchNetworksByCitySlug(slug, locale) {
+export async function sideload(client, data, context, locale) {
+  async function fetchNetworksByCitySlug(client, slug, locale) {
     const data = await fetchAPI(
+      client,
       `
       query NetworksByCitySlug($locale: String = "en", $slug: String) {
         cities(where: { locale: $locale, slug: $slug }) {
@@ -23,7 +24,7 @@ export async function sideload(data, context, locale) {
     return data?.cities?.[0]?.networks;
   }
 
-  const networks = await fetchNetworksByCitySlug(context.slug, locale);
+  const networks = await fetchNetworksByCitySlug(client, context.slug, locale);
 
   return {
     ...data,
