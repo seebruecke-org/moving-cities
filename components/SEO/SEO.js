@@ -1,6 +1,8 @@
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 export default function SEO({ title, description, metadata }) {
+  const { locale } = useRouter();
   const normalizedTitle = metadata?.title ?? title;
   const normalizedDescription = metadata?.description || description;
   const image = metadata?.image;
@@ -27,16 +29,7 @@ export default function SEO({ title, description, metadata }) {
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <link rel="icon" type="image/png" href="/favicon.png" />
 
-      <meta
-        property="og:url"
-        content="https://www.akweb.de/ausgaben/674/syriza-sanders-corbyn-linkspartei-sollen-linke-parteien-regieren/"
-      />
-      <meta
-        name="twitter:url"
-        content="https://www.akweb.de/ausgaben/674/syriza-sanders-corbyn-linkspartei-sollen-linke-parteien-regieren/"
-      />
-
-      <meta property="og:locale" content="de_DE" />
+      <meta property="og:locale" content={`${locale}_${locale.toUpperCase()}`} />
 
       {image && (
         <>
