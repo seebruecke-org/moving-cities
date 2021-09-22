@@ -23,7 +23,9 @@ export default function NetworkPage({ networks, counts }) {
   const { t: tSlugs } = useTranslation('slugs');
   const { t } = useTranslation('networks');
   const { query } = useRouter();
-  const [{ activeThread }, dispatch] = useMapReducer();
+  const [{ activeThread }, dispatch] = useMapReducer({
+    activeThread: { id: networks.filter(({ active }) => active)?.id }
+  });
   const [markers, setMarkers] = useState([]);
   const [bounds, setBounds] = useState(null);
   const isSingleView = !!query?.slug?.[0];
