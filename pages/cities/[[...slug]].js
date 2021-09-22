@@ -44,12 +44,12 @@ export default function AllCitiesOverview({ countries, counts }) {
             coordinates: {
               geometry: { coordinates }
             },
-            name
+            id
           }) => {
             const [longitude, latitude] = coordinates;
 
             return (
-              <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
+              <Marker key={`marker-${id}`} longitude={longitude} latitude={latitude}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"

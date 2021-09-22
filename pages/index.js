@@ -47,7 +47,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
 
       return (
         <Marker
-          key={`marker-${name}`}
+          key={`marker-${id}`}
           longitude={longitude}
           latitude={latitude}
           onClick={() => {

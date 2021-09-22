@@ -12,45 +12,41 @@ function CityItem({ name, networks }) {
   const { t } = useTranslation('city');
   const [isOpen, setIsOpen] = useState(false);
 
-  if (networks?.length > 0) {
-    return (
-      <div className={clsx('w-full', isOpen && 'bg-white')}>
-        <button
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex justify-between font-raptor text-s md:text-m py-4 px-8 w-full group"
-        >
-          <span className="group-hover:underline">{name}</span>
+  return (
+    <div className={clsx('w-full', isOpen && 'bg-white')}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex justify-between font-raptor text-s md:text-m py-4 px-8 w-full group"
+      >
+        <span className="group-hover:underline">{name}</span>
 
-          {isOpen ? '-' : '+'}
-        </button>
+        {isOpen ? '-' : '+'}
+      </button>
 
-        {isOpen && (
-          <div>
-            <Heading level={3} as={5} className="px-8 py-4">
-              {t('networks')}
-            </Heading>
+      {isOpen && (
+        <div>
+          <Heading level={3} as={5} className="px-8 py-4">
+            {t('networks')}
+          </Heading>
 
-            <ul className="bg-white w-full px-8 py-4">
-              {networks.map(({ name: networkName, slug }) => (
-                <li>
-                  <Link href={`/${tSlugs('networks')}/${slug}`}>
-                    <a className="font-raptor text-xs md:text-s group">
-                      <span className="group-hover:underline">{networkName}</span>
+          <ul className="bg-white w-full px-8 py-4">
+            {networks.map(({ name: networkName, slug }) => (
+              <li>
+                <Link href={`/${tSlugs('networks')}/${slug}`}>
+                  <a className="font-raptor text-xs md:text-s group">
+                    <span className="group-hover:underline">{networkName}</span>
 
-                      <span className="text-red-300 ml-4">⟶</span>
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  return null;
+                    <span className="text-red-300 ml-4">⟶</span>
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function CitiesNetworksList({ cities, className }) {
@@ -62,7 +58,7 @@ export default function CitiesNetworksList({ cities, className }) {
         className
       )}
     >
-      {cities.map((city) => (
+      {cities.filter(({ networks }) => networks?.length > 0).map((city) => (
         <li className="flex flex-wrap border-b border-grey-300">
           <CityItem {...city} />
         </li>

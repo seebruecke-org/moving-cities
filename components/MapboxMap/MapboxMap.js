@@ -26,14 +26,12 @@ const getFitBounds = (bounds) => {
 export default function MapboxMap({ children, bounds, options }) {
   const [viewport, setViewport] = useState({
     width: '100%',
-    height: '100%',
-    ...getFitBounds(bounds),
-    ...options
+    height: '100%'
   });
 
   useEffect(() => {
-    setViewport((state) => ({ ...state, ...options }));
-  }, [options]);
+    setViewport((state) => ({ ...state, ...getFitBounds(bounds), ...options }));
+  }, [options, bounds]);
 
   return (
     <div className="h-full w-full z-0 hidden md:block">
