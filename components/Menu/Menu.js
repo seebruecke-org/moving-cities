@@ -157,7 +157,7 @@ export default function Menu() {
       </div>
 
       <Overlay ref={overlayRef} isOpen={isOverlayOpen}>
-        <ul className="space-y-6 md:space-y-12">
+        <ul className="space-y-10 md:space-y-12">
           {OVERLAY_PRIMARY_ITEMS.map((item) => (
             <li>
               <OverlayItemPrimary {...item} onClick={() => setIsOverlayOpen(false)} />

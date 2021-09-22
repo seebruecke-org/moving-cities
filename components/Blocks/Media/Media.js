@@ -13,7 +13,7 @@ export default function Media({ media: { url, width, height } }) {
   };
 
   return (
-    <Columns className="my-6 md:my-20 max-w-8xl pl-8 pr-8">
+    <Columns className="my-6 md:my-20 max-w-8xl px-8 md:pl-10">
       <span />
 
       <NextImage {...props} />
