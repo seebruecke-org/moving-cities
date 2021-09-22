@@ -14,7 +14,7 @@ import shadowStyles from './shadow.module.css';
 function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-3xl hover:text-black" {...props}>
+      <a className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:text-black" {...props}>
         {label}
       </a>
     </Link>
@@ -24,7 +24,7 @@ function OverlayItemPrimary({ target, label, ...props }) {
 function OverlayItemSecondary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-m hover:text-black" {...props}>
+      <a className="font-raptor font-bold text-m md:text-3xl hover:text-black" {...props}>
         {label}
       </a>
     </Link>
@@ -154,7 +154,7 @@ export default function Menu() {
       </div>
 
       <Overlay ref={overlayRef} isOpen={isOverlayOpen}>
-        <ul>
+        <ul className="space-y-6 md:space-y-12">
           {OVERLAY_PRIMARY_ITEMS.map((item) => (
             <li>
               <OverlayItemPrimary {...item} onClick={() => setIsOverlayOpen(false)} />
