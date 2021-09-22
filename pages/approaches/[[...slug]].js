@@ -25,20 +25,20 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
   };
 
   return (
-    <div className="px-6 md:pl-72 md:pr-0 pb-28 max-w-8xl">
+    <div className="mx-6 md:ml-72 md:mr-16 md:pr-0 pb-28 max-w-8xl">
       <SEO title={tApproaches('inspiringApproaches')} />
 
-      <Heading level={1} className="my-10 md:mb-28">
+      <h1 className="my-10 md:mt-20 md:mb-28 text-4xl md:text-5xl xl:text-6xl leading-none font-bold font-raptor">
         {tApproaches('inspiringApproaches')}
-      </Heading>
+      </h1>
 
-      <Paragraph className="md:font-bold">
+      <Paragraph className="text-xl md:text-2xl md:font-bold">
         {tApproaches('intro', { count: approaches.length })}
       </Paragraph>
 
       <ul className="hidden md:flex md:flex-wrap mt-6">
         {categories.map(({ title, slug }) => (
-          <li className="mr-4 mb-4">
+          <li className="mr-6 mb-6">
             <Pill
               target={`/${tSlugs('approaches')}/${slug}`}
               active={slug === router?.query?.slug?.[0]}

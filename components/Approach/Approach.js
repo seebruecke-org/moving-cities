@@ -8,7 +8,7 @@ export default function Approach({ title, city, categories = [], uri }) {
 
   return (
     <Link href={uri}>
-      <a className="flex flex-col rounded-xl border-2 border-black hover:border-red-300 p-7 group h-full">
+      <a className="flex flex-col rounded-xl border-2 border-black hover:border-red-300 p-6 group h-full">
         <Heading level={3} as={4}>
           {city?.name && (
             <span className="block text-s mb-4 font-normal">
