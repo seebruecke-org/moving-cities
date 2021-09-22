@@ -87,7 +87,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
               {
                 target: '/',
                 label: t('featuredCities'),
-                tooltip: t('featuredCitiesIntro', { count: counts.featuredCitiesCount }),
+                tooltip: t('featuredCitiesIntro', { count: counts.featuredCitiesCount, count_total: counts.citiesCount }),
                 active: true,
                 count: counts.featuredCitiesCount
               },

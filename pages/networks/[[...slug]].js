@@ -95,7 +95,7 @@ export default function NetworkPage({ networks, counts }) {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro', { count: counts.featuredCitiesCount }),
+            tooltip: tCity('featuredCitiesIntro', { count: counts.featuredCitiesCount, count_total: counts.citiesCount }),
             count: counts.featuredCitiesCount
           },
 
