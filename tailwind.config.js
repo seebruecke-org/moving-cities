@@ -47,7 +47,7 @@ module.exports = {
     extend: {
       maxWidth: {
         '8xl': '115rem',
-        '1/2': '50%',
+        '1/2': '50%'
       }
     }
   },
