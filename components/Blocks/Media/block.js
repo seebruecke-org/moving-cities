@@ -3,5 +3,7 @@ export default `
     url
     width
     height
+    alternativeText
+    caption
   }
 `;
