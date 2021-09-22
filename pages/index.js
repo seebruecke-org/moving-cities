@@ -134,7 +134,8 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
                   uri: `/${slug}/${approachSlug}`,
                   ...approach
                 })),
-                summary
+                summary,
+                icon: city.icon
               }
             }))}
           />
