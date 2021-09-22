@@ -92,14 +92,14 @@ export default function AllCitiesOverview({ countries, counts }) {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro'),
+            tooltip: tCity('featuredCitiesIntro', { count: counts.featuredCitiesCount }),
             count: counts.featuredCitiesCount
           },
 
           {
             target: `/${tSlugs('cities')}`,
             label: tCity('allCities'),
-            tooltip: tCity('allCitiesIntro'),
+            tooltip: tCity('allCitiesIntro', { count: counts.citiesCount }),
             active: true,
             count: counts.citiesCount
           },
@@ -107,7 +107,7 @@ export default function AllCitiesOverview({ countries, counts }) {
           {
             target: `/${tSlugs('networks')}`,
             label: tCity('networks'),
-            tooltip: tCity('networksIntro'),
+            tooltip: tCity('networksIntro', { count: counts.networksCount }),
             count: counts.networksCount
           }
         ]}

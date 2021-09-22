@@ -87,7 +87,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
               {
                 target: '/',
                 label: t('featuredCities'),
-                tooltip: t('featuredCitiesIntro'),
+                tooltip: t('featuredCitiesIntro', { count: counts.featuredCitiesCount }),
                 active: true,
                 count: counts.featuredCitiesCount
               },
@@ -95,14 +95,14 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
               {
                 target: `/${tSlugs('cities')}`,
                 label: t('allCities'),
-                tooltip: t('allCitiesIntro'),
+                tooltip: t('allCitiesIntro', { count: counts.citiesCount }),
                 count: counts.citiesCount
               },
 
               {
                 target: `/${tSlugs('networks')}`,
                 label: t('networks'),
-                tooltip: t('networksIntro'),
+                tooltip: t('networksIntro', { count: counts.networksCount }),
                 count: counts.networksCount
               }
             ]}

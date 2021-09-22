@@ -95,21 +95,21 @@ export default function NetworkPage({ networks, counts }) {
           {
             target: '/',
             label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro'),
+            tooltip: tCity('featuredCitiesIntro', { count: counts.featuredCitiesCount }),
             count: counts.featuredCitiesCount
           },
 
           {
             target: `/${tSlugs('cities')}`,
             label: tCity('allCities'),
-            tooltip: tCity('allCitiesIntro'),
+            tooltip: tCity('allCitiesIntro', { count: counts.citiesCount }),
             count: counts.citiesCount
           },
 
           {
             target: `/${tSlugs('networks')}`,
             label: tCity('networks'),
-            tooltip: tCity('networksIntro'),
+            tooltip: tCity('networksIntro', { count: counts.networksCount }),
             active: true,
             count: counts.networksCount
           }

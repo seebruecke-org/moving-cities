@@ -1,10 +1,10 @@
 {
   "featuredCities": "Featured Cities",
-  "featuredCitiesIntro": "29 cities studied out of over 600 European cities that actively support solidarity based migration policies.",
+  "featuredCitiesIntro": "{{ count }} cities studied out of over 600 European cities that actively support solidarity based migration policies.",
   "allCities": "All Cities",
-  "allCitiesIntro": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+  "allCitiesIntro": "Cities and municipalities that are active in a campaign or city network that promotes a solidarity-based migration policy or that have agreed to take in more refugees.",
   "networks": "Networks",
-  "networksIntro": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut.",
+  "networksIntro": "European networks and campaigns that actively advocate for more progressive migration policies.",
   "close": "Close",
   "viewCity": "View the city",
   "aboutTheCity": "About the city",
