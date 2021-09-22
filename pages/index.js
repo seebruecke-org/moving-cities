@@ -76,7 +76,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
 
   return (
     <>
-      <SEO title={null} description={intro} />
+      <SEO title={null} description={intro} metadata={intro?.metadata} />
 
       {isIntroVisible && !routeHasChanged ? (
         <Intro onClose={() => setIsIntroVisible(false)} {...intro} {...counts} />
@@ -87,7 +87,10 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
               {
                 target: '/',
                 label: t('featuredCities'),
-                tooltip: t('featuredCitiesIntro', { count: counts.featuredCitiesCount, count_total: counts.citiesCount }),
+                tooltip: t('featuredCitiesIntro', {
+                  count: counts.featuredCitiesCount,
+                  count_total: counts.citiesCount
+                }),
                 active: true,
                 count: counts.featuredCitiesCount
               },

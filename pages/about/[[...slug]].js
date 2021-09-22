@@ -13,12 +13,12 @@ import { createClient } from '@/lib/api';
 import { fetchAboutBySlug, fetchAllAboutPaths, fetchAllAbouts } from '@/lib/abouts';
 import { getTranslations } from '@/lib/global';
 
-export default function About({ navigation, about: { title, content } }) {
+export default function About({ navigation, about: { title, content, metadata } }) {
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
     <div className="md:flex pb-28 md:pb-0">
-      <SEO title={title} />
+      <SEO title={title} metadata={metadata} />
 
       <SidebarMenu
         items={navigation.map(({ title, slug, active }) => ({
