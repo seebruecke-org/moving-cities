@@ -14,26 +14,34 @@ function AllCities({ cities }) {
   const [showAll, setShowAll] = useState(cities?.length < MAX_CITIES_TO_SHOW);
   const { t } = useTranslation('networks');
 
-  return <>
-    <Heading level={2} as={4} className="mt-16">
-      {t('allCities')}
-    </Heading>
+  return (
+    <>
+      <Heading level={2} as={4} className="mt-16">
+        {t('allCities')}
+      </Heading>
 
-    <ul className="mt-6 mb-6">
-      {cities.filter((city, index) => {
-        return (!showAll && index <= MAX_CITIES_TO_SHOW) || showAll;
-      }).map(({ name, country: { name: countryName } }) => (
-        <li className="font-raptor text-m">{name} ({countryName})</li>
-      ))}
-    </ul>
+      <ul className="mt-6 mb-6">
+        {cities
+          .filter((city, index) => {
+            return (!showAll && index <= MAX_CITIES_TO_SHOW) || showAll;
+          })
+          .map(({ name, country: { name: countryName } }) => (
+            <li className="font-raptor text-m">
+              {name} ({countryName})
+            </li>
+          ))}
+      </ul>
 
-    <button type="button" className="font-raptor font-bold text-m" onClick={() => setShowAll(!showAll)}>
-      <span className="underline">
-        {t(`show_${showAll ? 'less' : 'more'}`)}
-      </span>
-      <span className="text-red-300 ml-2">{!showAll ? '↓' : '↑'}</span>
-    </button>
-  </>
+      <button
+        type="button"
+        className="font-raptor font-bold text-m"
+        onClick={() => setShowAll(!showAll)}
+      >
+        <span className="underline">{t(`show_${showAll ? 'less' : 'more'}`)}</span>
+        <span className="text-red-300 ml-2">{!showAll ? '↓' : '↑'}</span>
+      </button>
+    </>
+  );
 }
 
 export default function NetworkPreview({ title, content, featuredCities, cities }) {
@@ -67,9 +75,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
         </>
       )}
 
-      {cities?.length > 0 && (
-        <AllCities cities={cities} />
-      )}
+      {cities?.length > 0 && <AllCities cities={cities} />}
     </article>
   );
 }
