@@ -81,11 +81,7 @@ export default function NetworkPage({ networks, counts }) {
 
   const bounds = useMemo(
     () =>
-      getBounds(
-        cities
-          .filter(({ active }) => active)
-          .flatMap(({ coordinates }) => coordinates)
-      ),
+      getBounds(cities.filter(({ active }) => active).flatMap(({ coordinates }) => coordinates)),
     [cities]
   );
 

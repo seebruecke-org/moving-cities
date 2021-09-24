@@ -49,9 +49,7 @@ export default function FloatingTabs({ items, className }) {
         ))}
       </ul>
 
-      {activeItemIndex !== -1 && (
-        <Tooltip style={tooltipPosition}>{text}</Tooltip>
-      )}
+      {activeItemIndex !== -1 && <Tooltip style={tooltipPosition}>{text}</Tooltip>}
     </div>
   );
 }
