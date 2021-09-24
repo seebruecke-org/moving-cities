@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { Marker } from 'react-map-gl';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
@@ -29,51 +29,79 @@ export default function NetworkPage({ networks, counts }) {
   });
   const [mapState, setMapState] = useState({ markers: [], bounds: null });
   const isSingleView = !!query?.slug?.[0];
+  const cities = useMemo(
+    () =>
+      networks
+        .map(({ cities, id }) =>
+          cities.map((city) => ({
+            ...city,
+            active: activeThread?.id === id
+          }))
+        )
+        .flat()
+        .filter((city, index, self) => index === self.findIndex((t) => t.name === city.name)),
+    [activeThread, networks]
+  );
 
-  function networkIsActive(network) {
-    if (activeThread) {
-      return activeThread?.id === network.id;
-    }
+  const geometries = useMemo(
+    () =>
+      cities.map(({ coordinates, name, id, active }) => ({
+        coordinates,
+        name,
+        id,
+        active
+      })),
+    [cities]
+  );
 
-    return true;
-  }
+  const markers = useMemo(
+    () =>
+      geometries.map(
+        ({
+          coordinates: {
+            geometry: { coordinates }
+          },
+          active,
+          id
+        }) => {
+          const [longitude, latitude] = coordinates;
+          const size = active ? 8 : 4;
+
+          return (
+            <Marker
+              key={`marker-${id}`}
+              longitude={longitude}
+              latitude={latitude}
+              className={clsx(active ? 'text-red-300 z-20' : 'text-black z-10')}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox={`0 0 ${size * 2} ${size * 2}`}
+                width={size * 2}
+                height={size * 2}
+                fill="none"
+              >
+                <circle cx={size} cy={size} r={size} fill="currentcolor" />
+              </svg>
+            </Marker>
+          );
+        }
+      ),
+    [geometries]
+  );
+
+  const bounds = useMemo(
+    () =>
+      getBounds(
+        geometries
+          .filter(({ active }) => active)
+          .map(({ coordinates }) => coordinates)
+          .flat()
+      ),
+    [geometries]
+  );
 
   useEffect(() => {
-    const cities = networks
-      .filter(networkIsActive)
-      .map(({ cities }) => cities)
-      .flat()
-      .filter((city, index, self) => index === self.findIndex((t) => t.name === city.name));
-
-    const geometries = cities.map(({ coordinates, name }) => ({ coordinates, name }));
-
-    const markers = geometries.map(
-      ({
-        coordinates: {
-          geometry: { coordinates }
-        },
-        name
-      }) => {
-        const [longitude, latitude] = coordinates;
-
-        return (
-          <Marker key={`marker-${name}`} longitude={longitude} latitude={latitude}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              width="16"
-              height="16"
-              fill="none"
-            >
-              <circle cx="8" cy="8" r="8" fill="#F55511" />
-            </svg>
-          </Marker>
-        );
-      }
-    );
-
-    const bounds = getBounds(geometries.map(({ coordinates }) => coordinates).flat());
-
     setMapState({
       markers,
       bounds
@@ -121,10 +149,14 @@ export default function NetworkPage({ networks, counts }) {
       <ThreadList
         pane={NetworkPreview}
         onAfterOpen={(network) => {
-          dispatch({ type: 'THREAD_ITEM_ACTIVATE', paypload: { id: network.id } });
+          dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: network.id } });
+
+          if (typeof window !== undefined) {
+            window.history.pushState(undefined, network.title, network.target);
+          }
         }}
         onAfterClose={() => {
-          dispatch({ type: 'THREAD_ITEM_ACTIVATE', paypload: null });
+          dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
         }}
         items={networks.map(({ name, content, cities, slug, ...network }) => ({
           ...network,
