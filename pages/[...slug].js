@@ -23,7 +23,19 @@ import { fetchCityBySlug, fetchAllCityPaths, fetchNextCity } from '@/lib/cities'
 import { getTranslations } from '@/lib/global';
 
 export default function CityPage({
-  city: { name, subtitle, icon, slug, content, report, approaches, takeaways, country, summary },
+  city: {
+    name,
+    subtitle,
+    icon,
+    slug,
+    content,
+    report,
+    approaches,
+    takeaways,
+    country,
+    summary,
+    metadata
+  },
   next
 }) {
   const { t } = useTranslation('approaches');
@@ -50,7 +62,7 @@ export default function CityPage({
 
   return (
     <div className="md:flex ob-28 md:pb-0">
-      <SEO title={name} />
+      <SEO title={name} metadata={metadata} />
 
       <SidebarMenu items={menuItems} selectClassName="bg-yellow-300" />
 
