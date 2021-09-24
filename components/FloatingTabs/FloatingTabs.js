@@ -8,6 +8,7 @@ export default function FloatingTabs({ items, className }) {
   const itemRefs = useRef([]);
   const [activeItemIndex, setActiveItemIndex] = useState(items.findIndex((item) => item.active));
   const [tooltipPosition, setTooltipPosition] = useState({});
+  const text = items[activeItemIndex].tooltip;
 
   useEffect(() => {
     const activeRef = itemRefs.current[activeItemIndex];
@@ -30,6 +31,7 @@ export default function FloatingTabs({ items, className }) {
               {...item}
               className={clsx(index > 0 && 'border-l border-grey-300')}
               ref={(ref) => (itemRefs.current[index] = ref)}
+              aria-description={tooltip}
               onMouseEnter={() => {
                 setActiveItemIndex(index);
               }}
@@ -48,7 +50,7 @@ export default function FloatingTabs({ items, className }) {
       </ul>
 
       {activeItemIndex !== -1 && (
-        <Tooltip style={tooltipPosition}>{items[activeItemIndex].tooltip}</Tooltip>
+        <Tooltip style={tooltipPosition}>{text}</Tooltip>
       )}
     </div>
   );
