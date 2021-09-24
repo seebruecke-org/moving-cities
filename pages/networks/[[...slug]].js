@@ -25,15 +25,14 @@ export default function NetworkPage({ networks, counts }) {
   const { t } = useTranslation('networks');
   const { query } = useRouter();
   const [{ activeThread }, dispatch] = useMapReducer({
-    activeThread: { id: networks.filter(({ active }) => active)?.id }
+    activeThread: { id: networks.find(({ active }) => active)?.id }
   });
-  const [markers, setMarkers] = useState([]);
-  const [bounds, setBounds] = useState(null);
+  const [mapState, setMapState] = useState({ markers: [], bounds: null });
   const isSingleView = !!query?.slug?.[0];
 
   function networkIsActive(network) {
     if (activeThread) {
-      return activeThread.id === network.id;
+      return activeThread?.id === network.id;
     }
 
     return true;
@@ -44,8 +43,12 @@ export default function NetworkPage({ networks, counts }) {
       .filter(networkIsActive)
       .map(({ cities }) => cities)
       .flat()
-      .filter((thing, index, self) => index === self.findIndex((t) => t.name === thing.name));
-    const markers = cities.map(
+      .filter((city, index, self) => index === self.findIndex((t) => t.name === city.name));
+
+    const geometries = cities
+      .map(({ coordinates, name }) => ({ coordinates, name }));
+
+    const markers = geometries.map(
       ({
         coordinates: {
           geometry: { coordinates }
@@ -71,14 +74,15 @@ export default function NetworkPage({ networks, counts }) {
     );
 
     const bounds = getBounds(
-      networks
-        .filter(networkIsActive)
-        .map(({ cities }) => cities.map(({ coordinates }) => coordinates))
+      geometries
+        .map(({ coordinates }) => coordinates)
         .flat()
     );
 
-    setMarkers(markers);
-    setBounds(bounds);
+    setMapState({
+      markers,
+      bounds
+    });
   }, [activeThread]);
 
   return (
@@ -146,7 +150,7 @@ export default function NetworkPage({ networks, counts }) {
         }))}
       />
 
-      {markers && <MapboxMap bounds={bounds}>{markers}</MapboxMap>}
+      {mapState.markers && mapState.bounds && <MapboxMap bounds={mapState.bounds}>{mapState.markers}</MapboxMap>}
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
     </div>
