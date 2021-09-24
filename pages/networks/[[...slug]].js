@@ -170,6 +170,7 @@ export default function NetworkPage({ networks, counts }) {
       />
 
       <ThreadList
+        allowAllClosed={false}
         pane={NetworkPreview}
         onAfterOpen={(network) => {
           dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: network.id } });

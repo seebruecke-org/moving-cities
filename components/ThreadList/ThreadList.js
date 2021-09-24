@@ -9,7 +9,8 @@ export default function ThreadList({
   pane,
   items,
   onAfterOpen = () => {},
-  onAfterClose = () => {}
+  onAfterClose = () => {},
+  allowAllClosed = true
 }) {
   const Pane = pane;
   const activeItemIndex = items.findIndex(({ active }) => active);
@@ -66,7 +67,7 @@ export default function ThreadList({
 
                   // On large screens the pane get's opened
                   if (window.innerWidth > 768) {
-                    if (paneData && paneData?.index === index) {
+                    if (allowAllClosed && paneData && paneData?.index === index) {
                       resetActiveItem();
                     } else if ((paneData && paneData?.index !== index) || !paneData) {
                       setActiveItem(index);
