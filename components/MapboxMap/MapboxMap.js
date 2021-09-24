@@ -1,4 +1,4 @@
-import { useEffect, useState, useLayoutEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { options } from 'preact';
 import ReactMapGL, { WebMercatorViewport } from 'react-map-gl';
 
@@ -15,13 +15,12 @@ const getFitBounds = (bounds, map) => {
   }
 
   const { offsetHeight: height, offsetWidth: width } = map.getContainer();
-
-  const viewport = new WebMercatorViewport({
+  const padding = Math.min(height, height) * 0.05;
+  const { longitude, latitude, zoom } = new WebMercatorViewport({
     width,
     height
-  }).fitBounds(bounds, { padding: 100 });
+  }).fitBounds(bounds, { padding });
 
-  const { longitude, latitude, zoom } = viewport;
   return { longitude, latitude, zoom };
 };
 
@@ -30,16 +29,20 @@ export default function MapboxMap({ children, bounds, options }) {
   const [map, setMap] = useState(null);
   const [viewport, setViewport] = useState({
     width: '100%',
-    height: '100%'
+    height: '100%',
+    transitionDuration: 1000
   });
+
+  useEffect(() => {
+    if (mapRef?.current) {
+      setMap(mapRef.current.getMap());
+    }
+  }, [mapRef])
 
   useEffect(() => {
     setViewport((state) => ({ ...state, ...getFitBounds(bounds, map), ...options }));
 
-    if (mapRef?.current) {
-      setMap(mapRef.current.getMap());
-    }
-  }, [options, bounds]);
+  }, [JSON.stringify({ options, bounds })]);
 
   return (
     <div className="h-full w-full z-0 hidden md:block">

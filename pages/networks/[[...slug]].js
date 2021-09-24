@@ -29,61 +29,6 @@ export default function NetworkPage({ networks, counts }) {
   });
   const [mapState, setMapState] = useState({ markers: [], bounds: null });
   const isSingleView = !!query?.slug?.[0];
-  const cities = useMemo(
-    () =>
-      networks
-        .flatMap(({ cities, id }) =>
-          cities.map((city) => ({
-            ...city,
-            active: activeThread?.id === id
-          }))
-        )
-        // Remove duplicates
-        .filter((city, index, self) => index === self.findIndex((t) => t.name === city.name)),
-    [activeThread, networks]
-  );
-
-  const markers = useMemo(
-    () =>
-      cities.map(
-        ({
-          coordinates: {
-            geometry: { coordinates }
-          },
-          active,
-          id
-        }) => {
-          const [longitude, latitude] = coordinates;
-          const size = active ? 8 : 4;
-
-          return (
-            <Marker
-              key={`city-marker-${id}`}
-              longitude={longitude}
-              latitude={latitude}
-              className={clsx(active ? 'text-red-300 z-20' : 'text-black z-10')}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox={`0 0 ${size * 2} ${size * 2}`}
-                width={size * 2}
-                height={size * 2}
-                fill="none"
-              >
-                <circle cx={size} cy={size} r={size} fill="currentcolor" />
-              </svg>
-            </Marker>
-          );
-        }
-      ),
-    [cities]
-  );
-
-  const bounds = useMemo(
-    () =>
-      getBounds(cities.filter(({ active }) => active).flatMap(({ coordinates }) => coordinates)),
-    [cities]
-  );
 
   const navItems = useMemo(
     () =>
@@ -109,6 +54,50 @@ export default function NetworkPage({ networks, counts }) {
   );
 
   useEffect(() => {
+    const cities = networks
+          .flatMap(({ cities, id }) =>
+            cities.map((city) => ({
+              ...city,
+              // mark all cities of the active network active
+              active: activeThread?.id === id
+            }))
+          );
+
+    const markers =
+        cities.map(
+          ({
+            coordinates: {
+              geometry: { coordinates }
+            },
+            active,
+            id
+          }) => {
+            const [longitude, latitude] = coordinates;
+            const size = active ? 8 : 4;
+
+            return (
+              <Marker
+                key={`city-marker-${id}`}
+                longitude={longitude}
+                latitude={latitude}
+                className={clsx(active ? 'text-red-300 z-20' : 'text-black z-10')}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox={`0 0 ${size * 2} ${size * 2}`}
+                  width={size * 2}
+                  height={size * 2}
+                  fill="none"
+                >
+                  <circle cx={size} cy={size} r={size} fill="currentcolor" />
+                </svg>
+              </Marker>
+            );
+          }
+        );
+
+    const bounds = getBounds(cities.filter(({ active }) => active).flatMap(({ coordinates }) => coordinates));
+
     setMapState({
       markers,
       bounds
@@ -158,10 +147,6 @@ export default function NetworkPage({ networks, counts }) {
         pane={NetworkPreview}
         onAfterOpen={(network) => {
           dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: network.id } });
-
-          if (typeof window !== undefined) {
-            window.history.pushState(undefined, network.title, network.target);
-          }
         }}
         onAfterClose={() => {
           dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
@@ -169,9 +154,7 @@ export default function NetworkPage({ networks, counts }) {
         items={navItems}
       />
 
-      {mapState.markers && mapState.bounds && (
-        <MapboxMap bounds={mapState.bounds}>{mapState.markers}</MapboxMap>
-      )}
+      <MapboxMap bounds={mapState.bounds}>{mapState.markers}</MapboxMap>
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
     </div>
