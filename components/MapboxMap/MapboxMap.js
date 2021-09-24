@@ -14,7 +14,7 @@ const getFitBounds = (bounds, map) => {
     return {};
   }
 
-  const { offsetHeight: height, offsetWidth: width } = map.getContainer()
+  const { offsetHeight: height, offsetWidth: width } = map.getContainer();
 
   const viewport = new WebMercatorViewport({
     width,

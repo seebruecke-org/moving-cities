@@ -45,8 +45,7 @@ export default function NetworkPage({ networks, counts }) {
       .flat()
       .filter((city, index, self) => index === self.findIndex((t) => t.name === city.name));
 
-    const geometries = cities
-      .map(({ coordinates, name }) => ({ coordinates, name }));
+    const geometries = cities.map(({ coordinates, name }) => ({ coordinates, name }));
 
     const markers = geometries.map(
       ({
@@ -73,11 +72,7 @@ export default function NetworkPage({ networks, counts }) {
       }
     );
 
-    const bounds = getBounds(
-      geometries
-        .map(({ coordinates }) => coordinates)
-        .flat()
-    );
+    const bounds = getBounds(geometries.map(({ coordinates }) => coordinates).flat());
 
     setMapState({
       markers,
@@ -150,7 +145,9 @@ export default function NetworkPage({ networks, counts }) {
         }))}
       />
 
-      {mapState.markers && mapState.bounds && <MapboxMap bounds={mapState.bounds}>{mapState.markers}</MapboxMap>}
+      {mapState.markers && mapState.bounds && (
+        <MapboxMap bounds={mapState.bounds}>{mapState.markers}</MapboxMap>
+      )}
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
     </div>
