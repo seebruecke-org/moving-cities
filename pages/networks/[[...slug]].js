@@ -32,31 +32,20 @@ export default function NetworkPage({ networks, counts }) {
   const cities = useMemo(
     () =>
       networks
-        .map(({ cities, id }) =>
+        .flatMap(({ cities, id }) =>
           cities.map((city) => ({
             ...city,
             active: activeThread?.id === id
           }))
         )
-        .flat()
+        // Remove duplicates
         .filter((city, index, self) => index === self.findIndex((t) => t.name === city.name)),
     [activeThread, networks]
   );
 
-  const geometries = useMemo(
-    () =>
-      cities.map(({ coordinates, name, id, active }) => ({
-        coordinates,
-        name,
-        id,
-        active
-      })),
-    [cities]
-  );
-
   const markers = useMemo(
     () =>
-      geometries.map(
+      cities.map(
         ({
           coordinates: {
             geometry: { coordinates }
@@ -69,7 +58,7 @@ export default function NetworkPage({ networks, counts }) {
 
           return (
             <Marker
-              key={`marker-${id}`}
+              key={`city-marker-${id}`}
               longitude={longitude}
               latitude={latitude}
               className={clsx(active ? 'text-red-300 z-20' : 'text-black z-10')}
@@ -87,18 +76,17 @@ export default function NetworkPage({ networks, counts }) {
           );
         }
       ),
-    [geometries]
+    [cities]
   );
 
   const bounds = useMemo(
     () =>
       getBounds(
-        geometries
+        cities
           .filter(({ active }) => active)
-          .map(({ coordinates }) => coordinates)
-          .flat()
+          .flatMap(({ coordinates }) => coordinates)
       ),
-    [geometries]
+    [cities]
   );
 
   const navItems = useMemo(
