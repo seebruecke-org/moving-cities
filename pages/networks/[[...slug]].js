@@ -101,6 +101,29 @@ export default function NetworkPage({ networks, counts }) {
     [geometries]
   );
 
+  const navItems = useMemo(
+    () =>
+      networks.map(({ name, content, cities, slug, ...network }) => ({
+        ...network,
+        target: `/${tSlugs('networks')}/${slug}`,
+        title: name,
+        subtitle: cities
+          .map(({ country }) => country?.name)
+          .filter(Boolean)
+          // remove duplicates
+          .filter((item, pos, self) => self.indexOf(item) == pos)
+          .join(', '),
+        active: activeThread?.id === network.id,
+        data: {
+          title: name,
+          content,
+          featuredCities: cities.filter(({ is_featured }) => is_featured),
+          cities: cities.filter(({ is_featured }) => !is_featured)
+        }
+      })),
+    [activeThread, networks]
+  );
+
   useEffect(() => {
     setMapState({
       markers,
@@ -158,23 +181,7 @@ export default function NetworkPage({ networks, counts }) {
         onAfterClose={() => {
           dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
         }}
-        items={networks.map(({ name, content, cities, slug, ...network }) => ({
-          ...network,
-          target: `/${tSlugs('networks')}/${slug}`,
-          title: name,
-          subtitle: cities
-            .map(({ country }) => country?.name)
-            .filter(Boolean)
-            // remove duplicates
-            .filter((item, pos, self) => self.indexOf(item) == pos)
-            .join(', '),
-          data: {
-            title: name,
-            content,
-            featuredCities: cities.filter(({ is_featured }) => is_featured),
-            cities: cities.filter(({ is_featured }) => !is_featured)
-          }
-        }))}
+        items={navItems}
       />
 
       {mapState.markers && mapState.bounds && (

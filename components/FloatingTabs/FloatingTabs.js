@@ -5,13 +5,15 @@ import Item from './Item';
 import Tooltip from './Tooltip';
 
 export default function FloatingTabs({ items, className }) {
-  const activeRef = useRef();
+  const itemRefs = useRef([]);
   const [activeItemIndex, setActiveItemIndex] = useState(items.findIndex((item) => item.active));
   const [tooltipPosition, setTooltipPosition] = useState({});
 
   useEffect(() => {
-    if (activeRef?.current) {
-      const { offsetLeft, clientWidth } = activeRef.current;
+    const activeRef = itemRefs.current[activeItemIndex];
+
+    if (activeRef) {
+      const { offsetLeft, clientWidth } = activeRef;
 
       setTooltipPosition({
         left: offsetLeft + clientWidth / 2
@@ -27,11 +29,17 @@ export default function FloatingTabs({ items, className }) {
             <Item
               {...item}
               className={clsx(index > 0 && 'border-l border-grey-300')}
-              ref={index === activeItemIndex && activeRef}
+              ref={(ref) => (itemRefs.current[index] = ref)}
               onMouseEnter={() => {
                 setActiveItemIndex(index);
               }}
               onMouseLeave={() => {
+                setActiveItemIndex(index);
+              }}
+              onFocus={() => {
+                setActiveItemIndex(index);
+              }}
+              onBlur={() => {
                 setActiveItemIndex(index);
               }}
             />
