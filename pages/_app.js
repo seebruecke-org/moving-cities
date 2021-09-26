@@ -27,7 +27,7 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
     <>
       <Menu />
 
-      <main className="relative md:pl-24 md:h-screen md:overflow-x-hidden">
+      <main className="relative md:pl-24">
         <Component {...pageProps} routeHasChanged={routeHasChanged} />
       </main>
     </>
