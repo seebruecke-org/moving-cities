@@ -29,7 +29,7 @@ export default function CityPreview({
       )}
     >
       <div className="flex mb-24 items-start">
-        {icon && <CityIcon icon={icon} className="w-52 mr-12" />}
+        {icon && <CityIcon icon={icon} className="w-72 mr-12" />}
 
         <div className="mr-8">
           <h1 className="text-red-300 text-5xl font-raptor font-bold leading-none">{title}</h1>
