@@ -10,5 +10,7 @@
     "burger": {
       "open": "Menü öffnen"
     }
-  }
+  },
+
+  "addCity": "Add your city"
 }

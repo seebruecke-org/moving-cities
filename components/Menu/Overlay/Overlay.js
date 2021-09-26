@@ -5,7 +5,7 @@ function MenuOverlay({ children, isOpen = false }, ref) {
   return (
     <div
       className={clsx(
-        'absolute left:0 md:left-20 bottom:16 md:bottom-auto md:top-0 w-full h-full bg-gradient-to-br from-red-300 to-pink-300 text-white z-40 px-8 pt-20 md:pl-36 xl:pl-48 md:pt-48 pb-4 md:pb-36 xl:pb-48 flex flex-col',
+        'absolute left:0 md:left-20 bottom:16 md:bottom-auto md:top-0 w-full h-full bg-gradient-to-br from-red-300 to-pink-300 text-white z-40 px-8 pt-20 md:px-36 xl:px-48 md:pt-48 pb-4 md:pb-36 xl:pb-48 flex flex-col',
         !isOpen && 'hidden'
       )}
       ref={ref}

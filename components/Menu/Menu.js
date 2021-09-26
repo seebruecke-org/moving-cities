@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 import Burger from './Burger';
+import Button from '@/components/Button';
 import Overlay from './Overlay';
 
 import { useIsMounted } from '@/lib/hooks';
@@ -165,13 +166,21 @@ export default function Menu() {
           ))}
         </ul>
 
-        <ul className="mt-auto pb-28 md:pb-0">
-          {OVERLAY_SECONDARY_ITEMS.map((item) => (
-            <li>
-              <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
-            </li>
-          ))}
-        </ul>
+        <div className="flex flex-col md:flex-row md:justify-between mt-auto pb-28 md:pb-0">
+          <ul>
+            {OVERLAY_SECONDARY_ITEMS.map((item) => (
+              <li>
+                <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
+              </li>
+            ))}
+          </ul>
+
+          <div className="self-start md:self-end mt-10 md:mt-0">
+            <Button href={`/${tSlugs('map_cta')}`} className="text-black" onClick={() => setIsOverlayOpen(false)}>
+              <span className="text-red-300 mr-2 text-4xl leading-none -mb-8 -mt-4">+</span> {t('addCity')}
+            </Button>
+          </div>
+        </div>
       </Overlay>
     </>
   );
