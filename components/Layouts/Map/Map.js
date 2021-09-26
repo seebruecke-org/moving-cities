@@ -14,13 +14,15 @@ export default function LayoutMap({ children }) {
 
   useEffect(() => {
     console.log('state update', state);
-  }, [JSON.stringify(state)])
+  }, [JSON.stringify(state)]);
 
-  return <div className="flex flex-col md:flex-row md:h-full">
-    {children}
+  return (
+    <div className="flex flex-col md:flex-row md:h-full">
+      {children}
 
-    <MapboxMap bounds={state.bounds}>{state.markers}</MapboxMap>
+      <MapboxMap bounds={state.bounds}>{state.markers}</MapboxMap>
 
-    <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
-  </div>
+      <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
+    </div>
+  );
 }

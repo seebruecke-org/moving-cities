@@ -54,49 +54,49 @@ export default function NetworkPage({ networks, counts }) {
   );
 
   useEffect(() => {
-    const cities = networks
-          .flatMap(({ cities, id }) =>
-            cities.map((city) => ({
-              ...city,
-              // mark all cities of the active network active
-              active: activeThread?.id === id
-            }))
-          );
+    const cities = networks.flatMap(({ cities, id }) =>
+      cities.map((city) => ({
+        ...city,
+        // mark all cities of the active network active
+        active: activeThread?.id === id
+      }))
+    );
 
-    const markers =
-        cities.map(
-          ({
-            coordinates: {
-              geometry: { coordinates }
-            },
-            active,
-            id
-          }) => {
-            const [longitude, latitude] = coordinates;
-            const size = active ? 8 : 4;
+    const markers = cities.map(
+      ({
+        coordinates: {
+          geometry: { coordinates }
+        },
+        active,
+        id
+      }) => {
+        const [longitude, latitude] = coordinates;
+        const size = active ? 8 : 4;
 
-            return (
-              <Marker
-                key={`city-marker-${id}`}
-                longitude={longitude}
-                latitude={latitude}
-                className={clsx(active ? 'text-red-300 z-20' : 'text-black z-10')}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox={`0 0 ${size * 2} ${size * 2}`}
-                  width={size * 2}
-                  height={size * 2}
-                  fill="none"
-                >
-                  <circle cx={size} cy={size} r={size} fill="currentcolor" />
-                </svg>
-              </Marker>
-            );
-          }
+        return (
+          <Marker
+            key={`city-marker-${id}`}
+            longitude={longitude}
+            latitude={latitude}
+            className={clsx(active ? 'text-red-300 z-20' : 'text-black z-10')}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox={`0 0 ${size * 2} ${size * 2}`}
+              width={size * 2}
+              height={size * 2}
+              fill="none"
+            >
+              <circle cx={size} cy={size} r={size} fill="currentcolor" />
+            </svg>
+          </Marker>
         );
+      }
+    );
 
-    const bounds = getBounds(cities.filter(({ active }) => active).flatMap(({ coordinates }) => coordinates));
+    const bounds = getBounds(
+      cities.filter(({ active }) => active).flatMap(({ coordinates }) => coordinates)
+    );
 
     setMapState({
       markers,

@@ -20,36 +20,40 @@ import { fetchIntro } from '@/lib/intro';
 import useMapReducer from '@/lib/stores/map';
 
 function CityMarker({ id, longitude, latitude, coordinates, name }) {
-  return <Marker
-    key={`marker-${id}`}
-    longitude={longitude}
-    latitude={latitude}
-    onClick={() => {
-      dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
-    }}
-    className="group"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 40 40"
-      width="40"
-      height="40"
-      fill="none"
-      className="group cursor-pointer"
+  return (
+    <Marker
+      key={`marker-${id}`}
+      longitude={longitude}
+      latitude={latitude}
+      onClick={() => {
+        dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
+      }}
+      className="group"
     >
-      <circle
-        cx="20"
-        cy="20"
-        r="17"
-        stroke="currentColor"
-        stroke-dasharray="4 2"
-        stroke-width="6"
-        className="text-red-300 group-hover:text-black"
-      />
-    </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 40 40"
+        width="40"
+        height="40"
+        fill="none"
+        className="group cursor-pointer"
+      >
+        <circle
+          cx="20"
+          cy="20"
+          r="17"
+          stroke="currentColor"
+          stroke-dasharray="4 2"
+          stroke-width="6"
+          className="text-red-300 group-hover:text-black"
+        />
+      </svg>
 
-    <span className="text-center font-raptor font-bold hidden group-hover:block text-s absolute top-full left-2/4 -translate-x-2/4 leading-none">{name}</span>
-  </Marker>
+      <span className="text-center font-raptor font-bold hidden group-hover:block text-s absolute top-full left-2/4 -translate-x-2/4 leading-none">
+        {name}
+      </span>
+    </Marker>
+  );
 }
 
 export default function HomePage({ cities, intro, routeHasChanged, counts }) {
@@ -76,7 +80,15 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
     : cities.map(({ coordinates, id, name }) => {
         const [longitude, latitude] = coordinates?.geometry?.coordinates;
 
-        return <CityMarker id={id} latitude={latitude} longitude={longitude} coordinates={coordinates} name={name} />;
+        return (
+          <CityMarker
+            id={id}
+            latitude={latitude}
+            longitude={longitude}
+            coordinates={coordinates}
+            name={name}
+          />
+        );
       });
 
   return (

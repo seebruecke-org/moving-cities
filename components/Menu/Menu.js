@@ -176,8 +176,13 @@ export default function Menu() {
           </ul>
 
           <div className="self-start md:self-end mt-10 md:mt-0">
-            <Button href={`/${tSlugs('map_cta')}`} className="text-black" onClick={() => setIsOverlayOpen(false)}>
-              <span className="text-red-300 mr-2 text-4xl leading-none -mb-8 -mt-4">+</span> {t('addCity')}
+            <Button
+              href={`/${tSlugs('map_cta')}`}
+              className="text-black"
+              onClick={() => setIsOverlayOpen(false)}
+            >
+              <span className="text-red-300 mr-2 text-4xl leading-none -mb-8 -mt-4">+</span>{' '}
+              {t('addCity')}
             </Button>
           </div>
         </div>

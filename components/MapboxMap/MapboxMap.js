@@ -37,11 +37,10 @@ export default function MapboxMap({ children, bounds, options }) {
     if (mapRef?.current) {
       setMap(mapRef.current.getMap());
     }
-  }, [mapRef])
+  }, [mapRef]);
 
   useEffect(() => {
     setViewport((state) => ({ ...state, ...getFitBounds(bounds, map), ...options }));
-
   }, [JSON.stringify({ options, bounds })]);
 
   return (
