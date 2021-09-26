@@ -23,7 +23,7 @@ export default function NetworkPage({ networks, counts }) {
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
-  const { t:tNetworks } = useTranslation('networks');
+  const { t: tNetworks } = useTranslation('networks');
   const { query } = useRouter();
   const [{ activeThread }, dispatch] = useMapReducer({
     activeThread: { id: networks.find(({ active }) => active)?.id }
@@ -110,7 +110,11 @@ export default function NetworkPage({ networks, counts }) {
       <SEO title={tNetworks('allNetworks')} />
 
       {isSingleView && (
-        <BackTo title={tNetworks('allNetworks')} uri={`/${tSlugs('networks')}`} className="md:hidden" />
+        <BackTo
+          title={tNetworks('allNetworks')}
+          uri={`/${tSlugs('networks')}`}
+          className="md:hidden"
+        />
       )}
 
       <FloatingTabs

@@ -4,7 +4,9 @@ import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Follow from '@/components/Blocks/Follow';
 import Heading from '@/components/Heading';
 import Intro from '@/components/Blocks/Intro';
+import LogoGrid from '@/components/Blocks/LogoGrid';
 import Media from '@/components/Blocks/Media';
+import Partner from '@/components/Blocks/Partner';
 import Section from '@/components/Blocks/Section';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
@@ -38,7 +40,9 @@ export default function About({ navigation, about: { title, content, metadata } 
           renderers={{
             Follow,
             Intro,
+            LogoGrid,
             Media,
+            Partner,
             Section
           }}
         />
