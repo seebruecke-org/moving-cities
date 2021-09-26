@@ -28,7 +28,9 @@ function AllCities({ cities }) {
           })
           .map(({ name, country: { name: countryName } }) => (
             <li>
-              <Paragraph>{name} ({countryName})</Paragraph>
+              <Paragraph>
+                {name} ({countryName})
+              </Paragraph>
             </li>
           ))}
       </ul>
