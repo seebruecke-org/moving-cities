@@ -17,7 +17,7 @@ function AllCities({ cities }) {
 
   return (
     <>
-      <Heading level={2} as={4} className="mt-16">
+      <Heading level={2} as={4} className="mt-8 md:mt-16">
         {t('allCities')}
       </Heading>
 
@@ -35,7 +35,7 @@ function AllCities({ cities }) {
 
       <button
         type="button"
-        className="font-raptor font-bold text-m"
+        className="font-raptor font-bold text-s md:text-m"
         onClick={() => setShowAll(!showAll)}
       >
         <span className="underline">{t(`show_${showAll ? 'less' : 'more'}`)}</span>
@@ -62,7 +62,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
 
       {featuredCities?.length > 0 && (
         <>
-          <Heading level={2} as={4} className="mb-8 mt-12">
+          <Heading level={2} as={4} className="mb-8 mt-6 md:mt-12">
             {t('featuredCities')}
           </Heading>
 

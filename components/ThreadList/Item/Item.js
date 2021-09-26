@@ -13,7 +13,7 @@ export default function ThreadListItem({
     <a
       href={target}
       className={clsx(
-        'flex items-start pl-6 pr-4 py-4 hover:bg-yellow-300 border-b border-grey-300 w-full',
+        'flex items-start px-8 md:pl-6 md:pr-4 py-4 hover:bg-yellow-300 border-b border-grey-300 w-full',
         active && 'bg-yellow-300',
         className
       )}
