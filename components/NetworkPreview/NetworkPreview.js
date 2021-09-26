@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import Button from '@/components/Button';
 import Heading from '@/components/Heading';
+import Paragraph from '@/components/Paragraph';
 import Richtext from '@/components/Blocks/Richtext';
 
 import styles from './styles.module.css';
@@ -26,8 +27,8 @@ function AllCities({ cities }) {
             return (!showAll && index <= MAX_CITIES_TO_SHOW) || showAll;
           })
           .map(({ name, country: { name: countryName } }) => (
-            <li className="font-raptor text-m">
-              {name} ({countryName})
+            <li>
+              <Paragraph>{name} ({countryName})</Paragraph>
             </li>
           ))}
       </ul>
