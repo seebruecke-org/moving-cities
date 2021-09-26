@@ -80,7 +80,7 @@ export default function AllCitiesOverview({ countries, counts }) {
   }, [activeThread]);
 
   return (
-    <div className="flex flex-col md:flex-row md:h-full">
+    <div className="flex flex-col md:flex-row md:h-full w-full">
       <SEO title={tCity('allCities')} />
 
       {isSingleView && (

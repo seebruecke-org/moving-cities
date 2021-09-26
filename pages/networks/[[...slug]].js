@@ -43,7 +43,6 @@ export default function NetworkPage({ networks, counts }) {
           // remove duplicates
           .filter((item, pos, self) => self.indexOf(item) == pos)
           .join(', '),
-        active: activeThread?.id === network.id,
         data: {
           title: name,
           content,
@@ -106,7 +105,7 @@ export default function NetworkPage({ networks, counts }) {
   }, [activeThread]);
 
   return (
-    <div className="flex flex-col md:flex-row md:h-full">
+    <div className="flex flex-col md:flex-row md:h-full w-full">
       <SEO title={tNetworks('allNetworks')} />
 
       {isSingleView && (

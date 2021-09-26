@@ -44,7 +44,7 @@ export default function MapboxMap({ children, bounds, options }) {
   }, [JSON.stringify({ options, bounds })]);
 
   return (
-    <div className="h-full w-full z-0 hidden md:block">
+    <div className="h-full w-full flex-shrink flex-grow-0 z-0 hidden md:flex md:h-screen overflow-x-hidden">
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}

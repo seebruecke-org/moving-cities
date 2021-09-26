@@ -99,7 +99,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
       {isIntroVisible && !routeHasChanged ? (
         <Intro onClose={() => setIsIntroVisible(false)} {...intro} {...counts} />
       ) : (
-        <div className="flex flex-col md:flex-row md:h-full">
+        <div className="flex flex-col md:flex-row md:h-full w-full">
           <FloatingTabs
             items={[
               {
