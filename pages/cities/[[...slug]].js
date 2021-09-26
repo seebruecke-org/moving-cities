@@ -20,6 +20,7 @@ import { fetchAllCountryPaths } from '@/lib/networks';
 import useMapReducer from '@/lib/stores/map';
 
 export default function AllCitiesOverview({ countries, counts }) {
+  const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
@@ -139,7 +140,7 @@ export default function AllCitiesOverview({ countries, counts }) {
 
       {markers && <MapboxMap bounds={bounds}>{markers}</MapboxMap>}
 
-      <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
+      <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
     </div>
   );
 }

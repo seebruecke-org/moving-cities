@@ -58,7 +58,8 @@ function CityMarker({ id, longitude, latitude, coordinates, name }) {
 
 export default function HomePage({ cities, intro, routeHasChanged, counts }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
-  const { t } = useTranslation('city');
+  const { t } = useTranslation();
+  const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const [{ activeThread }, dispatch] = useMapReducer();
   const mapProps = {};
@@ -103,8 +104,8 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
             items={[
               {
                 target: '/',
-                label: t('featuredCities'),
-                tooltip: t('featuredCitiesIntro', {
+                label: tCity('featuredCities'),
+                tooltip: tCity('featuredCitiesIntro', {
                   count: counts.featuredCitiesCount,
                   count_total: counts.citiesCount
                 }),
@@ -114,15 +115,15 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
 
               {
                 target: `/${tSlugs('cities')}`,
-                label: t('allCities'),
-                tooltip: t('allCitiesIntro', { count: counts.citiesCount }),
+                label: tCity('allCities'),
+                tooltip: tCity('allCitiesIntro', { count: counts.citiesCount }),
                 count: counts.citiesCount
               },
 
               {
                 target: `/${tSlugs('networks')}`,
-                label: t('networks'),
-                tooltip: t('networksIntro', { count: counts.networksCount }),
+                label: tCity('networks'),
+                tooltip: tCity('networksIntro', { count: counts.networksCount }),
                 count: counts.networksCount
               }
             ]}

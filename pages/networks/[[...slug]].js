@@ -20,6 +20,7 @@ import { fetchCounts } from '@/lib/cities';
 import useMapReducer from '@/lib/stores/map';
 
 export default function NetworkPage({ networks, counts }) {
+  const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { t } = useTranslation('networks');
@@ -156,7 +157,7 @@ export default function NetworkPage({ networks, counts }) {
 
       <MapboxMap bounds={mapState.bounds}>{mapState.markers}</MapboxMap>
 
-      <FloatingCta target={`/${tSlugs('map_cta')}`} label={tCity('addCity')} />
+      <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
     </div>
   );
 }
