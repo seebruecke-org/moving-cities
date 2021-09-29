@@ -30,7 +30,7 @@ function CityItem({ name, networks }) {
             {t('networks')}
           </Heading>
 
-          <ul className="bg-white w-full px-8 py-4">
+          <ul className="bg-white w-full px-8">
             {networks.map(({ name: networkName, slug }) => (
               <li>
                 <Link href={`/${tSlugs('networks')}/${slug}`}>
