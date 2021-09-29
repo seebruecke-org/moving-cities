@@ -8,5 +8,9 @@ module.exports = withPlugins([withPreact], {
 
   images: {
     domains: [process.env.NEXT_IMAGE_HOSTNAME]
+  },
+
+  experimental: {
+    esmExternals: true
   }
 });
