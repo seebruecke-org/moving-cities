@@ -42,7 +42,7 @@ function Count({ count, className, onClick = () => {}, ...props }) {
     <Link {...props}>
       <a
         className={clsx(
-          'font-raptor text-4xl md:text-5-xl font-bold underline block hover:text-black',
+          'font-raptor text-4xl md:text-5xl font-bold underline block hover:text-black',
           className
         )}
         onClick={onClick}
@@ -83,7 +83,7 @@ export default function Intro({
         </Button>
       </div>
 
-      <div className="-ml-96 md:ml-0 -mr-96 -mt-48 md:mt-0 -mb-16 md:mb-0 md:mr-0 md:absolute md:top-36 xl:top-64 md:left-16 md:w-4/5 xl:left-48 xl:w-9/12">
+      <div className="-ml-96 md:ml-0 -mr-96 -mt-48 md:mt-0 -mb-16 md:mb-0 md:mr-0 md:absolute md:top-24 lg:top-36 xl:top-64 md:left-10 md:w-4/5 xl:left-48 xl:w-9/12">
         <CityShape image={introImage} />
       </div>
 
