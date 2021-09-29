@@ -38,7 +38,7 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
   }
 
   useEffect(() => {
-    const markers = countries.filter(countryIsActive).flatMap(({ cities }) => {
+    const markers = countries.filter(countryIsActive).flatMap(({ id: countryId, cities }) => {
       return cities.map(
         ({
           coordinates: {
@@ -54,7 +54,10 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
               key={`marker-${id}`}
               longitude={longitude}
               latitude={latitude}
-              className="text-red-300 hover:text-black hover:cursor-pointer z-10 hover:z-20 group"
+              className="text-red-300 hover:text-black cursor-pointer z-10 hover:z-20 group"
+              onClick={() => {
+                dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: countryId } });
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

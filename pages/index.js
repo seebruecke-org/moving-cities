@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import dynamic from 'next/dynamic';
@@ -18,19 +18,9 @@ import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
 import useMapReducer from '@/lib/stores/map';
 
-function CityMarker({ id, longitude, latitude, coordinates, name }) {
-  const [, dispatch] = useMapReducer();
-
+function CityMarker({ id, name, ...props }) {
   return (
-    <Marker
-      key={`marker-${id}`}
-      longitude={longitude}
-      latitude={latitude}
-      onClick={() => {
-        dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
-      }}
-      className="group"
-    >
+    <Marker key={`marker-${id}`} className="group" {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 40 40"
@@ -63,35 +53,45 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const [{ activeThread }, dispatch] = useMapReducer();
-  const mapProps = {
+  const [markers, setMarkers] = useState(null);
+  const [mapProps, setMapProps] = useState({
     bounds
-  };
+  });
 
-  if (activeThread) {
-    const [longitude, latitude] = activeThread.coordinates.geometry.coordinates;
+  useEffect(() => {
+    if (activeThread) {
+      const [longitude, latitude] = activeThread.coordinates.geometry.coordinates;
 
-    mapProps.options = {
-      latitude,
-      longitude,
-      zoom: 14
-    };
-  }
-
-  const markers = activeThread
-    ? null
-    : cities.map(({ coordinates, id, name }) => {
-        const [longitude, latitude] = coordinates?.geometry?.coordinates;
-
-        return (
-          <CityMarker
-            id={id}
-            latitude={latitude}
-            longitude={longitude}
-            coordinates={coordinates}
-            name={name}
-          />
-        );
+      setMapProps({
+        options: {
+          latitude,
+          longitude,
+          zoom: 14
+        }
       });
+    } else {
+      setMapProps({ bounds });
+    }
+
+    const markers = cities.map(({ coordinates, id, name }) => {
+      const [longitude, latitude] = coordinates?.geometry?.coordinates;
+
+      return (
+        <CityMarker
+          id={id}
+          latitude={latitude}
+          longitude={longitude}
+          name={name}
+          onClick={() => {
+            dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
+          }}
+        />
+      );
+    });
+
+    // hide markers, when a city becomes active
+    setMarkers(activeThread ? null : markers);
+  }, [activeThread?.id]);
 
   return (
     <>
