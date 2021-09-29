@@ -79,7 +79,10 @@ export default function NetworkPage({ networks, counts }) {
             key={`city-marker-${id}`}
             longitude={longitude}
             latitude={latitude}
-            className={clsx('hover:cursor-pointer group', active ? 'text-red-300 hover:text-black z-20' : 'text-black hover:text-red-300 z-10')}
+            className={clsx(
+              'hover:cursor-pointer group',
+              active ? 'text-red-300 hover:text-black z-20' : 'text-black hover:text-red-300 z-10'
+            )}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

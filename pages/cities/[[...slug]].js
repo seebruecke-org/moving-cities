@@ -52,7 +52,12 @@ export default function AllCitiesOverview({ countries, counts }) {
             const [longitude, latitude] = coordinates;
 
             return (
-              <Marker key={`marker-${id}`} longitude={longitude} latitude={latitude} className="text-red-300 hover:text-black hover:cursor-pointer z-10 hover:z-20 group">
+              <Marker
+                key={`marker-${id}`}
+                longitude={longitude}
+                latitude={latitude}
+                className="text-red-300 hover:text-black hover:cursor-pointer z-10 hover:z-20 group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
