@@ -8,7 +8,7 @@ export default function Approach({ title, city, categories = [], uri }) {
 
   return (
     <Link href={uri}>
-      <a className="flex flex-col rounded-xl border-2 border-black hover:border-red-300 p-6 group h-full">
+      <a className="flex flex-col rounded-xl border-2 border-black hover:border-red-300 p-6 h-full">
         <Heading level={3} as={4}>
           {city?.name && (
             <span className="block text-s mb-4 font-normal">
@@ -35,7 +35,7 @@ export default function Approach({ title, city, categories = [], uri }) {
           className="font-raptor font-bold text-s mt-auto justify-end self-start"
         >
           {t('readMore')}
-          <span className="group-hover:text-red-300 ml-2">⟶</span>
+          <span className="text-red-300 ml-2">⟶</span>
         </button>
       </a>
     </Link>
