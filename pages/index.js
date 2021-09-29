@@ -101,6 +101,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
       ) : (
         <div className="flex flex-col md:flex-row md:h-full w-full">
           <FloatingTabs
+            tooltipHidden={!!activeThread}
             items={[
               {
                 target: '/',

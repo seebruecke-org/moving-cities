@@ -4,10 +4,11 @@ import clsx from 'clsx';
 import Item from './Item';
 import Tooltip from './Tooltip';
 
-export default function FloatingTabs({ items, className }) {
+export default function FloatingTabs({ items, className, tooltipHidden }) {
   const itemRefs = useRef([]);
   const [activeItemIndex, setActiveItemIndex] = useState(items.findIndex((item) => item.active));
   const [tooltipPosition, setTooltipPosition] = useState({});
+  const [forceDisplay, setForceDisplay] = useState(false);
   const text = items[activeItemIndex].tooltip;
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function FloatingTabs({ items, className }) {
       const { offsetLeft, clientWidth } = activeRef;
 
       setTooltipPosition({
+        display: 'block',
         left: offsetLeft + clientWidth / 2
       });
     }
@@ -34,22 +36,26 @@ export default function FloatingTabs({ items, className }) {
               aria-description={tooltip}
               onMouseEnter={() => {
                 setActiveItemIndex(index);
+                setForceDisplay(true);
               }}
               onMouseLeave={() => {
                 setActiveItemIndex(index);
+                setForceDisplay(false);
               }}
               onFocus={() => {
                 setActiveItemIndex(index);
+                setForceDisplay(true);
               }}
               onBlur={() => {
                 setActiveItemIndex(index);
+                setForceDisplay(false);
               }}
             />
           </li>
         ))}
       </ul>
 
-      {activeItemIndex !== -1 && <Tooltip style={tooltipPosition}>{text}</Tooltip>}
+      {activeItemIndex !== -1 && <Tooltip className={clsx((tooltipHidden && !forceDisplay) && 'hidden')} style={tooltipPosition}>{text}</Tooltip>}
     </div>
   );
 }
