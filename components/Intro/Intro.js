@@ -42,7 +42,7 @@ function Count({ count, className, onClick = () => {}, ...props }) {
     <Link {...props}>
       <a
         className={clsx(
-          'font-raptor text-5xl font-bold underline block hover:text-black',
+          'font-raptor text-4xl md:text-5-xl font-bold underline block hover:text-black',
           className
         )}
         onClick={onClick}
@@ -67,10 +67,10 @@ export default function Intro({
 
   return (
     <div className="relative w-full h-screen overflow-x-hidden pb-28 md:pb-0">
-      <div className="relative md:absolute md:top-8 md:left-8 z-10 md:max-w-5xl px-8 pt-12">
+      <div className="relative md:absolute md:top-2 md:left-8 z-10 md:max-w-5xl px-8 pt-12">
         <h1
           className={clsx(
-            'font-raptor text-3xl sm:text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
+            'font-raptor text-3xl md:text-4xl lg:text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
             styles.title
           )}
         >
@@ -83,38 +83,38 @@ export default function Intro({
         </Button>
       </div>
 
-      <div className="-ml-96 md:ml-0 -mr-96 -mt-48 md:mt-0 -mb-16 md:mb-0 md:mr-0 md:absolute md:top-64 md:left-16 md:w-4/5 xl:left-48 xl:w-9/12">
+      <div className="-ml-96 md:ml-0 -mr-96 -mt-48 md:mt-0 -mb-16 md:mb-0 md:mr-0 md:absolute md:top-36 xl:top-64 md:left-16 md:w-4/5 xl:left-48 xl:w-9/12">
         <CityShape image={introImage} />
       </div>
 
       <div className="md:absolute md:bottom-8 md:left-8 max-w-3xl lg:max-w-5xl px-8">
-        <Markdown isSmall={false}>{intro}</Markdown>
+        <Markdown>{intro}</Markdown>
       </div>
 
-      <div className="md:absolute md:right-8 md:top-0 px-8 md:py-16 xl:py-28 space-y-8 md:h-screen justify-between md:flex md:flex-col">
-        <Paragraph className="md:max-w-xs md:text-right">
+      <div className="md:absolute md:right-8 md:top-0 px-8 md:py-12 lg:py-16 xl:py-28 md:space-y-4 xl:space-y-8 md:h-screen justify-between md:flex md:flex-col">
+        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
           <Count href="/" count={featuredCitiesCount} className="text-red-300" onClick={onClose} />{' '}
           {t('withCaseStudies')}
-        </Paragraph>
+        </p>
 
-        <Paragraph className="md:max-w-xs md:text-right">
+        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
           <Count href={`/${tSlugs('cities')}`} count={citiesCount} className="text-pink-300" />{' '}
           {t('withSolidarityBasedPolicy')}
-        </Paragraph>
+        </p>
 
-        <Paragraph className="md:max-w-xs md:text-right">
+        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
           <Count href={`/${tSlugs('networks')}`} count={networksCount} className="text-red-300" />{' '}
           {t('europeanNetworks')}
-        </Paragraph>
+        </p>
 
-        <Paragraph className="md:max-w-xs md:text-right">
+        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
           <Count
             href={`/${tSlugs('approaches')}`}
             count={approachesCount}
             className="text-pink-300"
           />
           {t('inspiringApproaches')}
-        </Paragraph>
+        </p>
       </div>
     </div>
   );
