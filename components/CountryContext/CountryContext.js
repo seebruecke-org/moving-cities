@@ -14,12 +14,12 @@ export default function CountryContext({ name, content, open = false }) {
 
   return (
     <div className="md:py-12">
-      <details className="border-t-2 border-b-2" onToggle={() => setIsOpen(!isOpen)} open={isOpen}>
+      <details className="border-t-2 border-b-2 hover:border-red-300" onToggle={() => setIsOpen(!isOpen)} open={isOpen}>
         <summary
           className={clsx(
             styles.summary,
             isOpen && 'mb-10 border-b-2',
-            'cursor-pointer hover:bg-black hover:text-white pb-4'
+            'cursor-pointer pb-4'
           )}
         >
           <Heading level={2} className="px-8 md:px-10 pt-6 flex justify-between sm:items-center">
