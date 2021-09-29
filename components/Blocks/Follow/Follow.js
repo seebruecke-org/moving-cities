@@ -4,9 +4,9 @@ import Section from '@/components/Blocks/Section';
 export default function Follow({ followTitle, followItems = [] }) {
   return (
     <Section title={followTitle}>
-      <ul className="flex flex-wrap space-x-4">
+      <ul className="flex flex-wrap">
         {followItems.map(({ description, target }) => (
-          <li>
+          <li className="mr-5 mb-4">
             <Button href={target}>
               {description}
               <span className="text-red-300 ml-2">→</span>
