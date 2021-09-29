@@ -38,44 +38,42 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
   }
 
   useEffect(() => {
-    const markers = countries
-      .filter(countryIsActive)
-      .flatMap(({ cities }) => {
-        return cities.map(
-          ({
-            coordinates: {
-              geometry: { coordinates }
-            },
-            name,
-            id
-          }) => {
-            const [longitude, latitude] = coordinates;
+    const markers = countries.filter(countryIsActive).flatMap(({ cities }) => {
+      return cities.map(
+        ({
+          coordinates: {
+            geometry: { coordinates }
+          },
+          name,
+          id
+        }) => {
+          const [longitude, latitude] = coordinates;
 
-            return (
-              <Marker
-                key={`marker-${id}`}
-                longitude={longitude}
-                latitude={latitude}
-                className="text-red-300 hover:text-black hover:cursor-pointer z-10 hover:z-20 group"
+          return (
+            <Marker
+              key={`marker-${id}`}
+              longitude={longitude}
+              latitude={latitude}
+              className="text-red-300 hover:text-black hover:cursor-pointer z-10 hover:z-20 group"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+                fill="none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  height="16"
-                  fill="none"
-                >
-                  <circle cx="8" cy="8" r="8" fill="currentColor" />
-                </svg>
+                <circle cx="8" cy="8" r="8" fill="currentColor" />
+              </svg>
 
-                <span className="text-center font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
-                  {name}
-                </span>
-              </Marker>
-            );
-          }
-        );
-      });
+              <span className="text-center font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
+                {name}
+              </span>
+            </Marker>
+          );
+        }
+      );
+    });
 
     setMarkers(markers);
 
@@ -175,7 +173,9 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city']);
   const client = createClient();
-  const { countries, bounds } = await fetchAllCitiesByCountry(client, locale, { active: slug?.[0] });
+  const { countries, bounds } = await fetchAllCitiesByCountry(client, locale, {
+    active: slug?.[0]
+  });
   const counts = await fetchCounts(client, locale);
 
   return {

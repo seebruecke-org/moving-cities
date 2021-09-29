@@ -33,7 +33,6 @@ export default function MapboxMap({ children, bounds, options }) {
   });
 
   useEffect(() => {
-
     if (mapRef?.current) {
       setMap(mapRef.current.getMap());
     }
