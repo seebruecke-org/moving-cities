@@ -19,7 +19,7 @@ export default function ThreadListItem({
       )}
       {...props}
     >
-      <span className="font-raptor leading-snug">
+      <span className="font-raptor leading-snug mr-4">
         <h2 className="text-m font-bold mt-2 leading-tight">{title}</h2>
         <p className="text-2xs md:text-xs">{subtitle}</p>
       </span>
@@ -30,7 +30,7 @@ export default function ThreadListItem({
         height="14"
         viewBox="0 0 10 14"
         className={clsx(
-          'mt-3 ml-auto w-4 md:w-5 h-auto flex-grow-0 flex-shrink-0',
+          'mt-3 ml-auto w-4 md:w-4 h-auto flex-grow-0 flex-shrink-0',
           active && 'text-red-300 hidden md:flex'
         )}
       >
