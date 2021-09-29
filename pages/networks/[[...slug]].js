@@ -68,6 +68,7 @@ export default function NetworkPage({ networks, counts }) {
           geometry: { coordinates }
         },
         active,
+        name,
         id
       }) => {
         const [longitude, latitude] = coordinates;
@@ -78,7 +79,7 @@ export default function NetworkPage({ networks, counts }) {
             key={`city-marker-${id}`}
             longitude={longitude}
             latitude={latitude}
-            className={clsx(active ? 'text-red-300 z-20' : 'text-black z-10')}
+            className={clsx('hover:cursor-pointer group', active ? 'text-red-300 hover:text-black z-20' : 'text-black hover:text-red-300 z-10')}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +90,10 @@ export default function NetworkPage({ networks, counts }) {
             >
               <circle cx={size} cy={size} r={size} fill="currentcolor" />
             </svg>
+
+            <span className="text-center font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
+              {name}
+            </span>
           </Marker>
         );
       }

@@ -46,12 +46,13 @@ export default function AllCitiesOverview({ countries, counts }) {
             coordinates: {
               geometry: { coordinates }
             },
+            name,
             id
           }) => {
             const [longitude, latitude] = coordinates;
 
             return (
-              <Marker key={`marker-${id}`} longitude={longitude} latitude={latitude}>
+              <Marker key={`marker-${id}`} longitude={longitude} latitude={latitude} className="text-red-300 hover:text-black hover:cursor-pointer z-10 hover:z-20 group">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -59,8 +60,12 @@ export default function AllCitiesOverview({ countries, counts }) {
                   height="16"
                   fill="none"
                 >
-                  <circle cx="8" cy="8" r="8" fill="#F55511" />
+                  <circle cx="8" cy="8" r="8" fill="currentColor" />
                 </svg>
+
+                <span className="text-center font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
+                  {name}
+                </span>
               </Marker>
             );
           }
