@@ -66,7 +66,7 @@ export default function CityPreview({
         {uri && (
           <Button href={uri} className="w-auto self-start">
             {t('viewCity')}
-            <span className="text-red-300 ml-4 text-3xl leading-none -my-3">→</span>
+            <span className="text-red-300 ml-4 text-2xl leading-none -my-3">→</span>
           </Button>
         )}
 
