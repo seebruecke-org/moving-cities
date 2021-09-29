@@ -69,7 +69,7 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
                 <circle cx="8" cy="8" r="8" fill="currentColor" />
               </svg>
 
-              <span className="text-center font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
+              <span className="text-center text-black font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
                 {name}
               </span>
             </Marker>

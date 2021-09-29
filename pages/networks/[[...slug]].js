@@ -89,7 +89,7 @@ export default function NetworkPage({ networks, cities: defaultCities, counts })
             latitude={latitude}
             className={clsx(
               'hover:cursor-pointer group',
-              active ? 'text-red-300 hover:text-black z-20' : 'text-black hover:text-red-300 z-10'
+              active ? 'text-red-300 hover:text-black z-20' : 'text-black hover:text-red-300 z-10 hover:z-20'
             )}
           >
             <svg
@@ -102,7 +102,7 @@ export default function NetworkPage({ networks, cities: defaultCities, counts })
               <circle cx={size} cy={size} r={size} fill="currentcolor" />
             </svg>
 
-            <span className="text-center font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
+            <span className="text-center text-black font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
               {name}
             </span>
           </Marker>
