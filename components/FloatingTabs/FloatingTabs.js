@@ -55,7 +55,14 @@ export default function FloatingTabs({ items, className, tooltipHidden }) {
         ))}
       </ul>
 
-      {activeItemIndex !== -1 && <Tooltip className={clsx((tooltipHidden && !forceDisplay) && 'hidden')} style={tooltipPosition}>{text}</Tooltip>}
+      {activeItemIndex !== -1 && (
+        <Tooltip
+          className={clsx(tooltipHidden && !forceDisplay && 'hidden')}
+          style={tooltipPosition}
+        >
+          {text}
+        </Tooltip>
+      )}
     </div>
   );
 }

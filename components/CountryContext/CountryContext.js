@@ -33,7 +33,16 @@ export default function CountryContext({ name, content, open = false }) {
               viewBox="0 0 40 23"
               className="text-red-300 mt-1 md:-mt-3"
             >
-              <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="m2 2 18 18L38 2" className={clsx('transition-transform, origin-center', isOpen && 'transform rotate-180')} />
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="3"
+                d="m2 2 18 18L38 2"
+                className={clsx(
+                  'transition-transform, origin-center',
+                  isOpen && 'transform rotate-180'
+                )}
+              />
             </svg>
           </Heading>
         </summary>

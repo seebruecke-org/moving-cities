@@ -20,7 +20,11 @@ export default function Markdown({ children, isSmall }) {
     },
 
     h3: ({ children }) => {
-      return <Heading level={3} className="mt-8 mb-4">{children}</Heading>;
+      return (
+        <Heading level={3} className="mt-8 mb-4">
+          {children}
+        </Heading>
+      );
     },
 
     p: ({ children }) => {
