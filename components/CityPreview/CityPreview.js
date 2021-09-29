@@ -32,9 +32,9 @@ export default function CityPreview({
         {icon && <CityIcon icon={icon} className="w-72 mr-12" />}
 
         <div className="mr-8">
-          <h1 className="text-red-300 text-5xl font-raptor font-bold leading-none">{title}</h1>
+          <h1 className="text-red-300 text-5xl font-raptor font-bold leading-none mb-4">{title}</h1>
 
-          <p className="text-3xl leading-none font-raptor font-bold">{subtitle}</p>
+          <p className="text-3xl leading-none font-raptor font-medium md:font-bold">{subtitle}</p>
         </div>
 
         <button onClick={onClose} className="group font-raptor font-semibold font-2xs mt-2">

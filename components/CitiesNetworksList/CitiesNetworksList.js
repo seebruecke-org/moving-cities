@@ -17,7 +17,7 @@ function CityItem({ name, networks }) {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between font-raptor text-s md:text-m py-4 px-8 w-full group"
+        className="flex justify-between font-raptor text-s md:text-m py-3 px-8 w-full group"
       >
         <span className="group-hover:underline">{name}</span>
 

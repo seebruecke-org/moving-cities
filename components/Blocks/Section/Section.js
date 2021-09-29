@@ -6,7 +6,7 @@ export default function Section({ title, sectionContent = {}, children }) {
   const { content } = sectionContent;
 
   return (
-    <Columns className="my-6 md:my-8 max-w-8xl pl-8 pr-8 md:pr-0 md:pl-10">
+    <Columns className="mt-10 mb-6 md:my-8 max-w-8xl pl-8 pr-8 md:pr-0 md:pl-10">
       {title ? (
         <Heading level={2} className="mb-8 md:mb-0">
           {title}

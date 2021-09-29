@@ -22,7 +22,7 @@ export default function CountryContext({ name, content, open = false }) {
             'cursor-pointer hover:bg-black hover:text-white pb-4'
           )}
         >
-          <Heading level={2} className="px-10 pt-6 flex justify-between sm:items-center">
+          <Heading level={2} className="px-8 md:px-10 pt-6 flex justify-between sm:items-center">
             {t('politicalContext', { name })}
 
             <svg
@@ -31,13 +31,14 @@ export default function CountryContext({ name, content, open = false }) {
               height="23"
               fill="none"
               viewBox="0 0 40 23"
+              className="text-red-300 mt-1 md:-mt-3"
             >
-              <path stroke="#F55511" stroke-linecap="round" stroke-width="3" d="m2 2 18 18L38 2" />
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="3" d="m2 2 18 18L38 2" className={clsx('transition-transform, origin-center', isOpen && 'transform rotate-180')} />
             </svg>
           </Heading>
         </summary>
 
-        <div className="px-10 py-12">
+        <div className="px-8 md:px-10 py-4 md:py-12">
           <BlockSwitch blocks={content} renderers={{ Richtext }} />
         </div>
       </details>

@@ -8,7 +8,7 @@ export default function Quote({ quoteAuthor: author, quoteContent: content }) {
       </p>
 
       {author && (
-        <cite className="font-raptor text-s not-italic col-span-8 leading-none mt-4 md:mt-0">
+        <cite className="font-raptor text-s not-italic col-span-8 leading-none mt-4 md:mt-2">
           {author}
         </cite>
       )}

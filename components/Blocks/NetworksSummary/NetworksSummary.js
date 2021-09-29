@@ -23,7 +23,7 @@ export default function NetworksSummary({
           <Heading level={2}>{networksSummaryTitle}</Heading>
 
           <div className="mt-6 md:mt-12">
-            <Markdown>{networksSummaryContent}</Markdown>
+            <Markdown isSmall={false}>{networksSummaryContent}</Markdown>
           </div>
 
           <Heading level={3} as={4} className="mt-16">
