@@ -65,7 +65,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
         options: {
           latitude,
           longitude,
-          zoom: 14
+          zoom: 12
         }
       });
     } else {
