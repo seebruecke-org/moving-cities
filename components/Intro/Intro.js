@@ -70,7 +70,7 @@ export default function Intro({
       <div className="relative md:absolute md:top-2 md:left-8 z-10 md:max-w-5xl px-8 pt-12">
         <h1
           className={clsx(
-            'font-raptor text-3xl md:text-4xl lg:text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
+            'font-raptor text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300 max-w-4xl lg:max-w-none',
             styles.title
           )}
         >
