@@ -19,7 +19,7 @@ import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
 import useMapReducer from '@/lib/stores/map';
 
-export default function NetworkPage({ networks, counts }) {
+export default function NetworkPage({ networks, cities: defaultCities, counts }) {
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
@@ -33,34 +33,42 @@ export default function NetworkPage({ networks, counts }) {
 
   const navItems = useMemo(
     () =>
-      networks.map(({ name, content, cities, slug, ...network }) => ({
-        ...network,
-        target: `/${tSlugs('networks')}/${slug}`,
-        title: name,
-        subtitle: cities
-          .map(({ country }) => country?.name)
-          .filter(Boolean)
-          // remove duplicates
-          .filter((item, pos, self) => self.indexOf(item) == pos)
-          .join(', '),
-        data: {
+      networks.map(({ name, content, cities, slug, ...network }) => {
+        const fullCities = cities.map(({ id }) =>
+          defaultCities.find((defaultCity) => defaultCity.id === id)
+        );
+
+        return {
+          ...network,
+          target: `/${tSlugs('networks')}/${slug}`,
           title: name,
-          content,
-          featuredCities: cities.filter(({ is_featured }) => is_featured),
-          cities: cities.filter(({ is_featured }) => !is_featured)
-        }
-      })),
+          subtitle: fullCities
+            .map(({ country }) => country?.name)
+            .filter(Boolean)
+            // remove duplicates
+            .filter((item, pos, self) => self.indexOf(item) == pos)
+            .join(', '),
+          data: {
+            title: name,
+            content,
+            featuredCities: fullCities.filter(({ is_featured }) => is_featured),
+            cities: fullCities.filter(({ is_featured }) => !is_featured)
+          }
+        };
+      }),
     [activeThread, networks]
   );
 
   useEffect(() => {
-    const cities = networks.flatMap(({ cities, id }) =>
-      cities.map((city) => ({
-        ...city,
-        // mark all cities of the active network active
-        active: activeThread?.id === id
-      }))
-    );
+    const activeNetworkCities = activeThread
+      ? networks.find(({ id }) => id === activeThread.id)?.cities?.map(({ id }) => id) ?? []
+      : [];
+
+    const cities = defaultCities.map((city) => ({
+      ...city,
+      // mark all cities of the active network active
+      active: activeNetworkCities.includes(city.id)
+    }));
 
     const markers = cities.map(
       ({
@@ -192,13 +200,14 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city', 'networks']);
   const client = createClient();
-  const networks = await fetchAllNetworks(client, locale, { active: slug?.[0] });
+  const { cities, networks } = await fetchAllNetworks(client, locale, { active: slug?.[0] });
   const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
+      cities,
       networks,
       counts
     }
