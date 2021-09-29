@@ -85,7 +85,7 @@ export default function NetworkPage({
         id
       }) => {
         const [longitude, latitude] = coordinates;
-        const size = active ? 8 : 4;
+        const size = active ? 12 : 1;
 
         return (
           <Marker
@@ -95,8 +95,8 @@ export default function NetworkPage({
             className={clsx(
               'hover:cursor-pointer group',
               active
-                ? 'text-red-300 hover:text-black z-20'
-                : 'text-black hover:text-red-300 z-10 hover:z-20'
+                ? 'text-pink-300 hover:text-black z-20'
+                : 'text-black hover:text-pink-300 z-10 hover:z-20'
             )}
           >
             <svg
@@ -105,6 +105,7 @@ export default function NetworkPage({
               width={size * 2}
               height={size * 2}
               fill="none"
+              className="opacity-60"
             >
               <circle cx={size} cy={size} r={size} fill="currentcolor" />
             </svg>

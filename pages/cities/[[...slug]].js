@@ -54,19 +54,20 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
               key={`marker-${id}`}
               longitude={longitude}
               latitude={latitude}
-              className="text-red-300 hover:text-black cursor-pointer z-10 hover:z-20 group"
+              className="text-pink-300 hover:text-black cursor-pointer z-10 hover:z-20 group"
               onClick={() => {
                 dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: countryId } });
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                width="16"
-                height="16"
+                viewBox="0 0 18 18"
+                width="18"
+                height="18"
                 fill="none"
+                className="opacity-60"
               >
-                <circle cx="8" cy="8" r="8" fill="currentColor" />
+                <circle cx="9" cy="9" r="9" fill="currentColor" />
               </svg>
 
               <span className="text-center text-black font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">

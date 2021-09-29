@@ -27,7 +27,7 @@ function CityMarker({ id, name, ...props }) {
         width="40"
         height="40"
         fill="none"
-        className="group cursor-pointer"
+        className="cursor-pointer text-pink-300 hover:text-black"
       >
         <circle
           cx="20"
@@ -36,7 +36,6 @@ function CityMarker({ id, name, ...props }) {
           stroke="currentColor"
           stroke-dasharray="4 2"
           stroke-width="6"
-          className="text-red-300 group-hover:text-black"
         />
       </svg>
 
