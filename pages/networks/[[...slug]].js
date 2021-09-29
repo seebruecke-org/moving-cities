@@ -19,7 +19,12 @@ import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
 import useMapReducer from '@/lib/stores/map';
 
-export default function NetworkPage({ networks, cities: defaultCities, counts }) {
+export default function NetworkPage({
+  networks,
+  cities: defaultCities,
+  counts,
+  bounds: defaultBounds
+}) {
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
@@ -28,7 +33,7 @@ export default function NetworkPage({ networks, cities: defaultCities, counts })
   const [{ activeThread }, dispatch] = useMapReducer({
     activeThread: { id: networks.find(({ active }) => active)?.id }
   });
-  const [mapState, setMapState] = useState({ markers: [], bounds: null });
+  const [{ bounds, markers }, setMapState] = useState({ markers: [], bounds: null });
   const isSingleView = !!query?.slug?.[0];
 
   const navItems = useMemo(
@@ -89,7 +94,9 @@ export default function NetworkPage({ networks, cities: defaultCities, counts })
             latitude={latitude}
             className={clsx(
               'hover:cursor-pointer group',
-              active ? 'text-red-300 hover:text-black z-20' : 'text-black hover:text-red-300 z-10 hover:z-20'
+              active
+                ? 'text-red-300 hover:text-black z-20'
+                : 'text-black hover:text-red-300 z-10 hover:z-20'
             )}
           >
             <svg
@@ -110,14 +117,22 @@ export default function NetworkPage({ networks, cities: defaultCities, counts })
       }
     );
 
-    const bounds = getBounds(
-      cities.filter(({ active }) => active).flatMap(({ coordinates }) => coordinates)
-    );
+    let bounds = defaultBounds;
 
-    setMapState({
-      markers,
-      bounds
-    });
+    if (activeThread) {
+      bounds = getBounds(
+        cities.filter(({ active }) => active).map(({ coordinates }) => coordinates)
+      );
+    }
+
+    // the map needs a little time to re-paint itself due to the overlay
+    // size change, that might happen
+    setTimeout(() => {
+      setMapState({
+        markers,
+        bounds
+      });
+    }, 100);
   }, [activeThread]);
 
   return (
@@ -174,7 +189,7 @@ export default function NetworkPage({ networks, cities: defaultCities, counts })
         items={navItems}
       />
 
-      <MapboxMap bounds={mapState.bounds}>{mapState.markers}</MapboxMap>
+      <MapboxMap bounds={bounds}>{markers}</MapboxMap>
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
     </div>
