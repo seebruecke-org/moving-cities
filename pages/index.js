@@ -14,12 +14,13 @@ const ThreadList = dynamic(() => import('@/components/ThreadList'));
 
 import { createClient } from '@/lib/api';
 import { fetchFeaturedCities, fetchCounts } from '@/lib/cities';
-import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { fetchIntro } from '@/lib/intro';
 import useMapReducer from '@/lib/stores/map';
 
 function CityMarker({ id, longitude, latitude, coordinates, name }) {
+  const [, dispatch] = useMapReducer();
+
   return (
     <Marker
       key={`marker-${id}`}
@@ -56,13 +57,15 @@ function CityMarker({ id, longitude, latitude, coordinates, name }) {
   );
 }
 
-export default function HomePage({ cities, intro, routeHasChanged, counts }) {
+export default function HomePage({ cities, intro, routeHasChanged, counts, bounds }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const [{ activeThread }, dispatch] = useMapReducer();
-  const mapProps = {};
+  const mapProps = {
+    bounds
+  };
 
   if (activeThread) {
     const [longitude, latitude] = activeThread.coordinates.geometry.coordinates;
@@ -72,8 +75,6 @@ export default function HomePage({ cities, intro, routeHasChanged, counts }) {
       longitude,
       zoom: 14
     };
-  } else {
-    mapProps.bounds = getBounds(cities.map(({ coordinates }) => coordinates));
   }
 
   const markers = activeThread
@@ -172,7 +173,7 @@ export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'intro', 'approaches']);
   const client = createClient();
   const data = await fetchIntro(client, locale);
-  const cities = await fetchFeaturedCities(client, locale);
+  const { cities, bounds } = await fetchFeaturedCities(client, locale);
   const counts = await fetchCounts(client, locale);
 
   return {
@@ -181,6 +182,7 @@ export async function getStaticProps({ locale }) {
       ...translations,
       ...data,
       cities,
+      bounds,
       counts
     }
   };

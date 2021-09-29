@@ -29,19 +29,17 @@ export default function MapboxMap({ children, bounds, options }) {
   const [map, setMap] = useState(null);
   const [viewport, setViewport] = useState({
     width: '100%',
-    height: '100%',
-    transitionDuration: 1000
+    height: '100%'
   });
 
   useEffect(() => {
+
     if (mapRef?.current) {
       setMap(mapRef.current.getMap());
     }
-  }, [mapRef]);
 
-  useEffect(() => {
     setViewport((state) => ({ ...state, ...getFitBounds(bounds, map), ...options }));
-  }, [JSON.stringify({ options, bounds })]);
+  }, [mapRef, map, JSON.stringify({ options, bounds })]);
 
   return (
     <div className="h-full w-full flex-shrink flex-grow-0 z-0 hidden md:flex md:h-screen overflow-x-hidden">
