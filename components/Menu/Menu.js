@@ -130,18 +130,7 @@ export default function Menu() {
               </a>
             </Link>
 
-            <div className="hidden md:inline-block space-x-7">
-              <Link href={`/${tSlugs('about')}`}>
-                <a
-                  className={clsx(
-                    'uppercase whitespace-nowrap font-raptor text-m hover:underline font-medium',
-                    shadowStyles['text-shadow']
-                  )}
-                >
-                  {t('menu.about')}
-                </a>
-              </Link>
-
+            <div className="hidden md:inline-block">
               <Link href={`/${tSlugs('approaches')}`}>
                 <a
                   className={clsx(
