@@ -103,7 +103,7 @@ export default function Menu() {
           <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-6 md:origin-top-right">
             <Link href="/">
               <a
-                className="flex items-center hover:text-black"
+                className="flex items-center hover:underline"
                 onClick={() => setIsOverlayOpen(false)}
               >
                 <span
@@ -134,7 +134,7 @@ export default function Menu() {
               <Link href={`/${tSlugs('about')}`}>
                 <a
                   className={clsx(
-                    'uppercase whitespace-nowrap font-raptor text-m hover:text-black font-medium',
+                    'uppercase whitespace-nowrap font-raptor text-m hover:underline font-medium',
                     shadowStyles['text-shadow']
                   )}
                 >
@@ -145,7 +145,7 @@ export default function Menu() {
               <Link href={`/${tSlugs('approaches')}`}>
                 <a
                   className={clsx(
-                    'uppercase whitespace-nowrap font-raptor font-medium text-m hover:text-black',
+                    'uppercase whitespace-nowrap font-raptor font-medium text-m hover:underline',
                     shadowStyles['text-shadow']
                   )}
                 >
