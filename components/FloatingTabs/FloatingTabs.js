@@ -18,7 +18,6 @@ export default function FloatingTabs({ items, className, tooltipHidden }) {
       const { offsetLeft, clientWidth } = activeRef;
 
       setTooltipPosition({
-        display: 'block',
         left: offsetLeft + clientWidth / 2
       });
     }
