@@ -19,14 +19,14 @@ import { getTranslations } from '@/lib/global';
 import { fetchAllCountryPaths } from '@/lib/networks';
 import useMapReducer from '@/lib/stores/map';
 
-export default function AllCitiesOverview({ countries, counts }) {
+export default function AllCitiesOverview({ countries, counts, bounds: defaultBounds }) {
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
   const isSingleView = !!query?.slug?.[0];
   const [markers, setMarkers] = useState([]);
-  const [bounds, setBounds] = useState(null);
+  const [bounds, setBounds] = useState(defaultBounds);
   const [{ activeThread }, dispatch] = useMapReducer();
 
   function countryIsActive(country) {
@@ -40,7 +40,7 @@ export default function AllCitiesOverview({ countries, counts }) {
   useEffect(() => {
     const markers = countries
       .filter(countryIsActive)
-      .map(({ cities }) => {
+      .flatMap(({ cities }) => {
         return cities.map(
           ({
             coordinates: {
@@ -75,18 +75,19 @@ export default function AllCitiesOverview({ countries, counts }) {
             );
           }
         );
-      })
-      .flat();
+      });
 
-    const bounds = getBounds(
-      countries
-        .filter(countryIsActive)
-        .map(({ cities }) => cities.map(({ coordinates }) => coordinates))
-        .flat()
-    );
-
-    setBounds(bounds);
     setMarkers(markers);
+
+    if (activeThread?.id) {
+      const bounds = getBounds(
+        countries
+          .filter(countryIsActive)
+          .flatMap(({ cities }) => cities.map(({ coordinates }) => coordinates))
+      );
+
+      setBounds(bounds);
+    }
   }, [activeThread]);
 
   return (
@@ -174,7 +175,7 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city']);
   const client = createClient();
-  const countries = await fetchAllCitiesByCountry(client, locale, { active: slug?.[0] });
+  const { countries, bounds } = await fetchAllCitiesByCountry(client, locale, { active: slug?.[0] });
   const counts = await fetchCounts(client, locale);
 
   return {
@@ -182,6 +183,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
     props: {
       ...translations,
       countries,
+      bounds,
       counts
     }
   };
