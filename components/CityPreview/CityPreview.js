@@ -20,16 +20,18 @@ export default function CityPreview({
   const { t: tApproaches } = useTranslation('approaches');
 
   return (
-    <article
-      className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col lg:min-w-8xl"
-    >
+    <article className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col lg:min-w-8xl">
       <div className="flex mb-24 items-start">
         {icon && <CityIcon icon={icon} className="w-48 lg:w-72 mr-6 lg:mr-12" />}
 
         <div className="mr-8">
-          <h1 className="text-red-300 text-4xl lg:text-5xl font-raptor font-bold leading-none mb-4">{title}</h1>
+          <h1 className="text-red-300 text-4xl lg:text-5xl font-raptor font-bold leading-none mb-4">
+            {title}
+          </h1>
 
-          <p className="text-2xl lg:text-3xl leading-none font-raptor font-medium md:font-bold">{subtitle}</p>
+          <p className="text-2xl lg:text-3xl leading-none font-raptor font-medium md:font-bold">
+            {subtitle}
+          </p>
         </div>
 
         <button onClick={onClose} className="group font-raptor font-semibold font-2xs mt-2">
