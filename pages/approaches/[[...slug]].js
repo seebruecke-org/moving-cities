@@ -14,7 +14,7 @@ import {
 } from '@/lib/approaches';
 import { getTranslations } from '@/lib/global';
 
-export default function ApproachesOverviewPage({ approaches, categories }) {
+export default function ApproachesOverviewPage({ approaches, approachesCount, categories }) {
   const router = useRouter();
   const { t: tSlugs } = useTranslation('slugs');
   const { t: tApproaches } = useTranslation('approaches');
@@ -32,7 +32,7 @@ export default function ApproachesOverviewPage({ approaches, categories }) {
       </h1>
 
       <p className="leading-tight font-raptor text-m md:text-xl xl:text-2xl md:font-bold">
-        {tApproaches('intro', { count: approaches.length })}
+        {tApproaches('intro', { count: approachesCount })}
       </p>
 
       <ul className="hidden md:flex md:flex-wrap mt-12">
@@ -87,7 +87,7 @@ export async function getStaticPaths({ locales }) {
 export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['approaches']);
   const client = createClient();
-  const approaches = await fetchAllApproaches(client, locale, slug?.[0]);
+  const { approaches, approachesCount } = await fetchAllApproaches(client, locale, slug?.[0]);
   const categories = await fetchApproachCategories(client, locale);
 
   return {
@@ -95,7 +95,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
     props: {
       ...translations,
       categories,
-      approaches
+      approaches,
+      approachesCount
     }
   };
 }
