@@ -18,8 +18,8 @@ const getFitBounds = (bounds, map) => {
   const { offsetHeight: height, offsetWidth: width } = map.getContainer();
   const padding = Math.min(height, height) * 0.05;
   const { longitude, latitude, zoom } = new WebMercatorViewport({
-    width,
-    height
+    width: Math.max(100, width),
+    height: Math.max(100, height)
   }).fitBounds(bounds, { padding });
 
   return { longitude, latitude, zoom };

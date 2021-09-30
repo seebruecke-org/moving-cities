@@ -7,8 +7,6 @@ import CityIcon from '@/components/CityIcon';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
-import styles from './styles.module.css';
-
 export default function CityPreview({
   title,
   subtitle,
@@ -23,18 +21,15 @@ export default function CityPreview({
 
   return (
     <article
-      className={clsx(
-        'bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col',
-        styles.cityPreview
-      )}
+      className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col lg:min-w-8xl"
     >
       <div className="flex mb-24 items-start">
-        {icon && <CityIcon icon={icon} className="w-72 mr-12" />}
+        {icon && <CityIcon icon={icon} className="w-48 lg:w-72 mr-6 lg:mr-12" />}
 
         <div className="mr-8">
-          <h1 className="text-red-300 text-5xl font-raptor font-bold leading-none mb-4">{title}</h1>
+          <h1 className="text-red-300 text-4xl lg:text-5xl font-raptor font-bold leading-none mb-4">{title}</h1>
 
-          <p className="text-3xl leading-none font-raptor font-medium md:font-bold">{subtitle}</p>
+          <p className="text-2xl lg:text-3xl leading-none font-raptor font-medium md:font-bold">{subtitle}</p>
         </div>
 
         <button onClick={onClose} className="group font-raptor font-semibold font-2xs mt-2">
@@ -56,7 +51,7 @@ export default function CityPreview({
         </button>
       </div>
 
-      <div className="flex flex-col space-y-8 mt-16">
+      <div className="flex flex-col space-y-8 mt-8 lg:mt-16">
         <Heading level={2} as={3}>
           {summary.title}
         </Heading>
