@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { options } from 'preact';
 import ReactMapGL, { WebMercatorViewport } from 'react-map-gl';
-import useResizeObserver from '@react-hook/resize-observer'
+import useResizeObserver from '@react-hook/resize-observer';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -38,12 +38,12 @@ export default function MapboxMap({ children, bounds, options, ...props }) {
   // calling map.resize() doesn't have any effect, so we try to
   // reset the viewport size to the original relative size
   useResizeObserver(containerRef, () => {
-    setViewport(prevViewport => ({
+    setViewport((prevViewport) => ({
       ...prevViewport,
       width: '100%',
       height: '100%'
     }));
-  })
+  });
 
   useEffect(() => {
     if (mapRef?.current) {
@@ -54,7 +54,10 @@ export default function MapboxMap({ children, bounds, options, ...props }) {
   }, [mapRef, map, JSON.stringify({ options, bounds })]);
 
   return (
-    <div className="h-full w-full flex-shrink flex-grow-0 z-0 hidden md:flex md:h-screen overflow-x-hidden" ref={containerRef}>
+    <div
+      className="h-full w-full flex-shrink flex-grow-0 z-0 hidden md:flex md:h-screen overflow-x-hidden"
+      ref={containerRef}
+    >
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}

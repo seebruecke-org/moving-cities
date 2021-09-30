@@ -13,13 +13,13 @@ export default function Partner({ partnerLogo, partnerContent }) {
         <Markdown isSmall={false}>{partnerContent}</Markdown>
 
         <Image
-            src={buildCMSUrl(partnerLogo.url)}
-            layout="responsive"
-            width={partnerLogo.width}
-            height={partnerLogo.height}
-            alt={partnerLogo.alternativeText}
-            className="max-w-1/2"
-          />
+          src={buildCMSUrl(partnerLogo.url)}
+          layout="responsive"
+          width={partnerLogo.width}
+          height={partnerLogo.height}
+          alt={partnerLogo.alternativeText}
+          className="max-w-1/2"
+        />
       </div>
     </Columns>
   );

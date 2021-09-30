@@ -75,44 +75,46 @@ export default function NetworkPage({
       active: activeNetworkCities.includes(city.id)
     }));
 
-    const markers = cities.filter(({ active }) => active).map(
-      ({
-        coordinates: {
-          geometry: { coordinates }
-        },
-        name,
-        id
-      }) => {
-        const [longitude, latitude] = coordinates;
-        const size = 12;
+    const markers = cities
+      .filter(({ active }) => active)
+      .map(
+        ({
+          coordinates: {
+            geometry: { coordinates }
+          },
+          name,
+          id
+        }) => {
+          const [longitude, latitude] = coordinates;
+          const size = 12;
 
-        return (
-          <Marker
-            key={`city-marker-${id}`}
-            longitude={longitude}
-            latitude={latitude}
-            className={clsx(
-              'hover:cursor-pointer group text-pink-300 hover:text-black z-10 hover:z-20',
-            )}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox={`0 0 ${size * 2} ${size * 2}`}
-              width={size * 2}
-              height={size * 2}
-              fill="none"
-              className="opacity-60"
+          return (
+            <Marker
+              key={`city-marker-${id}`}
+              longitude={longitude}
+              latitude={latitude}
+              className={clsx(
+                'hover:cursor-pointer group text-pink-300 hover:text-black z-10 hover:z-20'
+              )}
             >
-              <circle cx={size} cy={size} r={size} fill="currentcolor" />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox={`0 0 ${size * 2} ${size * 2}`}
+                width={size * 2}
+                height={size * 2}
+                fill="none"
+                className="opacity-60"
+              >
+                <circle cx={size} cy={size} r={size} fill="currentcolor" />
+              </svg>
 
-            <span className="text-center text-black font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
-              {name}
-            </span>
-          </Marker>
-        );
-      }
-    );
+              <span className="text-center text-black font-raptor font-bold hidden group-hover:block text-xs absolute top-full left-2/4 -translate-x-2/4 leading-none">
+                {name}
+              </span>
+            </Marker>
+          );
+        }
+      );
 
     let bounds = defaultBounds;
 
