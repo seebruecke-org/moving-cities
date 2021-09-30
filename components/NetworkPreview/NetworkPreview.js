@@ -17,10 +17,6 @@ function AllCities({ cities }) {
 
   return (
     <>
-      <Heading level={2} as={4} className="mt-8 md:mt-16">
-        {t('allCities')}
-      </Heading>
-
       <ul className="mt-6 mb-6">
         {cities
           .filter((city, index) => {
@@ -68,7 +64,7 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
       {featuredCities?.length > 0 && (
         <>
           <Heading level={2} as={4} className="mb-8 mt-6 md:mt-12">
-            {t('featuredCities')}
+            {t('allCities')}
           </Heading>
 
           <ul className="flex flex-wrap">
