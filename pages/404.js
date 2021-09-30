@@ -14,7 +14,7 @@ export default function PageNotFound() {
 
       <article>
         <Heading level={1} className="pl-8 md:pl-10 pt-10 md:pt-10 mb-4 md:mb-20 max-w-full">
-          <span className="text-3xl md:text-6xl leading-none block">{t('title')}</span>
+          {t('title')}
         </Heading>
       </article>
     </div>
