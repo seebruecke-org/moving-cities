@@ -10,6 +10,7 @@
     "prettier": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
+    "@react-hook/resize-observer": "^1.2.4",
     "@turf/bbox": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "autoprefixer": "^10.3.6",

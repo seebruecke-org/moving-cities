@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { options } from 'preact';
 import ReactMapGL, { WebMercatorViewport } from 'react-map-gl';
+import useResizeObserver from '@react-hook/resize-observer'
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -26,11 +27,23 @@ const getFitBounds = (bounds, map) => {
 
 export default function MapboxMap({ children, bounds, options }) {
   const mapRef = useRef(null);
+  const containerRef = useRef(null);
   const [map, setMap] = useState(null);
   const [viewport, setViewport] = useState({
     width: '100%',
     height: '100%'
   });
+
+  // mapbox doesn't properly resize after the panel was closed
+  // calling map.resize() doesn't have any effect, so we try to
+  // reset the viewport size to the original relative size
+  useResizeObserver(containerRef, () => {
+    setViewport(prevViewport => ({
+      ...prevViewport,
+      width: '100%',
+      height: '100%'
+    }));
+  })
 
   useEffect(() => {
     if (mapRef?.current) {
@@ -41,7 +54,7 @@ export default function MapboxMap({ children, bounds, options }) {
   }, [mapRef, map, JSON.stringify({ options, bounds })]);
 
   return (
-    <div className="h-full w-full flex-shrink flex-grow-0 z-0 hidden md:flex md:h-screen overflow-x-hidden">
+    <div className="h-full w-full flex-shrink flex-grow-0 z-0 hidden md:flex md:h-screen overflow-x-hidden" ref={containerRef}>
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
