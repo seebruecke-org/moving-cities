@@ -20,7 +20,7 @@ import useMapReducer from '@/lib/stores/map';
 
 function CityMarker({ id, name, ...props }) {
   return (
-    <Marker key={`marker-${id}`} className="group" {...props}>
+    <Marker key={`marker-${id}`} className="group" offsetLeft={-20} offsetTop={-20} {...props}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 40 40"

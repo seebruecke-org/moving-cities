@@ -58,6 +58,8 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
               onClick={() => {
                 dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: countryId } });
               }}
+              offsetLeft={-9}
+              offsetTop={-9}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

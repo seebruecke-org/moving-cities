@@ -93,6 +93,8 @@ export default function NetworkPage({
               key={`city-marker-${id}`}
               longitude={longitude}
               latitude={latitude}
+              offsetLeft={-1 * size / 2}
+              offsetTop={-1 * size / 2}
               className={clsx(
                 'hover:cursor-pointer group text-pink-300 hover:text-black z-10 hover:z-20'
               )}
