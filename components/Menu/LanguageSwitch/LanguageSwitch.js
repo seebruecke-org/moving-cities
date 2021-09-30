@@ -36,15 +36,17 @@ export default function LanguageSwitch({ current, locales = [] }) {
           !isOpen && 'hidden'
         )}
       >
-        {locales.map((locale) => (
-          <li>
-            <Link href="/" locale={locale}>
-              <a className="block font-raptor font-bold text-m text-black text-center uppercase py-4 px-6 hover:bg-black hover:text-white leading-none">
-                {locale}
-              </a>
-            </Link>
-          </li>
-        ))}
+        {locales
+          .filter((currentLocale) => currentLocale !== current)
+          .map((locale) => (
+            <li>
+              <Link href="/" locale={locale}>
+                <a className="block font-raptor font-bold text-m text-black text-center uppercase py-4 px-6 hover:bg-black hover:text-white leading-none">
+                  {locale}
+                </a>
+              </Link>
+            </li>
+          ))}
       </ul>
     </div>
   );
