@@ -25,7 +25,7 @@ const getFitBounds = (bounds, map) => {
   return { longitude, latitude, zoom };
 };
 
-export default function MapboxMap({ children, bounds, options }) {
+export default function MapboxMap({ children, bounds, options, ...props }) {
   const mapRef = useRef(null);
   const containerRef = useRef(null);
   const [map, setMap] = useState(null);
@@ -61,6 +61,7 @@ export default function MapboxMap({ children, bounds, options }) {
         mapStyle="mapbox://styles/seebruecke/cku6wyt7c1u0i18r0104wv141"
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         ref={mapRef}
+        {...props}
       >
         {children}
       </ReactMapGL>
