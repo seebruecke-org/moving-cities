@@ -58,7 +58,7 @@ export default function MapboxMap({ children, bounds, options }) {
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/tanja-sb/ckr4smomm0rf717nzwi8x399q"
+        mapStyle="mapbox://styles/seebruecke/cku6wyt7c1u0i18r0104wv141"
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         ref={mapRef}
       >
