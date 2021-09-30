@@ -75,17 +75,16 @@ export default function NetworkPage({
       active: activeNetworkCities.includes(city.id)
     }));
 
-    const markers = cities.map(
+    const markers = cities.filter(({ active }) => active).map(
       ({
         coordinates: {
           geometry: { coordinates }
         },
-        active,
         name,
         id
       }) => {
         const [longitude, latitude] = coordinates;
-        const size = active ? 12 : 1;
+        const size = 12;
 
         return (
           <Marker
@@ -93,10 +92,7 @@ export default function NetworkPage({
             longitude={longitude}
             latitude={latitude}
             className={clsx(
-              'hover:cursor-pointer group',
-              active
-                ? 'text-pink-300 hover:text-black z-20'
-                : 'text-black hover:text-pink-300 z-10 hover:z-20'
+              'hover:cursor-pointer group text-pink-300 hover:text-black z-10 hover:z-20',
             )}
           >
             <svg
