@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import Link from 'next/link';
 
 import Burger from './Burger';
 import Button from '@/components/Button';
+import LanguageSwitch from './LanguageSwitch';
 import Overlay from './Overlay';
 
 import { useIsMounted } from '@/lib/hooks';
@@ -41,6 +43,7 @@ export default function Menu() {
   const overlayRef = useRef();
   const isFirstRender = useIsMounted();
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const { locales, locale } = useRouter();
 
   const OVERLAY_PRIMARY_ITEMS = [
     {
@@ -143,6 +146,8 @@ export default function Menu() {
               </Link>
             </div>
           </span>
+
+          <LanguageSwitch current={locale} locales={locales} />
         </header>
       </div>
 
