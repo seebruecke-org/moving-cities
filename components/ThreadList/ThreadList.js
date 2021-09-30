@@ -42,7 +42,7 @@ export default function ThreadList({
   }, [activeItemIndex]);
 
   return (
-    <nav className="md:h-full relative z-20 md:flex flex-grow-0 flex-shrink-0">
+    <nav className="md:h-full relative z-20 md:flex flex-grow-0 flex-shrink-0 max-w-full">
       <span className="absolute top-0 left-0 w-3 bg-gradient-to-r from-black h-full opacity-20 hidden md:block" />
 
       {!paneData && (
