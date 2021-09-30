@@ -30,6 +30,7 @@ export default function CityPage({
     slug,
     content,
     report,
+    reportFile,
     approaches,
     takeaways,
     country,
@@ -97,14 +98,16 @@ export default function CityPage({
                 <Markdown>{report.intro}</Markdown>
               </div>
 
-              <Button
-                href={buildCMSUrl(report.file.url)}
-                priority
-                className="self-start mt-8 w-auto"
-              >
-                {tCity('download.cta')}
-                <span className="text-red-300 ml-4">⤓</span>
-              </Button>
+              {reportFile && (
+                <Button
+                  href={buildCMSUrl(reportFile.url)}
+                  priority
+                  className="self-start mt-8 w-auto"
+                >
+                  {tCity('download.cta')}
+                  <span className="text-red-300 ml-4">⤓</span>
+                </Button>
+              )}
             </div>
           </Columns>
         )}
