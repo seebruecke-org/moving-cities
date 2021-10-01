@@ -6,10 +6,10 @@ export default function LanguageSwitch({ current, locales = [] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="absolute bottom-0 left-0 w-full p-8 md:p-6">
+    <div className="flex items-center relative md:absolute md:bottom-0 md:left-0 md:w-full">
       <button
         type="button"
-        className="font-raptor uppercase text-m hover:underline w-full flex items-center leading-none"
+        className="font-raptor uppercase text-m hover:underline w-full flex items-center leading-none px-4 md:p-6"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{current}</span>
@@ -32,7 +32,7 @@ export default function LanguageSwitch({ current, locales = [] }) {
 
       <ul
         className={clsx(
-          'absolute bottom-0 left-full w-full bg-yellow-300 pb-3',
+          'absolute bottom-full md:bottom-0 left-0 md:left-full w-full bg-yellow-300 pb-3',
           !isOpen && 'hidden'
         )}
       >
