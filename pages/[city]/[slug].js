@@ -54,9 +54,9 @@ export default function CityProgramPage({
             target: `/${citySlug}/${menu.approaches[0].slug}`,
             label: t('inspiringApproaches'),
             active: true,
-            items: menu.approaches.map(({ title, slug: approachSlug }, index) => ({
+            items: menu.approaches.map(({ title, title_short, slug: approachSlug }, index) => ({
               target: `/${citySlug}/${approachSlug}`,
-              label: title,
+              label: title_short || title,
               active: query.slug === approachSlug
             }))
           }

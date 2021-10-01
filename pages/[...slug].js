@@ -54,9 +54,9 @@ export default function CityPage({
     menuItems.push({
       target: `/${slug}/${approaches?.[0]?.slug}`,
       label: t('inspiringApproaches'),
-      items: approaches.map(({ title, slug: approachSlug }) => ({
+      items: approaches.map(({ title, title_short, slug: approachSlug }) => ({
         target: `/${slug}/${approachSlug}`,
-        label: title
+        label: title_short || title
       }))
     });
   }
