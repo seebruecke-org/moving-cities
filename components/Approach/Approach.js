@@ -20,7 +20,7 @@ export default function Approach({ title, city, categories = [], uri }) {
           {title}
         </Heading>
 
-        <ul className="flex flex-wrap mt-2 mb-4">
+        <ul className="flex flex-wrap mt-3 mb-4">
           {categories.map(({ title }, index) => (
             <li className="flex flex-wrap">
               {index > 0 && <span className="font-raptor text-s leading-normal mx-2">•</span>}

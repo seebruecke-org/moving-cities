@@ -18,8 +18,8 @@ export default function NetworksSummary({
 
   return (
     <section className="bg-yellow-300 pt-16 pb-16 px-8 md:pl-10">
-      <div className="max-w-8xl md:grid md:grid-cols-9">
-        <div className="md:col-start-4 md:col-span-5">
+      <div className="max-w-8xl lg:grid lg:grid-cols-9">
+        <div className="lg:col-start-4 lg:col-span-5">
           <Heading level={2}>{networksSummaryTitle}</Heading>
 
           <div className="mt-6 md:mt-12">

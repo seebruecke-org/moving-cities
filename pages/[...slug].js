@@ -62,12 +62,12 @@ export default function CityPage({
   }
 
   return (
-    <div className="md:flex ob-28 md:pb-0">
+    <div className="md:flex">
       <SEO title={name} metadata={metadata} />
 
       <SidebarMenu items={menuItems} selectClassName="bg-yellow-300" />
 
-      <article className="flex-grow pb-28">
+      <article className="flex-grow pb-28 md:pb-0">
         <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} icon={icon} />
 
         <BlockSwitch

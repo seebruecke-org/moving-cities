@@ -103,15 +103,15 @@ export default function Menu() {
             className="order-last md:order-auto ml-auto"
           />
 
-          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-6 md:origin-top-right">
+          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-5 md:origin-top-right">
             <Link href="/">
               <a
-                className="flex items-center hover:underline"
+                className="flex items-center hover:underline leading-none"
                 onClick={() => setIsOverlayOpen(false)}
               >
                 <span
                   className={clsx(
-                    'uppercase order-last md:order-2 font-raptor font-semibold text-xl xs:text-2xl md:text-3xl whitespace-nowrap leading-none tracking-wide',
+                    'uppercase order-last md:order-2 font-raptor font-semibold text-xl xs:text-2xl md:text-3xl whitespace-nowrap tracking-wide',
                     shadowStyles['text-shadow']
                   )}
                 >
@@ -123,7 +123,7 @@ export default function Menu() {
                   width="826"
                   height="447"
                   viewBox="0 0 826 447"
-                  className="h-14 w-auto md:order-1 mx-10 relative hidden sm:block -top-1"
+                  className="h-14 w-auto md:order-1 mx-10 relative hidden sm:block"
                 >
                   <path
                     fill="currentColor"
@@ -175,8 +175,8 @@ export default function Menu() {
               className="text-black"
               onClick={() => setIsOverlayOpen(false)}
             >
-              <span className="text-red-300 mr-2 text-4xl leading-none -mb-8 -mt-4">+</span>{' '}
-              {t('addCity')}
+              <span className="text-red-300 mr-4 text-2xl relative h-11">+</span>
+              <span>{t('addCity')}</span>
             </Button>
           </div>
         </div>

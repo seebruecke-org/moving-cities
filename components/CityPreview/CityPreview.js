@@ -21,7 +21,7 @@ export default function CityPreview({
 
   return (
     <article className="bg-yellow-300 px-10 pt-16 pb-16 h-full overflow-y-auto flex flex-col lg:min-w-8xl">
-      <div className="flex mb-24 items-start">
+      <div className="flex mb-6 xl:mb-24 items-start">
         {icon && <CityIcon icon={icon} className="w-48 lg:w-72 mr-6 lg:mr-12" />}
 
         <div className="mr-8">
@@ -53,7 +53,7 @@ export default function CityPreview({
         </button>
       </div>
 
-      <div className="flex flex-col space-y-8 mt-8 lg:mt-16">
+      <div className="flex flex-col space-y-8 mt-8 xl:mt-16">
         <Heading level={2} as={3}>
           {summary.title}
         </Heading>
@@ -62,8 +62,8 @@ export default function CityPreview({
 
         {uri && (
           <Button href={uri} className="w-auto self-start">
-            {t('viewCity')}
-            <span className="text-red-300 ml-4 text-2xl leading-none -my-3">→</span>
+            <span>{t('viewCity')}</span>
+            <span className="text-red-300 ml-4 text-xl leading-none">→</span>
           </Button>
         )}
 

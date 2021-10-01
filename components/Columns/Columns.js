@@ -5,7 +5,7 @@ export default function Columns({ children, className }) {
   const COLUMN_CLASSNAMES = ['col-span-3 col-start-1', 'col-span-5 col-start-4'];
 
   return (
-    <div className={clsx('md:grid md:grid-cols-9 gap-12', className)}>
+    <div className={clsx('md:grid lg:grid-cols-9 gap-12', className)}>
       {Children.map(children, (child, index) => (
         <div className={COLUMN_CLASSNAMES[index]}>{child}</div>
       ))}
