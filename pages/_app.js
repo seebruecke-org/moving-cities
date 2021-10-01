@@ -12,8 +12,16 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      routeHasChanged = true;
+    const handleRouteChange = (url) => {
+      // this tests, whether the changed route looks like a
+      // language-change (e.g. /fr) in order to allow to toggle
+      // the current language on the intro screen. Otherwise
+      // a language-switch would count as a navigation and
+      // therefore users might see the intro in the wrong language
+      // only
+      if (!/^\/[^\/]{0,2}$/.test(url)) {
+        routeHasChanged = true;
+      }
     };
 
     router.events.on('routeChangeStart', handleRouteChange);
