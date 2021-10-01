@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import clsx from 'clsx';
@@ -54,10 +54,53 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
   const { t: tSlugs } = useTranslation('slugs');
   const [{ activeThread }, dispatch] = useMapReducer();
   const [mapInteraction, setMapInteraction] = useState(false);
-  const [markers, setMarkers] = useState(null);
   const [mapProps, setMapProps] = useState({
     bounds
   });
+  const navItems = useMemo(() => {
+    return cities.map(({ id, name, subtitle, slug, approaches, summary, ...city }) => ({
+      ...city,
+      id,
+      title: name,
+      subtitle,
+      target: `/${slug}`,
+      active: activeThread?.id === id,
+      data: {
+        title: name,
+        subtitle,
+        uri: `/${slug}`,
+        approaches: approaches.map(({ slug: approachSlug, ...approach }) => ({
+          uri: `/${slug}/${approachSlug}`,
+          ...approach
+        })),
+        summary,
+        icon: city.icon
+      }
+    }));
+  }, [activeThread]);
+
+  const markers = useMemo(() => {
+    // don't show markers on the map, once a city was selected
+    if (activeThread) {
+      return null;
+    }
+
+    return cities.map(({ coordinates, id, name }) => {
+      const [longitude, latitude] = coordinates?.geometry?.coordinates;
+
+      return (
+        <CityMarker
+          id={id}
+          latitude={latitude}
+          longitude={longitude}
+          name={name}
+          onClick={() => {
+            dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
+          }}
+        />
+      );
+    });
+  }, [activeThread]);
 
   useEffect(() => {
     if (activeThread) {
@@ -73,25 +116,6 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
     } else {
       setMapProps({ bounds });
     }
-
-    const markers = cities.map(({ coordinates, id, name }) => {
-      const [longitude, latitude] = coordinates?.geometry?.coordinates;
-
-      return (
-        <CityMarker
-          id={id}
-          latitude={latitude}
-          longitude={longitude}
-          name={name}
-          onClick={() => {
-            dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
-          }}
-        />
-      );
-    });
-
-    // hide markers, when a city becomes active
-    setMarkers(activeThread ? null : markers);
   }, [activeThread?.id]);
 
   return (
@@ -103,7 +127,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
       ) : (
         <div className="flex flex-col md:flex-row md:h-full w-full">
           <FloatingTabs
-            className={clsx(activeThread && 'hidden lg:block')}
+            className={clsx(!!activeThread && 'hidden xl:block')}
             tooltipHidden={!!activeThread || mapInteraction}
             items={[
               {
@@ -141,25 +165,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
             onAfterClose={() => {
               dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
             }}
-            items={cities.map(({ id, name, subtitle, slug, approaches, summary, ...city }) => ({
-              ...city,
-              id,
-              title: name,
-              subtitle,
-              target: `/${slug}`,
-              active: activeThread?.id === id,
-              data: {
-                title: name,
-                subtitle,
-                uri: `/${slug}`,
-                approaches: approaches.map(({ slug: approachSlug, ...approach }) => ({
-                  uri: `/${slug}/${approachSlug}`,
-                  ...approach
-                })),
-                summary,
-                icon: city.icon
-              }
-            }))}
+            items={navItems}
           />
 
           <MapboxMap

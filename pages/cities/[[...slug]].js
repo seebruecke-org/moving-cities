@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import clsx from 'clsx';
 
 import BackTo from '@/components/BackTo';
@@ -25,8 +25,6 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
   const isSingleView = !!query?.slug?.[0];
-  const [markers, setMarkers] = useState([]);
-  const [bounds, setBounds] = useState(defaultBounds);
   const [mapInteraction, setMapInteraction] = useState(false);
   const [{ activeThread }, dispatch] = useMapReducer();
 
@@ -38,8 +36,20 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
     return true;
   }
 
-  useEffect(() => {
-    const markers = countries.filter(countryIsActive).flatMap(({ id: countryId, cities }) => {
+  const navItems = countries.map(({ name, cities, slug, ...country }) => {
+    const target = `/${tSlugs('cities')}/${slug}`;
+
+    return {
+      ...country,
+      target,
+      title: name,
+      subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
+      data: { cities, target }
+    };
+  });
+
+  const markers = useMemo(() => {
+    return countries.filter(countryIsActive).flatMap(({ id: countryId, cities }) => {
       return cities.map(
         ({
           coordinates: {
@@ -81,18 +91,18 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         }
       );
     });
+  }, [activeThread]);
 
-    setMarkers(markers);
-
+  const bounds = useMemo(() => {
     if (activeThread?.id) {
-      const bounds = getBounds(
+      return getBounds(
         countries
           .filter(countryIsActive)
           .flatMap(({ cities }) => cities.map(({ coordinates }) => coordinates))
       );
-
-      setBounds(bounds);
     }
+
+    return defaultBounds;
   }, [activeThread]);
 
   return (
@@ -142,17 +152,7 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         onAfterClose={() => {
           dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
         }}
-        items={countries.map(({ name, cities, slug, ...country }) => {
-          const target = `/${tSlugs('cities')}/${slug}`;
-
-          return {
-            ...country,
-            target,
-            title: name,
-            subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
-            data: { cities, target }
-          };
-        })}
+        items={navItems}
       />
 
       {markers && (

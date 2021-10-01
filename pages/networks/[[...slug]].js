@@ -150,7 +150,7 @@ export default function NetworkPage({
       )}
 
       <FloatingTabs
-        className={clsx(isSingleView && 'hidden lg:block')}
+        className={clsx((isSingleView || activeThread) && 'hidden xl:block')}
         tooltipHidden={!!activeThread || mapInteraction}
         items={[
           {
