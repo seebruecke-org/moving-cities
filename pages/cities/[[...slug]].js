@@ -1,25 +1,30 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 
 import BackTo from '@/components/BackTo';
-import CountryPreview from '@/components/CountryPreview';
-import FloatingCta from '@/components/FloatingCta';
 import FloatingTabs from '@/components/FloatingTabs';
-import MapboxMap from '@/components/MapboxMap';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
+
+const CountryPreview = dynamic(() => import('@/components/CountryPreview'));
+const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
+const MapboxMap = dynamic(() => import('@/components/MapboxMap'), { ssr: false });
 
 import { createClient } from '@/lib/api';
 import { fetchAllCitiesByCountry, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
+import { useWindowSize } from '@/lib/hooks';
+import { renderMap } from '@/lib/map';
 import { fetchAllCountryPaths } from '@/lib/networks';
 import useMapReducer from '@/lib/stores/map';
 
 export default function AllCitiesOverview({ countries, counts, bounds: defaultBounds }) {
+  const { width: windowWidth } = useWindowSize();
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
@@ -155,7 +160,7 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         items={navItems}
       />
 
-      {markers && (
+      {renderMap(windowWidth) && markers && (
         <MapboxMap
           bounds={bounds}
           onInteraction={() => {

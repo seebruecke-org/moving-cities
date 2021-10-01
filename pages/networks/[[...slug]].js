@@ -3,21 +3,25 @@ import { useRouter } from 'next/router';
 import { Marker } from 'react-map-gl';
 import { useState, useEffect, useMemo } from 'react';
 import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 
 import BackTo from '@/components/BackTo';
-import FloatingCta from '@/components/FloatingCta';
 import FloatingTabs from '@/components/FloatingTabs';
-import MapboxMap from '@/components/MapboxMap';
-import NetworkPreview from '@/components/NetworkPreview';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
 import { createClient } from '@/lib/api';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
+import { useWindowSize } from '@/lib/hooks';
+import { renderMap } from '@/lib/map';
 import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
 import useMapReducer from '@/lib/stores/map';
+
+const NetworkPreview = dynamic(() => import('@/components/NetworkPreview'));
+const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
+const MapboxMap = dynamic(() => import('@/components/MapboxMap'), { ssr: false });
 
 export default function NetworkPage({
   networks,
@@ -30,6 +34,7 @@ export default function NetworkPage({
   const { t: tSlugs } = useTranslation('slugs');
   const { t: tNetworks } = useTranslation('networks');
   const { query } = useRouter();
+  const { width: windowWidth } = useWindowSize();
   const [{ activeThread }, dispatch] = useMapReducer({
     activeThread: { id: networks.find(({ active }) => active)?.id }
   });
@@ -192,14 +197,16 @@ export default function NetworkPage({
         items={navItems}
       />
 
-      <MapboxMap
-        bounds={bounds}
-        onInteraction={() => {
-          setMapInteraction(true);
-        }}
-      >
-        {markers}
-      </MapboxMap>
+      {renderMap(windowWidth) && (
+        <MapboxMap
+          bounds={bounds}
+          onInteraction={() => {
+            setMapInteraction(true);
+          }}
+        >
+          {markers}
+        </MapboxMap>
+      )}
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
     </div>

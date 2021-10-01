@@ -4,19 +4,21 @@ import { Marker } from 'react-map-gl';
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 
+import FloatingTabs from '@/components/FloatingTabs';
+import ThreadList from '@/components/ThreadList';
 import SEO from '@/components/SEO';
 
 const CityPreview = dynamic(() => import('@/components/CityPreview'));
 const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
-const FloatingTabs = dynamic(() => import('@/components/FloatingTabs'));
 const Intro = dynamic(() => import('@/components/Intro'));
-const MapboxMap = dynamic(() => import('@/components/MapboxMap'));
-const ThreadList = dynamic(() => import('@/components/ThreadList'));
+const MapboxMap = dynamic(() => import('@/components/MapboxMap'), { ssr: false });
 
 import { createClient } from '@/lib/api';
 import { fetchFeaturedCities, fetchCounts } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
+import { useWindowSize } from '@/lib/hooks';
 import { fetchIntro } from '@/lib/intro';
+import { renderMap } from '@/lib/map';
 import useMapReducer from '@/lib/stores/map';
 
 function CityMarker({ id, name, ...props }) {
@@ -54,6 +56,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
   const { t: tSlugs } = useTranslation('slugs');
   const [{ activeThread }, dispatch] = useMapReducer();
   const [mapInteraction, setMapInteraction] = useState(false);
+  const { width: windowWidth } = useWindowSize();
   const [mapProps, setMapProps] = useState({
     bounds
   });
@@ -168,16 +171,20 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
             items={navItems}
           />
 
-          <MapboxMap
-            {...mapProps}
-            onInteraction={() => {
-              setMapInteraction(true);
-            }}
-          >
-            {markers}
-          </MapboxMap>
+          {renderMap(windowWidth) && (
+            <>
+              <MapboxMap
+                {...mapProps}
+                onInteraction={() => {
+                  setMapInteraction(true);
+                }}
+              >
+                {markers}
+              </MapboxMap>
 
-          <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
+              <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
+            </>
+          )}
         </div>
       )}
     </>
