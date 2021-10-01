@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
+import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 
 import SEO from '@/components/SEO';
@@ -52,6 +53,7 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const [{ activeThread }, dispatch] = useMapReducer();
+  const [mapInteraction, setMapInteraction] = useState(false);
   const [markers, setMarkers] = useState(null);
   const [mapProps, setMapProps] = useState({
     bounds
@@ -101,7 +103,8 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
       ) : (
         <div className="flex flex-col md:flex-row md:h-full w-full">
           <FloatingTabs
-            tooltipHidden={!!activeThread}
+            className={clsx(activeThread && 'hidden lg:block')}
+            tooltipHidden={!!activeThread || mapInteraction}
             items={[
               {
                 target: '/',
@@ -159,7 +162,14 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
             }))}
           />
 
-          <MapboxMap {...mapProps}>{markers}</MapboxMap>
+          <MapboxMap
+            {...mapProps}
+            onInteraction={() => {
+              setMapInteraction(true);
+            }}
+          >
+            {markers}
+          </MapboxMap>
 
           <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
         </div>

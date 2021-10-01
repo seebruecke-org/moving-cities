@@ -27,6 +27,7 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
   const isSingleView = !!query?.slug?.[0];
   const [markers, setMarkers] = useState([]);
   const [bounds, setBounds] = useState(defaultBounds);
+  const [mapInteraction, setMapInteraction] = useState(false);
   const [{ activeThread }, dispatch] = useMapReducer();
 
   function countryIsActive(country) {
@@ -103,7 +104,8 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
       )}
 
       <FloatingTabs
-        className={clsx(isSingleView && 'hidden md:block')}
+        className={clsx(isSingleView && 'hidden lg:block')}
+        tooltipHidden={!!activeThread || mapInteraction}
         items={[
           {
             target: '/',
@@ -153,7 +155,16 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         })}
       />
 
-      {markers && <MapboxMap bounds={bounds}>{markers}</MapboxMap>}
+      {markers && (
+        <MapboxMap
+          bounds={bounds}
+          onInteraction={() => {
+            setMapInteraction(true);
+          }}
+        >
+          {markers}
+        </MapboxMap>
+      )}
 
       <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
     </div>

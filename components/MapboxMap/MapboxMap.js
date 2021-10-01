@@ -25,7 +25,13 @@ const getFitBounds = (bounds, map) => {
   return { longitude, latitude, zoom };
 };
 
-export default function MapboxMap({ children, bounds, options, ...props }) {
+export default function MapboxMap({
+  children,
+  bounds,
+  options,
+  onInteraction = () => {},
+  ...props
+}) {
   const mapRef = useRef(null);
   const containerRef = useRef(null);
   const [map, setMap] = useState(null);
@@ -64,6 +70,15 @@ export default function MapboxMap({ children, bounds, options, ...props }) {
         mapStyle="mapbox://styles/seebruecke/cku6wyt7c1u0i18r0104wv141"
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         ref={mapRef}
+        onMouseDown={() => {
+          onInteraction();
+        }}
+        onTouchStart={() => {
+          onInteraction();
+        }}
+        onTouchMove={() => {
+          onInteraction();
+        }}
         {...props}
       >
         {children}
