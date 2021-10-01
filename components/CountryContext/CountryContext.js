@@ -20,7 +20,11 @@ export default function CountryContext({ name, content, open = false }) {
         open={isOpen}
       >
         <summary
-          className={clsx(styles.summary, isOpen && 'mb-10 border-b-2 border-red-300', 'cursor-pointer pb-4')}
+          className={clsx(
+            styles.summary,
+            isOpen && 'mb-10 border-b-2 border-red-300',
+            'cursor-pointer pb-4'
+          )}
         >
           <Heading level={2} className="px-8 md:px-10 pt-6 flex justify-between sm:items-center">
             {t('politicalContext', { name })}

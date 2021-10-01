@@ -1,3 +1,7 @@
 .title {
   -webkit-text-fill-color: transparent;
 }
+
+.image {
+  clip-path: url(#image-intro-clip);
+}
