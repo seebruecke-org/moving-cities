@@ -12,6 +12,7 @@ import ThreadList from '@/components/ThreadList';
 
 import { createClient } from '@/lib/api';
 import { getBounds } from '@/lib/coordinates';
+import { TAILWIND_MQ_MD } from '@/lib/constants';
 import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
 import { renderMap } from '@/lib/map';
@@ -44,13 +45,14 @@ export default function NetworkPage({
 
   const navItems = useMemo(
     () =>
-      networks.map(({ name, content, cities, slug, ...network }) => {
+      networks.map(({ name, content, cities, slug, active, ...network }) => {
         const fullCities = cities.map(({ id }) =>
           defaultCities.find((defaultCity) => defaultCity.id === id)
         );
 
         return {
           ...network,
+          active: windowWidth <= TAILWIND_MQ_MD && !isSingleView ? false : active,
           target: `/${tSlugs('networks')}/${slug}`,
           title: name,
           subtitle: fullCities
@@ -67,11 +69,11 @@ export default function NetworkPage({
           }
         };
       }),
-    [activeThread, networks]
+    [activeThread, windowWidth, isSingleView]
   );
 
   useEffect(() => {
-    const activeNetworkCities = activeThread
+    const activeNetworkCities = activeThread?.id
       ? networks.find(({ id }) => id === activeThread.id)?.cities?.map(({ id }) => id) ?? []
       : [];
 
