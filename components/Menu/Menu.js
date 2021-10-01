@@ -18,7 +18,7 @@ function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
       <a
-        className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:text-black"
+        className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:underline"
         {...props}
       >
         {label}
@@ -30,7 +30,7 @@ function OverlayItemPrimary({ target, label, ...props }) {
 function OverlayItemSecondary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-m md:text-3xl hover:text-black" {...props}>
+      <a className="font-raptor font-bold text-m md:text-3xl hover:underline" {...props}>
         {label}
       </a>
     </Link>
