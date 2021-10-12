@@ -44,7 +44,7 @@ export default function Markdown({ children, isSmall }) {
     },
 
     li: ({ children }) => {
-      return <ListItem>{children}</ListItem>;
+      return <ListItem isSmall={isSmall}>{children}</ListItem>;
     }
   };
 

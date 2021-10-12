@@ -1,9 +1,9 @@
 import Paragraph from '@/components/Paragraph';
 
-export default function ListItem({ children }) {
+export default function ListItem({ children, isSmall }) {
   return (
     <li>
-      <Paragraph isSmall={false}>{children}</Paragraph>
+      <Paragraph isSmall={isSmall}>{children}</Paragraph>
     </li>
   );
 }
