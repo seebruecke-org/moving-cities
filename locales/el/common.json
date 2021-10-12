@@ -1,15 +1,15 @@
 {
   "menu": {
     "name": "Moving Cities",
-    "approaches": "Approaches",
-    "about": "About",
-    "imprint": "Imprint",
-    "contact": "Contact",
-    "privacy": "Data Protection",
+    "approaches": "Εμπνευσμένες Προσεγγίσεις",
+    "about": "Η ταυτότητά μας",
+    "imprint": "Στοιχεία",
+    "contact": "Επικοινωνία",
+    "privacy": "Προστασία Δεδομένων",
 
     "burger": {
-      "open": "Open Menu",
-      "close": "Close Menu"
+      "open": "Άνοιγμα Μενού",
+      "close": "Κλείσιμο Μενού"
     }
   },
 

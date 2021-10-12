@@ -1,19 +1,19 @@
 {
-  "featuredCities": "Featured Cities",
-  "featuredCitiesIntro": "{{ count }} European cities studied out of {{ count_total }} actively support solidarity based migration policies",
-  "allCities": "All Cities",
-  "allCitiesIntro": "Cities and municipalities that are active in a campaign or city network that promotes a solidarity-based migration policy or that have agreed to take in more refugees",
-  "networks": "Networks",
-  "networksIntro": "European networks and campaigns that actively advocate for more progressive migration policies",
-  "close": "Close",
-  "viewCity": "View the city",
-  "aboutTheCity": "About the city",
+  "featuredCities": "Παρουσιάσεις Πόλεων",
+  "featuredCitiesIntro": "{{ count }} Ευρωπαϊκές πόλεις από τις {{ count_total }} που μελετήσαμε υποστηρίζουν ενεργά μεταναστευτικές πολιτικές βασισμένες στην αλληλεγγύη",
+  "allCities": "Όλες οι πόλεις",
+  "allCitiesIntro": "Πόλεις και δήμοι που είναι ενεργοί σε εκστρατείες ή δίκτυα πόλεων που προωθούν μεταναστευτικές πολιτικές βασισμένες στην αλληλεγγύη ή έχουν συμφωνήσει να υποδεχτούν περισσότερους πρόσφυγες",
+  "networks": "Δίκτυα",
+  "networksIntro": "Ευρωπαϊκά δίκτυα και εκστρατείες που αγωνίζονται για πιο προοδευτικές μεταναστευτικές πολιτικές",
+  "close": "Κλείσιμο",
+  "viewCity": "Δείτε την πόλη",
+  "aboutTheCity": "Πληροφορίες για την πόλη",
   "download": {
-    "cta": "Download Report"
+    "cta": "Κατεβάστε την έκθεση"
   },
-  "memberOfNetworks": "Member of the following networks",
-  "nextFeaturedCity": "Next Featured City",
-  "politicalContext": "Political context of {{name}}",
-  "countryThreadSubtitle": "{{count}} City",
-  "countryThreadSubtitle_plural": "{{count}} Cities"
+  "memberOfNetworks": "Μέλος στα ακόλουθα δίκτυα",
+  "nextFeaturedCity": "Επόμενη παρουσίαση πόλης",
+  "politicalContext": "Πολιτικό πλαίσιο: {{name}}",
+  "countryThreadSubtitle": "{{count}} Πόλη",
+  "countryThreadSubtitle_plural": "{{count}} Πόλεις"
 }

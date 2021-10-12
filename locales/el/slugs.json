@@ -1,10 +1,10 @@
 {
-  "cities": "cities",
-  "networks": "networks",
-  "about": "about",
-  "about_contact": "about/contact",
-  "about_imprint": "about/imprint",
-  "about_privacy": "about/privacy",
-  "approaches": "approaches",
-  "map_cta": "about/add-your-city"
+  "cities": "πόλεις",
+  "networks": "δίκτυα",
+  "about": "ταυτότητα",
+  "about_contact": "ταυτότητα/επικοινωνία",
+  "about_imprint": "ταυτότητα/στοιχεία",
+  "about_privacy": "ταυτότητα/ιδιωτικότητα",
+  "approaches": "προσεγγίσεις",
+  "map_cta": "ταυτότητα/προσθέστε-πόλη"
 }
