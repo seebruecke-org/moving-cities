@@ -20,7 +20,7 @@ import { fetchApproaches } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { useTranslation } from 'next-i18next';
 
-export default function CityProgramPage({
+export default function ApproachPage({
   approach: {
     title,
     summary,
@@ -105,9 +105,11 @@ export async function getStaticPaths({ locales }) {
     locales.map(async (locale) => await fetchAllApproachPaths(client, locale))
   );
 
-  const paths = approaches.flat().map(({ slug, city: { slug: citySlug } }) => ({
-    params: { city: citySlug, slug }
-  }));
+  const paths = approaches
+    .filter(({ city }) => !!city)
+    .flatMap(({ slug, city: { slug: citySlug } }) => ({
+      params: { city: citySlug, slug }
+    }));
 
   return {
     paths,
@@ -120,6 +122,12 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
   const client = createClient();
   const approach = await fetchApproachBySlug(client, locale, slug);
   const menu = await fetchApproaches(client, locale, city);
+
+  if (approach === null) {
+    return {
+      notFound: true
+    };
+  }
 
   return {
     revalidate: 30,
