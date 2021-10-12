@@ -1,10 +1,10 @@
 {
-  "cities": "πόλεις",
-  "networks": "δίκτυα",
-  "about": "ταυτότητα",
-  "about_contact": "ταυτότητα/επικοινωνία",
-  "about_imprint": "ταυτότητα/στοιχεία",
-  "about_privacy": "ταυτότητα/ιδιωτικότητα",
-  "approaches": "προσεγγίσεις",
-  "map_cta": "ταυτότητα/προσθέστε-πόλη"
+  "cities": "polis",
+  "networks": "diktia",
+  "about": "taftotita",
+  "about_contact": "taftotita/epikinonia",
+  "about_imprint": "taftotita/stikhia",
+  "about_privacy": "taftotita/idiotikotita",
+  "approaches": "prosengisis",
+  "map_cta": "taftotita/prostheste-poli"
 }
