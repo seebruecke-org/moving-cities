@@ -11,7 +11,7 @@ export async function sideload(client, data, context, locale) {
       client,
       `
       query NetworksByCitySlug($locale: String = "en", $slug: String) {
-        cities(where: { locale: $locale, slug: $slug }) {
+        cities(locale: $locale, where: { slug: $slug }) {
           networks {
             name
             slug
@@ -21,7 +21,7 @@ export async function sideload(client, data, context, locale) {
       { locale, slug }
     );
 
-    return data?.cities?.[0]?.networks;
+    return data?.cities?.[0]?.networks || null;
   }
 
   const networks = await fetchNetworksByCitySlug(client, context.slug, locale);
