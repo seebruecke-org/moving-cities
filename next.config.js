@@ -7,31 +7,32 @@ function createLocalizedRewrites() {
   const { locales, defaultLocale } = i18n;
   const base = require(`./locales/${defaultLocale}/slugs.json`);
 
-  return locales.filter(locale => defaultLocale !== locale).reduce((acc, locale) => {
-    const slugs = require(`./locales/${locale}/slugs.json`);
-    const keys = Object.keys(slugs);
-    const rewrites = keys.map((key) => {
-      const source = `/${locale}/${slugs[key]}`;
-      const destination = `/${locale}/${base[key]}`;
+  return locales
+    .filter((locale) => defaultLocale !== locale)
+    .reduce((acc, locale) => {
+      const slugs = require(`./locales/${locale}/slugs.json`);
+      const keys = Object.keys(slugs);
+      const rewrites = keys
+        .map((key) => {
+          const source = `/${locale}/${slugs[key]}`;
+          const destination = `/${locale}/${base[key]}`;
 
-      if (source === destination) {
-        return null;
-      }
+          if (source === destination) {
+            return null;
+          }
 
-      console.log('Rewrite', source, ' > ', destination);
+          console.log('Rewrite', source, ' > ', destination);
 
-      return {
-        source,
-        destination,
-        locale: false
-      }
-    }).filter(Boolean);
+          return {
+            source,
+            destination,
+            locale: false
+          };
+        })
+        .filter(Boolean);
 
-    return [
-      ...acc,
-      ...rewrites
-    ];
-  }, []);
+      return [...acc, ...rewrites];
+    }, []);
 }
 
 module.exports = withPlugins([withPreact], {
