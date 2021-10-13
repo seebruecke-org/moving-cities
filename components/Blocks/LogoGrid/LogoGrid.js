@@ -11,13 +11,13 @@ export default function LogoGrid({ logoGridItems }) {
       <ul className="grid grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-8 md:gap-x-16">
         {logoGridItems.map(({ logo: { url, width, height, alternativeText } }) => (
           <li className="flex items-center justify-center">
-              <Image
-                src={buildCMSUrl(url)}
-                layout="intrinsic"
-                width={width}
-                height={height}
-                alt={alternativeText}
-              />
+            <Image
+              src={buildCMSUrl(url)}
+              layout="intrinsic"
+              width={width}
+              height={height}
+              alt={alternativeText}
+            />
           </li>
         ))}
       </ul>
