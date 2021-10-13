@@ -1,7 +1,7 @@
 {
   "menu": {
     "name": "Moving Cities",
-    "approaches": "Εμπνευσμένες Προσεγγίσεις",
+    "approaches": "Προσεγγίσεις",
     "about": "Η ταυτότητά μας",
     "imprint": "Στοιχεία",
     "contact": "Επικοινωνία",
@@ -13,5 +13,5 @@
     }
   },
 
-  "addCity": "Add your city"
+  "addCity": "Προσθέστε την πόλη σας"
 }
