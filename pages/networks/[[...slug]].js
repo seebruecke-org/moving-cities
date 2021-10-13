@@ -34,7 +34,7 @@ export default function NetworkPage({
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
   const { t: tNetworks } = useTranslation('networks');
-  const { query } = useRouter();
+  const { locale, query, defaultLocale } = useRouter();
   const { width: windowWidth } = useWindowSize();
   const [{ activeThread }, dispatch] = useMapReducer({
     activeThread: { id: networks.find(({ active }) => active)?.id }
@@ -192,6 +192,12 @@ export default function NetworkPage({
         pane={NetworkPreview}
         onAfterOpen={(network) => {
           dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id: network.id } });
+
+          if (window.innerWidth > 768 && 'history' in window) {
+            const { title, target } = network;
+            const normalizedLocale = locale === defaultLocale ? '' : `/${locale}`;
+            window.history.pushState(null, title, `${normalizedLocale}${target}`);
+          }
         }}
         onAfterClose={() => {
           dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: null });
