@@ -182,8 +182,9 @@ export async function getStaticPaths({ locales }) {
     locales.map(async (locale) => await fetchAllCountryPaths(client, locale))
   );
 
-  const paths = countries.flat().map(({ slug }) => ({
-    params: { slug: [slug] }
+  const paths = countries.flat().map(({ slug, locale }) => ({
+    params: { slug: [slug] },
+    locale
   }));
 
   return {

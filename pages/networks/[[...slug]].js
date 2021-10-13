@@ -221,8 +221,9 @@ export async function getStaticPaths({ locales }) {
     locales.map(async (locale) => await fetchAllNetworkPaths(client, locale))
   );
 
-  const paths = networks.flat().map(({ slug }) => ({
-    params: { slug: [slug] }
+  const paths = networks.flat().map(({ slug, locale }) => ({
+    params: { slug: [slug] },
+    locale
   }));
 
   return {

@@ -74,8 +74,9 @@ export async function getStaticPaths({ locales }) {
     locales.map(async (locale) => await fetchAllApproachCategoriesPaths(client, locale))
   );
 
-  const paths = categories.flat().map(({ slug }) => ({
-    params: { slug: [slug] }
+  const paths = categories.flat().map(({ slug, locale }) => ({
+    params: { slug: [slug] },
+    locale
   }));
 
   return {

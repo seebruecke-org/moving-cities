@@ -107,8 +107,10 @@ export async function getStaticPaths({ locales }) {
 
   const paths = approaches
     .filter(({ city }) => !!city)
-    .flatMap(({ slug, city: { slug: citySlug } }) => ({
-      params: { city: citySlug, slug }
+    .flat()
+    .map(({ slug, locale, city: { slug: citySlug } }) => ({
+      params: { city: citySlug, slug },
+      locale
     }));
 
   return {
