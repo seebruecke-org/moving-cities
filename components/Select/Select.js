@@ -40,6 +40,7 @@ const styles = {
       ...provided,
       backgroundColor: state.isSelected ? '#FAF11A' : 'transparent',
       border: '0',
+      borderBottom: '1px solid #E1E1E1',
       color: 'black',
       fontFamily: 'Raptor',
       fontSize: '1.6rem',
@@ -49,20 +50,7 @@ const styles = {
       '&:hover': {
         backgroundColor: '#FAF11A',
         cursor: 'pointer'
-      },
-
-      '&:before':
-        index !== 0
-          ? {
-              backgroundColor: '#E1E1E1',
-              content: '""',
-              height: '1px',
-              left: '1rem',
-              position: 'absolute',
-              right: '1rem',
-              top: '0'
-            }
-          : {}
+      }
     };
   },
 

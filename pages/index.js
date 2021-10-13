@@ -199,7 +199,7 @@ export async function getStaticProps({ locale }) {
   const counts = await fetchCounts(client, locale);
 
   return {
-    revalidate: 30,
+    revalidate: 120,
     props: {
       ...translations,
       ...data,
