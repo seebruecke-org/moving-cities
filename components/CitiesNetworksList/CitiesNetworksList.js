@@ -53,7 +53,7 @@ export default function CitiesNetworksList({ cities, className }) {
   return (
     <ul
       className={clsx(
-        'bg-yellow-300 h-full overflow-y-auto flex flex-col',
+        'bg-yellow-300 h-full overflow-y-auto flex flex-col w-full',
         styles.countryPreview,
         className
       )}
