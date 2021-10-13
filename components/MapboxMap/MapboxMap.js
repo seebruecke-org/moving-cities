@@ -70,6 +70,7 @@ export default function MapboxMap({
         mapStyle="mapbox://styles/seebruecke/cku6wyt7c1u0i18r0104wv141"
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
         ref={mapRef}
+        maxZoom={12}
         onMouseDown={() => {
           onInteraction();
         }}
