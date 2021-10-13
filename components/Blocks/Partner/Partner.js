@@ -8,13 +8,7 @@ import { buildCMSUrl } from '@/lib/api';
 export default function Partner({ partnerLogo, partnerContent }) {
   return (
     <Columns className="md:my-8 max-w-8xl pl-8 pr-8 md:pr-0 md:pl-10 pb-20">
-      <div>
-        {partnerTitle && (
-          <Heading level={2}>
-            {partnerTitle}
-          </Heading>
-        )}
-      </div>
+      <div>{partnerTitle && <Heading level={2}>{partnerTitle}</Heading>}</div>
 
       <div>
         <Markdown isSmall={false}>{partnerContent}</Markdown>

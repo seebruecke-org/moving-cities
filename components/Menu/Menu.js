@@ -170,13 +170,21 @@ export default function Menu() {
           </ul>
 
           <ul className="md:hidden flex mt-8">
-            {locales.map((currentLocale, index) => (<li>
-              <Link href="/" locale={currentLocale}>
-                <a className={clsx("font-raptor font-bold text-m md:text-3xl hover:underline mr-4 uppercase leading-none", index !== 0 && 'border-l-2 pl-4', locale === currentLocale && 'underline')}>
-                  {currentLocale}
-                </a>
-              </Link>
-            </li>))}
+            {locales.map((currentLocale, index) => (
+              <li>
+                <Link href="/" locale={currentLocale}>
+                  <a
+                    className={clsx(
+                      'font-raptor font-bold text-m md:text-3xl hover:underline mr-4 uppercase leading-none',
+                      index !== 0 && 'border-l-2 pl-4',
+                      locale === currentLocale && 'underline'
+                    )}
+                  >
+                    {currentLocale}
+                  </a>
+                </Link>
+              </li>
+            ))}
           </ul>
 
           <div className="self-start md:self-end mt-10 md:mt-0">
