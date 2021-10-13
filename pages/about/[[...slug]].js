@@ -23,8 +23,8 @@ export default function About({ navigation, about: { title, content, metadata } 
       <SEO title={title} metadata={metadata} />
 
       <SidebarMenu
-        items={navigation.map(({ title, slug, active }) => ({
-          target: `/${tSlugs('about')}/${slug !== tSlugs('about') ? slug : ''}`,
+        items={navigation.map(({ title, slug, active, menu_sort }) => ({
+          target: `/${tSlugs('about')}${menu_sort !== 0 ? `/${slug}` : ''}`,
           label: title,
           active
         }))}

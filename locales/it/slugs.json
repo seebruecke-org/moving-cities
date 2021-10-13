@@ -2,9 +2,6 @@
   "cities": "citta",
   "networks": "reti",
   "about": "info",
-  "about_contact": "info/contatto",
-  "about_imprint": "info/imprint",
-  "about_privacy": "info/privacy",
   "approaches": "modelli",
   "map_cta": "info/aggiungi-citta"
 }

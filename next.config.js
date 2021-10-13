@@ -14,8 +14,8 @@ function createLocalizedRewrites() {
       const keys = Object.keys(slugs);
       const rewrites = keys
         .map((key) => {
-          const source = `/${locale}/${slugs[key]}`;
-          const destination = `/${locale}/${base[key]}`;
+          const source = `/${locale}/${slugs[key]}/:slug*`;
+          const destination = `/${locale}/${base[key]}/:slug*`;
 
           if (source === destination) {
             return null;
