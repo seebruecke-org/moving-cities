@@ -1,0 +1,4 @@
+.item::marker {
+  @apply font-raptor;
+  @apply text-m md:text-l;
+}
