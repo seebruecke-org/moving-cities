@@ -13,7 +13,7 @@ import introImage from '@/public/images/intro.jpg';
 import styles from './styles.module.css';
 
 function CityShape({ image }) {
-  const duration = 3500;
+  const duration = 4500;
   const [active, setActive] = useState(false);
   const { x } = useSpring({ config: { duration }, x: active ? 1 : 0 });
 
