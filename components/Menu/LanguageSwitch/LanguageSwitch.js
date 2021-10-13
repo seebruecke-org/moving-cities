@@ -6,7 +6,7 @@ export default function LanguageSwitch({ current, locales = [] }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex items-center relative md:absolute md:bottom-0 md:left-0 md:w-full">
+    <div className="hidden md:flex items-center relative md:absolute md:bottom-0 md:left-0 md:w-full">
       <button
         type="button"
         className="font-raptor uppercase text-m hover:underline w-full flex items-center leading-none px-4 md:p-6"
