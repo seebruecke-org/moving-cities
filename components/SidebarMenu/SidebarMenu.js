@@ -45,9 +45,9 @@ function SidebarMenu({ items }) {
           <Link href={target}>
             <a
               className={clsx(
-                'px-12 block font-raptor font-bold pb-6 hover:bg-yellow-300 text-m leading-snug',
+                'px-12 block font-raptor font-bold pb-6 hover:bg-yellow-300 text-m leading-snug border-b border-grey-300',
                 topLevelActive && 'bg-yellow-300',
-                index === 0 ? 'pt-24 border-b border-grey-300' : 'pt-8'
+                index === 0 ? 'pt-24' : 'pt-8'
               )}
             >
               {label}
