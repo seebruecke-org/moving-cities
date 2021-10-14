@@ -6,6 +6,5 @@ export default `
     height
   }
 
-  partnerTitle: title
   partnerContent: content
 `;
