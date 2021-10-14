@@ -14,6 +14,7 @@ import SidebarMenu from '@/components/SidebarMenu';
 import { createClient } from '@/lib/api';
 import { fetchAboutBySlug, fetchAllAboutPaths, fetchAllAbouts } from '@/lib/abouts';
 import { getTranslations } from '@/lib/global';
+import { mapStrapiToFELocale } from '@/lib/i18n';
 
 export default function About({ navigation, about: { title, content, metadata } }) {
   const { t: tSlugs } = useTranslation('slugs');
@@ -59,7 +60,7 @@ export async function getStaticPaths({ locales }) {
 
   const paths = abouts.flat().map(({ slug, locale }) => ({
     params: { slug: [slug] },
-    locale
+    locale: mapStrapiToFELocale(locale)
   }));
 
   return {

@@ -21,6 +21,7 @@ const CountryContext = dynamic(() => import('@/components/CountryContext'));
 import { buildCMSUrl, createClient } from '@/lib/api';
 import { fetchCityBySlug, fetchAllCityPaths, fetchNextCity } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
+import { mapStrapiToFELocale } from '@/lib/i18n';
 
 export default function CityPage({
   city: {
@@ -150,7 +151,7 @@ export async function getStaticPaths({ locales }) {
 
   const paths = cities.flat().map(({ slug, locale }) => ({
     params: { slug: [slug] },
-    locale
+    locale: mapStrapiToFELocale(locale)
   }));
 
   return {

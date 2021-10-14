@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 
 import BackTo from '@/components/BackTo';
@@ -18,7 +19,7 @@ import { createClient } from '@/lib/api';
 import { fetchApproachBySlug, fetchAllApproachPaths } from '@/lib/approaches';
 import { fetchApproaches } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
-import { useTranslation } from 'next-i18next';
+import { mapStrapiToFELocale } from '@/lib/i18n';
 
 export default function ApproachPage({
   approach: {
@@ -110,7 +111,7 @@ export async function getStaticPaths({ locales }) {
     .flat()
     .map(({ slug, locale, city: { slug: citySlug } }) => ({
       params: { city: citySlug, slug },
-      locale
+      locale: mapStrapiToFELocale(locale)
     }));
 
   return {

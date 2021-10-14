@@ -19,6 +19,7 @@ import { fetchAllCitiesByCountry, fetchCounts } from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
+import { mapStrapiToFELocale } from '@/lib/i18n';
 import { renderMap } from '@/lib/map';
 import { fetchAllCountryPaths } from '@/lib/networks';
 import useMapReducer from '@/lib/stores/map';
@@ -184,7 +185,7 @@ export async function getStaticPaths({ locales }) {
 
   const paths = countries.flat().map(({ slug, locale }) => ({
     params: { slug: [slug] },
-    locale
+    locale: mapStrapiToFELocale(locale)
   }));
 
   return {

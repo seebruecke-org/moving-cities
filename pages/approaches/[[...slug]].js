@@ -13,6 +13,7 @@ import {
   fetchAllApproachCategoriesPaths
 } from '@/lib/approaches';
 import { getTranslations } from '@/lib/global';
+import { mapStrapiToFELocale } from '@/lib/i18n';
 
 export default function ApproachesOverviewPage({ approaches, approachesCount, categories }) {
   const router = useRouter();
@@ -76,7 +77,7 @@ export async function getStaticPaths({ locales }) {
 
   const paths = categories.flat().map(({ slug, locale }) => ({
     params: { slug: [slug] },
-    locale
+    locale: mapStrapiToFELocale(locale)
   }));
 
   return {

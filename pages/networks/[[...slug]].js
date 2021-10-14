@@ -15,6 +15,7 @@ import { getBounds } from '@/lib/coordinates';
 import { TAILWIND_MQ_MD } from '@/lib/constants';
 import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
+import { mapStrapiToFELocale } from '@/lib/i18n';
 import { renderMap } from '@/lib/map';
 import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
@@ -229,7 +230,7 @@ export async function getStaticPaths({ locales }) {
 
   const paths = networks.flat().map(({ slug, locale }) => ({
     params: { slug: [slug] },
-    locale
+    locale: mapStrapiToFELocale(locale)
   }));
 
   return {
