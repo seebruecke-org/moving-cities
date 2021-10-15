@@ -17,6 +17,7 @@ import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { renderMap } from '@/lib/map';
+import { fetchMenu } from '@/lib/menu';
 import { fetchAllNetworks, fetchAllNetworkPaths } from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
 import useMapReducer from '@/lib/stores/map';
@@ -244,6 +245,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const client = createClient();
   const { cities, networks } = await fetchAllNetworks(client, locale, { active: slug?.[0] });
   const counts = await fetchCounts(client, locale);
+  const menu = await fetchMenu(client, locale);
 
   return {
     revalidate: 60,
@@ -251,7 +253,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
       ...translations,
       cities,
       networks,
-      counts
+      counts,
+      menu
     }
   };
 }

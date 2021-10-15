@@ -19,6 +19,7 @@ import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
 import { fetchIntro } from '@/lib/intro';
 import { renderMap } from '@/lib/map';
+import { fetchMenu } from '@/lib/menu';
 import useMapReducer from '@/lib/stores/map';
 
 function CityMarker({ id, name, ...props }) {
@@ -197,12 +198,14 @@ export async function getStaticProps({ locale }) {
   const data = await fetchIntro(client, locale);
   const { cities, bounds } = await fetchFeaturedCities(client, locale);
   const counts = await fetchCounts(client, locale);
+  const menu = await fetchMenu(client, locale);
 
   return {
     revalidate: 120,
     props: {
       ...translations,
       ...data,
+      menu,
       cities,
       bounds,
       counts

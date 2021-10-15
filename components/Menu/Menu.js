@@ -37,7 +37,7 @@ function OverlayItemSecondary({ target, label, ...props }) {
   );
 }
 
-export default function Menu() {
+export default function Menu({ items, cta }) {
   const { t } = useTranslation();
   const { t: tSlugs } = useTranslation('slugs');
   const overlayRef = useRef();
@@ -62,22 +62,10 @@ export default function Menu() {
     }
   ];
 
-  const OVERLAY_SECONDARY_ITEMS = [
-    {
-      target: `/${tSlugs('about_contact')}`,
-      label: t('menu.contact')
-    },
-
-    {
-      target: `/${tSlugs('about_imprint')}`,
-      label: t('menu.imprint')
-    },
-
-    {
-      target: `/${tSlugs('about_privacy')}`,
-      label: t('menu.privacy')
-    }
-  ];
+  const OVERLAY_SECONDARY_ITEMS = items.map(({ about: { title, slug } }) => ({
+    target: `/${tSlugs('about')}/${slug}`,
+    label: title
+  }));
 
   useEffect(() => {
     const currentRef = overlayRef?.current;
@@ -189,7 +177,7 @@ export default function Menu() {
 
           <div className="self-start md:self-end mt-10 md:mt-0">
             <Button
-              href={`/${tSlugs('map_cta')}`}
+              href={`/${tSlugs('about')}/${cta.slug}`}
               className="text-black"
               onClick={() => setIsOverlayOpen(false)}
             >

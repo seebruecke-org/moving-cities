@@ -21,6 +21,7 @@ import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { renderMap } from '@/lib/map';
+import { fetchMenu } from '@/lib/menu';
 import { fetchAllCountryPaths } from '@/lib/networks';
 import useMapReducer from '@/lib/stores/map';
 
@@ -201,6 +202,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
     active: slug?.[0]
   });
   const counts = await fetchCounts(client, locale);
+  const menu = await fetchMenu(client, locale);
 
   return {
     revalidate: 60,
@@ -208,7 +210,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
       ...translations,
       countries,
       bounds,
-      counts
+      counts,
+      menu
     }
   };
 }

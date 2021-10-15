@@ -20,6 +20,7 @@ import { fetchApproachBySlug, fetchAllApproachPaths } from '@/lib/approaches';
 import { fetchApproaches } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
+import { fetchMenu } from '@/lib/menu';
 
 export default function ApproachPage({
   approach: {
@@ -31,7 +32,7 @@ export default function ApproachPage({
     related_approaches,
     metadata
   },
-  menu
+  navigation
 }) {
   const { t } = useTranslation('approaches');
   const { t: tCity } = useTranslation('city');
@@ -52,14 +53,16 @@ export default function ApproachPage({
           },
 
           {
-            target: `/${citySlug}/${menu.approaches[0].slug}`,
+            target: `/${citySlug}/${navigation.approaches[0].slug}`,
             label: t('inspiringApproaches'),
             active: true,
-            items: menu.approaches.map(({ title, title_short, slug: approachSlug }, index) => ({
-              target: `/${citySlug}/${approachSlug}`,
-              label: title_short || title,
-              active: query.slug === approachSlug
-            }))
+            items: navigation.approaches.map(
+              ({ title, title_short, slug: approachSlug }, index) => ({
+                target: `/${citySlug}/${approachSlug}`,
+                label: title_short || title,
+                active: query.slug === approachSlug
+              })
+            )
           }
         ]}
         selectClassName="bg-yellow-300"
@@ -124,7 +127,8 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
   const translations = await getTranslations(locale, ['approaches', 'city']);
   const client = createClient();
   const approach = await fetchApproachBySlug(client, locale, slug);
-  const menu = await fetchApproaches(client, locale, city);
+  const navigation = await fetchApproaches(client, locale, city);
+  const menu = await fetchMenu(client, locale);
 
   if (approach === null) {
     return {
@@ -137,6 +141,7 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
     props: {
       ...translations,
       approach,
+      navigation,
       menu
     }
   };

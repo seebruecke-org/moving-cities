@@ -31,11 +31,12 @@ export default function NetworksSummary({
           </Heading>
 
           <ul className="flex mt-6 max-w-full flex-wrap">
-            {networks && networks.map(({ name, slug }) => (
-              <li className="mr-4 mb-4">
-                <Button href={`/${tSlugs('networks')}/${slug}`}>{name}</Button>
-              </li>
-            ))}
+            {networks &&
+              networks.map(({ name, slug }) => (
+                <li className="mr-4 mb-4">
+                  <Button href={`/${tSlugs('networks')}/${slug}`}>{name}</Button>
+                </li>
+              ))}
           </ul>
         </div>
       </div>

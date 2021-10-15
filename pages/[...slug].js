@@ -22,6 +22,7 @@ import { buildCMSUrl, createClient } from '@/lib/api';
 import { fetchCityBySlug, fetchAllCityPaths, fetchNextCity } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
+import { fetchMenu } from '@/lib/menu';
 
 export default function CityPage({
   city: {
@@ -165,6 +166,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const client = createClient();
   const city = await fetchCityBySlug(client, slug[0], locale);
   const next = await fetchNextCity(client, slug[0], locale);
+  const menu = await fetchMenu(client, locale);
 
   if (!city) {
     return {
@@ -177,7 +179,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
     props: {
       ...translations,
       city,
-      next
+      next,
+      menu
     }
   };
 }
