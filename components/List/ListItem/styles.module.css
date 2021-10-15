@@ -1,4 +1,4 @@
 .item::marker {
   @apply font-raptor;
-  @apply text-s md:text-m;
+  @apply text-s md:text-m leading-snug;
 }

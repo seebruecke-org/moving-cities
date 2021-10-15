@@ -5,7 +5,9 @@ import styles from './styles.module.css';
 export default function ListItem({ children, isSmall }) {
   return (
     <li className={styles.item}>
-      <Paragraph isSmall={isSmall}>{children}</Paragraph>
+      {/* for future reference: with display block, the list-icon doesn't
+          render in Safari */}
+      <Paragraph isSmall={isSmall} className="block">{children}</Paragraph>
     </li>
   );
 }
