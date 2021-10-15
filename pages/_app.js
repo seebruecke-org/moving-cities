@@ -10,7 +10,6 @@ let routeHasChanged = false;
 
 function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
   const router = useRouter();
-  const { menu, ...props } = pageProps;
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -34,10 +33,10 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
 
   return (
     <>
-      <Menu {...menu} />
+      <Menu {...pageProps.menu} />
 
       <main className="relative md:pl-24">
-        <Component {...props} routeHasChanged={routeHasChanged} />
+        <Component {...pageProps} routeHasChanged={routeHasChanged} />
       </main>
     </>
   );

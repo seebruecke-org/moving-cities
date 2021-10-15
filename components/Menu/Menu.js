@@ -37,7 +37,7 @@ function OverlayItemSecondary({ target, label, ...props }) {
   );
 }
 
-export default function Menu({ items, cta }) {
+export default function Menu({ items = [], cta }) {
   const { t } = useTranslation();
   const { t: tSlugs } = useTranslation('slugs');
   const overlayRef = useRef();
@@ -175,16 +175,18 @@ export default function Menu({ items, cta }) {
             ))}
           </ul>
 
-          <div className="self-start md:self-end mt-10 md:mt-0">
-            <Button
-              href={`/${tSlugs('about')}/${cta.slug}`}
-              className="text-black"
-              onClick={() => setIsOverlayOpen(false)}
-            >
-              <span className="text-red-300 mr-4 text-2xl relative h-11">+</span>
-              <span>{t('addCity')}</span>
-            </Button>
-          </div>
+          {cta && (
+            <div className="self-start md:self-end mt-10 md:mt-0">
+              <Button
+                href={`/${tSlugs('about')}/${cta.slug}`}
+                className="text-black"
+                onClick={() => setIsOverlayOpen(false)}
+              >
+                <span className="text-red-300 mr-4 text-2xl relative h-11">+</span>
+                <span>{t('addCity')}</span>
+              </Button>
+            </div>
+          )}
         </div>
       </Overlay>
     </>

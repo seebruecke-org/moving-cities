@@ -50,7 +50,7 @@ function CityMarker({ id, name, ...props }) {
   );
 }
 
-export default function HomePage({ cities, intro, routeHasChanged, counts, bounds }) {
+export default function HomePage({ cities, intro, routeHasChanged, counts, bounds, menu }) {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
@@ -183,7 +183,9 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
                 {markers}
               </MapboxMap>
 
-              <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
+              {menu?.cta && (
+                <FloatingCta target={`/${tSlugs('about')}/${menu.cta.slug}`} label={t('addCity')} />
+              )}
             </>
           )}
         </div>

@@ -30,7 +30,8 @@ export default function NetworkPage({
   networks,
   cities: defaultCities,
   counts,
-  bounds: defaultBounds
+  bounds: defaultBounds,
+  menu
 }) {
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
@@ -218,7 +219,9 @@ export default function NetworkPage({
         </MapboxMap>
       )}
 
-      <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
+      {menu?.cta && (
+        <FloatingCta target={`/${tSlugs('about')}/${menu?.cta.slug}`} label={t('addCity')} />
+      )}
     </div>
   );
 }

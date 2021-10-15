@@ -25,7 +25,7 @@ import { fetchMenu } from '@/lib/menu';
 import { fetchAllCountryPaths } from '@/lib/networks';
 import useMapReducer from '@/lib/stores/map';
 
-export default function AllCitiesOverview({ countries, counts, bounds: defaultBounds }) {
+export default function AllCitiesOverview({ countries, counts, bounds: defaultBounds, menu }) {
   const { width: windowWidth } = useWindowSize();
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
@@ -173,7 +173,9 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         </MapboxMap>
       )}
 
-      <FloatingCta target={`/${tSlugs('map_cta')}`} label={t('addCity')} />
+      {menu?.cta && (
+        <FloatingCta target={`/${tSlugs('about')}/${menu.cta.slug}`} label={t('addCity')} />
+      )}
     </div>
   );
 }
