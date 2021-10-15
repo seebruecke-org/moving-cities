@@ -110,15 +110,19 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
     if (activeThread) {
       const [longitude, latitude] = activeThread.coordinates.geometry.coordinates;
 
-      setMapProps({
-        options: {
-          latitude,
-          longitude,
-          zoom: 12
-        }
-      });
+      setTimeout(() => {
+        setMapProps({
+          options: {
+            latitude,
+            longitude,
+            zoom: 12
+          }
+        });
+      })
     } else {
-      setMapProps({ bounds });
+      setTimeout(() => {
+        setMapProps({ bounds });
+      })
     }
   }, [activeThread?.id]);
 
