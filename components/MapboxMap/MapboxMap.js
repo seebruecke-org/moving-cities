@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { options } from 'preact';
-import ReactMapGL, { WebMercatorViewport } from 'react-map-gl';
+import ReactMapGL, { WebMercatorViewport, NavigationControl } from 'react-map-gl';
 import useResizeObserver from '@react-hook/resize-observer';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -66,6 +66,7 @@ export default function MapboxMap({
     >
       <ReactMapGL
         {...viewport}
+        attributionControl={false}
         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/seebruecke/cku6wyt7c1u0i18r0104wv141"
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
@@ -83,6 +84,8 @@ export default function MapboxMap({
         {...props}
       >
         {children}
+
+        <NavigationControl showCompass={false} className="absolute right-12 top-1/2 -translate-y-1/2" />
       </ReactMapGL>
     </div>
   );
