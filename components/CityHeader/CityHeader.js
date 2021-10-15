@@ -9,11 +9,11 @@ export default function CityHeader({ title, subtitle, takeaways, icon }) {
         <CityIcon icon={icon} className="w-2/4 md:w-full md:min-h-full" />
 
         <div className="mt-12 md:mt-0">
-          <h1 className="font-raptor font-bold text-red-300 text-4xl md:text-5xl xl:text-6xl leading-none">
+          <h1 className="font-raptor font-bold text-red-300 text-4xl md:text-5xl 2xl:text-6xl leading-none">
             {title}
           </h1>
 
-          <p className="font-raptor font-bold text-xl xl:text-4xl leading-none mt-4 md:-mt-0">
+          <p className="font-raptor font-bold text-xl md:text-3xl 2xl:text-4xl leading-none mt-4 md:-mt-0">
             {subtitle}
           </p>
         </div>
