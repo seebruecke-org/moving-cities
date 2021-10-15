@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+
 import clsx from 'clsx';
 
 export default function ThreadListItem({
@@ -9,9 +11,12 @@ export default function ThreadListItem({
   className,
   ...props
 }) {
+  const { locale, defaultLocale } = useRouter();
+  const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
+
   return (
     <a
-      href={target}
+      href={`${localePrefix}${target}`}
       className={clsx(
         'flex items-start px-8 md:pl-6 md:pr-4 py-4 hover:bg-yellow-300 border-b border-grey-300 w-full',
         active && 'bg-yellow-300',
