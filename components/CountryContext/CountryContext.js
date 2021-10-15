@@ -21,6 +21,7 @@ export default function CountryContext({ name, content, open = false }) {
       >
         <summary
           className={clsx(
+            "max-w-8xl",
             styles.summary,
             isOpen && 'mb-10 border-b-2 border-red-300',
             'cursor-pointer pb-4'
@@ -51,7 +52,7 @@ export default function CountryContext({ name, content, open = false }) {
           </Heading>
         </summary>
 
-        <div className="px-8 md:px-10 py-4 md:py-12">
+        <div className="max-w-8xl px-8 md:px-10 py-4 md:py-12 lg:pr-48">
           <BlockSwitch blocks={content} renderers={{ Richtext }} />
         </div>
       </details>

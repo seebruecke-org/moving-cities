@@ -115,7 +115,7 @@ export default function CityPage({
         )}
 
         {country && (
-          <div className="max-w-8xl mt-12 md:mt-16 mb-12 md:mb-6">
+          <div className="mt-12 md:mt-16 mb-12 md:mb-6">
             <CountryContext {...country} />
           </div>
         )}
