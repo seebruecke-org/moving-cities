@@ -110,8 +110,8 @@ export async function getStaticPaths({ locales }) {
   );
 
   const paths = approaches
-    .filter(({ city }) => !!city)
     .flat()
+    .filter(({ city }) => !!city)
     .map(({ slug, locale, city: { slug: citySlug } }) => ({
       params: { city: citySlug, slug },
       locale: mapStrapiToFELocale(locale)
