@@ -7,7 +7,9 @@ export default function ListItem({ children, isSmall }) {
     <li className={styles.item}>
       {/* for future reference: with display block, the list-icon doesn't
           render in Safari */}
-      <Paragraph isSmall={isSmall} className="block">{children}</Paragraph>
+      <Paragraph isSmall={isSmall} className="block">
+        {children}
+      </Paragraph>
     </li>
   );
 }

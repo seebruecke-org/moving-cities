@@ -85,7 +85,10 @@ export default function MapboxMap({
       >
         {children}
 
-        <NavigationControl showCompass={false} className="absolute right-12 top-1/2 -translate-y-1/2" />
+        <NavigationControl
+          showCompass={false}
+          className="absolute right-12 top-1/2 -translate-y-1/2"
+        />
       </ReactMapGL>
     </div>
   );
