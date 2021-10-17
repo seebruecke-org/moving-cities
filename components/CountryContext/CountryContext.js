@@ -21,7 +21,7 @@ export default function CountryContext({ name, content, open = false }) {
       >
         <summary
           className={clsx(
-            "max-w-8xl",
+            'max-w-8xl',
             styles.summary,
             isOpen && 'mb-10 border-b-2 border-red-300',
             'cursor-pointer pb-4'

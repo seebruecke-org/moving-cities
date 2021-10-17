@@ -118,11 +118,11 @@ export default function HomePage({ cities, intro, routeHasChanged, counts, bound
             zoom: 12
           }
         });
-      })
+      });
     } else {
       setTimeout(() => {
         setMapProps({ bounds });
-      })
+      });
     }
   }, [activeThread?.id]);
 
