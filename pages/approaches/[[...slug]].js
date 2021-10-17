@@ -82,7 +82,7 @@ export async function getStaticPaths({ locales }) {
   }));
 
   return {
-    paths,
+    paths: [...paths, ...locales.map((locale) => ({ params: { slug: null }, locale }))],
     fallback: 'blocking'
   };
 }
