@@ -3,7 +3,7 @@ import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
 
 export default function Section({ title, sectionContent = {}, children }) {
-  const { content } = sectionContent;
+  const { content } = sectionContent || {};
 
   return (
     <Columns className="mt-10 mb-6 md:my-8 max-w-8xl pl-8 pr-8 md:pr-0 md:pl-10">
