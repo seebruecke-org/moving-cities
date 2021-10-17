@@ -12,7 +12,7 @@
     "cta": "Κατεβάστε την έκθεση"
   },
   "memberOfNetworks": "Μέλος στα ακόλουθα δίκτυα",
-  "nextFeaturedCity": "Επόμενη παρουσίαση πόλης",
+  "nextFeaturedCity": "Επόμενη παρουσίαση επιλεγμένης πόλης",
   "politicalContext": "Πολιτικό πλαίσιο: {{name}}",
   "countryThreadSubtitle": "{{count}} Πόλη",
   "countryThreadSubtitle_plural": "{{count}} Πόλεις"
