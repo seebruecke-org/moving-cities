@@ -132,7 +132,8 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
 
   if (approach === null) {
     return {
-      notFound: true
+      notFound: true,
+      revalidate: 120,
     };
   }
 

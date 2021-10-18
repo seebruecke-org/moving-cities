@@ -38,6 +38,8 @@ function createLocalizedRewrites() {
 module.exports = withPlugins([withPreact], {
   i18n,
 
+  poweredByHeader: false,
+
   images: {
     domains: [process.env.NEXT_IMAGE_HOSTNAME],
     minimumCacheTTL: 60 * 60 * 24
