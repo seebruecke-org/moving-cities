@@ -95,7 +95,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const menu = await fetchMenu(client, locale);
 
   return {
-    revalidate: 60,
+    revalidate: 120,
     props: {
       ...translations,
       categories,
