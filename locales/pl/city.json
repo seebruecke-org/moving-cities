@@ -15,5 +15,5 @@
   "nextFeaturedCity": "Next Featured City",
   "politicalContext": "Political context of {{name}}",
   "countryThreadSubtitle": "{{count}} City",
-  "countryThreadSubtitle_plural": "{{count}} Cities"
+  "countryThreadSubtitlePlural": "{{count}} Cities"
 }

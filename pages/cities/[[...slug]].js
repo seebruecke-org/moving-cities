@@ -46,11 +46,14 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
   const navItems = countries.map(({ name, cities, slug, ...country }) => {
     const target = `/${tSlugs('cities')}/${slug}`;
 
+    console.log(tCity('countryThreadSubtitle', { count: cities.length }), cities.length)
+
     return {
       ...country,
       target,
       title: name,
-      subtitle: tCity('countryThreadSubtitle', { count: cities.length }),
+      // for some reason the greek pluralization rules don't work in this case
+      subtitle: tCity(cities.length === 1 ? 'countryThreadSubtitle' : 'countryThreadSubtitlePlural', { count: cities.length }),
       data: { cities, target }
     };
   });

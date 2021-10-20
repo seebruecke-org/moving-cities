@@ -14,6 +14,6 @@
   "memberOfNetworks": "Μέλος στα ακόλουθα δίκτυα",
   "nextFeaturedCity": "Επόμενη παρουσίαση επιλεγμένης πόλης",
   "politicalContext": "Πολιτικό πλαίσιο: {{name}}",
-  "countryThreadSubtitle": "{{count}} Πόλη",
-  "countryThreadSubtitle_plural": "{{count}} πόλεις"
+  "countryThreadSubtitle": "{{ count }} Πόλη",
+  "countryThreadSubtitlePlural": "{{ count }} πόλεις"
 }
