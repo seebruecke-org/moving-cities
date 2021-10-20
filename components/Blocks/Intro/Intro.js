@@ -1,6 +1,5 @@
 import Columns from '@/components/Columns';
 import Markdown from '@/components/Markdown';
-import Paragraph from '@/components/Paragraph';
 
 export default function Section({ introContent: content }) {
   return (

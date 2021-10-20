@@ -8,7 +8,6 @@ import ProgramHeader from '@/components/ProgramHeader';
 import Heading from '@/components/Heading';
 import Quote from '@/components/Blocks/Quote';
 import Markdown from '@/components/Markdown';
-import Paragraph from '@/components/Paragraph';
 import SEO from '@/components/SEO';
 import Section from '@/components/Blocks/Section';
 import SidebarMenu from '@/components/SidebarMenu';
