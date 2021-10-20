@@ -1,4 +1,5 @@
 import Columns from '@/components/Columns';
+import Markdown from '@/components/Markdown';
 import Paragraph from '@/components/Paragraph';
 
 export default function Section({ introContent: content }) {
@@ -6,12 +7,14 @@ export default function Section({ introContent: content }) {
     <Columns className="max-w-8xl">
       <span />
 
-      <Paragraph
+      <Markdown
         isSmall={true}
-        className="text-xl md:text-2xl font-bold px-8 md:pr-0 leading-[1.2] lg:leading-tight"
+        classNames={{
+          p: "text-xl md:text-2xl font-bold px-8 md:pr-0 leading-[1.2] lg:leading-tight"
+        }}
       >
         {content}
-      </Paragraph>
+      </Markdown>
     </Columns>
   );
 }
