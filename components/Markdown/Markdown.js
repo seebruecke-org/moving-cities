@@ -11,18 +11,24 @@ export default function Markdown({ children, isSmall, classNames }) {
     a: ({ children, href }) => {
       return (
         <Link href={href}>
-          <a className={clsx("underline hover:text-pink-300 break-words", classNames?.a)}>{children}</a>
+          <a className={clsx('underline hover:text-pink-300 break-words', classNames?.a)}>
+            {children}
+          </a>
         </Link>
       );
     },
 
     h2: ({ children }) => {
-      return <Heading level={2} className={clsx(classNames?.h2)}>{children}</Heading>;
+      return (
+        <Heading level={2} className={clsx(classNames?.h2)}>
+          {children}
+        </Heading>
+      );
     },
 
     h3: ({ children }) => {
       return (
-        <Heading level={3} className={clsx("mt-8 mb-4", classNames?.h3)}>
+        <Heading level={3} className={clsx('mt-8 mb-4', classNames?.h3)}>
           {children}
         </Heading>
       );
@@ -30,7 +36,7 @@ export default function Markdown({ children, isSmall, classNames }) {
 
     p: ({ children }) => {
       return (
-        <Paragraph className={clsx("mb-6", classNames?.p)} isSmall={isSmall}>
+        <Paragraph className={clsx('mb-6', classNames?.p)} isSmall={isSmall}>
           {children}
         </Paragraph>
       );

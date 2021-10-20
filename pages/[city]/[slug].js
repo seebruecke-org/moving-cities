@@ -72,9 +72,12 @@ export default function ApproachPage({
         <ProgramHeader city={cityName} title={title} categories={categories} icon={cityIcon}>
           <Heading level={2}>{summary.title}</Heading>
 
-          <Markdown isSmall={false} classNames={{
-            p: "font-bold mt-8"
-          }}>
+          <Markdown
+            isSmall={false}
+            classNames={{
+              p: 'font-bold mt-8'
+            }}
+          >
             {summary.content}
           </Markdown>
         </ProgramHeader>
@@ -135,7 +138,7 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
   if (approach === null) {
     return {
       notFound: true,
-      revalidate: 120,
+      revalidate: 120
     };
   }
 
