@@ -84,7 +84,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   }
 
   return {
-    revalidate: 120,
+    revalidate: 180,
     props: {
       ...translations,
       navigation,

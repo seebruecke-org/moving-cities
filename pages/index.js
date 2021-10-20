@@ -207,7 +207,7 @@ export async function getStaticProps({ locale }) {
   const menu = await fetchMenu(client, locale);
 
   return {
-    revalidate: 240,
+    revalidate: 360,
     props: {
       ...translations,
       ...data,

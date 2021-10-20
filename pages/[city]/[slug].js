@@ -143,7 +143,7 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
   }
 
   return {
-    revalidate: 60,
+    revalidate: 240,
     props: {
       ...translations,
       approach,
