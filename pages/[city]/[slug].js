@@ -7,6 +7,7 @@ import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import ProgramHeader from '@/components/ProgramHeader';
 import Heading from '@/components/Heading';
 import Quote from '@/components/Blocks/Quote';
+import Markdown from '@/components/Markdown';
 import Paragraph from '@/components/Paragraph';
 import SEO from '@/components/SEO';
 import Section from '@/components/Blocks/Section';
@@ -72,9 +73,11 @@ export default function ApproachPage({
         <ProgramHeader city={cityName} title={title} categories={categories} icon={cityIcon}>
           <Heading level={2}>{summary.title}</Heading>
 
-          <Paragraph className="font-bold mt-8" isSmall={false}>
+          <Markdown isSmall={false} classNames={{
+            p: "font-bold mt-8"
+          }}>
             {summary.content}
-          </Paragraph>
+          </Markdown>
         </ProgramHeader>
 
         <BlockSwitch blocks={content} renderers={{ Section, Quote }} />
