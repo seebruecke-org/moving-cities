@@ -60,7 +60,7 @@ export default function ApproachesOverviewPage({ approaches, approachesCount, ca
       />
 
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
-        {approaches.map((approach) => (
+        {approaches.filter(({ city }) => !!city).map((approach) => (
           <li>
             <Approach {...approach} uri={`/${approach.city.slug}/${approach.slug}`} />
           </li>
