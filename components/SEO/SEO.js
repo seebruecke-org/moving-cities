@@ -26,7 +26,7 @@ export default function SEO({ title, description, metadata }) {
 
       <meta name="theme-color" content="#F94AE7" />
 
-      {/*<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />*/}
+      <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
       <link rel="icon" type="image/png" href="/images/favicon.png" />
 
       <meta property="og:locale" content={`${locale}_${locale.toUpperCase()}`} />
