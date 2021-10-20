@@ -7,9 +7,11 @@ import Menu from '@/components/Menu';
 import '../lib/styles/tailwind.css';
 
 let routeHasChanged = false;
+let previousRoute = '';
 
 function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
   const router = useRouter();
+  const indexRegex = new RegExp(/^\/[^\/]{0,2}$/);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
@@ -19,9 +21,11 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
       // a language-switch would count as a navigation and
       // therefore users might see the intro in the wrong language
       // only
-      if (!/^\/[^\/]{0,2}$/.test(url)) {
+      if (!indexRegex.test(url) && indexRegex.test(previousRoute)) {
         routeHasChanged = true;
       }
+
+      previousRoute = url;
     };
 
     router.events.on('routeChangeStart', handleRouteChange);
