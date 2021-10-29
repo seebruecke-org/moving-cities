@@ -51,7 +51,10 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
       target,
       title: name,
       // for some reason the greek pluralization rules don't work in this case
-      subtitle: tCity(cities.length === 1 ? 'countryThreadSubtitle' : 'countryThreadSubtitlePlural', { count: cities.length }),
+      subtitle: tCity(
+        cities.length === 1 ? 'countryThreadSubtitle' : 'countryThreadSubtitlePlural',
+        { count: cities.length }
+      ),
       data: { cities, target }
     };
   });

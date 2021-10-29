@@ -59,10 +59,13 @@ export async function getStaticPaths({ locales }) {
     locales.map(async (locale) => await fetchAllAboutPaths(client, locale))
   );
 
-  const paths = abouts.flat().map(({ slug, locale }) => ({
-    params: { slug: [slug] },
-    locale: mapStrapiToFELocale(locale)
-  }));
+  const paths = abouts
+    .flat()
+    .filter(({ slug }) => !!slug)
+    .map(({ slug, locale }) => ({
+      params: { slug: [slug] },
+      locale: mapStrapiToFELocale(locale)
+    }));
 
   return {
     paths: [...paths, ...locales.map((locale) => ({ params: { slug: null }, locale }))],

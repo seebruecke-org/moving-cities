@@ -150,10 +150,13 @@ export async function getStaticPaths({ locales }) {
     locales.map(async (locale) => await fetchAllCityPaths(client, locale))
   );
 
-  const paths = cities.flat().map(({ slug, locale }) => ({
-    params: { slug: [slug] },
-    locale: mapStrapiToFELocale(locale)
-  }));
+  const paths = cities
+    .flat()
+    .filter(({ slug }) => !!slug)
+    .map(({ slug, locale }) => ({
+      params: { slug: [slug] },
+      locale: mapStrapiToFELocale(locale)
+    }));
 
   return {
     paths,
@@ -171,7 +174,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   if (!city) {
     return {
       notFound: true,
-      revalidate: 120,
+      revalidate: 120
     };
   }
 
