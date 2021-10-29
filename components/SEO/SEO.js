@@ -5,7 +5,7 @@ export default function SEO({ title, description, metadata }) {
   const { locale } = useRouter();
   const normalizedTitle = metadata?.title ?? title;
   const normalizedDescription = metadata?.description || description;
-  const image = metadata?.image;
+  const image = `${process.env.NEXT_PUBLIC_ASSET_URL}${metadata?.image?.url}`;
 
   return (
     <Head>
@@ -38,8 +38,6 @@ export default function SEO({ title, description, metadata }) {
           <meta name="twitter:card" content="summary_large_image" />
         </>
       )}
-
-      <meta name="twitter:site" content="[TODO]" />
     </Head>
   );
 }
