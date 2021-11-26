@@ -28,10 +28,16 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
       previousRoute = url;
     };
 
+    const trackRouteChange = (url) => {
+      fetch(`/api/track?url=${url}`);
+    };
+
     router.events.on('routeChangeStart', handleRouteChange);
+    router.events.on('routeChangeComplete', trackRouteChange);
 
     return () => {
       router.events.off('routeChangeStart', handleRouteChange);
+      router.events.off('routeChangeComplete', trackRouteChange);
     };
   }, []);
 
