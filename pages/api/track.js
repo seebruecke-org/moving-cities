@@ -12,7 +12,10 @@ export default function (req, res) {
 
   const { url } = req.query;
 
-  tracker.track(url);
+  tracker.track({
+    action_name: url,
+    url: `https://moving-cities.eu${url}`
+  });
 
   res.send({});
 }
