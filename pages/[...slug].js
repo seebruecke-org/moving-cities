@@ -76,9 +76,9 @@ export default function CityPage({
           blocks={[
             {
               __typename: 'ComponentBlocksSection',
-              title: summary.title,
+              title: summary?.title,
               sectionContent: {
-                content: summary.content
+                content: summary?.content
               }
             },
             ...content
