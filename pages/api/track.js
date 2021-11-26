@@ -5,7 +5,7 @@ const SITE_ENDPOINT = process.env.MATOMO_ENDPOINT;
 
 const tracker = SITE_ID && SITE_ENDPOINT ? new Matomo(SITE_ID, `${SITE_ENDPOINT}/matomo.php`) : null;
 
-export default function (req) {
+export default function (req, res) {
   if (!tracker || !req?.query) {
     return;
   }
