@@ -1,17 +1,17 @@
 {
   "menu": {
     "name": "Moving Cities",
-    "approaches": "Approaches",
-    "about": "About",
-    "imprint": "Imprint",
+    "approaches": "Approches",
+    "about": "À propos",
+    "imprint": "Identité",
     "contact": "Contact",
-    "privacy": "Data Protection",
+    "privacy": "Protection des données",
 
     "burger": {
-      "open": "Open Menu",
-      "close": "Close Menu"
+      "open": "Ouvrir le menu de navigation",
+      "close": "Fermer le menu de navigation"
     }
   },
 
-  "addCity": "Add your city"
+  "addCity": "Ajoutez votre ville"
 }

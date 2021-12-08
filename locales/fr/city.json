@@ -1,19 +1,19 @@
 {
-  "featuredCities": "Featured Cities",
-  "featuredCitiesIntro": "{{ count }} European cities studied out of {{ count_total }} actively support solidarity based migration policies",
-  "allCities": "All Cities",
-  "allCitiesIntro": "Cities and municipalities that are active in a campaign or city network that promotes a solidarity-based migration policy or that have agreed to take in more refugees",
-  "networks": "Networks",
-  "networksIntro": "European networks and campaigns that actively advocate for more progressive migration policies",
-  "close": "Close",
-  "viewCity": "View the city",
-  "aboutTheCity": "About the city",
+  "featuredCities": "Villes étudiées",
+  "featuredCitiesIntro": "{{ count }} villes européennes sur {{ count_total }} soutiennent activement des politiques migratoires solidaires",
+  "allCities": "Toutes les villes",
+  "allCitiesIntro": "Villes et municipalités qui sont actives dans une campagne ou dans un réseau qui fait la promotion d'une politique migratoire solidaire ou qui ont accepté d'accueillir plus de réfugiées",
+  "networks": "Réseaux",
+  "networksIntro": "Réseaux européens et campagnes qui plaident activement pour des politiques migratoire solidaire",
+  "close": "Fermer",
+  "viewCity": "Découvrir la ville",
+  "aboutTheCity": "À propos de la ville",
   "download": {
-    "cta": "Download Report"
+    "cta": "Télécharger le rapport"
   },
-  "memberOfNetworks": "Member of the following networks",
-  "nextFeaturedCity": "Next Featured City",
-  "politicalContext": "Political context of {{name}}",
-  "countryThreadSubtitle": "{{count}} City",
-  "countryThreadSubtitlePlural": "{{count}} Cities"
+  "memberOfNetworks": "Membre des réseaux suivants",
+  "nextFeaturedCity": "Ville suivante",
+  "politicalContext": "Contexte politique de {{name}}",
+  "countryThreadSubtitle": "{{count}} ville",
+  "countryThreadSubtitlePlural": "{{count}} villes"
 }

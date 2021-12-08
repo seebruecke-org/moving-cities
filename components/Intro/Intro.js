@@ -78,18 +78,23 @@ export default function Intro({
   featuredCitiesCount,
   citiesCount
 }) {
+  const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('intro');
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
     <div className="relative w-full h-screen overflow-x-hidden pb-28 md:pb-0">
-      <div className="relative md:absolute md:top-2 md:left-8 z-10 md:max-w-5xl px-8 pt-12">
-        <h1
-          className={clsx(
-            'font-raptor text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold leading-none mb-12 bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300 max-w-4xl lg:max-w-none',
-            styles.title
-          )}
-        >
+      <div className="relative md:absolute md:top-2 md:left-8 z-10 px-8 pt-12">
+        <h1 className="font-raptor text-2xl sm:text-3xl font-bold leading-none mb-8 text-red-300 max-w-4xl lg:max-w-none">
+          <span
+            className={clsx(
+              'block uppercase text-4xl lg:text-5xl xl:text-6xl bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
+              styles.title
+            )}
+          >
+            {tCommon('menu.name')}
+            <span className="sr-only">:</span>
+          </span>
           {title}
         </h1>
 
@@ -99,7 +104,7 @@ export default function Intro({
         </Button>
       </div>
 
-      <div className="-ml-96 md:ml-0 -mr-96 -mt-48 md:mt-0 -mb-16 md:mb-0 md:mr-0 relative md:absolute md:top-24 lg:top-36 xl:top-64 md:left-10 md:w-4/5 xl:left-48 xl:w-9/12">
+      <div className="-ml-96 md:ml-0 -mr-96 -mt-32 md:mt-0 -mb-16 md:mb-0 md:mr-0 relative md:absolute md:top-24 lg:top-36 xl:top-64 md:left-10 md:w-4/5 xl:left-48 xl:w-9/12">
         <CityShape image={introImage} />
       </div>
 
