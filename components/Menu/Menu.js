@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -76,8 +76,8 @@ export default function Menu({ items = [], cta }) {
 
     if (isOverlayOpen === true) {
       disableBodyScroll(currentRef);
-    } else if (isOverlayOpen === false) {
-      enableBodyScroll(currentRef);
+    } else {
+      clearAllBodyScrollLocks();
     }
   }, [isOverlayOpen]);
 
