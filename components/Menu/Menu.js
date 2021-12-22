@@ -167,6 +167,7 @@ export default function Menu({ items = [], cta }) {
                       index !== 0 && 'border-l-2 pl-4',
                       locale === currentLocale && 'underline'
                     )}
+                    onClick={() => setIsOverlayOpen(false)}
                   >
                     {currentLocale}
                   </a>
