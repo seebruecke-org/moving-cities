@@ -55,7 +55,7 @@ function CityItem({ name, networks, reasoning }) {
                 Why is this city on the map?
               </Heading>
 
-              <Richtext richtext={reasoning} />
+              <Richtext richtext={reasoning} isSmall />
             </div>
           )}
         </div>
