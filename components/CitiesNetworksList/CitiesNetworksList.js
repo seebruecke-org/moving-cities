@@ -52,7 +52,7 @@ function CityItem({ name, networks, reasoning }) {
           {reasoning && (
             <div className="px-8 py-4 space-y-6">
               <Heading level={3} as={5}>
-                Why is this city on the map?
+                {t('reasoningTitle')}
               </Heading>
 
               <Richtext richtext={reasoning} isSmall />

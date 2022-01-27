@@ -15,5 +15,6 @@
   "nextFeaturedCity": "Επόμενη παρουσίαση επιλεγμένης πόλης",
   "politicalContext": "Πολιτικό πλαίσιο: {{name}}",
   "countryThreadSubtitle": "{{ count }} Πόλη",
-  "countryThreadSubtitlePlural": "{{ count }} πόλεις"
+  "countryThreadSubtitlePlural": "{{ count }} πόλεις",
+  "reasoningTitle": "Περιγραφή"
 }
