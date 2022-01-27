@@ -13,7 +13,8 @@
   },
   "memberOfNetworks": "Miembro de las siguientes redes",
   "nextFeaturedCity": "Siguiente ciudad",
-  "politicalContext": "Contexto político de {{name}}",
+  "politicalContext": "Contexto político - {{name}}",
   "countryThreadSubtitle": "{{count}} Ciudad",
-  "countryThreadSubtitlePlural": "{{count}} Ciudades"
+  "countryThreadSubtitlePlural": "{{count}} Ciudades",
+  "reasoningTitle": "Descripción"
 }

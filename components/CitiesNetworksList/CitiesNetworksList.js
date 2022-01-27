@@ -4,10 +4,11 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 import Heading from '@/components/Heading';
+import Richtext from '@/components/Blocks/Richtext';
 
 import styles from './styles.module.css';
 
-function CityItem({ name, networks }) {
+function CityItem({ name, networks, reasoning }) {
   const { t: tSlugs } = useTranslation();
   const { t } = useTranslation('city');
   const [isOpen, setIsOpen] = useState(false);
@@ -26,23 +27,37 @@ function CityItem({ name, networks }) {
 
       {isOpen && (
         <div>
-          <Heading level={3} as={5} className="px-8 py-4">
-            {t('networks')}
-          </Heading>
+          {networks?.length > 0 && (
+            <>
+              <Heading level={3} as={5} className="px-8 py-4">
+                {t('networks')}
+              </Heading>
 
-          <ul className="bg-white w-full px-8">
-            {networks.map(({ name: networkName, slug }) => (
-              <li>
-                <Link href={`/${tSlugs('networks')}/${slug}`}>
-                  <a className="font-raptor text-xs md:text-s group">
-                    <span className="group-hover:underline">{networkName}</span>
+              <ul className="bg-white w-full px-8">
+                {networks.map(({ name: networkName, slug }) => (
+                  <li>
+                    <Link href={`/${tSlugs('networks')}/${slug}`}>
+                      <a className="font-raptor text-xs md:text-s group">
+                        <span className="group-hover:underline">{networkName}</span>
 
-                    <span className="text-red-300 ml-4">⟶</span>
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                        <span className="text-red-300 ml-4">⟶</span>
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {reasoning && (
+            <div className="px-8 py-4 space-y-6">
+              <Heading level={3} as={5}>
+                {t('reasoningTitle')}
+              </Heading>
+
+              <Richtext richtext={reasoning} isSmall />
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -59,7 +74,6 @@ export default function CitiesNetworksList({ cities, className }) {
       )}
     >
       {cities
-        .filter(({ networks }) => networks?.length > 0)
         .map((city) => (
           <li className="flex flex-wrap border-b border-grey-300">
             <CityItem {...city} />

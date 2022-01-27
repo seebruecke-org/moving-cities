@@ -15,5 +15,6 @@
   "nextFeaturedCity": "Prossima città in evidenza",
   "politicalContext": "Contesto politico - {{name}}",
   "countryThreadSubtitle": "{{count}} Città",
-  "countryThreadSubtitlePlural": "{{count}} Città"
+  "countryThreadSubtitlePlural": "{{count}} Città",
+  "reasoningTitle": "Descrizione"
 }
