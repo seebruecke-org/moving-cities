@@ -1,8 +1,8 @@
 {
-  "inspiringApproaches": "Inspiring Approaches",
-  "keyTakeaways": "Key Takeaways",
-  "intro": "We collected {{ count }} inspiring local approaches which cities have implemented in their politics. Which topic are you interested in?",
-  "readMore": "Read more",
-  "allInspiringApproaches": "All inspiring approaches",
-  "inspiringApproachesOfCity": "Related inspiring approaches"
+  "inspiringApproaches": "Enfoques inspiradores",
+  "keyTakeaways": "Puntos clave",
+  "intro": "Hemos recolectado {{ count }} enfoques inspiradores que las ciudades han aplicado en sus políticas. ¿Qué tema le interesa?",
+  "readMore": "Leer más",
+  "allInspiringApproaches": "Todos los enfoques inspiradores",
+  "inspiringApproachesOfCity": "Enfoques relacionados"
 }
