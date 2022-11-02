@@ -2,7 +2,7 @@ services:
   - type: web
     name: moving-cities/frontend
     env: node
-    plan: pro
+    plan: starter
     branch: v2
     buildCommand: yarn; yarn build
     region: frankfurt
