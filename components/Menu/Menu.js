@@ -120,19 +120,6 @@ export default function Menu({ items = [], cta }) {
                 </svg>
               </a>
             </Link>
-
-            <div className="hidden md:inline-block">
-              <Link href={`/${tSlugs('approaches')}`}>
-                <a
-                  className={clsx(
-                    'uppercase whitespace-nowrap font-raptor font-medium text-m hover:underline',
-                    shadowStyles['text-shadow']
-                  )}
-                >
-                  {t('menu.approaches')}
-                </a>
-              </Link>
-            </div>
           </span>
 
           <LanguageSwitch current={locale} locales={locales} />
