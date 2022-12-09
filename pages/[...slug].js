@@ -105,6 +105,8 @@ export default function CityPage({
                   href={buildCMSUrl(reportFile.url)}
                   priority
                   className="self-start mt-8 w-auto"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   {tCity('download.cta')}
                   <span className="text-red-300 ml-4">⤓</span>
