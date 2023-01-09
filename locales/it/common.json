@@ -1,6 +1,7 @@
 {
   "menu": {
     "name": "Moving Cities",
+    "cities": "Città",
     "approaches": "Modelli",
     "about": "Info",
     "imprint": "Imprint",

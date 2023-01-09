@@ -1,6 +1,7 @@
 {
   "menu": {
     "name": "Moving Cities",
+    "cities": "Miasta",
     "approaches": "Strategie",
     "about": "O nas",
     "imprint": "Impressum",

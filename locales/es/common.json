@@ -1,6 +1,7 @@
 {
   "menu": {
     "name": "Moving Cities",
+    "cities": "Ciudades",
     "approaches": "Enfoques",
     "about": "Sobre Moving Cities",
     "imprint": "Pie de imprenta",

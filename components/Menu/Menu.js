@@ -48,7 +48,7 @@ export default function Menu({ items = [], cta }) {
   const OVERLAY_PRIMARY_ITEMS = [
     {
       target: '/',
-      label: t('menu.name')
+      label: t('menu.cities')
     },
 
     {
