@@ -94,7 +94,7 @@ export default function Menu({ items = [], cta }) {
           <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-5 md:origin-top-right">
             <Link href="/">
               <a
-                className="flex items-center hover:underline leading-none"
+                className="flex items-center leading-none"
                 onClick={() => setIsOverlayOpen(false)}
               >
                 <span
