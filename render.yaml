@@ -27,7 +27,7 @@ services:
       - key: MATOMO_SITE_ID
         sync: false
     domains:
-      - moving-cities.eu
+      - next.moving-cities.eu
     disk:
       name: next.js image cache
       mountPath: /opt/render/project/src/.next/cache/images
