@@ -126,7 +126,7 @@ export default function Menu({ items = [], cta }) {
         </header>
       </div>
 
-      <Overlay ref={overlayRef} isOpen={isOverlayOpen}>
+      <Overlay ref={overlayRef} isOpen={isOverlayOpen} setIsOverlayOpen={setIsOverlayOpen}>
         <ul className="space-y-10 md:space-y-12">
           {OVERLAY_PRIMARY_ITEMS.map((item) => (
             <li>
