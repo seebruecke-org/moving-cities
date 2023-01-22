@@ -25,8 +25,8 @@ export default function ThreadListItem({
       {...props}
     >
       <span className="font-raptor leading-snug mr-4">
-        <h2 className="text-m font-bold mt-2 leading-tight">{title}</h2>
-        <p className="text-2xs md:text-xs">{subtitle}</p>
+        <h2 className="text-m font-bold mt-2 leading-tight [word-break:break-word]">{title}</h2>
+        <p className="text-2xs md:text-xs [word-break:break-word]">{subtitle}</p>
       </span>
 
       <svg
