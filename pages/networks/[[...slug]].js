@@ -164,7 +164,7 @@ export default function NetworkPage({
         tooltipHidden={!!activeThread || mapInteraction}
         items={[
           {
-            target: '/',
+            target: `/${tSlugs('featuredCities')}`,
             label: tCity('featuredCities'),
             tooltip: tCity('featuredCitiesIntro', {
               count: counts.featuredCitiesCount,

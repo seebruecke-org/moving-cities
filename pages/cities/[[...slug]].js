@@ -129,7 +129,7 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         tooltipHidden={!!activeThread || mapInteraction}
         items={[
           {
-            target: '/',
+            target: `/${tSlugs('featuredCities')}`,
             label: tCity('featuredCities'),
             tooltip: tCity('featuredCitiesIntro', {
               count: counts.featuredCitiesCount,

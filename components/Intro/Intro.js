@@ -70,7 +70,6 @@ function Count({ count, className, onClick = () => {}, ...props }) {
 }
 
 export default function Intro({
-  onClose = () => {},
   title,
   intro,
   approachesCount,
@@ -98,7 +97,7 @@ export default function Intro({
           {title}
         </h1>
 
-        <Button onClick={onClose} priority>
+        <Button href={`/${tSlugs('featuredCities')}`} priority>
           {t('cta')}
           <span className="text-red-300 ml-4">→</span>
         </Button>
@@ -114,7 +113,7 @@ export default function Intro({
 
       <div className="md:absolute md:right-8 md:top-0 px-8 md:py-12 lg:py-16 xl:py-28 md:space-y-4 xl:space-y-8 md:h-screen justify-between md:flex md:flex-col">
         <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
-          <Count href="/" count={featuredCitiesCount} className="text-red-300" onClick={onClose} />{' '}
+          <Count href={`/${tSlugs('featuredCities')}`} count={featuredCitiesCount} className="text-red-300" />{' '}
           {t('withCaseStudies')}
         </p>
 

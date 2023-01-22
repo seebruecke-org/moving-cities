@@ -47,7 +47,7 @@ export default function Menu({ items = [], cta }) {
 
   const OVERLAY_PRIMARY_ITEMS = [
     {
-      target: '/',
+      target: `/${tSlugs('featuredCities')}`,
       label: t('menu.cities')
     },
 
