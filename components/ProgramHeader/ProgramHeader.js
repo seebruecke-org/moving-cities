@@ -22,7 +22,7 @@ export default function ProgramHeader({ city, title, icon, children, categories 
             <ul className="flex flex-wrap mt-10">
               {categories.map(({ title, slug }) => (
                 <li>
-                  <Button href={`/${tSlugs('approaches')}/${slug}`} className="mr-6 mb-6">
+                  <Button href={`/${tSlugs('approaches')}/${slug}`} className="mr-6 mb-6 inline-block">
                     {title}
                   </Button>
                 </li>
