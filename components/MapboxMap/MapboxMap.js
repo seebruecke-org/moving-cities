@@ -44,11 +44,7 @@ export default function MapboxMap({
   // calling map.resize() doesn't have any effect, so we try to
   // reset the viewport size to the original relative size
   useResizeObserver(containerRef, () => {
-    setViewport((prevViewport) => ({
-      ...prevViewport,
-      width: '100%',
-      height: '100%'
-    }));
+    setViewport((state) => ({ ...state, ...getFitBounds(bounds, map), ...options }));
   });
 
   useEffect(() => {
