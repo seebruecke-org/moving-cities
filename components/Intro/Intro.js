@@ -81,6 +81,8 @@ export default function Intro({
   const { t } = useTranslation('intro');
   const { t: tSlugs } = useTranslation('slugs');
 
+  console.log(approachesCount);
+
   return (
     <div className="relative w-full h-screen md:min-h-[760px] lg:min-h-[900px] overflow-x-hidden pb-28 md:pb-0">
       <div className="relative md:absolute md:top-2 md:left-8 z-10 px-8 pt-12">

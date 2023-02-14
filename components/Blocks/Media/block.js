@@ -1,9 +1,13 @@
 export default `
   media {
-    url
-    width
-    height
-    alternativeText
-    caption
+    data {
+      attributes {
+        url
+        width
+        height
+        alternativeText
+        caption
+      }
+    }
   }
 `;

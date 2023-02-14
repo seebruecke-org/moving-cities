@@ -12,7 +12,7 @@ export default function HomePage({ intro, counts }) {
   return (
     <>
       <SEO title={null} description={intro} metadata={intro?.metadata} />
-      <Intro {...intro} {...counts} />
+      <Intro {...intro.data.attributes} {...counts} />
     </>
   );
 }
@@ -21,7 +21,7 @@ export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['intro']);
   const client = createClient();
   const data = await fetchIntro(client, locale);
-  const counts = await fetchCounts(client, locale);
+  const counts = {};//await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
 
   return {

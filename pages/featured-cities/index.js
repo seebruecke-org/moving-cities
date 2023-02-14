@@ -53,6 +53,8 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
   const [mapInteraction, setMapInteraction] = useState(false);
   const [{ activeThread }, dispatch] = useMapReducer();
 
+  console.log('fcities', cities);
+
   const navItems = useMemo(() => {
     return cities.map(({ id, name, subtitle, slug, approaches, summary, ...city }) => ({
       ...city,
@@ -65,7 +67,7 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
         title: name,
         subtitle,
         uri: `/${slug}`,
-        approaches: approaches.map(({ slug: approachSlug, ...approach }) => ({
+        approaches: approaches.data?.map(({ attributes: {slug: approachSlug, ...approach } }) => ({
           uri: `/${slug}/${approachSlug}`,
           ...approach
         })),
@@ -166,7 +168,7 @@ export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city']);
   const client = createClient();
   const { cities, bounds } = await fetchFeaturedCities(client, locale);
-  const counts = await fetchCounts(client, locale);
+  const counts = {}; //await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
 
   return {

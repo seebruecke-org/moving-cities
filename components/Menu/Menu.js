@@ -62,7 +62,7 @@ export default function Menu({ items = [], cta }) {
     }
   ];
 
-  const OVERLAY_SECONDARY_ITEMS = items.map(({ about: { title, slug } }) => ({
+  const OVERLAY_SECONDARY_ITEMS = items.map(({ about: { data: { attributes: { title, slug } } } }) => ({
     target: `/${tSlugs('about')}/${slug}`,
     label: title
   }));
@@ -166,7 +166,7 @@ export default function Menu({ items = [], cta }) {
           {cta && (
             <div className="self-start md:self-end mt-10 md:mt-0">
               <Button
-                href={`/${tSlugs('about')}/${cta.slug}`}
+                href={`/${tSlugs('about')}/${cta.data?.attributes?.slug}`}
                 className="text-black"
                 onClick={() => setIsOverlayOpen(false)}
               >

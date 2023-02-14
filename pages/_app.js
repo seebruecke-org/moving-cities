@@ -43,7 +43,7 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
 
   return (
     <>
-      <Menu {...pageProps.menu} />
+      <Menu {...pageProps.menu?.data?.attributes} />
 
       <main className="relative md:pl-24">
         <Component {...pageProps} routeHasChanged={routeHasChanged} />
