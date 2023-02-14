@@ -9,7 +9,7 @@ export default function LanguageSwitch({ current, locales = [] }) {
     <div className="hidden md:flex items-center relative md:absolute md:bottom-0 md:left-0 md:w-full">
       <button
         type="button"
-        className="font-raptor uppercase text-m hover:underline w-full flex items-center leading-none px-4 md:p-6"
+        className="font-raptor uppercase text-m w-full flex items-center leading-none px-4 md:p-6 hover:text-black"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{current}</span>

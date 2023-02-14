@@ -18,7 +18,7 @@ function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
       <a
-        className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:underline"
+        className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:text-black"
         {...props}
       >
         {label}
@@ -30,7 +30,7 @@ function OverlayItemPrimary({ target, label, ...props }) {
 function OverlayItemSecondary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-m md:text-3xl hover:underline" {...props}>
+      <a className="font-raptor font-bold text-m md:text-3xl hover:text-black" {...props}>
         {label}
       </a>
     </Link>
@@ -91,7 +91,7 @@ export default function Menu({ items = [], cta }) {
             className="order-last md:order-auto ml-auto"
           />
 
-          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-5 md:origin-top-right">
+          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-5 md:origin-top-right hover:text-black">
             <Link href="/">
               <a
                 className="flex items-center leading-none"
