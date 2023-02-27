@@ -165,7 +165,7 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
 }
 
 export async function getStaticProps({ locale }) {
-  const translations = await getTranslations(locale, ['city']);
+  const translations = await getTranslations(locale, ['city', 'approaches']);
   const client = createClient();
   const { cities, bounds } = await fetchFeaturedCities(client, locale);
   const counts = {}; //await fetchCounts(client, locale);
