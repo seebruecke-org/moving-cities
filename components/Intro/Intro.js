@@ -81,8 +81,6 @@ export default function Intro({
   const { t } = useTranslation('intro');
   const { t: tSlugs } = useTranslation('slugs');
 
-  console.log(approachesCount);
-
   return (
     <div className="relative w-full h-screen md:min-h-[760px] lg:min-h-[900px] overflow-x-hidden pb-28 md:pb-0">
       <div className="relative md:absolute md:top-2 md:left-8 z-10 px-8 pt-12">
@@ -115,7 +113,11 @@ export default function Intro({
 
       <div className="md:absolute md:right-8 md:top-0 px-8 md:py-12 lg:py-16 xl:py-28 md:space-y-4 xl:space-y-8 md:h-screen justify-between md:flex md:flex-col">
         <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
-          <Count href={`/${tSlugs('featuredCities')}`} count={featuredCitiesCount} className="text-red-300" />{' '}
+          <Count
+            href={`/${tSlugs('featuredCities')}`}
+            count={featuredCitiesCount}
+            className="text-red-300"
+          />{' '}
           {t('withCaseStudies')}
         </p>
 

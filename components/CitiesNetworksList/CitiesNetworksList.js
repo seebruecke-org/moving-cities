@@ -73,12 +73,11 @@ export default function CitiesNetworksList({ cities, className }) {
         className
       )}
     >
-      {cities
-        .map((city) => (
-          <li className="flex flex-wrap border-b border-grey-300">
-            <CityItem {...city} />
-          </li>
-        ))}
+      {cities.map((city) => (
+        <li className="flex flex-wrap border-b border-grey-300">
+          <CityItem {...city} />
+        </li>
+      ))}
     </ul>
   );
 }

@@ -1,7 +1,11 @@
 export default `
   followTitle: title
   followItems: items {
-    description
-    target
+    data {
+      attributes {
+        description
+        target
+      }
+    }
   }
 `;

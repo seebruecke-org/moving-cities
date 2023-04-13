@@ -6,8 +6,6 @@ import Heading from '@/components/Heading';
 export default function Approach({ title, city, categories = [], uri }) {
   const { t } = useTranslation('approaches');
 
-  console.log('categories', categories);
-
   return (
     <Link href={uri}>
       <a className="flex flex-col rounded-xl border-2 border-black hover:border-red-300 p-6 h-full">
@@ -23,7 +21,7 @@ export default function Approach({ title, city, categories = [], uri }) {
         </Heading>
 
         <ul className="flex flex-wrap mt-3 mb-4">
-          {categories.data.map(({ attributes: { title } }, index) => (
+          {categories.map(({ title }, index) => (
             <li className="flex flex-nowrap">
               {index > 0 && <span className="font-raptor text-s leading-normal mx-2">•</span>}
               <p className="font-raptor text-s leading-normal">{title}</p>

@@ -10,19 +10,22 @@ function MenuOverlay({ children, isOpen = false, setIsOverlayOpen }, ref) {
       )}
       ref={ref}
     >
-      <button onClick={() => setIsOverlayOpen(false)} className="group font-raptor font-semibold font-2xs md:hidden self-end">
+      <button
+        onClick={() => setIsOverlayOpen(false)}
+        className="group font-raptor font-semibold font-2xs md:hidden self-end"
+      >
         <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="37"
-            height="37"
-            viewBox="0 0 37 37"
-            className="group-hover:text-grey-300"
+          xmlns="http://www.w3.org/2000/svg"
+          width="37"
+          height="37"
+          viewBox="0 0 37 37"
+          className="group-hover:text-grey-300"
         >
           <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-width="3"
-              d="M3.6 3.5l30 30M3.6 33.5l30-30"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="3"
+            d="M3.6 3.5l30 30M3.6 33.5l30-30"
           />
         </svg>
       </button>

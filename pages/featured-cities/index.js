@@ -15,33 +15,33 @@ import { useWindowSize } from '@/lib/hooks';
 import { renderMap } from '@/lib/map';
 import { fetchMenu } from '@/lib/menu';
 import useMapReducer from '@/lib/stores/map';
-import CityPreview from "@/components/CityPreview";
+import CityPreview from '@/components/CityPreview';
 
 function CityMarker({ id, name, ...props }) {
   return (
-      <Marker key={`marker-${id}`} className="group" offsetLeft={-20} offsetTop={-20} {...props}>
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 40 40"
-            width="40"
-            height="40"
-            fill="none"
-            className="cursor-pointer text-pink-300 hover:text-black"
-        >
-          <circle
-              cx="20"
-              cy="20"
-              r="17"
-              stroke="currentColor"
-              stroke-dasharray="4 2"
-              stroke-width="6"
-          />
-        </svg>
+    <Marker key={`marker-${id}`} className="group" offsetLeft={-20} offsetTop={-20} {...props}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 40 40"
+        width="40"
+        height="40"
+        fill="none"
+        className="cursor-pointer text-pink-300 hover:text-black"
+      >
+        <circle
+          cx="20"
+          cy="20"
+          r="17"
+          stroke="currentColor"
+          stroke-dasharray="4 2"
+          stroke-width="6"
+        />
+      </svg>
 
-        <span className="text-center font-raptor font-bold hidden group-hover:block text-s absolute top-full left-2/4 -translate-x-2/4 leading-none">
+      <span className="text-center font-raptor font-bold hidden group-hover:block text-s absolute top-full left-2/4 -translate-x-2/4 leading-none">
         {name}
       </span>
-      </Marker>
+    </Marker>
   );
 }
 
@@ -52,8 +52,6 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
   const { t: tSlugs } = useTranslation('slugs');
   const [mapInteraction, setMapInteraction] = useState(false);
   const [{ activeThread }, dispatch] = useMapReducer();
-
-  console.log('fcities', cities);
 
   const navItems = useMemo(() => {
     return cities.map(({ id, name, subtitle, slug, approaches, summary, ...city }) => ({
@@ -67,7 +65,7 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
         title: name,
         subtitle,
         uri: `/${slug}`,
-        approaches: approaches.data?.map(({ attributes: {slug: approachSlug, ...approach } }) => ({
+        approaches: approaches.map(({ slug: approachSlug, ...approach }) => ({
           uri: `/${slug}/${approachSlug}`,
           ...approach
         })),
@@ -87,15 +85,15 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
       const [longitude, latitude] = coordinates?.geometry?.coordinates;
 
       return (
-          <CityMarker
-              id={id}
-              latitude={latitude}
-              longitude={longitude}
-              name={name}
-              onClick={() => {
-                dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
-              }}
-          />
+        <CityMarker
+          id={id}
+          latitude={latitude}
+          longitude={longitude}
+          name={name}
+          onClick={() => {
+            dispatch({ type: 'THREAD_ITEM_ACTIVATE', payload: { id, coordinates } });
+          }}
+        />
       );
     });
   }, [activeThread]);
@@ -168,7 +166,7 @@ export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'approaches']);
   const client = createClient();
   const { cities, bounds } = await fetchFeaturedCities(client, locale);
-  const counts = {}; //await fetchCounts(client, locale);
+  const counts = await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
 
   return {

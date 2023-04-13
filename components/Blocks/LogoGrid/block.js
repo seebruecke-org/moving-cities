@@ -2,10 +2,14 @@ export default `
   logoGridTitle: title
   logoGridItems: item {
     logo {
-      alternativeText
-      url
-      height
-      width
+      data {
+        attributes {
+          alternativeText
+          url
+          height
+          width
+        }
+      }
     }
   }
 `;

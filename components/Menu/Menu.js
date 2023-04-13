@@ -62,7 +62,7 @@ export default function Menu({ items = [], cta }) {
     }
   ];
 
-  const OVERLAY_SECONDARY_ITEMS = items.map(({ about: { data: { attributes: { title, slug } } } }) => ({
+  const OVERLAY_SECONDARY_ITEMS = items.map(({ about: { title, slug } }) => ({
     target: `/${tSlugs('about')}/${slug}`,
     label: title
   }));
@@ -93,10 +93,7 @@ export default function Menu({ items = [], cta }) {
 
           <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-5 md:origin-top-right hover:text-black">
             <Link href="/">
-              <a
-                className="flex items-center leading-none"
-                onClick={() => setIsOverlayOpen(false)}
-              >
+              <a className="flex items-center leading-none" onClick={() => setIsOverlayOpen(false)}>
                 <span
                   className={clsx(
                     'uppercase order-last md:order-2 font-raptor font-semibold text-xl xs:text-2xl md:text-3xl whitespace-nowrap tracking-wide',
@@ -166,7 +163,7 @@ export default function Menu({ items = [], cta }) {
           {cta && (
             <div className="self-start md:self-end mt-10 md:mt-0">
               <Button
-                href={`/${tSlugs('about')}/${cta.data?.attributes?.slug}`}
+                href={`/${tSlugs('about')}/${cta.slug}`}
                 className="text-black"
                 onClick={() => setIsOverlayOpen(false)}
               >

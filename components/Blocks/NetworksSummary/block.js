@@ -10,11 +10,19 @@ export async function sideload(client, data, context, locale) {
     const data = await fetchAPI(
       client,
       `
-      query NetworksByCitySlug($locale: String = "en", $slug: String) {
-        cities(locale: $locale, where: { slug: $slug }) {
-          networks {
-            name
-            slug
+      query NetworksByCitySlug($locale: I18NLocaleCode = "en", $slug: String) {
+        cities(locale: $locale, filters: { slug: { eq: $slug } }) {
+          data {
+            attributes {
+              networks {
+                data {
+                  attributes {
+                    name
+                    slug
+                  }
+                }
+              }
+            }
           }
         }
       }`,
