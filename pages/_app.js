@@ -28,16 +28,31 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
       previousRoute = url;
     };
 
+    const handleRouteChangeComplete = () => {
+      const links = document.querySelectorAll('a');
+      links.forEach(link => {
+        const isInternalLink =
+          link.href.startsWith(window.location.origin);
+        if (!isInternalLink) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
+    };
+
     const trackRouteChange = (url) => {
       fetch(`/api/track?url=${url}`);
     };
 
     router.events.on('routeChangeStart', handleRouteChange);
     router.events.on('routeChangeComplete', trackRouteChange);
+    router.events.on('routeChangeComplete', handleRouteChangeComplete);
+    handleRouteChangeComplete();
 
     return () => {
       router.events.off('routeChangeStart', handleRouteChange);
       router.events.off('routeChangeComplete', trackRouteChange);
+      router.events.off('routeChangeComplete', handleRouteChangeComplete);
     };
   }, []);
 
