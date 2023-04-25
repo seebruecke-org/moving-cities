@@ -14,6 +14,10 @@ import { useIsMounted } from '@/lib/hooks';
 
 import shadowStyles from './shadow.module.css';
 
+import instagramLogo from '@/public/images/instagram.svg';
+import twitterLogo from '@/public/images/twitter.svg';
+import SocialLink from "@/components/Menu/Overlay/SocialLink";
+
 function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
@@ -133,13 +137,19 @@ export default function Menu({ items = [], cta }) {
         </ul>
 
         <div className="flex flex-col md:flex-row md:justify-between mt-auto pb-28 md:pb-0">
-          <ul>
-            {OVERLAY_SECONDARY_ITEMS.map((item) => (
-              <li>
-                <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
-              </li>
-            ))}
-          </ul>
+          <div>
+            <ul>
+              {OVERLAY_SECONDARY_ITEMS.map((item) => (
+                <li>
+                  <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
+                </li>
+              ))}
+            </ul>
+            <div className="mt-5">
+              <SocialLink url="https://instagram.com/movingcities_eu" logo={instagramLogo} />
+              <SocialLink url="https://twitter.com/movingcities_eu" logo={twitterLogo} />
+            </div>
+          </div>
 
           <ul className="md:hidden flex mt-8">
             {locales.map((currentLocale, index) => (
