@@ -30,9 +30,8 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
 
     const handleRouteChangeComplete = () => {
       const links = document.querySelectorAll('a');
-      links.forEach(link => {
-        const isInternalLink =
-          link.href.startsWith(window.location.origin);
+      links.forEach((link) => {
+        const isInternalLink = link.href.startsWith(window.location.origin);
         if (!isInternalLink) {
           link.setAttribute('target', '_blank');
           link.setAttribute('rel', 'noopener noreferrer');

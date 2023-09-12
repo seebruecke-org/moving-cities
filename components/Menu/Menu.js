@@ -16,7 +16,7 @@ import shadowStyles from './shadow.module.css';
 
 import instagramLogo from '@/public/images/instagram.svg';
 import twitterLogo from '@/public/images/twitter.svg';
-import SocialLink from "@/components/Menu/Overlay/SocialLink";
+import SocialLink from '@/components/Menu/Overlay/SocialLink';
 
 function OverlayItemPrimary({ target, label, ...props }) {
   return (
@@ -58,6 +58,11 @@ export default function Menu({ items = [], cta }) {
     {
       target: `/${tSlugs('approaches')}`,
       label: t('menu.approaches')
+    },
+
+    {
+      target: `/${tSlugs('news')}`,
+      label: t('menu.news')
     },
 
     {

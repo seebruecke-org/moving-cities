@@ -8,14 +8,16 @@ export default function LogoGrid({ logoGridTitle, logoGridItems }) {
   const logos = logoGridItems.filter(({ logo }) => !!logo?.url);
 
   const renderImage = (logo) => {
-    const {url, width, height, alternativeText} = logo;
-    return <Image
-      src={buildCMSUrl(url)}
-      layout="intrinsic"
-      width={width}
-      height={height}
-      alt={alternativeText}
-    />
+    const { url, width, height, alternativeText } = logo;
+    return (
+      <Image
+        src={buildCMSUrl(url)}
+        layout="intrinsic"
+        width={width}
+        height={height}
+        alt={alternativeText}
+      />
+    );
   };
 
   return (
