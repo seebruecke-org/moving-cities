@@ -17,7 +17,7 @@ export default function Button({ href, children, className, priority = false, ..
 
   const buttonProps = {
     ...commonProps,
-    type: 'button'
+    type: commonProps.type ?? 'button'
   };
 
   if (href) {
