@@ -9,6 +9,7 @@ import Media from '@/components/Blocks/Media';
 import Partner from '@/components/Blocks/Partner';
 import Section from '@/components/Blocks/Section';
 import BrevoNewsletterForm from '@/components/Blocks/BrevoNewsletterForm';
+import Team from '@/components/Blocks/Team';
 import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
@@ -47,7 +48,8 @@ export default function About({ navigation, about: { title, content, metadata } 
             Media,
             Partner,
             Section,
-            BrevoNewsletterForm
+            BrevoNewsletterForm,
+            Team
           }}
         />
       </article>
@@ -76,7 +78,7 @@ export async function getStaticPaths({ locales }) {
 }
 
 export async function getStaticProps({ locale, params: { slug } }) {
-  const translations = await getTranslations(locale, ['city', 'newsletter']);
+  const translations = await getTranslations(locale, ['city', 'newsletter', 'team']);
   const client = createClient();
   const about = await fetchAboutBySlug(client, slug, locale);
   const navigation = await fetchAllAbouts(client, locale, { active: slug?.[0] });

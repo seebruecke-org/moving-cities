@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { getTranslations } from '@/lib/global';
 import { createClient } from '@/lib/api';
