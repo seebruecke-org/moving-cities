@@ -40,7 +40,10 @@ export default function LanguageSwitch({ current, locales = [], localizations })
           .filter((currentLocale) => currentLocale !== current)
           .map((locale) => (
             <li>
-              <Link href={localizations && localizations[locale] ? localizations[locale] : ""} locale={locale}>
+              <Link
+                href={localizations && localizations[locale] ? localizations[locale] : ''}
+                locale={locale}
+              >
                 <a className="block font-raptor font-bold text-m text-black text-center uppercase py-4 px-6 hover:bg-black hover:text-white leading-none">
                   {locale}
                 </a>

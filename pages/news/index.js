@@ -2,7 +2,7 @@ import { createClient } from '@/lib/api';
 import { fetchMenu } from '@/lib/menu';
 import { getTranslations } from '@/lib/global';
 import { useTranslation } from 'next-i18next';
-import {fetchAllNewsEntries, fetchNewsLocalizations} from '@/lib/news';
+import { fetchAllNewsEntries, fetchNewsLocalizations } from '@/lib/news';
 import NewsEntry from '@/components/NewsEntry';
 
 export default function NewsOverviewPage({ newsEntries }) {
@@ -43,7 +43,7 @@ export async function getStaticProps({ locale }) {
       ...translations,
       menu,
       newsEntries,
-      localizations,
+      localizations
     }
   };
 }

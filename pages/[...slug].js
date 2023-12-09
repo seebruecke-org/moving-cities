@@ -19,7 +19,12 @@ import SidebarMenu from '@/components/SidebarMenu';
 const CountryContext = dynamic(() => import('@/components/CountryContext'));
 
 import { buildCMSUrl, createClient } from '@/lib/api';
-import {fetchCityBySlug, fetchAllCityPaths, fetchNextCity, fetchCityLocalizationsBySlug} from '@/lib/cities';
+import {
+  fetchCityBySlug,
+  fetchAllCityPaths,
+  fetchNextCity,
+  fetchCityLocalizationsBySlug
+} from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { fetchMenu } from '@/lib/menu';
@@ -188,7 +193,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       city,
       next,
       menu,
-      localizations,
+      localizations
     }
   };
 }

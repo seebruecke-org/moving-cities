@@ -18,7 +18,11 @@ import { useWindowSize } from '@/lib/hooks';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { renderMap } from '@/lib/map';
 import { fetchMenu } from '@/lib/menu';
-import {fetchAllNetworks, fetchAllNetworkPaths, fetchNetworkLocalizationsBySlug} from '@/lib/networks';
+import {
+  fetchAllNetworks,
+  fetchAllNetworkPaths,
+  fetchNetworkLocalizationsBySlug
+} from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
 import useMapReducer from '@/lib/stores/map';
 
@@ -259,7 +263,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       networks,
       counts,
       menu,
-      localizations,
+      localizations
     }
   };
 }

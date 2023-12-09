@@ -15,7 +15,11 @@ const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
 const MapboxMap = dynamic(() => import('@/components/MapboxMap'), { ssr: false });
 
 import { createClient } from '@/lib/api';
-import {fetchAllCitiesByCountry, fetchCountryLocalizationsBySlug, fetchCounts} from '@/lib/cities';
+import {
+  fetchAllCitiesByCountry,
+  fetchCountryLocalizationsBySlug,
+  fetchCounts
+} from '@/lib/cities';
 import { getBounds } from '@/lib/coordinates';
 import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
@@ -219,7 +223,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       bounds,
       counts,
       menu,
-      localizations,
+      localizations
     }
   };
 }

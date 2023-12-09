@@ -16,7 +16,11 @@ const Approach = dynamic(() => import('@/components/Approach'));
 const Columns = dynamic(() => import('@/components/Columns'));
 
 import { createClient } from '@/lib/api';
-import {fetchApproachBySlug, fetchAllApproachPaths, fetchApproachLocalizationsBySlug} from '@/lib/approaches';
+import {
+  fetchApproachBySlug,
+  fetchAllApproachPaths,
+  fetchApproachLocalizationsBySlug
+} from '@/lib/approaches';
 import { fetchApproaches } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
@@ -150,7 +154,7 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
       approach,
       navigation,
       menu,
-      localizations,
+      localizations
     }
   };
 }

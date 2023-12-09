@@ -14,7 +14,12 @@ import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
 import { createClient } from '@/lib/api';
-import {fetchAboutBySlug, fetchAboutLocalizationsBySlug, fetchAllAboutPaths, fetchAllAbouts} from '@/lib/abouts';
+import {
+  fetchAboutBySlug,
+  fetchAboutLocalizationsBySlug,
+  fetchAllAboutPaths,
+  fetchAllAbouts
+} from '@/lib/abouts';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { fetchMenu } from '@/lib/menu';
@@ -98,7 +103,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       navigation,
       about,
       menu,
-      localizations,
+      localizations
     }
   };
 }
