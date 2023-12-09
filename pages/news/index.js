@@ -2,7 +2,7 @@ import { createClient } from '@/lib/api';
 import { fetchMenu } from '@/lib/menu';
 import { getTranslations } from '@/lib/global';
 import { useTranslation } from 'next-i18next';
-import { fetchAllNewsEntries } from '@/lib/news';
+import {fetchAllNewsEntries, fetchNewsLocalizations} from '@/lib/news';
 import NewsEntry from '@/components/NewsEntry';
 
 export default function NewsOverviewPage({ newsEntries }) {
@@ -34,6 +34,7 @@ export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['news']);
   const client = createClient();
   const newsEntries = await fetchAllNewsEntries(client);
+  const localizations = await fetchNewsLocalizations();
   const menu = await fetchMenu(client, locale);
 
   return {
@@ -41,7 +42,8 @@ export async function getStaticProps({ locale }) {
     props: {
       ...translations,
       menu,
-      newsEntries
+      newsEntries,
+      localizations,
     }
   };
 }

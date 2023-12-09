@@ -14,7 +14,7 @@ import SEO from '@/components/SEO';
 import SidebarMenu from '@/components/SidebarMenu';
 
 import { createClient } from '@/lib/api';
-import { fetchAboutBySlug, fetchAllAboutPaths, fetchAllAbouts } from '@/lib/abouts';
+import {fetchAboutBySlug, fetchAboutLocalizationsBySlug, fetchAllAboutPaths, fetchAllAbouts} from '@/lib/abouts';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { fetchMenu } from '@/lib/menu';
@@ -81,6 +81,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['city', 'newsletter', 'team']);
   const client = createClient();
   const about = await fetchAboutBySlug(client, slug, locale);
+  const localizations = await fetchAboutLocalizationsBySlug(client, slug, locale);
   const navigation = await fetchAllAbouts(client, locale, { active: slug?.[0] });
   const menu = await fetchMenu(client, locale);
 
@@ -96,7 +97,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
       ...translations,
       navigation,
       about,
-      menu
+      menu,
+      localizations,
     }
   };
 }

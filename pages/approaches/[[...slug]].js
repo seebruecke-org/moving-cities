@@ -10,7 +10,7 @@ import { createClient } from '@/lib/api';
 import {
   fetchAllApproaches,
   fetchApproachCategories,
-  fetchAllApproachCategoriesPaths
+  fetchAllApproachCategoriesPaths, fetchApproachCategoryLocalizationsBySlug
 } from '@/lib/approaches';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
@@ -94,6 +94,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const client = createClient();
   const { approaches, approachesCount } = await fetchAllApproaches(client, locale, slug?.[0]);
   const categories = await fetchApproachCategories(client, locale);
+  const localizations = await fetchApproachCategoryLocalizationsBySlug(client, locale, slug?.[0])
   const menu = await fetchMenu(client, locale);
 
   return {
@@ -103,7 +104,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
       categories,
       approaches,
       approachesCount,
-      menu
+      menu,
+      localizations,
     }
   };
 }

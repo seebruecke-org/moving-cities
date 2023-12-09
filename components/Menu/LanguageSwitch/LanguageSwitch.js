@@ -2,7 +2,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 
-export default function LanguageSwitch({ current, locales = [] }) {
+export default function LanguageSwitch({ current, locales = [], localizations }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -40,7 +40,7 @@ export default function LanguageSwitch({ current, locales = [] }) {
           .filter((currentLocale) => currentLocale !== current)
           .map((locale) => (
             <li>
-              <Link href="/" locale={locale}>
+              <Link href={localizations && localizations[locale] ? localizations[locale] : ""} locale={locale}>
                 <a className="block font-raptor font-bold text-m text-black text-center uppercase py-4 px-6 hover:bg-black hover:text-white leading-none">
                   {locale}
                 </a>

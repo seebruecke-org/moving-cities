@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import clsx from 'clsx';
 
 import BlockSwitch from '@/components/Blocks/BlockSwitch';

@@ -9,7 +9,7 @@ import ThreadList from '@/components/ThreadList';
 const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
 const MapboxMap = dynamic(() => import('@/components/MapboxMap'), { ssr: false });
 import { createClient } from '@/lib/api';
-import { fetchCounts, fetchFeaturedCities } from '@/lib/cities';
+import {fetchCounts, fetchFeaturedCities, fetchFeaturedCitiesLocalizations} from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { useWindowSize } from '@/lib/hooks';
 import { renderMap } from '@/lib/map';
@@ -166,6 +166,7 @@ export async function getStaticProps({ locale }) {
   const translations = await getTranslations(locale, ['city', 'approaches']);
   const client = createClient();
   const { cities, bounds } = await fetchFeaturedCities(client, locale);
+  const localizations = await fetchFeaturedCitiesLocalizations();
   const counts = await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
 
@@ -176,7 +177,8 @@ export async function getStaticProps({ locale }) {
       cities,
       bounds,
       counts,
-      menu
+      menu,
+      localizations,
     }
   };
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
@@ -41,7 +41,7 @@ function OverlayItemSecondary({ target, label, ...props }) {
   );
 }
 
-export default function Menu({ items = [], cta }) {
+export default function Menu({ items = [], cta, localizations }) {
   const { t } = useTranslation();
   const { t: tSlugs } = useTranslation('slugs');
   const overlayRef = useRef();
@@ -128,7 +128,7 @@ export default function Menu({ items = [], cta }) {
             </Link>
           </span>
 
-          <LanguageSwitch current={locale} locales={locales} />
+          <LanguageSwitch current={locale} locales={locales} localizations={localizations} />
         </header>
       </div>
 

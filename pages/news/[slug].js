@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { getTranslations } from '@/lib/global';
 import { createClient } from '@/lib/api';
-import { fetchAllNewsEntryPaths, fetchNewsEntryBySlug } from '@/lib/news';
+import {fetchAllNewsEntryPaths, fetchNewsEntryBySlug, fetchNewsLocalizationsBySlug} from '@/lib/news';
 import { fetchMenu } from '@/lib/menu';
 import SidebarMenu from '@/components/SidebarMenu/SidebarMenu';
 import { useTranslation } from 'next-i18next';
@@ -80,6 +80,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const translations = await getTranslations(locale, ['news']);
   const client = createClient();
   const newsEntry = await fetchNewsEntryBySlug(client, slug);
+  const localizations = await fetchNewsLocalizationsBySlug(slug);
   const menu = await fetchMenu(client, locale);
 
   return {
@@ -87,7 +88,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
     props: {
       ...translations,
       menu,
-      newsEntry
+      newsEntry,
+      localizations,
     }
   };
 }
