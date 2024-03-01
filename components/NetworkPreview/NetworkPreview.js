@@ -43,7 +43,7 @@ function AllCities({ cities }) {
   );
 }
 
-export default function NetworkPreview({ title, content, featuredCities, cities }) {
+export default function NetworkPreview({ title, content }) {
   const { t } = useTranslation('networks');
 
   return (
@@ -60,24 +60,6 @@ export default function NetworkPreview({ title, content, featuredCities, cities 
       <div className="mt-10 md:mt-28">
         <BlockSwitch blocks={content} renderers={{ Richtext }} />
       </div>
-
-      {featuredCities?.length > 0 && (
-        <>
-          <Heading level={2} as={4} className="mb-8 mt-6 md:mt-12">
-            {t('allCities')}
-          </Heading>
-
-          <ul className="flex flex-wrap">
-            {featuredCities.map(({ name, slug }) => (
-              <li className="mr-4 mb-4">
-                <Button href={`/${slug}`}>{name}</Button>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-
-      {cities?.length > 0 && <AllCities cities={cities} />}
     </article>
   );
 }
