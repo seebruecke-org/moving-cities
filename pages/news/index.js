@@ -20,11 +20,13 @@ export default function NewsOverviewPage({ newsEntries }) {
       </p>
 
       <ul className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
-        {newsEntries.map((newsEntry) => (
-          <li>
-            <NewsEntry {...newsEntry} uri={`/${tSlugs('news')}/${newsEntry.slug}`} />
-          </li>
-        ))}
+        {newsEntries
+          ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+          ?.map((newsEntry) => (
+            <li>
+              <NewsEntry {...newsEntry} uri={`/${tSlugs('news')}/${newsEntry.slug}`} />
+            </li>
+          ))}
       </ul>
     </div>
   );

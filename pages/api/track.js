@@ -8,6 +8,7 @@ const tracker =
 
 export default function (req, res) {
   if (!tracker || !req?.query) {
+    res.send({});
     return;
   }
 

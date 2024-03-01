@@ -14,6 +14,8 @@ import DownloadSection from '@/components/Blocks/DownloadSection';
 import Quote from '@/components/Blocks/Quote';
 import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import BackTo from '@/components/BackTo';
+import Media from '@/components/Blocks/Media';
+import VideoEmbed from '@/components/Blocks/VideoEmbed';
 
 export default function NewsEntryPage({ newsEntry }) {
   const { t: tSlugs } = useTranslation('slugs');
@@ -49,12 +51,15 @@ export default function NewsEntryPage({ newsEntry }) {
               </span>
             </h1>
             <p className="mt-8 font-raptor text-s leading-normal">
-              {tNews('createdAt', { date: format(new Date(newsEntry?.createdAt), 'yyyy/MM/dd') })}
+              {tNews('createdAt', { date: format(new Date(newsEntry?.date), 'yyyy/MM/dd') })}
             </p>
           </div>
         </header>
 
-        <BlockSwitch blocks={newsEntry?.content} renderers={{ Section, Quote, DownloadSection }} />
+        <BlockSwitch
+          blocks={newsEntry?.content}
+          renderers={{ Media, Section, Quote, DownloadSection, VideoEmbed }}
+        />
 
         <BackTo
           title={tNews('backToOverview')}
