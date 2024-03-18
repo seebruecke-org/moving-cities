@@ -1,6 +1,6 @@
 {
   "featuredCities": "Ausgewählte Städte",
-  "featuredCitiesIntro": "Von {{ count_total }} untersuchten europäischen Städten unterstützen {{ count }} aktiv eine solidarische Migrationspolitik",
+  "featuredCitiesIntro": "{{ count }} detaillierte Fallbeispiele von Städten in Europa, die eine solidarische Migrationspolitik umsetzen",
   "allCities": "Alle Städte",
   "allCitiesIntro": "Städte und Gemeinden, die in einer Kampagne oder einem Städtenetzwerk aktiv sind, das eine solidarische Migrationspolitik fördert, oder die sich bereit erklärt haben, mehr Geflüchtete aufzunehmen",
   "networks": "Netzwerke",
