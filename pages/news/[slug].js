@@ -16,6 +16,7 @@ import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import BackTo from '@/components/BackTo';
 import Media from '@/components/Blocks/Media';
 import VideoEmbed from '@/components/Blocks/VideoEmbed';
+import { fetchFooter } from '@/lib/footer';
 
 export default function NewsEntryPage({ newsEntry }) {
   const { t: tSlugs } = useTranslation('slugs');
@@ -91,12 +92,14 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const newsEntry = await fetchNewsEntryBySlug(client, slug);
   const localizations = await fetchNewsLocalizationsBySlug(slug);
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   return {
     revalidate: 240,
     props: {
       ...translations,
       menu,
+      footer,
       newsEntry,
       localizations
     }

@@ -16,6 +16,7 @@ import {
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { fetchMenu } from '@/lib/menu';
+import { fetchFooter } from '@/lib/footer';
 
 export default function ApproachesOverviewPage({ approaches, approachesCount, categories }) {
   const router = useRouter();
@@ -97,6 +98,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const categories = await fetchApproachCategories(client, locale);
   const localizations = await fetchApproachCategoryLocalizationsBySlug(client, locale, slug?.[0]);
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   return {
     revalidate: 240,
@@ -106,6 +108,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       approaches,
       approachesCount,
       menu,
+      footer,
       localizations
     }
   };

@@ -25,6 +25,7 @@ import { fetchApproaches } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { fetchMenu } from '@/lib/menu';
+import { fetchFooter } from '@/lib/footer';
 
 export default function ApproachPage({
   approach: {
@@ -139,6 +140,7 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
   const localizations = await fetchApproachLocalizationsBySlug(client, locale, slug);
   const navigation = await fetchApproaches(client, locale, city);
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   if (approach === null) {
     return {
@@ -154,6 +156,7 @@ export async function getStaticProps({ locale, params: { city, slug } }) {
       approach,
       navigation,
       menu,
+      footer,
       localizations
     }
   };

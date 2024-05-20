@@ -4,6 +4,7 @@ import { getTranslations } from '@/lib/global';
 import { useTranslation } from 'next-i18next';
 import { fetchAllNewsEntries, fetchNewsLocalizations } from '@/lib/news';
 import NewsEntry from '@/components/NewsEntry';
+import { fetchFooter } from '@/lib/footer';
 
 export default function NewsOverviewPage({ newsEntries }) {
   const { t: tNews } = useTranslation('news');
@@ -38,12 +39,14 @@ export async function getStaticProps({ locale }) {
   const newsEntries = await fetchAllNewsEntries(client);
   const localizations = await fetchNewsLocalizations();
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   return {
     revalidate: 240,
     props: {
       ...translations,
       menu,
+      footer,
       newsEntries,
       localizations
     }

@@ -23,6 +23,7 @@ import {
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { fetchMenu } from '@/lib/menu';
+import { fetchFooter } from '@/lib/footer';
 
 export default function About({ navigation, about: { title, content, metadata } }) {
   const { t: tSlugs } = useTranslation('slugs');
@@ -89,6 +90,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const localizations = await fetchAboutLocalizationsBySlug(client, slug, locale);
   const navigation = await fetchAllAbouts(client, locale, { active: slug?.[0] });
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   if (about === null) {
     return {
@@ -103,6 +105,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       navigation,
       about,
       menu,
+      footer,
       localizations
     }
   };

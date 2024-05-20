@@ -25,6 +25,7 @@ import {
 } from '@/lib/networks';
 import { fetchCounts } from '@/lib/cities';
 import useMapReducer from '@/lib/stores/map';
+import { fetchFooter } from '@/lib/footer';
 
 const NetworkPreview = dynamic(() => import('@/components/NetworkPreview'));
 const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
@@ -254,6 +255,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const localizations = await fetchNetworkLocalizationsBySlug(client, slug?.[0], locale);
   const counts = await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   return {
     revalidate: 240,
@@ -263,6 +265,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       networks,
       counts,
       menu,
+      footer,
       localizations
     }
   };

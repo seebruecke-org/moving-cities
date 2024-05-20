@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Menu from '@/components/Menu';
 
 import '../lib/styles/tailwind.css';
+import Footer from '@/components/Footer';
 
 let routeHasChanged = false;
 let previousRoute = '';
@@ -62,6 +63,8 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
       <main className="relative pt-20 xl:pt-0 xl:pl-24">
         <Component {...pageProps} routeHasChanged={routeHasChanged} />
       </main>
+
+      <Footer {...pageProps.footer} />
     </>
   );
 }

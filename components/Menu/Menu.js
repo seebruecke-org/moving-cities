@@ -93,10 +93,10 @@ export default function Menu({ items = [], cta, localizations }) {
 
   return (
     <>
-      <div className="absolute left-0 top-0 w-full xl:w-20 xl:h-screen z-50">
+      <div className="absolute left-0 top-0 w-full z-50">
         <header
           className={classNames(
-            'from-red-300 to-pink-300 fixed left-0 top-0 xl:bottom-auto xl:top-0 w-full xl:w-24 text-white px-8 xl:px-6 pt-4 pb-4 xl:h-full whitespace-nowrap flex xl:block',
+            'from-red-300 to-pink-300 fixed left-0 top-0 xl:bottom-auto xl:top-0 w-full text-white px-8 xl:px-6 pt-4 pb-4 whitespace-nowrap flex',
             isOverlayOpen ? 'bg-transparent' : 'bg-gradient-to-bl'
           )}
         >
@@ -106,12 +106,12 @@ export default function Menu({ items = [], cta, localizations }) {
             className="order-last xl:order-auto ml-auto"
           />
 
-          <span className="flex xl:flex-row-reverse items-center space-x-4 xl:-rotate-90 xl:-translate-x-full relative xl:absolute xl:top-24 xl:left-5 xl:origin-top-right xl:hover:text-black">
+          <span className="flex items-center space-x-4 relative xl:hover:text-black">
             <Link href="/">
               <a className="flex items-center leading-none" onClick={() => setIsOverlayOpen(false)}>
                 <span
                   className={clsx(
-                    'uppercase order-last xl:order-2 font-raptor font-semibold text-xl xs:text-2xl xl:text-3xl whitespace-nowrap tracking-wide',
+                    'uppercase order-last xl:hidden xl:order-2 font-raptor font-semibold text-xl xs:text-2xl xl:text-3xl whitespace-nowrap tracking-wide',
                     shadowStyles['text-shadow']
                   )}
                 >

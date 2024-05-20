@@ -16,6 +16,7 @@ import { renderMap } from '@/lib/map';
 import { fetchMenu } from '@/lib/menu';
 import useMapReducer from '@/lib/stores/map';
 import CityPreview from '@/components/CityPreview';
+import { fetchFooter } from '@/lib/footer';
 
 function CityMarker({ id, name, ...props }) {
   return (
@@ -169,6 +170,7 @@ export async function getStaticProps({ locale }) {
   const localizations = await fetchFeaturedCitiesLocalizations();
   const counts = await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   return {
     revalidate: 240,
@@ -178,6 +180,7 @@ export async function getStaticProps({ locale }) {
       bounds,
       counts,
       menu,
+      footer,
       localizations
     }
   };

@@ -6,6 +6,7 @@ import { fetchCounts } from '@/lib/cities';
 import { fetchIntro } from '@/lib/intro';
 import { getTranslations } from '@/lib/global';
 import { fetchMenu } from '@/lib/menu';
+import { fetchFooter } from '@/lib/footer';
 
 export default function HomePage({ intro, counts }) {
   return (
@@ -22,6 +23,7 @@ export async function getStaticProps({ locale }) {
   const data = await fetchIntro(client, locale);
   const counts = await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   return {
     revalidate: 360,
@@ -29,7 +31,8 @@ export async function getStaticProps({ locale }) {
       ...translations,
       ...data,
       counts,
-      menu
+      menu,
+      footer
     }
   };
 }

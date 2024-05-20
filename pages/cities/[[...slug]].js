@@ -28,6 +28,7 @@ import { renderMap } from '@/lib/map';
 import { fetchMenu } from '@/lib/menu';
 import { fetchAllCountryPaths } from '@/lib/networks';
 import useMapReducer from '@/lib/stores/map';
+import { fetchFooter } from '@/lib/footer';
 
 export default function AllCitiesOverview({ countries, counts, bounds: defaultBounds, menu }) {
   const { width: windowWidth } = useWindowSize();
@@ -214,6 +215,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const localizations = await fetchCountryLocalizationsBySlug(client, locale, slug?.[0]);
   const counts = await fetchCounts(client, locale);
   const menu = await fetchMenu(client, locale);
+  const footer = await fetchFooter(client, locale);
 
   return {
     revalidate: 240,
@@ -223,6 +225,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
       bounds,
       counts,
       menu,
+      footer,
       localizations
     }
   };
