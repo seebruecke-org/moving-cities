@@ -11,7 +11,7 @@ export default function PageNotFound() {
   const { t } = useTranslation('404');
 
   return (
-    <div className="md:flex pb-28 md:pb-0">
+    <div className="md:flex pb-10 md:pb-0">
       <SEO title={t('title')} />
 
       <article>

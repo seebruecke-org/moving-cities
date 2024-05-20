@@ -74,7 +74,7 @@ export default function CityPage({
 
       <SidebarMenu items={menuItems} selectClassName="bg-yellow-300" />
 
-      <article className="flex-grow pb-28 md:pb-0">
+      <article className="flex-grow pb-10 md:pb-0">
         <CityHeader title={name} subtitle={subtitle} takeaways={takeaways} icon={icon} />
 
         <BlockSwitch

@@ -28,7 +28,7 @@ export default function About({ navigation, about: { title, content, metadata } 
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
-    <div className="md:flex pb-28 md:pb-0">
+    <div className="md:flex pb-10 md:pb-0">
       <SEO title={title} metadata={metadata} />
 
       <SidebarMenu

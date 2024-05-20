@@ -59,7 +59,7 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
     <>
       <Menu {...pageProps.menu} localizations={pageProps.localizations} />
 
-      <main className="relative md:pl-24">
+      <main className="relative pt-20 xl:pt-0 xl:pl-24">
         <Component {...pageProps} routeHasChanged={routeHasChanged} />
       </main>
     </>

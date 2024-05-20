@@ -22,7 +22,7 @@ export default function NewsEntryPage({ newsEntry }) {
   const { t: tNews } = useTranslation('news');
 
   return (
-    <div className="md:flex pb-28 md:pb-0">
+    <div className="md:flex pb-10 md:pb-0">
       <SidebarMenu
         items={[
           {

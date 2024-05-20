@@ -10,7 +10,7 @@ export default function NewsOverviewPage({ newsEntries }) {
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
-    <div className="mx-6 md:ml-72 md:mr-16 md:pr-0 pb-28 max-w-8xl">
+    <div className="mx-6 md:ml-72 md:mr-16 md:pr-0 pb-10 max-w-8xl">
       <h1 className="my-10 md:mt-20 md:mb-28 text-4xl md:text-5xl xl:text-6xl leading-none font-bold font-raptor">
         {tNews('news')}
       </h1>

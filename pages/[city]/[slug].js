@@ -46,7 +46,7 @@ export default function ApproachPage({
   const approaches = cityApproaches?.length >= 1 ? cityApproaches : related_approaches;
 
   return (
-    <div className="md:flex pb-28 md:pb-0">
+    <div className="md:flex pb-10 md:pb-0">
       <SEO title={title} metadata={metadata} />
 
       <SidebarMenu

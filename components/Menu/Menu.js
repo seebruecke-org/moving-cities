@@ -17,12 +17,13 @@ import shadowStyles from './shadow.module.css';
 import instagramLogo from '@/public/images/instagram.svg';
 import twitterLogo from '@/public/images/twitter.svg';
 import SocialLink from '@/components/Menu/Overlay/SocialLink';
+import classNames from 'classnames';
 
 function OverlayItemPrimary({ target, label, ...props }) {
   return (
     <Link href={target}>
       <a
-        className="font-raptor font-bold text-2xl md:text-4xl xl:text-5xl leading-none hover:text-black"
+        className="font-raptor font-bold text-2xl xl:text-4xl xl:text-5xl leading-none hover:text-black"
         {...props}
       >
         {label}
@@ -34,7 +35,7 @@ function OverlayItemPrimary({ target, label, ...props }) {
 function OverlayItemSecondary({ target, label, ...props }) {
   return (
     <Link href={target}>
-      <a className="font-raptor font-bold text-m md:text-3xl hover:text-black" {...props}>
+      <a className="font-raptor font-bold text-m xl:text-3xl hover:text-black" {...props}>
         {label}
       </a>
     </Link>
@@ -92,20 +93,25 @@ export default function Menu({ items = [], cta, localizations }) {
 
   return (
     <>
-      <div className="absolute left-0 top-0 w-full md:w-20 md:h-screen z-50">
-        <header className="bg-gradient-to-br from-red-300 to-pink-300 fixed left-0 bottom-0 md:bottom-auto md:top-0 w-full md:w-24 text-white px-8 md:px-6 pt-5 pb-4 md:h-full whitespace-nowrap flex md:block">
+      <div className="absolute left-0 top-0 w-full xl:w-20 xl:h-screen z-50">
+        <header
+          className={classNames(
+            'from-red-300 to-pink-300 fixed left-0 top-0 xl:bottom-auto xl:top-0 w-full xl:w-24 text-white px-8 xl:px-6 pt-4 pb-4 xl:h-full whitespace-nowrap flex xl:block',
+            isOverlayOpen ? 'bg-transparent' : 'bg-gradient-to-bl'
+          )}
+        >
           <Burger
-            onOpen={() => setIsOverlayOpen(true)}
-            onClose={() => setIsOverlayOpen(false)}
-            className="order-last md:order-auto ml-auto"
+            onClick={() => setIsOverlayOpen(!isOverlayOpen)}
+            isOverlayOpen={isOverlayOpen}
+            className="order-last xl:order-auto ml-auto"
           />
 
-          <span className="flex md:flex-row-reverse items-center space-x-4 md:-rotate-90 md:-translate-x-full relative md:absolute top-1 md:top-24 md:left-5 md:origin-top-right hover:text-black">
+          <span className="flex xl:flex-row-reverse items-center space-x-4 xl:-rotate-90 xl:-translate-x-full relative xl:absolute xl:top-24 xl:left-5 xl:origin-top-right xl:hover:text-black">
             <Link href="/">
               <a className="flex items-center leading-none" onClick={() => setIsOverlayOpen(false)}>
                 <span
                   className={clsx(
-                    'uppercase order-last md:order-2 font-raptor font-semibold text-xl xs:text-2xl md:text-3xl whitespace-nowrap tracking-wide',
+                    'uppercase order-last xl:order-2 font-raptor font-semibold text-xl xs:text-2xl xl:text-3xl whitespace-nowrap tracking-wide',
                     shadowStyles['text-shadow']
                   )}
                 >
@@ -117,7 +123,7 @@ export default function Menu({ items = [], cta, localizations }) {
                   width="826"
                   height="447"
                   viewBox="0 0 826 447"
-                  className="h-14 w-auto md:order-1 mx-10 relative hidden sm:block"
+                  className="h-14 w-auto xl:order-1 mx-10 relative hidden xl:block"
                 >
                   <path
                     fill="currentColor"
@@ -133,7 +139,7 @@ export default function Menu({ items = [], cta, localizations }) {
       </div>
 
       <Overlay ref={overlayRef} isOpen={isOverlayOpen} setIsOverlayOpen={setIsOverlayOpen}>
-        <ul className="space-y-10 md:space-y-12">
+        <ul className="space-y-10 xl:space-y-12">
           {OVERLAY_PRIMARY_ITEMS.map((item) => (
             <li>
               <OverlayItemPrimary {...item} onClick={() => setIsOverlayOpen(false)} />
@@ -141,7 +147,7 @@ export default function Menu({ items = [], cta, localizations }) {
           ))}
         </ul>
 
-        <div className="flex flex-col md:flex-row md:justify-between mt-auto pb-28 md:pb-0">
+        <div className="flex flex-col xl:flex-row xl:justify-between mt-auto pb-6">
           <div>
             <ul>
               {OVERLAY_SECONDARY_ITEMS.map((item) => (
@@ -156,13 +162,13 @@ export default function Menu({ items = [], cta, localizations }) {
             </div>
           </div>
 
-          <ul className="md:hidden flex mt-8">
+          <ul className="xl:hidden flex mt-8">
             {locales.map((currentLocale, index) => (
               <li>
                 <Link href="/" locale={currentLocale}>
                   <a
                     className={clsx(
-                      'font-raptor font-bold text-m md:text-3xl hover:underline mr-4 uppercase leading-none',
+                      'font-raptor font-bold text-m xl:text-3xl hover:underline mr-4 uppercase leading-none',
                       index !== 0 && 'border-l-2 pl-4',
                       locale === currentLocale && 'underline'
                     )}
@@ -176,7 +182,7 @@ export default function Menu({ items = [], cta, localizations }) {
           </ul>
 
           {cta && (
-            <div className="self-start md:self-end mt-10 md:mt-0">
+            <div className="self-start xl:self-end mt-10 xl:mt-0">
               <Button
                 href={`/${tSlugs('about')}/${cta.slug}`}
                 className="text-black"

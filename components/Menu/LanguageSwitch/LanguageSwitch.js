@@ -6,10 +6,10 @@ export default function LanguageSwitch({ current, locales = [], localizations })
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="hidden md:flex items-center relative md:absolute md:bottom-0 md:left-0 md:w-full">
+    <div className="hidden xl:flex items-center relative xl:absolute xl:bottom-0 xl:left-0 xl:w-full">
       <button
         type="button"
-        className="font-raptor uppercase text-m w-full flex items-center leading-none px-4 md:p-6 hover:text-black"
+        className="font-raptor uppercase text-m w-full flex items-center leading-none px-4 xl:p-6 hover:text-black"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span>{current}</span>
@@ -32,7 +32,7 @@ export default function LanguageSwitch({ current, locales = [], localizations })
 
       <ul
         className={clsx(
-          'absolute bottom-full md:bottom-0 left-0 md:left-full w-full bg-yellow-300 pb-3',
+          'absolute bottom-full xl:bottom-0 left-0 xl:left-full w-full bg-yellow-300 pb-3',
           !isOpen && 'hidden'
         )}
       >

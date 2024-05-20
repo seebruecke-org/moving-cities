@@ -49,7 +49,7 @@ export default function NetworkPreview({ title, content }) {
   return (
     <article
       className={clsx(
-        'h-full p-8 md:p-10 overflow-y-auto pb-28 bg-yellow-300',
+        'h-full p-8 md:p-10 overflow-y-auto pb-10 bg-yellow-300',
         styles.networkPreview
       )}
     >
