@@ -6,11 +6,13 @@ import Button from '@/components/Button';
 import CityIcon from '@/components/CityIcon';
 import Heading from '@/components/Heading';
 import Markdown from '@/components/Markdown';
+import { buildCMSUrl } from '@/lib/api';
 
 export default function CityPreview({
   title,
   subtitle,
   uri,
+  reportFile,
   icon,
   approaches,
   summary,
@@ -64,6 +66,17 @@ export default function CityPreview({
           <Button href={uri} className="w-auto self-start">
             <span>{t('viewCity')}</span>
             <span className="text-red-300 ml-4 text-xl leading-none">→</span>
+          </Button>
+        )}
+        {reportFile && (
+          <Button
+            href={buildCMSUrl(reportFile.url)}
+            className="self-start mt-8 w-auto"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t('download.cta')}
+            <span className="text-red-300 ml-4">⤓</span>
           </Button>
         )}
 

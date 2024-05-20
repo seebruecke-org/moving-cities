@@ -55,7 +55,7 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
   const [{ activeThread }, dispatch] = useMapReducer();
 
   const navItems = useMemo(() => {
-    return cities.map(({ id, name, subtitle, slug, approaches, summary, ...city }) => ({
+    return cities.map(({ id, name, subtitle, slug, approaches, summary, reportFile, ...city }) => ({
       ...city,
       id,
       title: name,
@@ -66,6 +66,7 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
         title: name,
         subtitle,
         uri: `/${slug}`,
+        reportFile,
         approaches: approaches.map(({ slug: approachSlug, ...approach }) => ({
           uri: `/${slug}/${approachSlug}`,
           ...approach
@@ -75,6 +76,8 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
       }
     }));
   }, [activeThread]);
+
+  console.log(navItems);
 
   const markers = useMemo(() => {
     // don't show markers on the map, once a city was selected
