@@ -37,7 +37,7 @@ function SidebarSelect({ items, className }) {
 
 function SidebarMenu({ items }) {
   return (
-    <nav className="hidden md:block md:sticky top-0 md:h-screen w-96 flex-grow-0 flex-shrink-0 relative">
+    <nav className="hidden md:block md:sticky h-screen top-24 w-96 flex-grow-0 flex-shrink-0 relative">
       <span className="absolute top-0 left-full w-3 bg-gradient-to-r from-black h-full opacity-20" />
 
       {items.map(({ target, label, active: topLevelActive, items }, index) => (

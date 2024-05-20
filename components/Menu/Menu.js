@@ -1,81 +1,23 @@
-import { useEffect, useState, useRef } from 'react';
-import { useTranslation } from 'next-i18next';
-import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { useRouter } from 'next/router';
-import clsx from 'clsx';
-import Link from 'next/link';
-
-import Burger from './Burger';
-import Button from '@/components/Button';
-import LanguageSwitch from './LanguageSwitch';
-import Overlay from './Overlay';
-
-import { useIsMounted } from '@/lib/hooks';
-
-import shadowStyles from './shadow.module.css';
-
-import instagramLogo from '@/public/images/instagram.svg';
-import twitterLogo from '@/public/images/twitter.svg';
-import SocialLink from '@/components/Menu/Overlay/SocialLink';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
+import Close from '@/components/Menu/assets/Close';
+import Bars from '@/components/Menu/assets/Bars';
+import { useRouter } from 'next/router';
+import Search from '@/components/Menu/assets/Search';
+import LanguageSwitch from '@/components/Menu/LanguageSwitch';
+import { useIsMounted } from '@/lib/hooks';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
-function OverlayItemPrimary({ target, label, ...props }) {
-  return (
-    <Link href={target}>
-      <a
-        className="font-raptor font-bold text-2xl xl:text-4xl xl:text-5xl leading-none hover:text-black"
-        {...props}
-      >
-        {label}
-      </a>
-    </Link>
-  );
-}
-
-function OverlayItemSecondary({ target, label, ...props }) {
-  return (
-    <Link href={target}>
-      <a className="font-raptor font-bold text-m xl:text-3xl hover:text-black" {...props}>
-        {label}
-      </a>
-    </Link>
-  );
-}
-
-export default function Menu({ items = [], cta, localizations }) {
+export default function Menu({ main_items, secondary_items, localizations }) {
   const { t } = useTranslation();
   const { t: tSlugs } = useTranslation('slugs');
+  const { locales, locale } = useRouter();
   const overlayRef = useRef();
   const isFirstRender = useIsMounted();
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const { locales, locale } = useRouter();
 
-  const OVERLAY_PRIMARY_ITEMS = [
-    {
-      target: `/${tSlugs('featuredCities')}`,
-      label: t('menu.cities')
-    },
-
-    {
-      target: `/${tSlugs('approaches')}`,
-      label: t('menu.approaches')
-    },
-
-    {
-      target: `/${tSlugs('news')}`,
-      label: t('menu.news')
-    },
-
-    {
-      target: `/${tSlugs('about')}`,
-      label: t('menu.about')
-    }
-  ];
-
-  const OVERLAY_SECONDARY_ITEMS = items.map(({ about: { title, slug } }) => ({
-    target: `/${tSlugs('about')}/${slug}`,
-    label: title
-  }));
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const currentRef = overlayRef?.current;
@@ -84,117 +26,124 @@ export default function Menu({ items = [], cta, localizations }) {
       return;
     }
 
-    if (isOverlayOpen === true) {
+    if (open === true) {
       disableBodyScroll(currentRef);
     } else {
       clearAllBodyScrollLocks();
     }
-  }, [isOverlayOpen]);
+  }, [open]);
 
   return (
-    <>
-      <div className="absolute left-0 top-0 w-full z-50">
-        <header
-          className={classNames(
-            'from-red-300 to-pink-300 fixed left-0 top-0 xl:bottom-auto xl:top-0 w-full text-white px-8 xl:px-6 pt-4 pb-4 whitespace-nowrap flex',
-            isOverlayOpen ? 'bg-transparent' : 'bg-gradient-to-bl'
-          )}
-        >
-          <Burger
-            onClick={() => setIsOverlayOpen(!isOverlayOpen)}
-            isOverlayOpen={isOverlayOpen}
-            className="order-last xl:order-auto ml-auto"
-          />
-
-          <span className="flex items-center space-x-4 relative xl:hover:text-black">
-            <Link href="/">
-              <a className="flex items-center leading-none" onClick={() => setIsOverlayOpen(false)}>
-                <span
-                  className={clsx(
-                    'uppercase order-last xl:hidden xl:order-2 font-raptor font-semibold text-xl xs:text-2xl xl:text-3xl whitespace-nowrap tracking-wide',
-                    shadowStyles['text-shadow']
-                  )}
-                >
-                  {t('menu.name')}
-                </span>
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="826"
-                  height="447"
-                  viewBox="0 0 826 447"
-                  className="h-14 w-auto xl:order-1 mx-10 relative hidden xl:block"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M37 111c10-61 70-57 99-48 29 10 53 83 114 99S317 9 364 0c46-8 19 104 68 111 49 8 58-75 112-85s45 37 128 54c83 18 91-24 131-17 41 8 20 84-7 99-27 14-6 81 21 140s-26 55-83 37c-57-19-13 81-82 104-68 24-25-66-47-141s-54 8-115 29-89-56-114-88c-26-32-101 134-139 114s-14-43-54-68c-40-24-105 47-159 7-55-41 1-109 13-185z"
-                  />
-                </svg>
+    <header
+      className={classNames(
+        'top-0 w-full z-[100] bg-gradient-to-bl from-red-300 to-pink-300 text-white px-8 md:px-16 flex flex-col',
+        open ? 'fixed xl:sticky bottom-0 h-full xl:bottom-auto xl:h-24' : 'sticky h-24'
+      )}
+    >
+      <div className="h-24 w-full flex items-center">
+        <Link href={'/'}>
+          <a
+            className="uppercase font-raptor font-semibold text-xl xl:hover:text-black"
+            onClick={() => setOpen(false)}
+          >
+            <span className="xl:hidden">{t('menu.name')}</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="826"
+              height="447"
+              viewBox="0 0 826 447"
+              className="h-14 w-auto relative hidden xl:block"
+            >
+              <path
+                fill="currentColor"
+                d="M37 111c10-61 70-57 99-48 29 10 53 83 114 99S317 9 364 0c46-8 19 104 68 111 49 8 58-75 112-85s45 37 128 54c83 18 91-24 131-17 41 8 20 84-7 99-27 14-6 81 21 140s-26 55-83 37c-57-19-13 81-82 104-68 24-25-66-47-141s-54 8-115 29-89-56-114-88c-26-32-101 134-139 114s-14-43-54-68c-40-24-105 47-159 7-55-41 1-109 13-185z"
+              />
+            </svg>
+          </a>
+        </Link>
+        <div className="hidden xl:flex gap-x-8 ml-12">
+          {secondary_items
+            ?.filter((i) => i.page !== 'search')
+            ?.map((item, iI) => (
+              <Link href={`/${tSlugs(item.page)}`} key={iI}>
+                <a className="font-raptor font-bold text-l hover:text-black">{item.title}</a>
+              </Link>
+            ))}
+        </div>
+        <div className="hidden xl:flex gap-x-8 ml-auto">
+          {main_items
+            ?.filter((i) => i.page !== 'search')
+            ?.map((item, iI) => (
+              <Link href={`/${tSlugs(item.page)}`} key={iI}>
+                <a className="font-raptor font-bold text-l hover:text-black uppercase">
+                  {item.title}
+                </a>
+              </Link>
+            ))}
+        </div>
+        <div className="hidden xl:flex gap-x-8 ml-16">
+          {main_items?.find((i) => i.page === 'search') ||
+          secondary_items?.find((i) => i.page === 'search') ? (
+            <Link href={`/${tSlugs('search')}`}>
+              <a className="hover:text-black">
+                <Search />
               </a>
             </Link>
-          </span>
-
+          ) : null}
           <LanguageSwitch current={locale} locales={locales} localizations={localizations} />
-        </header>
+        </div>
+        <button
+          onClick={() => setOpen(!open)}
+          className="ml-auto w-10 h-10 flex items-center xl:hidden"
+          aria-label={open ? t('menu.burger.close') : t('menu.burger.open')}
+        >
+          {open ? <Close /> : <Bars />}
+        </button>
       </div>
-
-      <Overlay ref={overlayRef} isOpen={isOverlayOpen} setIsOverlayOpen={setIsOverlayOpen}>
-        <ul className="space-y-10 xl:space-y-12">
-          {OVERLAY_PRIMARY_ITEMS.map((item) => (
-            <li>
-              <OverlayItemPrimary {...item} onClick={() => setIsOverlayOpen(false)} />
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex flex-col xl:flex-row xl:justify-between mt-auto pb-6">
-          <div>
-            <ul>
-              {OVERLAY_SECONDARY_ITEMS.map((item) => (
-                <li>
-                  <OverlayItemSecondary {...item} onClick={() => setIsOverlayOpen(false)} />
-                </li>
-              ))}
-            </ul>
-            <div className="mt-5">
-              <SocialLink url="https://instagram.com/movingcities_eu" logo={instagramLogo} />
-              <SocialLink url="https://twitter.com/movingcities_eu" logo={twitterLogo} />
-            </div>
+      {open ? (
+        <div className="flex-1 flex flex-col pt-8 pb-12 xl:hidden" ref={overlayRef}>
+          <div className="mb-4 flex flex-col">
+            {main_items?.map((item, iI) => (
+              <Link href={`/${tSlugs(item.page)}`} key={iI}>
+                <a className="font-raptor font-bold text-2xl" onClick={() => setOpen(false)}>
+                  {item.page === 'search' ? <Search /> : item.title}
+                </a>
+              </Link>
+            ))}
           </div>
-
-          <ul className="xl:hidden flex mt-8">
-            {locales.map((currentLocale, index) => (
-              <li>
-                <Link href="/" locale={currentLocale}>
+          <div className="mt-auto flex flex-col">
+            {secondary_items?.map((item, iI) => (
+              <Link href={`/${tSlugs(item.page)}`} key={iI}>
+                <a className="font-raptor font-bold text-xl" onClick={() => setOpen(false)}>
+                  {item.page === 'search' ? <Search /> : item.title}
+                </a>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-12 flex gap-x-2">
+            {locales?.map((locale, lI) => (
+              <Fragment key={lI}>
+                <Link
+                  href={localizations && localizations[locale] ? localizations[locale] : ''}
+                  locale={locale}
+                >
                   <a
-                    className={clsx(
-                      'font-raptor font-bold text-m xl:text-3xl hover:underline mr-4 uppercase leading-none',
-                      index !== 0 && 'border-l-2 pl-4',
-                      locale === currentLocale && 'underline'
-                    )}
-                    onClick={() => setIsOverlayOpen(false)}
+                    className="font-raptor font-medium text-m text-center uppercase leading-none"
+                    onClick={() => setOpen(false)}
                   >
-                    {currentLocale}
+                    {locale}
                   </a>
                 </Link>
-              </li>
+                {lI !== locales.length - 1 ? (
+                  <span className="font-raptor font-medium text-m text-center uppercase leading-none">
+                    |
+                  </span>
+                ) : null}
+              </Fragment>
             ))}
-          </ul>
-
-          {cta && (
-            <div className="self-start xl:self-end mt-10 xl:mt-0">
-              <Button
-                href={`/${tSlugs('about')}/${cta.slug}`}
-                className="text-black"
-                onClick={() => setIsOverlayOpen(false)}
-              >
-                <span className="text-red-300 mr-4 text-2xl relative h-11">+</span>
-                <span>{t('addCity')}</span>
-              </Button>
-            </div>
-          )}
+          </div>
         </div>
-      </Overlay>
-    </>
+      ) : null}
+    </header>
   );
 }

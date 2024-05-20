@@ -57,15 +57,15 @@ function CustomApp({ Component, pageProps: { state, ...pageProps } }) {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Menu {...pageProps.menu} localizations={pageProps.localizations} />
 
-      <main className="relative pt-20 xl:pt-0 xl:pl-24">
+      <main className="relative flex-1">
         <Component {...pageProps} routeHasChanged={routeHasChanged} />
       </main>
 
       <Footer {...pageProps.footer} />
-    </>
+    </div>
   );
 }
 
