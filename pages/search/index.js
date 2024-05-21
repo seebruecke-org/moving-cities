@@ -63,7 +63,7 @@ export default function Search({ locale }) {
         <div className="px-8 md:px-10 max-w-8xl my-8 md:my-24 flex flex-col gap-y-8">
           {results?.map((result, rI) => (
             <div key={rI}>
-              <Link href={`/${typeSlugs[result.type]}/${result.data?.attributes?.slug}`}>
+              <Link href={`${typeSlugs[result.type]}/${result.data?.attributes?.slug}`}>
                 <a className="text-m font-raptor font-semibold hover:text-red-300">
                   {result.data?.attributes?.title ?? result.data?.attributes?.name}
                 </a>
