@@ -1,0 +1,9 @@
+{
+  "title": "Search",
+  "type": {
+    "approaches": "Approach",
+    "cities": "City",
+    "networks": "Network",
+    "news-entries": "News Entry"
+  }
+}
