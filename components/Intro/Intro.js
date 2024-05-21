@@ -3,9 +3,6 @@ import { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import clsx from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
-
-import Button from '@/components/Button';
 import Markdown from '@/components/Markdown';
 
 import introImage from '@/public/images/intro.jpg';
@@ -53,92 +50,34 @@ function CityShape({ image }) {
   );
 }
 
-function Count({ count, className, onClick = () => {}, ...props }) {
-  return (
-    <Link {...props}>
-      <a
-        className={clsx(
-          'font-raptor text-4xl md:text-5xl font-bold underline block hover:text-black',
-          className
-        )}
-        onClick={onClick}
-      >
-        {count}
-      </a>
-    </Link>
-  );
-}
-
-export default function Intro({
-  title,
-  intro,
-  approachesCount,
-  networksCount,
-  featuredCitiesCount,
-  citiesCount
-}) {
+export default function Intro({ title, intro }) {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('intro');
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
     <div className="relative w-full md:min-h-[760px] lg:min-h-[900px] overflow-x-hidden pb-12 md:pb-0">
-      <div className="relative md:absolute md:top-2 md:left-8 z-10 px-8 pt-12">
-        <h1 className="font-raptor text-2xl sm:text-3xl font-bold leading-none mb-8 text-red-300 max-w-4xl lg:max-w-none">
+      <div className="relative px-8 pt-12 xl:mx-16 xl:pt-16">
+        <h1 className="font-raptor text-2xl sm:text-3xl xl:text-5xl font-bold leading-none mb-8 text-red-300 max-w-4xl lg:max-w-none">
           <span
             className={clsx(
               'hidden md:block uppercase text-4xl lg:text-5xl xl:text-6xl bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
               styles.title
             )}
           >
-            {tCommon('menu.name')}
+            <span className="xl:hidden">{tCommon('menu.name')}</span>
             <span className="sr-only">:</span>
           </span>
           {title}
         </h1>
-
-        <Button href={`/${tSlugs('featuredCities')}`} priority>
-          {t('cta')}
-          <span className="text-red-300 ml-4">→</span>
-        </Button>
       </div>
 
-      <div className="-ml-96 md:ml-0 -mr-96 -mt-32 md:mt-0 -mb-16 md:mb-0 md:mr-0 relative md:absolute md:top-24 lg:top-36 xl:top-64 md:left-10 md:w-4/5 xl:left-48 xl:w-9/12">
+      <div className="mx-8 my-12 lg:mx-32 relative">
         <CityShape image={introImage} />
       </div>
 
-      <div className="md:absolute md:bottom-8 md:left-8 max-w-3xl lg:max-w-5xl px-8">
+      <div className="md:absolute md:bottom-8 md:left-8 max-w-3xl lg:max-w-6xl px-8">
         <Markdown>{intro}</Markdown>
-      </div>
-
-      <div className="md:absolute md:right-8 md:top-0 px-8 md:py-12 lg:py-16 xl:py-28 md:space-y-4 xl:space-y-8 md:h-screen justify-between md:flex md:flex-col">
-        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
-          <Count
-            href={`/${tSlugs('featuredCities')}`}
-            count={featuredCitiesCount}
-            className="text-red-300"
-          />{' '}
-          {t('withCaseStudies')}
-        </p>
-
-        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
-          <Count href={`/${tSlugs('cities')}`} count={citiesCount} className="text-pink-300" />{' '}
-          {t('withSolidarityBasedPolicy')}
-        </p>
-
-        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
-          <Count href={`/${tSlugs('networks')}`} count={networksCount} className="text-red-300" />{' '}
-          {t('europeanNetworks')}
-        </p>
-
-        <p className="leading-tight font-raptor md:max-w-xs md:text-right text-s lg:text-m">
-          <Count
-            href={`/${tSlugs('approaches')}`}
-            count={approachesCount}
-            className="text-pink-300"
-          />
-          {t('inspiringApproaches')}
-        </p>
       </div>
     </div>
   );
