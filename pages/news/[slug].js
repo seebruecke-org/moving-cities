@@ -16,6 +16,7 @@ import BlockSwitch from '@/components/Blocks/BlockSwitch';
 import BackTo from '@/components/BackTo';
 import Media from '@/components/Blocks/Media';
 import VideoEmbed from '@/components/Blocks/VideoEmbed';
+import MultiCollapsible from '@/components/Blocks/MultiCollapsible';
 import { fetchFooter } from '@/lib/footer';
 
 export default function NewsEntryPage({ newsEntry }) {
@@ -59,7 +60,7 @@ export default function NewsEntryPage({ newsEntry }) {
 
         <BlockSwitch
           blocks={newsEntry?.content}
-          renderers={{ Media, Section, Quote, DownloadSection, VideoEmbed }}
+          renderers={{ Media, Section, Quote, DownloadSection, VideoEmbed, MultiCollapsible }}
         />
 
         <BackTo
