@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 
 import BackTo from '@/components/BackTo';
-import FloatingTabs from '@/components/FloatingTabs';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
@@ -48,7 +47,6 @@ export default function NetworkPage({
     activeThread: { id: networks.find(({ active }) => active)?.id }
   });
   const [{ bounds, markers }, setMapState] = useState({ markers: [], bounds: null });
-  const [mapInteraction, setMapInteraction] = useState(false);
   const isSingleView = !!query?.slug?.[0];
 
   const navItems = useMemo(
@@ -164,37 +162,6 @@ export default function NetworkPage({
         />
       )}
 
-      <FloatingTabs
-        className={clsx((isSingleView || activeThread) && 'hidden xl:block')}
-        tooltipHidden={!!activeThread || mapInteraction}
-        items={[
-          {
-            target: `/${tSlugs('featuredCities')}`,
-            label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro', {
-              count: counts.featuredCitiesCount,
-              count_total: counts.citiesCount
-            }),
-            count: counts.featuredCitiesCount
-          },
-
-          {
-            target: `/${tSlugs('cities')}`,
-            label: tCity('allCities'),
-            tooltip: tCity('allCitiesIntro', { count: counts.citiesCount }),
-            count: counts.citiesCount
-          },
-
-          {
-            target: `/${tSlugs('networks')}`,
-            label: tCity('networks'),
-            tooltip: tCity('networksIntro', { count: counts.networksCount }),
-            active: true,
-            count: counts.networksCount
-          }
-        ]}
-      />
-
       <ThreadList
         allowAllClosed={false}
         pane={NetworkPreview}
@@ -213,16 +180,7 @@ export default function NetworkPage({
         items={navItems}
       />
 
-      {renderMap(windowWidth) && (
-        <MapboxMap
-          bounds={bounds}
-          onInteraction={() => {
-            setMapInteraction(true);
-          }}
-        >
-          {markers}
-        </MapboxMap>
-      )}
+      {renderMap(windowWidth) && <MapboxMap bounds={bounds}>{markers}</MapboxMap>}
 
       {menu?.cta && (
         <FloatingCta target={`/${tSlugs('about')}/${menu?.cta.slug}`} label={t('addCity')} />

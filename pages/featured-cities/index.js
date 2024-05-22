@@ -1,9 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
-import { useMemo, useState } from 'react';
-import clsx from 'clsx';
+import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import FloatingTabs from '@/components/FloatingTabs';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 const FloatingCta = dynamic(() => import('@/components/FloatingCta'));
@@ -51,7 +49,6 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
   const { t } = useTranslation();
   const { t: tCity } = useTranslation('city');
   const { t: tSlugs } = useTranslation('slugs');
-  const [mapInteraction, setMapInteraction] = useState(false);
   const [{ activeThread }, dispatch] = useMapReducer();
 
   const navItems = useMemo(() => {
@@ -76,8 +73,6 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
       }
     }));
   }, [activeThread]);
-
-  console.log(navItems);
 
   const markers = useMemo(() => {
     // don't show markers on the map, once a city was selected
@@ -106,37 +101,6 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
     <div className="flex flex-col md:flex-row md:h-full w-full">
       <SEO title={tCity('featuredCities')} />
 
-      <FloatingTabs
-        className={clsx(!!activeThread && 'hidden lg:block')}
-        tooltipHidden={!!activeThread || mapInteraction}
-        items={[
-          {
-            target: `/${tSlugs('featuredCities')}`,
-            label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro', {
-              count: counts.featuredCitiesCount,
-              count_total: counts.citiesCount
-            }),
-            active: true,
-            count: counts.featuredCitiesCount
-          },
-
-          {
-            target: `/${tSlugs('cities')}`,
-            label: tCity('allCities'),
-            tooltip: tCity('allCitiesIntro', { count: counts.citiesCount }),
-            count: counts.citiesCount
-          },
-
-          {
-            target: `/${tSlugs('networks')}`,
-            label: tCity('networks'),
-            tooltip: tCity('networksIntro', { count: counts.networksCount }),
-            count: counts.networksCount
-          }
-        ]}
-      />
-
       <ThreadList
         pane={CityPreview}
         onAfterOpen={({ id, coordinates }) => {
@@ -149,14 +113,7 @@ export default function FeaturedCitiesOverview({ cities, counts, bounds, menu })
       />
 
       {renderMap(windowWidth) && markers && bounds && (
-        <MapboxMap
-          bounds={bounds}
-          onInteraction={() => {
-            setMapInteraction(true);
-          }}
-        >
-          {markers}
-        </MapboxMap>
+        <MapboxMap bounds={bounds}>{markers}</MapboxMap>
       )}
 
       {menu?.cta && (

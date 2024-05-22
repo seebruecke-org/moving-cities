@@ -1,12 +1,10 @@
 import { useTranslation } from 'next-i18next';
 import { Marker } from 'react-map-gl';
 import { useRouter } from 'next/router';
-import { useMemo, useState } from 'react';
-import clsx from 'clsx';
+import { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 
 import BackTo from '@/components/BackTo';
-import FloatingTabs from '@/components/FloatingTabs';
 import SEO from '@/components/SEO';
 import ThreadList from '@/components/ThreadList';
 
@@ -37,7 +35,6 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
   const { t: tSlugs } = useTranslation('slugs');
   const { query } = useRouter();
   const isSingleView = !!query?.slug?.[0];
-  const [mapInteraction, setMapInteraction] = useState(false);
   const [{ activeThread }, dispatch] = useMapReducer();
 
   function countryIsActive(country) {
@@ -129,37 +126,6 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         <BackTo title={tCity('allCities')} uri={`/${tSlugs('cities')}`} className="md:hidden" />
       )}
 
-      <FloatingTabs
-        className={clsx(isSingleView && 'hidden lg:block')}
-        tooltipHidden={!!activeThread || mapInteraction}
-        items={[
-          {
-            target: `/${tSlugs('featuredCities')}`,
-            label: tCity('featuredCities'),
-            tooltip: tCity('featuredCitiesIntro', {
-              count: counts.featuredCitiesCount,
-              count_total: counts.citiesCount
-            }),
-            count: counts.featuredCitiesCount
-          },
-
-          {
-            target: `/${tSlugs('cities')}`,
-            label: tCity('allCities'),
-            tooltip: tCity('allCitiesIntro', { count: counts.citiesCount }),
-            active: true,
-            count: counts.citiesCount
-          },
-
-          {
-            target: `/${tSlugs('networks')}`,
-            label: tCity('networks'),
-            tooltip: tCity('networksIntro', { count: counts.networksCount }),
-            count: counts.networksCount
-          }
-        ]}
-      />
-
       <ThreadList
         pane={CountryPreview}
         onAfterOpen={(country) => {
@@ -171,16 +137,7 @@ export default function AllCitiesOverview({ countries, counts, bounds: defaultBo
         items={navItems}
       />
 
-      {renderMap(windowWidth) && markers && (
-        <MapboxMap
-          bounds={bounds}
-          onInteraction={() => {
-            setMapInteraction(true);
-          }}
-        >
-          {markers}
-        </MapboxMap>
-      )}
+      {renderMap(windowWidth) && markers && <MapboxMap bounds={bounds}>{markers}</MapboxMap>}
 
       {menu?.cta && (
         <FloatingCta target={`/${tSlugs('about')}/${menu.cta.slug}`} label={t('addCity')} />
