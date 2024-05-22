@@ -9,13 +9,16 @@ import Search from '@/components/Menu/assets/Search';
 import LanguageSwitch from '@/components/Menu/LanguageSwitch';
 import { useIsMounted } from '@/lib/hooks';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import Tooltip from '@/components/Menu/Tooltip';
 
-export default function Menu({ main_items, secondary_items, localizations }) {
+export default function Menu({ main_items, secondary_items, localizations, counts }) {
   const { t } = useTranslation();
   const { t: tSlugs } = useTranslation('slugs');
   const { locales, locale } = useRouter();
   const overlayRef = useRef();
   const isFirstRender = useIsMounted();
+  const itemRefs = useRef([]);
+  const [tooltipPosition, setTooltipPosition] = useState({});
 
   const [open, setOpen] = useState(false);
 
@@ -32,6 +35,18 @@ export default function Menu({ main_items, secondary_items, localizations }) {
       clearAllBodyScrollLocks();
     }
   }, [open]);
+
+  const handleItemEnter = (activeItemIndex) => {
+    const activeRef = itemRefs.current[activeItemIndex];
+
+    if (activeRef) {
+      const { clientWidth } = activeRef;
+
+      setTooltipPosition({
+        left: clientWidth / 2
+      });
+    }
+  };
 
   return (
     <header
@@ -75,8 +90,18 @@ export default function Menu({ main_items, secondary_items, localizations }) {
             ?.filter((i) => i.page !== 'search')
             ?.map((item, iI) => (
               <Link href={`/${tSlugs(item.page)}`} key={iI}>
-                <a className="font-raptor font-bold text-l hover:text-black uppercase">
+                <a
+                  className="font-raptor font-bold text-l hover:text-black uppercase relative group"
+                  ref={(ref) => (itemRefs.current[iI] = ref)}
+                  onMouseEnter={() => handleItemEnter(iI)}
+                >
                   {item.title}
+                  <Tooltip
+                    className="hidden group-hover:block normal-case font-normal text-opacity-60"
+                    style={tooltipPosition}
+                  >
+                    {t(`menu.tooltip.${item.page}`, { count: counts[`${item.page}Count`] })}
+                  </Tooltip>
                 </a>
               </Link>
             ))}

@@ -7,6 +7,7 @@ import { createClient } from '@/lib/api';
 import { getTranslations } from '@/lib/global';
 import { fetchMenu } from '@/lib/menu';
 import { fetchFooter } from '@/lib/footer';
+import { fetchCounts } from '@/lib/cities';
 
 export default function PageNotFound() {
   const { t } = useTranslation('404');
@@ -29,13 +30,15 @@ export async function getStaticProps({ locale }) {
   const client = createClient();
   const menu = await fetchMenu(client, locale);
   const footer = await fetchFooter(client, locale);
+  const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 60,
     props: {
       ...translations,
       menu,
-      footer
+      footer,
+      counts
     }
   };
 }

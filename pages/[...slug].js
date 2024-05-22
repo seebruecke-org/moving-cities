@@ -23,7 +23,8 @@ import {
   fetchCityBySlug,
   fetchAllCityPaths,
   fetchNextCity,
-  fetchCityLocalizationsBySlug
+  fetchCityLocalizationsBySlug,
+  fetchCounts
 } from '@/lib/cities';
 import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
@@ -180,6 +181,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const next = await fetchNextCity(client, slug[0], locale);
   const menu = await fetchMenu(client, locale);
   const footer = await fetchFooter(client, locale);
+  const counts = await fetchCounts(client, locale);
 
   if (!city) {
     return {
@@ -196,7 +198,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
       next,
       menu,
       footer,
-      localizations
+      localizations,
+      counts
     }
   };
 }

@@ -24,6 +24,7 @@ import { getTranslations } from '@/lib/global';
 import { mapStrapiToFELocale } from '@/lib/i18n';
 import { fetchMenu } from '@/lib/menu';
 import { fetchFooter } from '@/lib/footer';
+import { fetchCounts } from '@/lib/cities';
 
 export default function About({ navigation, about: { title, content, metadata } }) {
   const { t: tSlugs } = useTranslation('slugs');
@@ -91,6 +92,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const navigation = await fetchAllAbouts(client, locale, { active: slug?.[0] });
   const menu = await fetchMenu(client, locale);
   const footer = await fetchFooter(client, locale);
+  const counts = await fetchCounts(client, locale);
 
   if (about === null) {
     return {
@@ -106,7 +108,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
       about,
       menu,
       footer,
-      localizations
+      localizations,
+      counts
     }
   };
 }

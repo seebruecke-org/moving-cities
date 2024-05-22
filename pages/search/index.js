@@ -7,6 +7,7 @@ import { fetchFooter } from '@/lib/footer';
 import { useState } from 'react';
 import SearchIcon from '@/components/Menu/assets/Search';
 import Link from 'next/link';
+import { fetchCounts } from '@/lib/cities';
 
 export default function Search({ locale }) {
   const { t } = useTranslation('search');
@@ -82,6 +83,7 @@ export async function getStaticProps({ locale }) {
   const client = createClient();
   const menu = await fetchMenu(client, locale);
   const footer = await fetchFooter(client, locale);
+  const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 60,
@@ -89,7 +91,8 @@ export async function getStaticProps({ locale }) {
       ...translations,
       menu,
       footer,
-      locale
+      locale,
+      counts
     }
   };
 }

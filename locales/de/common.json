@@ -12,6 +12,12 @@
     "burger": {
       "open": "Menü öffnen",
       "close": "Menü schließen"
+    },
+
+    "tooltip": {
+      "featuredCities": "{{count}} detaillierte Fallbeispiele von Städten in Europa, die eine solidarische Migrationspolitik umsetzen",
+      "networks": "Europäische Netzwerke und Kampagnen, die sich aktiv für eine progressivere Migrationspolitik einsetzen",
+      "approaches": "Inspirierende lokale Ansätze, die europäische Städte bereits umgesetzt haben"
     }
   },
 

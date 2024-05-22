@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { fetchAllNewsEntries, fetchNewsLocalizations } from '@/lib/news';
 import NewsEntry from '@/components/NewsEntry';
 import { fetchFooter } from '@/lib/footer';
+import { fetchCounts } from '@/lib/cities';
 
 export default function NewsOverviewPage({ newsEntries }) {
   const { t: tNews } = useTranslation('news');
@@ -40,6 +41,7 @@ export async function getStaticProps({ locale }) {
   const localizations = await fetchNewsLocalizations();
   const menu = await fetchMenu(client, locale);
   const footer = await fetchFooter(client, locale);
+  const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 240,
@@ -48,7 +50,8 @@ export async function getStaticProps({ locale }) {
       menu,
       footer,
       newsEntries,
-      localizations
+      localizations,
+      counts
     }
   };
 }

@@ -18,6 +18,7 @@ import Media from '@/components/Blocks/Media';
 import VideoEmbed from '@/components/Blocks/VideoEmbed';
 import MultiCollapsible from '@/components/Blocks/MultiCollapsible';
 import { fetchFooter } from '@/lib/footer';
+import { fetchCounts } from '@/lib/cities';
 
 export default function NewsEntryPage({ newsEntry }) {
   const { t: tSlugs } = useTranslation('slugs');
@@ -94,6 +95,7 @@ export async function getStaticProps({ locale, params: { slug } }) {
   const localizations = await fetchNewsLocalizationsBySlug(slug);
   const menu = await fetchMenu(client, locale);
   const footer = await fetchFooter(client, locale);
+  const counts = await fetchCounts(client, locale);
 
   return {
     revalidate: 240,
@@ -102,7 +104,8 @@ export async function getStaticProps({ locale, params: { slug } }) {
       menu,
       footer,
       newsEntry,
-      localizations
+      localizations,
+      counts
     }
   };
 }
