@@ -33,7 +33,7 @@ export default function Collapsible({ collapsibleTitle, richtext, open = false }
               height="23"
               fill="none"
               viewBox="0 0 40 23"
-              className="text-red-300 mt-1 md:-mt-3"
+              className="text-red-300 mt-1 md:-mt-3 min-w-[40px]"
             >
               <path
                 stroke="currentColor"
