@@ -8,6 +8,7 @@ import Markdown from '@/components/Markdown';
 import introImage from '@/public/images/intro.jpg';
 
 import styles from './styles.module.css';
+import Highlight from '@/components/Intro/Highlight';
 
 function CityShape({ image }) {
   const duration = 4500;
@@ -50,35 +51,42 @@ function CityShape({ image }) {
   );
 }
 
-export default function Intro({ title, intro }) {
+export default function Intro({ title, intro, highlights }) {
   const { t: tCommon } = useTranslation('common');
-  const { t } = useTranslation('intro');
-  const { t: tSlugs } = useTranslation('slugs');
 
   return (
-    <div className="relative w-full md:min-h-[760px] lg:min-h-[900px] overflow-x-hidden pb-12 md:pb-0">
-      <div className="relative px-8 pt-12 xl:mx-16 xl:pt-16">
-        <h1 className="font-raptor text-2xl sm:text-3xl xl:text-5xl font-bold leading-none mb-8 text-red-300 max-w-4xl lg:max-w-none">
-          <span
-            className={clsx(
-              'hidden md:block uppercase text-4xl lg:text-5xl xl:text-6xl bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
-              styles.title
-            )}
-          >
-            <span className="xl:hidden">{tCommon('menu.name')}</span>
-            <span className="sr-only">:</span>
-          </span>
-          {title}
-        </h1>
-      </div>
+    <div className="relative w-full md:min-h-[760px] lg:min-h-[900px] overflow-x-hidden pb-12 md:pb-0 flex flex-col lg:flex-row">
+      <div className="flex-1">
+        <div className="relative px-8 pt-12 xl:mx-16 xl:pt-16">
+          <h1 className="font-raptor text-2xl sm:text-3xl xl:text-5xl font-bold leading-none mb-8 text-red-300 max-w-4xl lg:max-w-none">
+            <span
+              className={clsx(
+                'hidden xl:block uppercase text-4xl lg:text-5xl xl:text-6xl bg-clip-text bg-gradient-to-b from-red-300 to-pink-300 text-red-300',
+                styles.title
+              )}
+            >
+              <span>{tCommon('menu.name')}</span>
+              <span className="sr-only">:</span>
+            </span>
+            {title}
+          </h1>
+        </div>
 
-      <div className="mx-8 my-12 lg:mx-32 relative">
-        <CityShape image={introImage} />
-      </div>
+        <div className="mx-8 my-12 lg:mx-32 relative">
+          <CityShape image={introImage} />
+        </div>
 
-      <div className="md:absolute md:bottom-8 md:left-8 max-w-3xl lg:max-w-6xl px-8">
-        <Markdown>{intro}</Markdown>
+        <div className="md:absolute md:bottom-8 md:left-8 max-w-3xl lg:max-w-6xl px-8">
+          <Markdown>{intro}</Markdown>
+        </div>
       </div>
+      {highlights?.length > 0 ? (
+        <div className="mt-8 lg:mt-0 flex flex-col justify-center gap-y-6 mx-8 pt-12 xl:mx-16 xl:py-16">
+          {highlights.map((highlight, hI) => (
+            <Highlight highlight={highlight} key={hI} />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
