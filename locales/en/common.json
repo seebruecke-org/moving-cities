@@ -12,8 +12,15 @@
     "burger": {
       "open": "Open Menu",
       "close": "Close Menu"
+    },
+
+    "tooltip": {
+      "featuredCities": "{{count}} detailed case studies of European cities implementing a solidarity-based migration policy",
+      "networks": "European networks and campaigns that actively advocate for more progressive migration policies",
+      "approaches": "Inspiring local approaches implemented by European cities"
     }
   },
 
-  "addCity": "Add your city"
+  "addCity": "Add your city",
+  "readMore": "Read more"
 }

@@ -1,0 +1,9 @@
+{
+  "title": "Recherche",
+  "type": {
+    "approaches": "Approche",
+    "cities": "Ville",
+    "networks": "Réseau",
+    "news-entries": "Actualités"
+  }
+}
