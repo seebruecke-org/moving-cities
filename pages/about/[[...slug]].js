@@ -26,20 +26,22 @@ import { fetchMenu } from '@/lib/menu';
 import { fetchFooter } from '@/lib/footer';
 import { fetchCounts } from '@/lib/cities';
 
-export default function About({ navigation, about: { title, content, metadata } }) {
+export default function About({ navigation, about: { title, content, metadata, show_menu } }) {
   const { t: tSlugs } = useTranslation('slugs');
 
   return (
     <div className="md:flex pb-10 md:pb-0">
       <SEO title={title} metadata={metadata} />
 
-      <SidebarMenu
-        items={navigation.map(({ title, slug, active, menu_sort }) => ({
-          target: `/${tSlugs('about')}${menu_sort !== 0 ? `/${slug}` : ''}`,
-          label: title,
-          active
-        }))}
-      />
+      {show_menu !== false ? (
+        <SidebarMenu
+          items={navigation.map(({ title, slug, active, menu_sort }) => ({
+            target: `/${tSlugs('about')}${menu_sort !== 0 ? `/${slug}` : ''}`,
+            label: title,
+            active
+          }))}
+        />
+      ) : null}
 
       <article>
         <Heading level={1} className="pl-8 md:pl-10 pt-10 md:pt-10 mb-4 md:mb-20 max-w-full">

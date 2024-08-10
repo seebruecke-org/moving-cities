@@ -43,7 +43,7 @@ export default function NewsEntryPage({ newsEntry }) {
       />
 
       <article className="flex-grow">
-        <header className="bg-gradient-to-br from-red-300 to-pink-300 grid py-20 pt-20 px-8 mb-6 md:px-40">
+        <header className="bg-yellow-300 grid py-20 pt-20 px-8 mb-6 md:px-40">
           <div className="mt-16 md:mt-0">
             <h1 className="font-raptor font-bold">
               {newsEntry?.region && (

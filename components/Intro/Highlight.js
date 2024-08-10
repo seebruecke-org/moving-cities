@@ -22,17 +22,19 @@ export default function Highlight({ highlight }) {
   };
 
   return (
-    <div className="border border-grey-300 rounded-xl p-6 w-full md:w-[400px]">
-      <h4 className="font-raptor font-light underline text-xxs text-opacity-80">
-        {t('highlight')}
-      </h4>
-      <div className="my-3 font-raptor font-bold text-xs">{highlight.title}</div>
-      <Link href={createUrl()}>
-        <a className="font-raptor lg:hover:text-red-300">
-          {tCommon('readMore')}
-          <span className="ml-2">⟶</span>
-        </a>
-      </Link>
-    </div>
+    <Link href={createUrl()}>
+      <a className="group block border border-grey-300 rounded-xl p-6 w-full md:w-[400px] hover:border-red-300">
+        <h4 className="font-raptor font-light underline text-xs text-opacity-80">
+          {t('highlight')}
+        </h4>
+        <div className="my-3 font-raptor font-bold text-s">{highlight.title}</div>
+        <Link href={createUrl()}>
+          <a className="font-raptor lg:group-hover:text-red-300 text-xs">
+            {tCommon('readMore')}
+            <span className="ml-2">⟶</span>
+          </a>
+        </Link>
+      </a>
+    </Link>
   );
 }

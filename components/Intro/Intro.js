@@ -55,7 +55,7 @@ export default function Intro({ title, intro, highlights }) {
   const { t: tCommon } = useTranslation('common');
 
   return (
-    <div className="relative w-full md:min-h-[760px] lg:min-h-[900px] overflow-x-hidden pb-12 md:pb-0 flex flex-col lg:flex-row">
+    <div className="relative w-full md:min-h-[760px] lg:min-h-[800px] xl:min-h-[850px] overflow-x-hidden pb-12 md:pb-0 flex flex-col lg:flex-row">
       <div className="flex-1">
         <div className="relative px-8 pt-12 xl:mx-16 xl:pt-16">
           <h1 className="font-raptor text-2xl sm:text-3xl xl:text-5xl font-bold leading-none mb-8 text-red-300 max-w-4xl lg:max-w-none">
@@ -72,11 +72,11 @@ export default function Intro({ title, intro, highlights }) {
           </h1>
         </div>
 
-        <div className="mx-8 my-12 lg:mx-32 relative">
+        <div className="mx-8 my-12 lg:ml-32 xl:mr-64 xl:-mt-24 relative">
           <CityShape image={introImage} />
         </div>
 
-        <div className="md:absolute md:bottom-8 md:left-8 max-w-3xl lg:max-w-6xl px-8">
+        <div className="lg:absolute lg:bottom-8 lg:left-8 max-w-3xl lg:max-w-6xl px-8">
           <Markdown>{intro}</Markdown>
         </div>
       </div>
