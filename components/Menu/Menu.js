@@ -26,6 +26,7 @@ export default function Menu({ main_items, secondary_items, localizations, count
     const currentRef = overlayRef?.current;
 
     if (isFirstRender) {
+      clearAllBodyScrollLocks();
       return;
     }
 
