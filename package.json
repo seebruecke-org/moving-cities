@@ -29,7 +29,7 @@
     "next-plugin-preact": "^3.0.6",
     "postcss": "^8.4.5",
     "preact": "^10.6.5",
-    "preact-render-to-string": "^5.1.19",
+    "preact-render-to-string": "^6.5.8",
     "react": "npm:@preact/compat@^17.0.3",
     "react-dom": "npm:@preact/compat@^17.0.3",
     "react-map-gl": "^6.1.19",
