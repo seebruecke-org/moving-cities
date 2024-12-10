@@ -123,11 +123,11 @@ export default function CityPage({
           </Columns>
         )}
 
-        {country && (
+        {/*country && (
           <div className="mt-12 md:mt-16 mb-12 md:mb-6">
             <CountryContext {...country} />
           </div>
-        )}
+        )*/}
 
         {approaches?.length > 0 && (
           <Columns className="px-8 md:px-10 max-w-8xl mt-8 md:mt-24">
